@@ -21,3 +21,7 @@ mkdoc.js
 mkswagdoc.js
 /*.docx
 /*.pdf
+*.bundle
+sweep.png
+v1.png
+v2.png
