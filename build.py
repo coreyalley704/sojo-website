@@ -41,6 +41,15 @@ STORE_LIVE = False
 PHONE_D = "980-680-0958"
 PHONE_H = "tel:+19806800958"
 
+# Hello Church texting — keyword-first bodies so auto-replies can match on the
+# first word. Cross-platform sms: link form (iOS 8+ and Android both accept ?&body=).
+def sms(keyword, message):
+    from urllib.parse import quote
+    return f"sms:+19806800958?&body={quote(keyword + ' - ' + message)}"
+SMS_JESUS   = sms("JESUS",   "I just prayed to follow Jesus. My name is ")
+SMS_BAPTIZE = sms("BAPTIZE", "I want to be baptized. My name is ")
+SMS_QUESTION= sms("QUESTION","I have a question about following Jesus. My name is ")
+
 # Grouped navigation. Top level is a real link (works with no JS); the panel
 # expands on hover or keyboard focus. Two of the five groups are named for the
 # mission itself — GROW and GO — so the architecture teaches it.
@@ -60,6 +69,12 @@ NAV = [
         ("SOJO Kids",            "kids.html"),
         ("SOJO YTH",             "youth.html"),
         ("SOJO YA",              "next-gen.html#ya"),
+    ]),
+    ("Know",      "yada.html", [
+        ("Yada &mdash; Knowing God", "yada.html"),
+        ("God&rsquo;s Plan for Life","gods-plan.html"),
+        ("Partner with Him",     "partner.html"),
+        ("Baptism",              "baptism.html"),
     ]),
     ("Grow",      "next-steps.html", [
         ("Next Steps",           "next-steps.html"),
@@ -256,6 +271,8 @@ def footer():
         <h5>Take a step</h5>
         <ul>
           <li><a href="next-steps.html">Next steps</a></li>
+          <li><a href="partner.html">Follow Jesus</a></li>
+          <li><a href="baptism.html">Baptism</a></li>
           <li><a href="next-gen.html">Next Gen</a></li>
           <li><a href="kids.html">SOJO Kids</a></li>
           <li><a href="youth.html">SOJO YTH</a></li>
@@ -374,6 +391,10 @@ KEYWORDS = {
     'watch.html': 'church online Concord NC, watch sermons online, SOJO Church sermons, church podcast',
     'beliefs.html': 'what we believe SOJO Church, church beliefs Concord NC, doctrinal statement, statement of faith Concord church, Bible believing church near me',
     'swag.html': 'SOJO Church merch, church t-shirts Concord NC, SOJO swag',
+    'yada.html': 'knowing God, yada Hebrew meaning, know God personally, experiential knowledge of God, relationship with God Concord NC',
+    'gods-plan.html': 'God\'s plan for my life, abundant life John 10:10, purpose of life Bible, Psalm 1 meaning, way of Jesus',
+    'partner.html': 'how to become a Christian, follow Jesus, salvation prayer, apprentice of Jesus, give my life to Jesus Concord NC',
+    'baptism.html': 'get baptized Concord NC, water baptism meaning, believer\'s baptism, how to be baptized, baptism near me',
 }
 
 def page(slug, title, desc, body, active=None, ld=False):
@@ -2678,6 +2699,44 @@ PAGES.append(page('give.html', 'Giving | SOJO Church, Concord NC',
     give, active='give.html'))
 
 # ============================== WATCH ========================================
+# Sermon slider: the YouTube IFrame API reads the uploads playlist right in the
+# visitor's browser (no server, no API key), then builds thumbnail tiles that
+# swap videos into the player. If the API can't load, the plain embed still works.
+WATCH_JS = '''
+<script>
+(function(){
+  var tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+  var player;
+  window.onYouTubeIframeAPIReady=function(){
+    player=new YT.Player('ytiframe',{events:{onReady:build}});
+  };
+  function build(){
+    var tries=0,t=setInterval(function(){
+      var ids=(player.getPlaylist&&player.getPlaylist())||[];tries++;
+      if(ids.length||tries>25){clearInterval(t);render(ids);}
+    },400);
+  }
+  function render(ids){
+    var s=document.getElementById('yslider');if(!s||!ids.length)return;
+    ids.slice(0,12).forEach(function(id,i){
+      var b=document.createElement('button');b.type='button';
+      b.className='yslide'+(i===0?' on':'');
+      b.setAttribute('aria-label','Play message '+(i+1));
+      b.innerHTML='<img loading="lazy" alt="" src="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg"><span class="yplay" aria-hidden="true">&#9654;</span>';
+      b.addEventListener('click',function(){
+        player.playVideoAt(i);
+        var on=s.querySelector('.yslide.on');if(on)on.classList.remove('on');
+        b.classList.add('on');
+        document.getElementById('ytiframe').scrollIntoView({behavior:'smooth',block:'center'});
+      });
+      s.appendChild(b);
+    });
+    s.hidden=false;
+  }
+})();
+</script>'''
+
 watch = f'''
 <section class="phero grain dark">
   <div class="phero-img">{eager('n-worship-duo','SOJO worship leaders singing together')}</div>
@@ -2699,7 +2758,12 @@ watch = f'''
       <p class="lede">Missed Sunday, or want to hear it again? The most recent message is always
       right here.</p>
     </div>
-    {latest()}
+    <div class="yframe yframe-sm"><iframe id="ytiframe" src="{YT_EMBED}&amp;enablejsapi=1"
+      title="This week's message from SOJO Church" loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <div class="yslider" id="yslider" aria-label="Recent messages" hidden></div>
+    {WATCH_JS}
     <div class="btns">{btn('All messages on YouTube',YT_PLAYLIST,'btn',True)}
       {btn('Listen to the podcast',POD,'btn btn-ghost',True)}</div>
   </div>
@@ -3106,6 +3170,369 @@ PAGES.append(page('our-story.html', 'Our Story | SOJO Church, Concord NC',
     'Seven years of SOJO Church in Concord, NC — from a living room in 2017 to a school cafeteria, '
     'a drive-in parking lot, six years on Union Street, and now Gibson Mill.',
     story_page, active='about.html'))
+
+# ============================== KNOW: YADA ===================================
+yada_page = f'''
+<section class="phero grain dark">
+  <div class="phero-img">{eager('n-worship-dark','Hands raised in worship in a dark room at SOJO Church')}</div>
+  <div class="wrap">
+    <p class="crumb">Know &middot; Part One</p>
+    <h1 class="display"><span class="script">To be</span><br>Known all the<br>way <span class="gold">through</span></h1>
+    <p class="lede">The Bible has a word for knowing that goes deeper than facts.
+    It&rsquo;s the difference between knowing <em>about</em> God and actually knowing him.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">The word</p>
+      <h2 class="display display-sm">Yada</h2>
+      <p class="lede">In Hebrew, the language most of the Old Testament was written in,
+      the word for &ldquo;know&rdquo; is <strong>yada</strong> (&#1497;&#1464;&#1491;&#1463;&#1506;). And it almost never means
+      &ldquo;has the right information.&rdquo;</p>
+      <p>Yada is knowing by <strong>experience</strong>. It&rsquo;s how a farmer knows his land, how a
+      craftsman knows the grain of the wood, how a husband knows his wife. It&rsquo;s knowledge you
+      can only get by being close &mdash; over time, through seasons, with your hands in it.
+      Genesis uses this exact word for the deepest intimacy two humans can share.</p>
+      <p>So when the prophets say God wants to be <em>known</em>, they are not asking you to pass
+      a theology quiz. You can memorize somebody&rsquo;s biography and never once sit at their
+      table. God is after the table.</p>
+      <p class="pull" style="margin-top:34px">&ldquo;Let the one who boasts, boast in this: that he
+      understands and knows me.&rdquo;</p>
+      <p class="pull-attr">Jeremiah 9:24, CSB</p>
+    </div>
+    <div class="figure">
+      {img('candles','Candlelight at a SOJO Church prayer night')}
+      <p class="figcap">Prayer night &middot; SOJO Church</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">Why it matters</p>
+      <h2 class="display display-sm">Jesus defined<br>eternal life &mdash;<br>and it&rsquo;s this</h2>
+      <p class="pull" style="margin-top:10px">&ldquo;This is eternal life: that they may know you, the only
+      true God, and the one you have sent &mdash; Jesus Christ.&rdquo;</p>
+      <p class="pull-attr">John 17:3, CSB</p>
+      <p>Read that again slowly. Jesus didn&rsquo;t define eternal life as a place you go when you
+      die. He defined it as a <strong>relationship you can start now</strong>. Knowing God &mdash;
+      yada-knowing him &mdash; is not the homework you do to get the life. It <em>is</em> the life.</p>
+      <p>That&rsquo;s why religion by itself leaves people empty. Rules without relationship is a
+      biography without a friendship. God told Israel plainly what he was after: &ldquo;I desire...
+      the knowledge of God more than burnt offerings&rdquo; (Hosea 6:6). He still does.</p>
+    </div>
+    <div class="figure">
+      {img('w-bright','The SOJO congregation in worship on a Sunday morning')}
+      <p class="figcap">Sunday morning &middot; SOJO Church</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Where to start</p>
+    <h2 class="display display-sm" style="margin-bottom:34px">Knowing starts<br>with showing up</h2>
+    {rows([
+      ("Get close", "Yada-knowledge only happens near. Be in the room &mdash; Sundays at 9 &amp; 11am. Worship is not a performance you watch; it&rsquo;s a table you pull up to.", ("Plan a visit","plan-a-visit.html",False)),
+      ("Read his story", "Start with the Gospel of John &mdash; one chapter a day for three weeks. Don&rsquo;t study it like a textbook. Read it like you&rsquo;re getting to know someone.", None),
+      ("Talk to him honestly", "Prayer isn&rsquo;t a script. Tell God the true thing, even if the true thing is &ldquo;I&rsquo;m not sure you&rsquo;re there.&rdquo; He has never once been scared off by honesty.", None),
+    ])}
+    <div class="btns" style="margin-top:40px">{btn('Next: God&rsquo;s plan for life','gods-plan.html')}
+    {btn('Talk to a human',PHONE_H,'btn btn-ghost')}</div>
+  </div>
+</section>
+{thread('know','Knowing God is not step one of the life. It is the life.')}
+'''
+PAGES.append(page('yada.html', 'Yada — Knowing God | SOJO Church, Concord NC',
+    'Yada — the Hebrew word for knowing God by experience, not just information. '
+    'Why Jesus defined eternal life as knowing God, and where to start.',
+    yada_page, active='yada.html'))
+
+# ============================== KNOW: GOD'S PLAN =============================
+plan_page = f'''
+<section class="phero grain dark">
+  <div class="phero-img">{eager('greeting','The SOJO family gathered outside under the We Are mural')}</div>
+  <div class="wrap">
+    <p class="crumb">Know &middot; Part Two</p>
+    <h1 class="display"><span class="script">From the beginning,</span><br>a plan to bring<br>us <span class="gold">home</span></h1>
+    <p class="lede">The Bible is not a rulebook with a story stuck on. It&rsquo;s one story &mdash;
+    God making a good world, losing it to us, and refusing to give up on getting it back.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">Genesis &middot; The garden</p>
+      <h2 class="display display-sm">Made for<br>partnership</h2>
+      <p class="lede">Page one of the Bible says you were made <strong>in the image of God</strong> &mdash;
+      and then given a job.</p>
+      <p>Eden isn&rsquo;t just a nice backyard. In Genesis, the garden is the place where God&rsquo;s
+      space and our space <strong>overlap</strong> &mdash; heaven and earth in the same address. And humans
+      aren&rsquo;t the audience. God plants the garden and then hands Adam the work: &ldquo;to work it
+      and watch over it&rdquo; (Genesis 2:15). Partners. Co-workers. Gardeners of a world God
+      called <em>very good</em>.</p>
+      <p>Then Genesis 3. We decided we&rsquo;d rather define good and evil ourselves than trust the
+      One who knows. The partnership broke, and we walked east, out of the garden. Every ache
+      you&rsquo;ve ever felt for a world that works &mdash; that&rsquo;s homesickness.</p>
+      <p>But watch what God does next. He doesn&rsquo;t walk away. The whole Torah is God coming
+      <em>after</em> his people &mdash; calling Abraham and making him a promise that bends history:
+      &ldquo;all the peoples on earth will be blessed through you&rdquo; (Genesis 12:3). One family,
+      chosen to carry the rescue to everybody.</p>
+    </div>
+    <div class="figure">
+      {img('k-bibles','Kids reading their Bibles on the floor at SOJO Church')}
+      <p class="figcap">The story &middot; Genesis to now</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">Psalm 1 &middot; Two ways to live</p>
+      <h2 class="display display-sm">The tree by<br>the stream</h2>
+      <p class="pull" style="margin-top:10px">&ldquo;He is like a tree planted beside flowing streams
+      that bears its fruit in its season, and its leaf does not wither.&rdquo;</p>
+      <p class="pull-attr">Psalm 1:3, CSB</p>
+      <p>The songbook of the Bible opens with a choice between two ways. One way looks free but
+      dries up. The other looks slow &mdash; roots, seasons, delight in God&rsquo;s instruction &mdash; and
+      ends up <strong>alive</strong>. Planted, not potted. Fruitful, not frantic.</p>
+      <p>This psalm is one of SOJO&rsquo;s anchor texts, because it tells the truth about formation:
+      God&rsquo;s plan for your life is not a lightning strike. It&rsquo;s a tree. It grows the way trees
+      grow &mdash; slowly, deeply, and on purpose.</p>
+    </div>
+    <div class="figure">
+      {img('n-girl-sing','Three generations of one family worshiping together at SOJO Church')}
+      <p class="figcap">Rooted &middot; SOJO Church</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark grain">
+  <div class="wrap">
+    <p class="eyebrow">Through the lens of Jesus</p>
+    <div class="split split-6535" style="align-items:end">
+      <h2 class="display display-sm">The Way back<br>to the garden</h2>
+      <p class="lede">Every thread of the story pulls tight in one person.</p>
+    </div>
+    <p style="max-width:62ch;margin-top:26px">Jesus is what the plan was always moving toward &mdash;
+    God&rsquo;s space and our space overlapping again, this time in a person. He lived the truly
+    human life we couldn&rsquo;t, died the death our rebellion earned, and walked out of the grave
+    to start the new creation early. When they asked him about the plan, he didn&rsquo;t hand out a
+    map. He said, &ldquo;I am the way, the truth, and the life&rdquo; (John 14:6).</p>
+    <p class="pull" style="margin-top:30px">&ldquo;I have come so that they may have life and have it
+    in abundance.&rdquo;</p>
+    <p class="pull-attr" style="color:var(--gold-bright)">John 10:10, CSB</p>
+    <p style="max-width:62ch">Abundant life. Not a bigger version of the life you already have &mdash;
+    the life you were <em>made</em> for. God&rsquo;s plan for your life is not a secret you have to
+    decode. It&rsquo;s a Person you get to follow.</p>
+    <div class="btns" style="margin-top:38px">{btn('Next: Partner with him','partner.html')}
+    {btn('Start at part one: Yada','yada.html','btn btn-ghost')}</div>
+  </div>
+</section>
+{thread('know','The plan was never rules. The plan was always coming home.')}
+'''
+PAGES.append(page('gods-plan.html', 'God&rsquo;s Plan for Life | SOJO Church, Concord NC',
+    'From the garden of Genesis to Psalm 1 to Jesus — God&rsquo;s plan to redeem humanity, '
+    'the way of Jesus, and the abundant life you were made for.',
+    plan_page, active='gods-plan.html'))
+
+# ============================== KNOW: PARTNER ================================
+partner_page = f'''
+<section class="phero grain dark">
+  <div class="phero-img">{eager('n-dan-teach','The SOJO family kneeling and praying over one another')}</div>
+  <div class="wrap">
+    <p class="crumb">Know &middot; Part Three</p>
+    <h1 class="display"><span class="script">Your move:</span><br>Partner<br>with <span class="gold">him</span></h1>
+    <p class="lede">Jesus never once asked anybody to admire him from a distance.
+    His invitation was two words long: <strong>&ldquo;Follow me.&rdquo;</strong></p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">Apprenticeship</p>
+      <h2 class="display display-sm">Following is<br>a trade you<br>learn</h2>
+      <p class="lede">In Jesus&rsquo; world, a disciple wasn&rsquo;t a fan or a student taking notes.
+      A disciple was an <strong>apprentice</strong>.</p>
+      <p>An apprentice moves in with the work. You&rsquo;re with the master, you watch his hands,
+      you copy his moves, and slowly &mdash; over years, not weekends &mdash; you start to do what he
+      does. That&rsquo;s the actual shape of the Christian life: <strong>be with Jesus, become like
+      Jesus, do what Jesus did.</strong></p>
+      <p>That&rsquo;s also exactly what our whole mission means. <strong>Know</strong> him &mdash; the
+      being-with. <strong>Grow</strong> in peace &mdash; the becoming-like. <strong>Go</strong> in purpose
+      &mdash; the doing-what-he-did. Know, grow, go isn&rsquo;t a church slogan. It&rsquo;s apprenticeship
+      to Jesus, in order.</p>
+    </div>
+    <div class="figure">
+      {img('g2-table','A SOJO group sharing a meal around a table')}
+      <p class="figcap">Learning the trade &middot; SOJO Church</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">Becoming a Christian</p>
+      <h2 class="display display-sm">What actually<br>happens</h2>
+      <p class="lede">Not a formula. Not a transaction. A covenant &mdash; and it starts with grace.</p>
+      <p>You cannot earn this. &ldquo;For you are saved by grace through faith... it is God&rsquo;s
+      gift &mdash; not from works&rdquo; (Ephesians 2:8&ndash;9). The rescue was accomplished by Jesus
+      on the cross and out of the empty tomb. Your part is to receive it and reorient your
+      whole life around it. The Bible uses two words for that:</p>
+      <p><strong>Repent</strong> &mdash; which doesn&rsquo;t mean grovel; it means <em>turn around</em>.
+      Change direction. Stop walking your way and start walking his. And <strong>believe</strong>
+      &mdash; not &ldquo;agree the facts are true,&rdquo; but <em>trust him with your weight</em>, the way
+      you trust a chair by sitting in it.</p>
+      <p class="pull" style="margin-top:30px">&ldquo;If you confess with your mouth, &lsquo;Jesus is
+      Lord,&rsquo; and believe in your heart that God raised him from the dead, you will be
+      saved.&rdquo;</p>
+      <p class="pull-attr">Romans 10:9, CSB</p>
+    </div>
+    <div class="figure">
+      {img('n-couple-pray','A man praying during a service at SOJO Church')}
+      <p class="figcap">The turn &middot; SOJO Church</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark grain">
+  <div class="wrap">
+    <p class="eyebrow">Ready?</p>
+    <div class="split split-6535" style="align-items:end">
+      <h2 class="display display-sm">A prayer<br>to start</h2>
+      <p class="lede">There&rsquo;s nothing magic about these exact words &mdash; God is listening to
+      your heart, not grading your grammar. But if you&rsquo;re ready, pray something like this
+      and mean it:</p>
+    </div>
+    <p class="pull" style="margin-top:34px;max-width:56ch">&ldquo;Jesus, I believe you are who you said
+    you are. I&rsquo;ve been walking my own way, and I&rsquo;m turning around. Forgive me. I trust
+    what you did on the cross for me. Be my Lord, be my teacher &mdash; I&rsquo;m yours. Teach me
+    your way. Amen.&rdquo;</p>
+    <p style="max-width:60ch;margin-top:26px">If you just prayed that &mdash; welcome home. Heaven is
+    louder about this than you are (Luke 15:7). <strong>Don&rsquo;t keep it a secret.</strong> Text us
+    right now so we can walk with you &mdash; the button below starts the message, you just add
+    your name and hit send.</p>
+    <div class="btns" style="margin-top:34px">
+      {btn('I prayed this &mdash; text us','SMSJESUS')}
+      {btn('I have questions','SMSQUESTION','btn btn-ghost')}
+      {btn(f'Or call {PHONE_D}',PHONE_H,'btn btn-ghost')}
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">What happens after you text</p>
+    <h2 class="display display-sm" style="margin-bottom:34px">We walk with you.<br>Here&rsquo;s the path.</h2>
+    {rows([
+      ("A real person texts you back", "Usually the same day. Not a robot pretending to be a pastor &mdash; a pastor. We&rsquo;ll celebrate with you and answer whatever&rsquo;s on your mind.", None),
+      ("Discover More", "Our three-week class on the basics of following Jesus &mdash; doctrine and discipleship, no question off limits. It&rsquo;s the best next room to be in.", ("Ask about the next class",'SMSQUESTION',False)),
+      ("Get baptized", "The public yes. Jesus was baptized, and he asks his apprentices to be. It&rsquo;s the next page of this story &mdash; literally.", ("Read about baptism","baptism.html",False)),
+    ])}
+  </div>
+</section>
+{thread('know','You don&rsquo;t clean up to come to him. You come to him, and he does the rest.')}
+'''
+partner_page = partner_page.replace('SMSJESUS', SMS_JESUS).replace('SMSQUESTION', SMS_QUESTION)
+PAGES.append(page('partner.html', 'Partner with Him — Becoming a Follower of Jesus | SOJO Church',
+    'What it means to become a Christian: apprenticeship to Jesus, grace, repentance and belief — '
+    'and a prayer to start. Text us when you pray it; we&rsquo;ll walk with you.',
+    partner_page, active='partner.html'))
+
+# ============================== KNOW: BAPTISM ================================
+baptism_page = f'''
+<section class="phero grain dark">
+  <div class="phero-img">{eager('baptism','Pastors praying over someone at the SOJO baptism tank')}</div>
+  <div class="wrap">
+    <p class="crumb">Know &middot; Part Four</p>
+    <h1 class="display"><span class="script">Buried and raised:</span><br><span class="gold">Baptism</span></h1>
+    <p class="lede">Knowing him. His plan. Your yes. Baptism is where all three go public &mdash;
+    the oldest announcement in the church, made with water.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">What it means</p>
+      <h2 class="display display-sm">The public yes</h2>
+      <p class="pull" style="margin-top:10px">&ldquo;We were buried with him by baptism into death, in
+      order that... we too may walk in newness of life.&rdquo;</p>
+      <p class="pull-attr">Romans 6:4, CSB</p>
+      <p>Everything the last three pages said, baptism <em>says</em> &mdash; out loud, in front of
+      your people. Going under the water: the old you, buried with Jesus. Coming up: the new
+      you, raised with him. It&rsquo;s a funeral and a birth in about four seconds.</p>
+      <p>Be clear on this: <strong>the water doesn&rsquo;t save you &mdash; grace does.</strong> Baptism is
+      the wedding ring, not the marriage. But Jesus was baptized himself, and he told his
+      followers to baptize every new apprentice (Matthew 28:19). If he&rsquo;s your Lord, it&rsquo;s
+      not really a question of <em>whether</em>. Just <em>when</em>.</p>
+    </div>
+    <div class="figure">
+      {img('pray','A baptism moment at the SOJO tank')}
+      <p class="figcap">At the tank &middot; SOJO Church</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap">
+    <p class="eyebrow">The details</p>
+    <h2 class="display display-sm" style="margin-bottom:34px">Who, what, why,<br>when, where, how</h2>
+    {rows([
+      ("Who", "Anyone who has decided to follow Jesus. That&rsquo;s the one requirement &mdash; not perfection, not a theology degree, not a waiting period. Kids who are asking about it: we&rsquo;d love to talk with you and your family first.", None),
+      ("What", "Full immersion &mdash; all the way under, the way Jesus did it in the Jordan. It&rsquo;s a symbol you act out with your whole body: buried with him, raised with him.", None),
+      ("Why", "Because Jesus asked (Matthew 28:19), because it declares in public what happened in private, and because you&rsquo;ll never forget it &mdash; and neither will the people watching.", None),
+      ("When", "We baptize regularly at Sunday services, and September 6 at Gibson Mill opens a brand-new tank in a brand-new room. Tell us you&rsquo;re ready and we&rsquo;ll get you the very next date.", None),
+      ("Where", "Sunday mornings at The Kettle Room at Gibson Mill — 325 McGill Ave NW, Suite 148, Concord. In front of your church family, which is the whole point.", ("Find the room","new-home.html",False)),
+      ("How", "Text us with the button below. A pastor sits down with you for a short, easy conversation — your story, what baptism means, any questions. Then Sunday: bring dark clothes and a change; we bring the towel and the party.", None),
+    ])}
+  </div>
+</section>
+
+<section class="sec dark grain">
+  <div class="wrap">
+    <p class="eyebrow">Take the step</p>
+    <div class="split split-6535" style="align-items:end">
+      <h2 class="display display-sm">The water&rsquo;s<br>ready</h2>
+      <p class="lede">One text starts it. The message is already written &mdash; add your name and
+      hit send, and a pastor will reply, usually the same day.</p>
+    </div>
+    <div class="btns" style="margin-top:36px">
+      {btn('I want to be baptized','SMSBAPTIZE')}
+      {btn('I just prayed to follow Jesus','SMSJESUS','btn btn-ghost')}
+      {btn(f'Or call {PHONE_D}',PHONE_H,'btn btn-ghost')}
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Honest questions</p>
+    <h2 class="display display-sm" style="margin-bottom:30px">Asked all<br>the time</h2>
+    {faq([
+      ("Do I need to get my life together first?", "No. Baptism isn&rsquo;t a trophy for the finished &mdash; it&rsquo;s a starting line for the forgiven. Come as you are; that&rsquo;s the only way anyone has ever come."),
+      ("I was baptized as a baby. Does that count?", "We&rsquo;re grateful for every family that honored God that way. But what we practice is believer&rsquo;s baptism &mdash; your own yes, made when it&rsquo;s yours to make. Many people baptized as infants choose to be baptized again as their own decision. We&rsquo;d love to talk it through with you."),
+      ("Can my kids be baptized?", "If your child is asking about baptism, that&rsquo;s worth taking seriously. A pastor will sit down with you and them &mdash; no pressure either way &mdash; and help discern whether they&rsquo;re ready or whether we wait and keep watering."),
+      ("What do I wear?", "Dark, comfortable clothes you don&rsquo;t mind soaking, and bring a full change. We provide the towel."),
+      ("Will I have to speak in front of everyone?", "No speech required. We&rsquo;ll ask you one question &mdash; &ldquo;Is Jesus your Lord?&rdquo; &mdash; and you say yes. The water does the rest of the talking."),
+      ("What if I&rsquo;m nervous?", "Everybody is. It lasts four seconds, and you will replay it for the rest of your life. Worth it."),
+    ])}
+  </div>
+</section>
+{thread('know','Four seconds of water. A whole life of new.')}
+'''
+baptism_page = baptism_page.replace('SMSBAPTIZE', SMS_BAPTIZE).replace('SMSJESUS', SMS_JESUS)
+PAGES.append(page('baptism.html', 'Baptism | SOJO Church, Concord NC',
+    'Who, what, why, when, where and how to be baptized at SOJO Church in Concord, NC — '
+    'and one text that starts it.',
+    baptism_page, active='baptism.html'))
 
 # ---------------------------------------------------------------- emit
 
