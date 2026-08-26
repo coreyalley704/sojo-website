@@ -49,6 +49,7 @@ def sms(keyword, message):
 SMS_JESUS   = sms("JESUS",   "I just prayed to follow Jesus. My name is ")
 SMS_BAPTIZE = sms("BAPTIZE", "I want to be baptized. My name is ")
 SMS_QUESTION= sms("QUESTION","I have a question about following Jesus. My name is ")
+SMS_HELLO   = sms("HELLO",   "I'd like to talk with someone at SOJO. My name is ")
 
 # Grouped navigation. Top level is a real link (works with no JS); the panel
 # expands on hover or keyboard focus. Two of the five groups are named for the
@@ -198,6 +199,14 @@ def rows(items):
     out.append('</div>')
     return ''.join(out)
 
+import json as _json
+def faq_ld(items):
+    import re as _re
+    strip = lambda t: _re.sub(r'<[^>]+>', '', t).replace('&rsquo;', chr(8217)).replace('&ldquo;', chr(8220)).replace('&rdquo;', chr(8221)).replace('&mdash;', chr(8212)).replace('&middot;', chr(183)).replace('&amp;', '&')
+    data = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":strip(q),"acceptedAnswer":{"@type":"Answer","text":strip(a)}} for q,a in items]}
+    return '<script type="application/ld+json">' + _json.dumps(data) + '</script>'
+
 def faq(items):
     out = ['<div class="faq">']
     for q, a in items:
@@ -287,7 +296,8 @@ def footer():
       <div>
         <h5>Talk to a human</h5>
         <ul>
-          <li><a href="{PHONE_H}">Call or text {PHONE_D}</a></li>
+          <li><a href="{SMS_HELLO}">Text us &mdash; a human replies</a></li>
+          <li><a href="{PHONE_H}">Or call {PHONE_D}</a></li>
           <li><a href="{VISIT}" target="_blank" rel="noopener">Tell us you're coming</a></li>
           <li><a href="our-story.html">Our story</a></li>
           <li><a href="mission.html">Our mission</a></li>
@@ -363,12 +373,21 @@ LAYOUT = '''<!doctype html>
 </html>'''
 
 LD = f'''<script type="application/ld+json">{{
-"@context":"https://schema.org","@type":"Church","name":"SOJO Church",
-"url":"https://sojo.church/","telephone":"+1-980-680-0958",
+"@context":"https://schema.org","@graph":[
+{{"@type":"Church","@id":"https://sojo.church/#church","name":"SOJO Church",
+"alternateName":"SOJO","url":"https://sojo.church/",
+"description":"SOJO Church is a non-denominational church in Concord, NC meeting Sundays at 9 & 11am in The Kettle Room at Gibson Mill. A community with a cause: helping people know life, grow in peace, and go in purpose.",
+"slogan":"A community with a cause",
+"telephone":"+1-980-680-0958",
+"foundingDate":"2017",
+"founder":{{"@type":"Person","name":"Corey Alley","jobTitle":"Lead Pastor"}},
 "address":{{"@type":"PostalAddress","streetAddress":"325 McGill Ave NW, Suite 148","addressLocality":"Concord","addressRegion":"NC","postalCode":"28027","addressCountry":"US"}},
-"sameAs":["{FB}","{IG}","{YT}"],
-"openingHoursSpecification":[{{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"12:30"}}]
-}}</script>'''
+"areaServed":["Concord NC","Kannapolis NC","Harrisburg NC","Charlotte NC","Cabarrus County"],
+"sameAs":["{FB}","{IG}","{YT}","{POD}","{LT}"],
+"openingHoursSpecification":[{{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"12:30"}}],
+"logo":"https://sojo.church/assets/icons/icon-512.png","image":"https://sojo.church/assets/img/social.jpg"}},
+{{"@type":"WebSite","@id":"https://sojo.church/#website","url":"https://sojo.church/","name":"SOJO Church","publisher":{{"@id":"https://sojo.church/#church"}}}}
+]}}</script>'''
 
 BASE_URL = "https://sojo.church/"
 
@@ -412,7 +431,7 @@ def page(slug, title, desc, body, active=None, ld=False):
            f'<meta name="twitter:image" content="{BASE_URL}assets/img/social.jpg">')
     html = LAYOUT.format(title=title, desc=desc, fonts=FONTS,
                          header=header(active or slug), body=body,
-                         footer=footer(), ld=(LD if ld else '') + '\n' + seo)
+                         footer=footer(), ld=LD + '\n' + seo)
     return slug, html
 
 # ---------------------------------------------------------------- pages
@@ -1236,7 +1255,7 @@ TRACK_B = track('B', 'Following<br>Jesus',
      ("Register for Discover More",EVENTS,True)),
     ("Decide to follow Jesus",
      "If you haven't made that call yet, this is the step. Not cleaning yourself up first, not understanding everything first &mdash; just saying yes to Him. Grace isn't a reward for people who got it together. It's the reason anybody ever does.",
-     ("Talk to somebody today",PHONE_H,False)),
+     ("Talk to somebody today",SMS_HELLO,False)),
     ("Get baptized",
      "Baptism is going public with a private decision. It doesn't save you; it announces that Jesus already did. If you've said yes to Him and haven't been baptized, this one is yours.",
      ("Ask us about baptism",PHONE_H,False)),
@@ -2218,7 +2237,7 @@ groups = f'''
         "A group to help you mourn the loss of someone &mdash; or something. Grief is not only about funerals, and it does not run on anybody else's schedule."),
        ("SOJO Divorce Care",
         "A group aimed at helping people get through one of the most painful relationship hurts in life. Whatever the story is, you will not be judged for being in it.")],
-      f'<div class="btns">{btn("Find a Care Group",GROUPS,"btn",True)} {btn("Talk to somebody first",PHONE_H,"btn btn-ghost")}</div>',
+      f'<div class="btns">{btn("Find a Care Group",GROUPS,"btn",True)} {btn("Talk to somebody first",SMS_HELLO,"btn btn-ghost")}</div>',
       'g2-candlelight','A SOJO Care Group gathered with candles')}
 
     {gtype('04','Classes','Taught by our leaders',
@@ -3241,7 +3260,7 @@ yada_page = f'''
       ("Talk to him honestly", "Prayer isn&rsquo;t a script. Tell God the true thing, even if the true thing is &ldquo;I&rsquo;m not sure you&rsquo;re there.&rdquo; He has never once been scared off by honesty.", None),
     ])}
     <div class="btns" style="margin-top:40px">{btn('Next: God&rsquo;s plan for life','gods-plan.html')}
-    {btn('Talk to a human',PHONE_H,'btn btn-ghost')}</div>
+    {btn('Talk to a human',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 {thread('know','Knowing God is not step one of the life. It is the life.')}
@@ -3447,6 +3466,15 @@ PAGES.append(page('partner.html', 'Partner with Him — Becoming a Follower of J
     partner_page, active='partner.html'))
 
 # ============================== KNOW: BAPTISM ================================
+BAPTISM_FAQ = [
+      ("Do I need to get my life together first?", "No. Baptism isn&rsquo;t a trophy for the finished &mdash; it&rsquo;s a starting line for the forgiven. Come as you are; that&rsquo;s the only way anyone has ever come."),
+      ("I was baptized as a baby. Does that count?", "We&rsquo;re grateful for every family that honored God that way. But what we practice is believer&rsquo;s baptism &mdash; your own yes, made when it&rsquo;s yours to make. Many people baptized as infants choose to be baptized again as their own decision. We&rsquo;d love to talk it through with you."),
+      ("Can my kids be baptized?", "If your child is asking about baptism, that&rsquo;s worth taking seriously. A pastor will sit down with you and them &mdash; no pressure either way &mdash; and help discern whether they&rsquo;re ready or whether we wait and keep watering."),
+      ("What do I wear?", "Dark, comfortable clothes you don&rsquo;t mind soaking, and bring a full change. We provide the towel."),
+      ("Will I have to speak in front of everyone?", "No speech required. We&rsquo;ll ask you one question &mdash; &ldquo;Is Jesus your Lord?&rdquo; &mdash; and you say yes. The water does the rest of the talking."),
+      ("What if I&rsquo;m nervous?", "Everybody is. It lasts four seconds, and you will replay it for the rest of your life. Worth it."),
+    ]
+
 baptism_page = f'''
 <section class="phero grain dark">
   <div class="phero-img">{eager('baptism','Pastors praying over someone at the SOJO baptism tank')}</div>
@@ -3516,14 +3544,8 @@ baptism_page = f'''
   <div class="wrap">
     <p class="eyebrow">Honest questions</p>
     <h2 class="display display-sm" style="margin-bottom:30px">Asked all<br>the time</h2>
-    {faq([
-      ("Do I need to get my life together first?", "No. Baptism isn&rsquo;t a trophy for the finished &mdash; it&rsquo;s a starting line for the forgiven. Come as you are; that&rsquo;s the only way anyone has ever come."),
-      ("I was baptized as a baby. Does that count?", "We&rsquo;re grateful for every family that honored God that way. But what we practice is believer&rsquo;s baptism &mdash; your own yes, made when it&rsquo;s yours to make. Many people baptized as infants choose to be baptized again as their own decision. We&rsquo;d love to talk it through with you."),
-      ("Can my kids be baptized?", "If your child is asking about baptism, that&rsquo;s worth taking seriously. A pastor will sit down with you and them &mdash; no pressure either way &mdash; and help discern whether they&rsquo;re ready or whether we wait and keep watering."),
-      ("What do I wear?", "Dark, comfortable clothes you don&rsquo;t mind soaking, and bring a full change. We provide the towel."),
-      ("Will I have to speak in front of everyone?", "No speech required. We&rsquo;ll ask you one question &mdash; &ldquo;Is Jesus your Lord?&rdquo; &mdash; and you say yes. The water does the rest of the talking."),
-      ("What if I&rsquo;m nervous?", "Everybody is. It lasts four seconds, and you will replay it for the rest of your life. Worth it."),
-    ])}
+    {faq(BAPTISM_FAQ)}
+    {faq_ld(BAPTISM_FAQ)}
   </div>
 </section>
 {thread('know','Four seconds of water. A whole life of new.')}
@@ -3576,7 +3598,52 @@ def build_dist():
                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                 + urls + '</urlset>')
     with open(os.path.join(DIST, 'robots.txt'), 'w') as f:
-        f.write('User-agent: *\nAllow: /\n\nSitemap: ' + BASE_URL + 'sitemap.xml\n')
+        ai_bots = ['GPTBot','OAI-SearchBot','ChatGPT-User','ClaudeBot','Claude-Web',
+                   'anthropic-ai','Google-Extended','Gemini-Deep-Research','PerplexityBot',
+                   'Perplexity-User','Applebot-Extended','meta-externalagent','CCBot',
+                   'Bytespider','Amazonbot','DuckAssistBot','cohere-ai','YouBot']
+        blocks = ''.join(f'User-agent: {b}\nAllow: /\n\n' for b in ai_bots)
+        f.write('# SOJO Church — everyone welcome, crawlers included.\n'
+                'User-agent: *\nAllow: /\n\n' + blocks +
+                'Sitemap: ' + BASE_URL + 'sitemap.xml\n')
+    # llms.txt — a plain-language site guide for AI assistants (llmstxt.org convention)
+    llms = f"""# SOJO Church
+
+> SOJO Church is a non-denominational Christian church in Concord, North Carolina.
+> Sundays at 9:00am & 11:00am in The Kettle Room at Gibson Mill, 325 McGill Ave NW,
+> Suite 148, Concord, NC 28027. Vision: "A community with a cause." Mission: helping
+> people know life, grow in peace, and go in purpose. Lead Pastor: Corey Alley ("PC").
+> Founded 2017. Call or text: 980-680-0958.
+
+Key facts
+- Service times: Sundays 9:00am and 11:00am
+- Location: The Kettle Room at Gibson Mill, 325 McGill Ave NW, Suite 148, Concord, NC 28027 (moved September 6, 2026)
+- Style: come as you are; casual dress; about 75 minutes; kids ministry at both services
+- Kids: SOJO Kids (birth-5th grade, Sundays) · Youth: SOJO YTH (6th-12th, Wednesdays 6-8pm) · Young adults: SOJO YA (18-30, Fridays 6-8pm)
+- Beliefs: historic Christian faith, non-denominational; firm on essentials, open-handed dialogue on secondary matters
+
+Pages
+- [Home]({BASE_URL}): service times, location, what to expect
+- [Plan a Visit]({BASE_URL}plan-a-visit.html): first-visit guide, parking, kids check-in
+- [Our New Home]({BASE_URL}new-home.html): Gibson Mill move, directions
+- [Our Mission]({BASE_URL}mission.html): know life, grow in peace, go in purpose
+- [Our Story]({BASE_URL}our-story.html): 2017 living room to Gibson Mill
+- [Our Beliefs]({BASE_URL}beliefs.html): doctrinal positions
+- [Our Team]({BASE_URL}about.html): staff and leadership
+- [Yada - Knowing God]({BASE_URL}yada.html): knowing God experientially
+- [God's Plan for Life]({BASE_URL}gods-plan.html): the Bible's story, abundant life
+- [Partner with Him]({BASE_URL}partner.html): becoming a follower of Jesus
+- [Baptism]({BASE_URL}baptism.html): who, what, why, when, where, how
+- [Next Steps]({BASE_URL}next-steps.html): Discover SOJO, Discover More
+- [Groups]({BASE_URL}groups.html): connect, community, care groups and classes
+- [Next Gen]({BASE_URL}next-gen.html): kids, youth, young adults
+- [Serve]({BASE_URL}serve.html): volunteer teams
+- [Outreach & Missions]({BASE_URL}missions.html): here, near, far
+- [Give]({BASE_URL}give.html): giving and the 90-day generosity challenge
+- [Watch]({BASE_URL}watch.html): messages online
+"""
+    with open(os.path.join(DIST, 'llms.txt'), 'w') as f:
+        f.write(llms)
     print(f'dist/ → {len(PAGES)} pages ({pruned} unused photos pruned) + sitemap + robots')
 
 def datauri(path):
