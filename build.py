@@ -25,7 +25,8 @@ VISIT= CC + "/people/forms/484192"
 # TODO(PC): replace with the real Discover SOJO event link. Until then this goes
 # to the Church Center events list, where Discover SOJO is visible — never to the
 # 90-Day Challenge event (3833678), which is what the old ID actually was.
-DISC = CC + "/registrations"
+DISC = CC + "/registrations/signups/3848051"   # Discover SOJO — real signup (PC, Aug 26)
+DMORE = CC + "/registrations/signups/3848052"  # Discover More — real signup (PC, Aug 26)
 GROUPS = CC + "/groups"
 EVENTS = CC + "/registrations/events"
 YT   = "https://www.youtube.com/c/SOJOChurch"
@@ -40,6 +41,7 @@ STORE = CC
 STORE_LIVE = False
 PHONE_D = "980-680-0958"
 PHONE_H = "tel:+19806800958"
+EMAIL_GENERIC = "audrie@sojourner.church"   # all general inquiries go to Audrie
 
 # Hello Church texting — keyword-first bodies so auto-replies can match on the
 # first word. Cross-platform sms: link form (iOS 8+ and Android both accept ?&body=).
@@ -298,6 +300,7 @@ def footer():
         <ul>
           <li><a href="{SMS_HELLO}">Text us &mdash; a human replies</a></li>
           <li><a href="{PHONE_H}">Or call {PHONE_D}</a></li>
+          <li><a href="mailto:{EMAIL_GENERIC}">{EMAIL_GENERIC}</a></li>
           <li><a href="{VISIT}" target="_blank" rel="noopener">Tell us you're coming</a></li>
           <li><a href="our-story.html">Our story</a></li>
           <li><a href="mission.html">Our mission</a></li>
@@ -1087,16 +1090,18 @@ PAGES.append(page('youth.html', 'SOJO YTH | SOJO Church, Concord NC',
 
 # ============================== ABOUT ========================================
 team_members = [
-    ('team-corey-alley','Corey Alley','Lead Pastor'),
-    ('team-dan-conklin','Dan Conklin','Campus Pastor'),
-    ('team-brandy-sloop','Brandy Sloop','Outreach &amp; Assimilation Director'),
-    ('team-jillian-goodhew','Jillian Goodhew','Kids Ministry Director'),
-    ('team-audrie-cash','Audrie Cash','Youth Director'),
-    ('team-landace-alligood','Landace Alligood','Creative Arts Director'),
-    ('team-wendy-martin','Wendy Martin','Guest Services'),
+    ('team-corey-alley','Corey Alley','Lead Pastor','corey@sojourner.church'),
+    ('team-dan-conklin','Dan Conklin','Campus Pastor','dan@sojourner.church'),
+    ('team-brandy-sloop','Brandy Sloop','Outreach &amp; Assimilation Director','brandy@sojourner.church'),
+    ('team-jillian-goodhew','Jillian Goodhew','Kids Ministry Director','jillian@sojourner.church'),
+    ('team-audrie-cash','Audrie Cash','Youth Director','audrie@sojourner.church'),
+    ('team-landace-alligood','Landace Alligood','Creative Arts Director','landace@sojourner.church'),
+    ('team-wendy-martin','Wendy Martin','Guest Services','wendy@sojourner.church'),
 ]
+# kyle@sojourner.church is live too — Kyle Winecoff joins the page once PC sends his role/photo.
 team_html = ''.join(
-    f'<div>{img(f,n)}<h4>{n}</h4><span>{r}</span></div>' for f, n, r in team_members)
+    f'<div>{img(f,n)}<h4>{n}</h4><span>{r}</span>'
+    f'<a class="team-mail" href="mailto:{e}">{e}</a></div>' for f, n, r, e in team_members)
 
 about = f'''
 <section class="phero grain dark">
@@ -1252,7 +1257,7 @@ TRACK_B = track('B', 'Following<br>Jesus',
   [
     ("Take Discover More",
      "A three-week virtual class covering basic doctrine and discipleship &mdash; what we actually believe and what following Jesus actually looks like day to day. Three weeks, online, no prerequisites. Come with doubts; that's what it's for.",
-     ("Register for Discover More",EVENTS,True)),
+     ("Register for Discover More",DMORE,True)),
     ("Decide to follow Jesus",
      "If you haven't made that call yet, this is the step. Not cleaning yourself up first, not understanding everything first &mdash; just saying yes to Him. Grace isn't a reward for people who got it together. It's the reason anybody ever does.",
      ("Talk to somebody today",SMS_HELLO,False)),
@@ -1913,7 +1918,7 @@ beliefs = f'''
       <p class="lede">Discover More is our three-week virtual class on basic doctrine and
       discipleship &mdash; everything on this page, unpacked, with room to push back.</p>
       <p>You do not have to agree with all nine statements to take it. You have to be curious.</p>
-      <div class="btns">{btn('Register for Discover More',EVENTS,'btn',True)}
+      <div class="btns">{btn('Register for Discover More',DMORE,'btn',True)}
         {btn('Both next-step tracks','next-steps.html','btn btn-ghost')}</div>
     </div>
     <div class="figure">{img('n-dan-teach','Pastor Dan teaching at SOJO Church')}</div>

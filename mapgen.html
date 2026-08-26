@@ -1,0 +1,134 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  :root{
+    --cream:#F5F0E6; --cream2:#EFE8DA; --sand:#D6CDB8; --gold:#BFAE86;
+    --gold-deep:#766645; --charcoal:#302E2A; --blue:#92A29D; --green:#A6A98E;
+    --fd:'Liberation Sans Narrow','DejaVu Sans Condensed',sans-serif;
+    --fu:'DejaVu Sans',sans-serif;
+  }
+  body{margin:0}
+  #map{position:relative; width:1600px; height:1000px; background:var(--cream);
+       font-family:var(--fu); overflow:hidden}
+  .grainbg{position:absolute; inset:0; opacity:.5; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E")}
+  svg{position:absolute; inset:0}
+  .t{font-family:var(--fu)}
+</style></head><body>
+<div id="map">
+  <div class="grainbg"></div>
+  <svg width="1600" height="1000" viewBox="0 0 1600 1000">
+    <!-- greenery edge -->
+    <rect x="0" y="0" width="1600" height="1000" fill="#F5F0E6"/>
+    <g opacity=".5">
+      <ellipse cx="120" cy="120" rx="180" ry="80" fill="#A6A98E"/>
+      <ellipse cx="520" cy="60" rx="260" ry="60" fill="#A6A98E"/>
+      <ellipse cx="120" cy="820" rx="150" ry="120" fill="#A6A98E"/>
+      <ellipse cx="640" cy="950" rx="300" ry="70" fill="#A6A98E"/>
+    </g>
+
+    <!-- McGill Ave NW: vertical road on the right -->
+    <rect x="1300" y="0" width="86" height="1000" fill="#8B8781"/>
+    <line x1="1343" y1="20" x2="1343" y2="980" stroke="#F5F0E6" stroke-width="4" stroke-dasharray="34 30"/>
+    <text x="1372" y="500" fill="#302E2A" font-size="30" font-weight="bold" letter-spacing="4"
+      transform="rotate(90 1372 500)" text-anchor="middle" class="t">McGILL AVE NW</text>
+
+    <!-- entry drive from McGill into campus -->
+    <rect x="620" y="452" width="680" height="76" fill="#8B8781"/>
+    <!-- internal drive downward to lots -->
+    <rect x="620" y="452" width="76" height="330" fill="#8B8781"/>
+
+    <!-- Mill building mass (left) -->
+    <g>
+      <rect x="150" y="240" width="430" height="330" fill="#302E2A"/>
+      <rect x="200" y="570" width="330" height="150" fill="#3E3B36"/>
+      <!-- sawtooth roof hint -->
+      <g fill="#F5F0E6" opacity=".18">
+        <rect x="190" y="262" width="24" height="60"/><rect x="250" y="262" width="24" height="60"/>
+        <rect x="310" y="262" width="24" height="60"/><rect x="370" y="262" width="24" height="60"/>
+        <rect x="430" y="262" width="24" height="60"/><rect x="490" y="262" width="24" height="60"/>
+      </g>
+      <text x="330" y="380" fill="#F5F0E6" font-size="40" font-weight="bold" letter-spacing="8"
+        text-anchor="middle" font-family="var(--fd)">GIBSON MILL</text>
+      <text x="330" y="418" fill="#D3C5A4" font-size="19" letter-spacing="3" text-anchor="middle" class="t">HISTORIC TEXTILE MILL · SHOPS &amp; EVENTS</text>
+    </g>
+
+    <!-- Kettle Room wing: gold highlight, adjoining entry drive -->
+    <g>
+      <rect x="610" y="292" width="240" height="160" fill="#BFAE86"/>
+      <rect x="610" y="292" width="240" height="160" fill="none" stroke="#766645" stroke-width="4"/>
+      <text x="730" y="348" fill="#302E2A" font-size="27" font-weight="bold" letter-spacing="1" text-anchor="middle" font-family="var(--fd)">THE KETTLE ROOM</text>
+      <text x="730" y="382" fill="#302E2A" font-size="22" text-anchor="middle" class="t">Suite 148 · SOJO Church</text>
+      <!-- star at the door -->
+      <g transform="translate(730,438)">
+        <path d="M0,-20 L5.9,-6.2 20,-6.2 8.8,2.9 13,17 0,8 -13,17 -8.8,2.9 -20,-6.2 -5.9,-6.2 Z" fill="#302E2A"/>
+      </g>
+      <text x="772" y="446" fill="#302E2A" font-size="20" font-weight="bold" class="t">DOOR</text>
+    </g>
+
+    <!-- SOJO parking: to the RIGHT as you come in (south of the drive) -->
+    <g>
+      <rect x="720" y="545" width="500" height="240" fill="#D6CDB8"/>
+      <rect x="720" y="545" width="500" height="240" fill="none" stroke="#766645" stroke-width="4"/>
+      <!-- stall lines -->
+      <g stroke="#766645" stroke-width="3" opacity=".65">
+        <line x1="760" y1="560" x2="760" y2="640"/><line x1="810" y1="560" x2="810" y2="640"/>
+        <line x1="860" y1="560" x2="860" y2="640"/><line x1="910" y1="560" x2="910" y2="640"/>
+        <line x1="960" y1="560" x2="960" y2="640"/><line x1="1010" y1="560" x2="1010" y2="640"/>
+        <line x1="1060" y1="560" x2="1060" y2="640"/><line x1="1110" y1="560" x2="1110" y2="640"/>
+        <line x1="1160" y1="560" x2="1160" y2="640"/>
+        <line x1="760" y1="690" x2="760" y2="770"/><line x1="810" y1="690" x2="810" y2="770"/>
+        <line x1="860" y1="690" x2="860" y2="770"/><line x1="910" y1="690" x2="910" y2="770"/>
+        <line x1="960" y1="690" x2="960" y2="770"/><line x1="1010" y1="690" x2="1010" y2="770"/>
+        <line x1="1060" y1="690" x2="1060" y2="770"/><line x1="1110" y1="690" x2="1110" y2="770"/>
+        <line x1="1160" y1="690" x2="1160" y2="770"/>
+      </g>
+      <rect x="795" y="628" width="360" height="66" fill="#D6CDB8"/>
+      <text x="970" y="660" fill="#302E2A" font-size="34" font-weight="bold" letter-spacing="4" text-anchor="middle" font-family="var(--fd)">SOJO PARKING</text>
+      <text x="970" y="688" fill="#766645" font-size="21" letter-spacing="1" text-anchor="middle" class="t">on your right as you come in</text>
+      <!-- guest spots -->
+      <rect x="722" y="547" width="236" height="72" fill="#BFAE86"/>
+      <text x="840" y="578" fill="#302E2A" font-size="17" font-weight="bold" text-anchor="middle" class="t">FIRST-TIME GUESTS</text>
+      <text x="840" y="600" fill="#302E2A" font-size="17" text-anchor="middle" class="t">up front</text>
+    </g>
+
+    <!-- MAIN ENTRANCE arrow off McGill -->
+    <g>
+      <path d="M1290 490 L1130 490" stroke="#766645" stroke-width="10"/>
+      <path d="M1136 470 L1096 490 L1136 510 Z" fill="#766645"/>
+      <rect x="1040" y="398" width="252" height="56" fill="#302E2A"/>
+      <text x="1166" y="436" fill="#F5F0E6" font-size="27" font-weight="bold" letter-spacing="3" text-anchor="middle" font-family="var(--fd)">MAIN ENTRANCE</text>
+    </g>
+
+    <!-- the gold dashed lane: entrance → parking → door -->
+    <g fill="none" stroke="#BFAE86" stroke-width="8" stroke-dasharray="26 20" stroke-linecap="round">
+      <path d="M1096 490 C 1010 492, 950 500, 985 545"/>
+      <path d="M745 545 C 738 512, 735 488, 733 464"/>
+    </g>
+
+    <defs>
+      <marker id="arr" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 Z" fill="#766645"/>
+      </marker>
+    </defs>
+
+    <!-- north arrow -->
+    <g transform="translate(1470,90)">
+      <circle r="34" fill="none" stroke="#302E2A" stroke-width="3"/>
+      <path d="M0,-24 L10,12 L0,4 L-10,12 Z" fill="#302E2A"/>
+      <text x="0" y="62" fill="#302E2A" font-size="22" font-weight="bold" text-anchor="middle" class="t">N</text>
+    </g>
+
+    <!-- footer band -->
+    <rect x="0" y="880" width="1600" height="120" fill="#302E2A"/>
+    <text x="60" y="932" fill="#F5F0E6" font-size="34" font-weight="bold" letter-spacing="6" font-family="var(--fd)">SOJO CHURCH AT GIBSON MILL</text>
+    <text x="60" y="968" fill="#D3C5A4" font-size="22" class="t">325 McGill Ave NW, Suite 148, Concord, NC · Sundays 9 &amp; 11am</text>
+    <g transform="translate(1080,912)">
+      <path d="M0,-14 L4.1,-4.3 14,-4.3 6.2,2 9.1,11.9 0,5.6 -9.1,11.9 -6.2,2 -14,-4.3 -4.1,-4.3 Z" fill="#BFAE86"/>
+    </g>
+    <text x="1104" y="922" fill="#F5F0E6" font-size="21" class="t">Door to the Kettle Room</text>
+    <text x="1104" y="950" fill="#D3C5A4" font-size="18" class="t">Not to scale — follow the SOJO signs.</text>
+    <text x="1104" y="974" fill="#D3C5A4" font-size="18" class="t">Our team in vests will wave you in.</text>
+  </svg>
+</div>
+</body></html>
