@@ -2024,7 +2024,7 @@ missions = f'''
        ("Lifeline Charlotte Centre","Packing nutritious meals for hungry families here and around the world &mdash; from Suite 175, two doors down from us at Gibson Mill","https://lifeline.org/charlotte-centre"),
        ("Cases for a Cause","Suitcases, shoes and Christmas for children entering foster care","https://casesforacausenc.org/"),
        ("HellFighters of Concord","Reaching people the church usually misses","https://www.facebook.com/concordhellfightersministry/"),
-       ("CAB Bible","Getting Scripture into hands across our county",None),
+       ("Central Cabarrus Bible Teaching Association","Teaching the Bible across our county","https://www.ccbta.net/"),
        ("Community Causes","Local schools, local businesses, and our first responders &mdash; the neighbors who hold this city together",None),
        ("Packing Events","Church-wide days packing meals and cases alongside One Can and Lifeline",None),
        ("Mission Events","Fundraisers that fill the tank for what comes next &mdash; here, near and far",None)],
@@ -3556,6 +3556,30 @@ PAGES.append(page('baptism.html', 'Baptism | SOJO Church, Concord NC',
     'and one text that starts it.',
     baptism_page, active='baptism.html'))
 
+
+# ============================== 404 ==========================================
+notfound_body = f'''
+<section class="sec dark grain" style="min-height:72vh;display:flex;align-items:center">
+  <div class="wrap">
+    <p class="eyebrow">Well, this is awkward</p>
+    <h1 class="display"><span class="script">Lost?</span><br>This page<br>moved <span class="gold">on</span></h1>
+    <p class="lede" style="max-width:52ch">The page you were looking for isn&rsquo;t here &mdash; maybe the
+    link was old, maybe a typo. Either way, you&rsquo;re not lost: everything worth finding is one
+    click away.</p>
+    <div class="btns" style="margin-top:34px">
+      {btn('Take me home','index.html')}
+      {btn('Plan a visit','plan-a-visit.html','btn btn-ghost')}
+      {btn('This week&rsquo;s message','watch.html','btn btn-ghost')}
+    </div>
+    <p style="margin-top:30px;max-width:52ch">Looking for something specific and can&rsquo;t find it?
+    <a href="{SMS_HELLO}">Text us</a> &mdash; a human will point you the right way.</p>
+  </div>
+</section>
+'''
+NOTFOUND = page('404.html', 'Page Not Found | SOJO Church',
+    'That page moved on — but SOJO Church is right here. Sundays 9 & 11am at Gibson Mill, Concord NC.',
+    notfound_body, active='index.html')
+
 # ---------------------------------------------------------------- emit
 
 def _verify(pages):
@@ -3576,7 +3600,7 @@ def build_dist():
     shutil.copytree(OUT, DIST)
     ico = os.path.join(DIST, 'assets/icons/favicon.ico')
     if os.path.exists(ico): shutil.copy(ico, os.path.join(DIST, 'favicon.ico'))
-    for slug, html in PAGES:
+    for slug, html in PAGES + [NOTFOUND]:
         with open(os.path.join(DIST, slug), 'w', encoding='utf-8') as f:
             f.write(html)
     used = set()
