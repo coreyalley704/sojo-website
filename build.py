@@ -326,7 +326,11 @@ LAYOUT = '''<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
-<link rel="icon" href="assets/img/brand/icon-charcoal.webp" type="image/webp">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#BFAE86">
 <script type="text/javascript">window.pyvAccountKey = 'Z84WYfwJ'; window.pyvDomain = 'https://lite.visitplanner.church'; var pyvs = document.createElement('script'); pyvs.async = true; pyvs.type = 'text/javascript'; pyvs.src = 'https://lite.visitplanner.church/embed/embed.js'; document.head.appendChild(pyvs);</script>
 <link rel="stylesheet" href="assets/css/site.css">
 {ld}
@@ -3121,6 +3125,8 @@ def _verify(pages):
 def build_dist():
     if os.path.exists(DIST): shutil.rmtree(DIST)
     shutil.copytree(OUT, DIST)
+    ico = os.path.join(DIST, 'assets/icons/favicon.ico')
+    if os.path.exists(ico): shutil.copy(ico, os.path.join(DIST, 'favicon.ico'))
     for slug, html in PAGES:
         with open(os.path.join(DIST, slug), 'w', encoding='utf-8') as f:
             f.write(html)
