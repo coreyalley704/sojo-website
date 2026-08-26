@@ -2033,7 +2033,14 @@ missions = f'''
        ("Community Causes","Local schools, local businesses, and our first responders &mdash; the neighbors who hold this city together",None),
        ("Packing Events","Church-wide days packing meals and cases alongside One Can and Lifeline",None),
        ("Mission Events","Fundraisers that fill the tank for what comes next &mdash; here, near and far",None)],
-      'c-park','SOJO families serving at a community event in Concord')}
+      'm2-egghunt','Kids racing for eggs at the SOJO community egg hunt in Concord')}
+
+    <div class="gal" style="margin-top:clamp(28px,4vw,44px)">
+      <div class="g-third">{img('m2-cottoncandy','SOJO volunteers spinning cotton candy at a community outreach event')}</div>
+      <div class="g-third">{img('m2-dad-basket','A dad and his daughter at the SOJO egg hunt')}</div>
+      <div class="g-third">{img('m2-jesus-eggs','SOJO eggs and Jesus loves you toys ready for the hunt')}</div>
+      <div class="g-third">{img('m2-prize-kids','Kids picking prizes at the SOJO outreach table')}</div>
+    </div>
 
     {field('02','Churches we<br>help plant','Near',
       'Mostly North Carolina, and mostly church planting &mdash; because new churches reach people we never will.',
