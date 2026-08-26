@@ -45,7 +45,7 @@ PHONE_H = "tel:+19806800958"
 # first word. Cross-platform sms: link form (iOS 8+ and Android both accept ?&body=).
 def sms(keyword, message):
     from urllib.parse import quote
-    return f"sms:+19806800958?&body={quote(keyword + ' - ' + message)}"
+    return f"sms:+17047418174?&body={quote(keyword + ' - ' + message)}"
 SMS_JESUS   = sms("JESUS",   "I just prayed to follow Jesus. My name is ")
 SMS_BAPTIZE = sms("BAPTIZE", "I want to be baptized. My name is ")
 SMS_QUESTION= sms("QUESTION","I have a question about following Jesus. My name is ")
