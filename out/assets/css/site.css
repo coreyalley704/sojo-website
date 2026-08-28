@@ -317,7 +317,10 @@ nav.main{display:flex; align-items:center; gap:clamp(14px,2vw,30px)}
   .hdr .btn.hdr-give{display:none}
 }
 .mnav{display:none; border-top:1px solid var(--line); background:var(--cream)}
-.mnav.open{display:block}
+.mnav.open{display:block; max-height:calc(100dvh - 92px); overflow-y:auto;
+  -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+  padding-bottom:env(safe-area-inset-bottom, 0px)}
+@supports not (height:100dvh){.mnav.open{max-height:calc(100vh - 92px)}}
 /* Hamburger mirrors the same grouping — headings, then their pages. */
 .mgrp{border-bottom:1px solid var(--line); padding:14px 0 16px}
 .mgrp:last-child{border-bottom:0}

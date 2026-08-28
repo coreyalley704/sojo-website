@@ -153,6 +153,7 @@
   var b=document.getElementById('burger'), m=document.getElementById('mnav');
   if(b){b.addEventListener('click',function(){
     var o=m.classList.toggle('open'); b.setAttribute('aria-expanded',o?'true':'false');
+    if(o){m.style.maxHeight=(window.innerHeight-m.getBoundingClientRect().top)+'px';}
   });}
   document.addEventListener('click', function(e){
     var t = e.target.closest ? e.target.closest('.pyv-cta') : null;
