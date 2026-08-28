@@ -636,8 +636,7 @@ home = f'''
 </section>
 '''
 PAGES.append(page('index.html', 'SOJO Church — Concord, NC | Sundays 9 & 11am',
-    'You were made to know Life and have it abundantly, grow in peace with God and people, and go '
-    'in your anointed purpose. SOJO Church, Concord NC — Sundays 9 & 11am at Gibson Mill.',
+    'You were made to know life, grow in peace, and go in purpose. SOJO Church — Sundays 9 & 11am at Gibson Mill, Concord NC.',
     home, active='index.html', ld=True))
 
 # ============================== PLAN A VISIT =================================
@@ -886,8 +885,7 @@ newhome = f'''
 </section>
 '''
 PAGES.append(page('new-home.html', 'Our New Home — The Kettle Room at Gibson Mill | SOJO Church',
-    f'SOJO Church moves to {WAYF} on {MOVE}, 2026. {ADDR1}, {ADDR2}. '
-    'Parking, entrance, kids check-in and photos of the new space.', newhome))
+    f'SOJO Church moves to {WAYF} on {MOVE}, 2026. Parking, entrance, kids check-in and photos of the new space.', newhome))
 
 # ============================== KIDS =========================================
 kids = f'''
@@ -1328,8 +1326,7 @@ steps = f'''
 </section>
 '''
 PAGES.append(page('next-steps.html', 'Next Steps | SOJO Church, Concord NC',
-    'Two tracks at SOJO Church in Concord, NC — finding your people (visit, come back, try five, '
-    'Discover SOJO) and following Jesus (Discover More, salvation, baptism, groups, serving).', steps))
+    'Your next steps at SOJO Church, Concord NC — visit, try five, Discover SOJO, Discover More, baptism, groups, and serving.', steps))
 
 # ============================== MISSION ======================================
 def movement(num, title, line, scripture, ref, paras, doing, photo, alt):
@@ -1531,8 +1528,7 @@ mission = f'''
 </section>
 '''
 PAGES.append(page('mission.html', 'Our Mission | SOJO Church, Concord NC',
-    'SOJO Church is a community with a cause: helping people know life, grow in peace, and go in '
-    'purpose. What the three movements mean, and how everything we do fits under them.', mission))
+    'SOJO Church is a community with a cause: helping people know life, grow in peace, and go in purpose — and what those three movements mean.', mission))
 
 # ============================== NEXT GEN =====================================
 def env(num, name, ages, when, extra, lede, paras, details, cta, photo, alt, flip=False, anchor=''):
@@ -2730,8 +2726,7 @@ give = f'''
 </section>
 '''
 PAGES.append(page('give.html', 'Giving | SOJO Church, Concord NC',
-    'Why we give, what the Bible actually says about giving, who gives and how much, when to give, '
-    'and five ways to give at SOJO Church in Concord, NC — plus the 90-Day Practicing Generosity Challenge.',
+    'Why we give, what the Bible says about giving, five ways to give at SOJO Church — and the 90-Day Practicing Generosity Challenge.',
     give, active='give.html'))
 
 # ============================== WATCH ========================================
@@ -3478,8 +3473,7 @@ partner_page = f'''
 '''
 partner_page = partner_page.replace('SMSJESUS', SMS_JESUS).replace('SMSQUESTION', SMS_QUESTION)
 PAGES.append(page('partner.html', 'Partner with Him — Becoming a Follower of Jesus | SOJO Church',
-    'What it means to become a Christian: apprenticeship to Jesus, grace, repentance and belief — '
-    'and a prayer to start. Text us when you pray it; we&rsquo;ll walk with you.',
+    'What it means to become a Christian: apprenticeship to Jesus, grace, repentance, belief — and a prayer to start. We walk with you.',
     partner_page, active='partner.html'))
 
 # ============================== KNOW: BAPTISM ================================
@@ -3682,6 +3676,10 @@ Pages
 - [Outreach & Missions]({BASE_URL}missions.html): here, near, far
 - [Give]({BASE_URL}give.html): giving and the 90-day generosity challenge
 - [Watch]({BASE_URL}watch.html): messages online
+- [SOJO Kids]({BASE_URL}kids.html): birth-5th grade, Sundays
+- [SOJO YTH]({BASE_URL}youth.html): 6th-12th grade, Wednesdays 6-8pm
+- [SOJO YA]({BASE_URL}young-adults.html): ages 18-30, Fridays 6-8pm
+- [SOJO Swag]({BASE_URL}swag.html): church merch
 """
     with open(os.path.join(DIST, 'llms.txt'), 'w') as f:
         f.write(llms)
