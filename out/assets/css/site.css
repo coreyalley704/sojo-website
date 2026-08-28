@@ -322,13 +322,18 @@ nav.main{display:flex; align-items:center; gap:clamp(14px,2vw,30px)}
   padding-bottom:env(safe-area-inset-bottom, 0px)}
 @supports not (height:100dvh){.mnav.open{max-height:calc(100vh - 92px)}}
 /* Hamburger mirrors the same grouping — headings, then their pages. */
-.mgrp{border-bottom:1px solid var(--line); padding:14px 0 16px}
+.mgrp{border-bottom:1px solid var(--line); padding:8px 0}
 .mgrp:last-child{border-bottom:0}
 .mgrp-h{
-  display:block; padding:0 var(--gut) 8px;
-  font-family:var(--f-label); font-weight:700; font-size:.68rem; letter-spacing:.11em;
-  text-transform:uppercase; color:var(--gold-deep);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:6px var(--gut); cursor:pointer; -webkit-tap-highlight-color:transparent;
+  font-family:var(--f-label); font-weight:700; font-size:.78rem; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--gold-deep); list-style:none; min-height:44px;
 }
+.mgrp-h::-webkit-details-marker{display:none}
+.mchev{width:13px; height:9px; flex:0 0 auto; transition:transform .2s ease; color:var(--gold-deep)}
+details[open]>.mgrp-h .mchev{transform:rotate(180deg)}
+details.mgrp>a{padding-left:calc(var(--gut) + 10px)}
 .mnav a{
   display:block; padding:11px var(--gut); text-decoration:none;
   font-family:var(--f-ui); font-weight:500; letter-spacing:.03em; font-size:.95rem; color:var(--ink);

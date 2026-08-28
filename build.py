@@ -228,9 +228,11 @@ def header(active):
                 f'fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>'
                 f'<div class="navpanel"><div class="navpanel-in">{items}</div></div></div>')
     nav = ''.join(group(l, h, k) for l, h, k in NAV)
+    CHEV = ('<svg class="mchev" viewBox="0 0 10 6" aria-hidden="true">'
+            '<path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>')
     mnav = ''.join(
-        f'<div class="mgrp"><span class="mgrp-h">{l}</span>'
-        + ''.join(f'<a href="{h}">{n}</a>' for n, h in k) + '</div>'
+        f'<details class="mgrp"><summary class="mgrp-h">{l}{CHEV}</summary>'
+        + ''.join(f'<a href="{h}">{n}</a>' for n, h in k) + '</details>'
         for l, h, k in NAV) + '<div class="mgrp"><a class="mgrp-solo" href="give.html">Give</a></div>'
 
     return f'''
