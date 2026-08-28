@@ -359,6 +359,8 @@ LAYOUT = '''<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F034W7H72Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-F034W7H72Y');</script>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
