@@ -1095,7 +1095,6 @@ PAGES.append(page('youth.html', 'SOJO YTH | SOJO Church, Concord NC',
 team_members = [
     ('team-corey-alley','Corey Alley','Lead Pastor','corey@sojourner.church'),
     ('team-dan-conklin','Dan Conklin','Campus Pastor','dan@sojourner.church'),
-    ('team-brandy-sloop','Brandy Sloop','Outreach &amp; Assimilation Director','brandy@sojourner.church'),
     ('team-jillian-goodhew','Jillian Goodhew','Kids Ministry Director','jillian@sojourner.church'),
     ('team-audrie-cash','Audrie Cash','Youth Director','audrie@sojourner.church'),
     ('team-landace-alligood','Landace Alligood','Creative Arts Director','landace@sojourner.church'),
