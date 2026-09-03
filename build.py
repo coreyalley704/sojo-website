@@ -15,7 +15,6 @@ WAYF  = "The Kettle Room at Gibson Mill"
 # at a time" everywhere on the site.
 VISION  = "A community with a cause"
 MISSION = "Helping people know life, grow in peace, and go in purpose"
-OLDADDR = "848 Union Street S, Concord, NC 28025"
 MOVE = "Sunday, September 6"
 MAPS = "https://maps.google.com/?q=325+McGill+Ave+NW+Suite+148+Concord+NC+28027"
 
@@ -627,8 +626,6 @@ home = f'''
         <span class="sub">Sundays at 9:00 &amp; 11:00am · Starting September 6</span></p>
       <div class="btns">{btn('Get directions',MAPS,'btn',True)}
         {btn('How to find the room','new-home.html','btn btn-ghost')}</div>
-      <p class="muted" style="margin-top:26px;font-size:.94rem">Through August 30 we're still at
-      {OLDADDR}.</p>
     </div>
     <div class="figure">{img('millsign','The historic Gibson Mill sign in Concord, North Carolina')}
       <p class="figcap">Gibson Mill · Concord, NC</p></div>
@@ -659,11 +656,10 @@ visit = f'''
       <div>
         <p class="eyebrow">The short version</p>
         <h2 class="display display-sm">Sundays at<br>9 &amp; 11am</h2>
-        <p class="lede">Starting September 6 we meet at {WAYF} — {ADDR1}, {ADDR2}.</p>
+        <p class="lede">We meet at {WAYF} — {ADDR1}, {ADDR2}.</p>
         <p>Park in the SOJO lot to your right as you come through the main Gibson Mill entrance and
         follow the signs. Our entrance is beside the City Club entrance, under the big SOJO Church
         sign. Head straight down the hall to the end. Somebody will be there.</p>
-        <p class="muted">Through August 30, we're still meeting at {OLDADDR}.</p>
         <div class="stripe" aria-hidden="true"></div>
         <a class="link" href="new-home.html">See photos of the new space <span class="arw">→</span></a>
       </div>
@@ -858,7 +854,7 @@ newhome = f'''
     <h2 class="display display-sm">Questions about<br>the move</h2>
     {faq([
       ("When is the first Sunday at Gibson Mill?",
-       f"<p><strong>{MOVE}, 2026</strong> — services at 9 and 11am, same as always. Through August 30 we're still meeting at {OLDADDR}.</p>"),
+       f"<p><strong>{MOVE}, 2026</strong> — services at 9 and 11am, same as always.</p>"),
       ("Are service times changing?",
        "<p>No. Sundays at 9:00 and 11:00am.</p>"),
       ("Is the kids space finished?",

@@ -45,7 +45,7 @@ Open your Hello Church dashboard and create a **keyword auto-reply** for each of
 **QUESTION →**
 > "So glad you asked — questions are how everybody gets here. A real person will text you back today. Ask us anything; nothing is off limits."
 
-Then set a **notification** so every keyword text alerts you (and Brandy, as Outreach & Assimilation Director) immediately — these are the most time-sensitive texts your church receives.
+Then set a **notification** so every keyword text alerts you (and Wendy Martin) immediately — these are the most time-sensitive texts your church receives.
 
 ## The human follow-up (the part that can't be automated)
 

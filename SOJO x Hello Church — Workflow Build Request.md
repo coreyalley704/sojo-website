@@ -51,7 +51,7 @@ Match the keyword at the **start of the message or anywhere in the first line** 
 ### Step-by-step flow
 
 1. **Minute 0 (SMS, instant):** "This is the best text we've gotten all week — welcome to the family! 🎉 A pastor (a real one, not a robot) will reply personally today. While you wait: what's your first name, and did you pray that prayer today for the first time?"
-2. **Minute 1 (internal):** urgent alert to Corey Alley + Brandy Sloop (push + email). Tag `new-believer`. Add to pipeline stage **New Believer**.
+2. **Minute 1 (internal):** urgent alert to Corey Alley + Wendy Martin (push + email). Tag `new-believer`. Add to pipeline stage **New Believer**.
 3. **Minute 5 (SMS, if no email on file):** "One more thing — Pastor Corey wants to send you a short devotional each morning for your first two weeks. What's your best email?"
 4. **Same day (human):** a pastor replies personally in the thread. This does NOT stop the daily journey below.
 5. **That evening, 7:30pm (SMS):** "Before you sleep tonight, read this: John 1:1–14. It's the beginning of the story you just stepped into. Your 14-day journey with Pastor Corey starts tomorrow morning."
@@ -86,7 +86,7 @@ The 14-day scripture path (all readings CSB) — load these into the day slots:
 
 **Content note:** Pastor Corey will supply the 14 devotional email bodies (subject lines can be "Day 1 with Jesus: The Word Came Near," etc.). Please build the skeleton with placeholder bodies; we'll drop the final copy in.
 
-**After Day 14:** move pipeline stage to "Journey complete"; notify Brandy to make a personal call; stop automated sends.
+**After Day 14:** move pipeline stage to "Journey complete"; notify Wendy Martin to make a personal call; stop automated sends.
 
 ---
 
