@@ -39,8 +39,8 @@ LT   = "https://linktr.ee/wearesojo"
 # plainly how to actually get a shirt. No button on this site is allowed to dead-end.
 STORE = CC
 STORE_LIVE = False
-PHONE_D = "980-680-0958"
-PHONE_H = "tel:+19806800958"
+PHONE_D = "980-440-2850"
+PHONE_H = "tel:+19804402850"
 EMAIL_GENERIC = "audrie@sojourner.church"   # all general inquiries go to Audrie
 
 # Hello Church texting — keyword-first bodies so auto-replies can match on the
@@ -389,7 +389,7 @@ LD = f'''<script type="application/ld+json">{{
 "alternateName":"SOJO","url":"https://sojo.church/",
 "description":"SOJO Church is a non-denominational church in Concord, NC meeting Sundays at 9 & 11am in The Kettle Room at Gibson Mill. A community with a cause: helping people know life, grow in peace, and go in purpose.",
 "slogan":"A community with a cause",
-"telephone":"+1-980-680-0958",
+"telephone":"+1-980-440-2850",
 "foundingDate":"2017",
 "founder":{{"@type":"Person","name":"Corey Alley","jobTitle":"Lead Pastor"}},
 "address":{{"@type":"PostalAddress","streetAddress":"325 McGill Ave NW, Suite 148","addressLocality":"Concord","addressRegion":"NC","postalCode":"28027","addressCountry":"US"}},
@@ -3681,7 +3681,7 @@ def build_dist():
 > Sundays at 9:00am & 11:00am in The Kettle Room at Gibson Mill, 325 McGill Ave NW,
 > Suite 148, Concord, NC 28027. Vision: "A community with a cause." Mission: helping
 > people know life, grow in peace, and go in purpose. Lead Pastor: Corey Alley ("PC").
-> Founded 2017. Call or text: 980-680-0958.
+> Founded 2017. Call or text: 980-440-2850.
 
 Key facts
 - Service times: Sundays 9:00am and 11:00am
