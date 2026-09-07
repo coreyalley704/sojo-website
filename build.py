@@ -701,7 +701,7 @@ visit = f'''
 
 <section class="sec">
   <div class="wrap split">
-    <div class="figure">{img('c-dunked','A SOJO guest welcomed at the first-time guest table')}</div>
+    <div class="figure">{img('fs-guest-counter','The First Impressions team setting up the guest counter on Sunday morning')}</div>
     <div>
       <p class="eyebrow">Your first Sunday</p>
       <h2 class="display display-sm">Find the<br>guest table</h2>
@@ -951,7 +951,7 @@ kids = f'''
         <h3>Nursery · 0–24 months</h3>
         <p>Loving, attentive volunteers in a calm, secure room. Comfort, care, and prayer over your
         little one. A home away from home.</p></div>
-      <div>{img('kids2','Kids checking in at SOJO Kids')}
+      <div>{img('fs-kids-checkin','A young family welcomed at SOJO Kids check-in')}
         <h3>Preschool · 2–4 years</h3>
         <p>Hands-on activities, interactive Bible stories, worship and play — built to match their
         energy, curiosity, and growing independence.</p></div>
@@ -997,7 +997,7 @@ kids = f'''
       <div class="btns">{btn('See all of Next Gen','next-gen.html')}
         {btn('SOJO YTH','youth.html','btn btn-ghost')}</div>
     </div>
-    <div class="figure">{img('y-falcons','A SOJO YTH student between activities')}</div>
+    <div class="figure">{img('fs-teens','Two SOJO students standing together in worship')}</div>
   </div>
 </section>
 '''
@@ -1127,7 +1127,7 @@ team_html = ''.join(
 
 about = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('hug','People embracing after a SOJO service')}</div>
+  <div class="phero-img">{eager('fs-embrace','Two people embracing in the congregation during worship at the Kettle Room')}</div>
   <div class="wrap">
     <p class="crumb">About SOJO</p>
     <h1 class="display"><span class="script">A community</span><br>with a <span class="gold">cause</span></h1>
@@ -1155,7 +1155,7 @@ about = f'''
       mission-driven literally &mdash; committed to our <em>here</em>, our <em>near</em>, and our
       <em>far</em>: schools, non-profits, local businesses, first responders, and beyond.</p>
     </div>
-    <div class="figure">{img('n-friends-walk','Two SOJO women walking arm in arm at a community event','portrait')}
+    <div class="figure">{img('fs-worship-standing','A woman standing in worship among the rows at the Kettle Room','portrait')}
       <p class="figcap">Serving Cabarrus County</p></div>
   </div>
 </section>
@@ -1296,7 +1296,7 @@ TRACK_B = track('B', 'Following<br>Jesus',
 
 steps = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('n-kneel','SOJO members kneeling together in prayer')}</div>
+  <div class="phero-img">{eager('fs-couple-pray','A couple with heads bowed in prayer during a SOJO service')}</div>
   <div class="wrap">
     <p class="crumb">Next Steps</p>
     <h1 class="display"><span class="script">Two tracks,</span><br>one step<br>at a time</h1>
@@ -1403,7 +1403,7 @@ mission = f'''
       a river running out from the temple that gets deeper the farther it goes and brings everything
       it touches to life. Formation over numbers. Depth before distance.</p>
     </div>
-    <div class="figure">{img('w-dark2','A SOJO congregation with hands raised in worship')}</div>
+    <div class="figure">{img('fs-worship-columns','The SOJO congregation worshipping among the original mill columns')}</div>
   </div>
 </section>
 
@@ -1621,7 +1621,7 @@ nextgen = f'''
       to them. The overlap is deliberate. Graduation is where churches lose people, and we would
       rather a senior have two rooms for a semester than none the following fall.</p>
     </div>
-    <div class="figure">{img('n-kids-stage','SOJO Kids with their hands up during large group')}</div>
+    <div class="figure">{img('fs-kids-window','SOJO Kids gathered at the tall mill windows with their leaders')}</div>
   </div>
 </section>
 
@@ -1728,7 +1728,7 @@ PAGES.append(page('next-gen.html', 'Next Gen | SOJO Church, Concord NC',
 # ============================== SOJO YA =====================================
 ya = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('hug','Young adults embracing after a SOJO gathering')}</div>
+  <div class="phero-img">{eager('fs-teens','Two SOJO young adults standing together in worship')}</div>
   <div class="wrap">
     <p class="crumb">Next Gen &middot; SOJO YA &middot; Ages 18&ndash;30 &middot; Fridays 6&ndash;8pm</p>
     <h1 class="display"><span class="script">Nobody eats</span><br>alone on<br>Fridays</h1>
@@ -2366,7 +2366,7 @@ PAGES.append(page('groups.html', 'Groups | SOJO Church, Concord NC',
 # ============================== SERVE ========================================
 serve = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('pray','SOJO volunteers praying with someone')}</div>
+  <div class="phero-img">{eager('fs-parking-team','The SOJO parking team in yellow vests waving cars in on Sunday morning')}</div>
   <div class="wrap">
     <p class="crumb">Serve</p>
     <h1 class="display"><span class="script">You were gifted</span><br>on purpose</h1>
@@ -2390,7 +2390,7 @@ serve = f'''
       actually good at.</p>
       <div class="btns">{btn('Say yes',PHONE_H,'btn')}</div>
     </div>
-    <div class="figure">{img('welcome','SOJO people connecting after a Sunday service')}</div>
+    <div class="figure">{img('fs-table-gather','People gathered around a table together after the service')}</div>
   </div>
 </section>
 
@@ -2462,7 +2462,7 @@ CHALLENGE = CC + "/registrations/events/3833678"   # TODO(PC): confirm the 90-Da
 
 give = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('n-worship-dark','The SOJO congregation worshipping with hands raised')}</div>
+  <div class="phero-img">{eager('fs-worship-wide','Hands raised in worship at the Kettle Room with gold light through the mill windows')}</div>
   <div class="wrap">
     <p class="crumb">Giving</p>
     <h1 class="display"><span class="script">Generosity isn&rsquo;t about<br>what God wants from you</span><br>It&rsquo;s what He<br>wants <span class="gold">for</span> you</h1>
@@ -2789,7 +2789,7 @@ WATCH_JS = '''
 
 watch = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('n-worship-duo','SOJO worship leaders singing together')}</div>
+  <div class="phero-img">{eager('fs-band','The SOJO worship team leading from the new stage at the Kettle Room')}</div>
   <div class="wrap">
     <p class="crumb">Watch &amp; Listen</p>
     <h1 class="display"><span class="script">Why wait</span><br>for Sunday</h1>
@@ -2862,7 +2862,7 @@ watch = f'''
       looking for you.</p>
       <div class="btns">{btn('Plan your visit','plan-a-visit.html')}</div>
     </div>
-    <div class="figure">{img('k-worship','SOJO Kids worshipping in their own room')}</div>
+    <div class="figure">{img('fs-kids-mat','SOJO Kids sitting together for the lesson in the new kids space')}</div>
   </div>
 </section>
 '''
@@ -3224,7 +3224,7 @@ PAGES.append(page('our-story.html', 'Our Story | SOJO Church, Concord NC',
 # ============================== KNOW: YADA ===================================
 yada_page = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('n-worship-dark','Hands raised in worship in a dark room at SOJO Church')}</div>
+  <div class="phero-img">{eager('fs-hands-stage','Hands lifted toward the stage in worship at the Kettle Room')}</div>
   <div class="wrap">
     <p class="crumb">Know &middot; Part One</p>
     <h1 class="display"><span class="script">To be</span><br>Known all the<br>way <span class="gold">through</span></h1>
@@ -3275,7 +3275,7 @@ yada_page = f'''
       the knowledge of God more than burnt offerings&rdquo; (Hosea 6:6). He still does.</p>
     </div>
     <div class="figure">
-      {img('w-bright','The SOJO congregation in worship on a Sunday morning')}
+      {img('fs-sojo-lift','A man in a SOJO shirt with both arms lifted in worship')}
       <p class="figcap">Sunday morning &middot; SOJO Church</p>
     </div>
   </div>
@@ -3334,7 +3334,7 @@ plan_page = f'''
       chosen to carry the rescue to everybody.</p>
     </div>
     <div class="figure">
-      {img('k-bibles','Kids reading their Bibles on the floor at SOJO Church')}
+      {img('fs-listening','A man listening during the message by the tall mill windows')}
       <p class="figcap">The story &middot; Genesis to now</p>
     </div>
   </div>
@@ -3356,7 +3356,7 @@ plan_page = f'''
       grow &mdash; slowly, deeply, and on purpose.</p>
     </div>
     <div class="figure">
-      {img('n-girl-sing','Three generations of one family worshiping together at SOJO Church')}
+      {img('fs-generations','Three generations of one family standing together in worship at the Kettle Room')}
       <p class="figcap">Rooted &middot; SOJO Church</p>
     </div>
   </div>
@@ -3394,7 +3394,7 @@ PAGES.append(page('gods-plan.html', 'God&rsquo;s Plan for Life | SOJO Church, Co
 # ============================== KNOW: PARTNER ================================
 partner_page = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('n-dan-teach','The SOJO family kneeling and praying over one another')}</div>
+  <div class="phero-img">{eager('fs-share-story','A woman sharing her story on stage at SOJO Church')}</div>
   <div class="wrap">
     <p class="crumb">Know &middot; Part Three</p>
     <h1 class="display"><span class="script">Your move:</span><br>Partner<br>with <span class="gold">him</span></h1>
@@ -3446,7 +3446,7 @@ partner_page = f'''
       <p class="pull-attr">Romans 10:9, CSB</p>
     </div>
     <div class="figure">
-      {img('n-couple-pray','A man praying during a service at SOJO Church')}
+      {img('fs-bibles-pray','A couple praying with their Bibles beside them during the service')}
       <p class="figcap">The turn &middot; SOJO Church</p>
     </div>
   </div>

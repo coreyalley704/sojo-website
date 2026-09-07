@@ -232,13 +232,11 @@ p{margin:0 0 1.1em; max-width:66ch}
 .btn-gold{background:var(--gold); border-color:var(--gold); color:var(--charcoal-2)}
 /* Header Give — gold fading into black, a touch bigger than the other buttons. */
 .hdr .btn.hdr-give{
-  background:linear-gradient(115deg, var(--gold) 0%, var(--gold-deep) 48%, #24221E 100%);
-  background-size:220% 100%; background-position:0% 0;
-  border-color:var(--gold-deep); color:#fff;
+  background:var(--gold); border-color:var(--gold); color:var(--charcoal-2);
   padding:18px 36px; font-size:.9rem; min-height:56px;
-  transition:background-position .35s ease, transform .22s ease;
+  transition:background .22s ease, border-color .22s ease;
 }
-.hdr .btn.hdr-give:hover{background-position:92% 0; color:#fff}
+.hdr .btn.hdr-give:hover{background:var(--gold-bright); border-color:var(--gold-bright); color:var(--charcoal-2)}
 .btn-gold:hover{background:var(--gold-bright); border-color:var(--gold-bright); color:var(--charcoal-2)}
 .btns{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
 
