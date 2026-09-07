@@ -665,9 +665,12 @@ visit = f'''
         <p class="eyebrow">The short version</p>
         <h2 class="display display-sm">Sundays at<br>9 &amp; 11am</h2>
         <p class="lede">We meet at {WAYF} — {ADDR1}, {ADDR2}.</p>
-        <p>Park in the SOJO lot to your right as you come through the main Gibson Mill entrance and
-        follow the signs. Our entrance is beside the City Club entrance, under the big SOJO Church
-        sign. Head straight down the hall to the end. Somebody will be there.</p>
+        <p>Enter from McGill Ave. <strong>First-time guests, parents with young kids, and anyone
+        with mobility needs: use the A Lot</strong> — it's the first lot as you come in. Everyone
+        else, the B and C lots are just past it. Our entrance is beside the City Club entrance,
+        under the big SOJO Church sign. Head straight down the hall to the end. Somebody will be there.</p>
+        <div class="figure" style="margin-top:22px">{img('parking-map','SOJO parking map for Gibson Mill showing the A, B, C, and volunteer lots off McGill Ave')}
+          <p class="figcap">Gibson Mill parking &mdash; A Lot for first-time guests, up front.</p></div>
         <div class="stripe" aria-hidden="true"></div>
         <a class="link" href="new-home.html">See photos of the new space <span class="arw">→</span></a>
       </div>
@@ -842,13 +845,15 @@ newhome = f'''
     <p class="eyebrow">Getting there</p>
     <h2 class="display display-sm">How to find<br>the room</h2>
     <div class="split split-6535" style="margin-bottom:clamp(40px,5vw,64px);align-items:start">
-      <div class="figure">{img('mill-map','Site map of Gibson Mill showing the SOJO parking areas and main entrance')}
-        <p class="figcap">Gibson Mill site map &mdash; SOJO parking and the main entrance</p></div>
+      <div class="figure">{img('parking-map','SOJO parking map for Gibson Mill showing the A, B, C, and volunteer lots off McGill Ave')}
+        <p class="figcap">Gibson Mill parking &mdash; the A, B, and C lots off McGill Ave</p></div>
       <div>
         <p class="eyebrow" style="margin-top:0">Read the map</p>
-        <p>Come in off McGill Avenue and you are looking at the whole property. <strong>SOJO parking
-        is to your right</strong> as you come through the main entrance, and our team will be out
-        there in vests pointing you in. First-time guest spots are up front.</p>
+        <p>Enter from McGill Avenue. <strong>The A Lot is first as you come in — it's reserved for
+        first-time guests, parents with young kids, and anyone with mobility needs.</strong> Everyone
+        else heads to the <strong>B Lot</strong> (the grass field just past A) or the <strong>C
+        Lot</strong> for overflow. Volunteers park in the volunteer lot on the far side so the close
+        spots stay open. Our team is out there in vests pointing everybody in.</p>
         <p>Our door sits beside the <strong>City Club entrance</strong>, under the large SOJO Church
         sign mounted at the top of the building. Inside, walk straight down the hallway to the end.</p>
         <p class="muted">Not sure? Roll your window down and ask anybody in a vest. That is
@@ -861,8 +866,8 @@ newhome = f'''
       ("Put this in your GPS",
        f"{ADDR1}, {ADDR2}. If your map app is confused, search &ldquo;Gibson Mill Concord&rdquo; and head for the main entrance.",
        ("Open directions",MAPS,True)),
-      ("Park to the right",
-       "Come through the main Gibson Mill entrance and SOJO parking is primarily on your right. Follow the SOJO directional signs — our team is out there and will point you in.",
+      ("Know your lot: A, B, or C",
+       "First-time guests, parents with young kids, and mobility needs: the A Lot, first on your left as you enter from McGill. Everyone else: the B Lot (grass field) or C Lot overflow just past it. Follow the SOJO signs — our vest team will point you in.",
        None),
       ("Look for the sign beside City Club",
        "Our entrance sits right next to the City Club entrance, with the large SOJO Church sign mounted at the top of the building.",
