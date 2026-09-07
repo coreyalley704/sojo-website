@@ -4,7 +4,7 @@ import os, re, base64, shutil, mimetypes
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(SRC, 'out')
-DIST = os.path.join(SRC, 'dist')
+DIST = os.path.join(SRC, 'docs')  # GitHub Pages serves from /docs on main
 
 # ---------------------------------------------------------------- constants
 ADDR1 = "325 McGill Ave NW, Suite 148"
