@@ -1195,7 +1195,7 @@ about = f'''
        "The opportunity to relocate downtown came in October 2020. First services on Union Street, October 4, 2020. Six years of baptisms, first visits, and answered prayers followed.",
        None),
       ("2026 — Gibson Mill",
-       f"On {MOVE}, 2026 we move into a historic mill — twice the space, 400+ seats, room for our kids and youth to grow, and a coffee shop open all week long.",
+       f"On {MOVE}, 2026 we moved into a historic mill — twice the space, 400+ seats, room for our kids and youth to grow, and a coffee shop on the way.",
        ("Our new home","new-home.html",False)),
     ])}
     <div class="btns">{btn('Read the whole story','our-story.html','btn')}</div>
@@ -2113,7 +2113,7 @@ missions = f'''
       <p class="eyebrow">Two doors down</p>
       <h2 class="display display-sm">Our neighbor<br>at the Mill</h2>
       <p class="lede">Lifeline Charlotte Centre packs meals for hungry families out of
-      <strong>Suite 175 at Gibson Mill</strong>. Starting September 6, we are in Suite 148.</p>
+      <strong>Suite 175 at Gibson Mill</strong> — two doors down from us in Suite 148.</p>
       <p>Same hallway. A Christian meal-packing facility where anybody of any age or ability can
       show up and put food in a box that ends up in front of a hungry student, a refugee family, or
       a community digging out from a storm.</p>
