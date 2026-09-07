@@ -3651,6 +3651,11 @@ def build_dist():
         f.write('<?xml version="1.0" encoding="UTF-8"?>'
                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                 + urls + '</urlset>')
+    # GitHub Pages custom domain + no-Jekyll markers — MUST exist in every build,
+    # or Pages drops sojo.church and the site 404s (happened Sept 7, 2026).
+    with open(os.path.join(DIST, 'CNAME'), 'w') as f:
+        f.write('sojo.church\n')
+    open(os.path.join(DIST, '.nojekyll'), 'w').close()
     with open(os.path.join(DIST, 'robots.txt'), 'w') as f:
         ai_bots = ['GPTBot','OAI-SearchBot','ChatGPT-User','ClaudeBot','Claude-Web',
                    'anthropic-ai','Google-Extended','Gemini-Deep-Research','PerplexityBot',
