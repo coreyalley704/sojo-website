@@ -314,7 +314,7 @@ nav.main{display:flex; align-items:center; gap:clamp(14px,2vw,30px)}
 @media (max-width:1080px){
   nav.main{display:none}
   .burger{display:block}
-  .hdr .btn.hdr-give{display:none}
+  .hdr .btn.hdr-give{padding:13px 22px; min-height:46px; font-size:.8rem}
 }
 .mnav{display:none; border-top:1px solid var(--line); background:var(--cream)}
 .mnav.open{display:block; max-height:calc(100dvh - 92px); overflow-y:auto;
