@@ -512,22 +512,22 @@ home = f'''
     <p class="eyebrow">Where to go next</p>
     <h2 class="display display-sm">Four steps,<br>in order</h2>
     <div class="trio trio-4">
-      <div>{img('greeting','Guests being welcomed in the SOJO lobby')}
+      <div>{img('fs-family-arrive','A family walking in with a SOJO greeter on Sunday morning')}
         <h3>1 · Come for the first time</h3>
         <p>Show up on a Sunday. That is the entire first step &mdash; no sign-up, no dressing up,
         no knowing anybody.</p>
         <a class="link" href="plan-a-visit.html">Plan a visit <span class="arw">&rarr;</span></a></div>
-      <div>{img('c-park','SOJO families together at a community gathering')}
+      <div>{img('fs-embrace','Two people embracing in the congregation during worship at the Kettle Room')}
         <h3>2 · Try 5</h3>
         <p>Five Sundays. Not to size up a stage &mdash; to meet the people. That is the part that
         actually changes anything.</p>
         <a class="link" href="next-steps.html">Why five <span class="arw">&rarr;</span></a></div>
-      <div>{img('st-union-toddler','A meal being served at a SOJO gathering')}
+      <div>{img('fs-table-gather','People gathered around a table together after the service')}
         <h3>3 · Come to Discover SOJO</h3>
         <p>Last Sunday of every month, right after second service. A real meal, childcare, and every
         question you have got.</p>
         <a class="link" href="{DISC}" target="_blank" rel="noopener">Sign up <span class="arw">&rarr;</span></a></div>
-      <div>{img('n-dan-teach','Pastor Dan teaching at SOJO Church')}
+      <div>{img('fs-bibles-pray','A couple praying with their Bibles beside them during the service')}
         <h3>4 · Attend Discover More</h3>
         <p>A three-week virtual class on basic doctrine and discipleship. What we believe, and what
         following Jesus actually looks like.</p>
