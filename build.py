@@ -17,6 +17,7 @@ VISION  = "A community with a cause"
 MISSION = "Helping people know life, grow in peace, and go in purpose"
 MOVE = "Sunday, September 6"
 MAPS = "https://maps.google.com/?q=325+McGill+Ave+NW+Suite+148+Concord+NC+28027"
+REVIEW = "https://g.page/r/CZlpDqi1RF66EBM/review"  # GBP review short link (verified Sept 7, 2026)
 
 CC   = "https://sojo.churchcenter.com"
 GIVE = CC + "/giving"
@@ -268,6 +269,9 @@ def footer():
           {ADDR1}<br>{ADDR2}<br>
           <a href="{MAPS}" target="_blank" rel="noopener">Get directions →</a>
         </address>
+        <p style="margin-top:18px"><a href="{REVIEW}" target="_blank" rel="noopener"
+          style="font-family:var(--f-label);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-bright);text-decoration:none">Love
+          SOJO? Tell Concord <span aria-hidden="true">★</span></a></p>
         <div class="socials">{soc}</div>
       </div>
       <div>
