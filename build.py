@@ -554,18 +554,18 @@ home = f'''
     <hr class="lane" style="margin-bottom:48px">
     <p class="eyebrow">The next chapter</p>
     <div class="split split-6535" style="align-items:end">
-      <h2 class="display">We move<br><span class="gold">Sept 6</span></h2>
-      <p class="lede">Same family. Same mission. A room twice the size, with space for the people
-      who haven't walked in yet.</p>
+      <h2 class="display">We're<br><span class="gold">home</span></h2>
+      <p class="lede">Same family. Same mission. A room twice the size &mdash; and on September 6
+      we filled it.</p>
     </div>
     <div class="gal">
-      <div class="g-half">{img('r-room','Rendering of the new SOJO worship room at Gibson Mill')}</div>
-      <div class="g-half">{img('r-lobby','Rendering of the new SOJO lobby and gathering space')}</div>
-      <div class="g-third">{img('r-patio','Rendering of the outdoor patio with SOJO Church signage')}</div>
-      <div class="g-third">{img('r-cafe','Rendering of the coffee and café area')}</div>
-      <div class="g-third">{img('shell-columns','Rows of steel columns down the mill floor, August 2026')}</div>
+      <div class="g-half">{img('fs-worship-columns','The SOJO congregation worshipping among the original mill columns at the Kettle Room')}</div>
+      <div class="g-half">{img('fs-communion-pass','Communion passed down the rows on the first Sunday at Gibson Mill')}</div>
+      <div class="g-third">{img('fs-cafe-neon','The neon SOJO sign glowing on the brick wall of the cafe area')}</div>
+      <div class="g-third">{img('fs-kids-checkin','A family welcomed at the SOJO Kids check-in on Sunday morning')}</div>
+      <div class="g-third">{img('fs-couple-cross','A couple holding hands in worship with the cross in the window light')}</div>
     </div>
-    <p class="figcap" style="margin-top:16px">First four: renderings. Last: the actual room, August 2026.</p>
+    <p class="figcap" style="margin-top:16px">First Sunday at the Kettle Room &middot; September 6, 2026.</p>
     <div class="bignums">
       <div class="bignum"><b>400+</b><span>Seats, up from 230</span></div>
       <div class="bignum"><b>2×</b><span>The space we have now</span></div>
@@ -602,7 +602,7 @@ home = f'''
 
 <section class="sec tint">
   <div class="wrap split">
-    <div class="figure">{img('w-bright','A SOJO congregation worshipping on a Sunday morning')}</div>
+    <div class="figure">{img('fs-hands-stage','Hands lifted toward the stage in worship at the Kettle Room')}</div>
     <div>
       <p class="eyebrow">Try five</p>
       <h2 class="display display-sm">Give us five<br>Sundays</h2>
@@ -623,7 +623,7 @@ home = f'''
       <p class="eyebrow">Find us Sunday</p>
       <p class="venue">{WAYF}</p>
       <p class="addr">{ADDR1}<br>{ADDR2}
-        <span class="sub">Sundays at 9:00 &amp; 11:00am · Starting September 6</span></p>
+        <span class="sub">Sundays at 9:00 &amp; 11:00am</span></p>
       <div class="btns">{btn('Get directions',MAPS,'btn',True)}
         {btn('How to find the room','new-home.html','btn btn-ghost')}</div>
     </div>
@@ -639,7 +639,7 @@ PAGES.append(page('index.html', 'SOJO Church — Concord, NC | Sundays 9 & 11am'
 # ============================== PLAN A VISIT =================================
 visit = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('family','A family arriving at SOJO Church')}</div>
+  <div class="phero-img">{eager('fs-family-arrive','A family walking in with a SOJO greeter on Sunday morning')}</div>
   <div class="wrap">
     <p class="crumb">New Here</p>
     <h1 class="display"><span class="script">There's a seat</span><br>at the table</h1>
@@ -729,11 +729,11 @@ PAGES.append(page('plan-a-visit.html', 'Plan Your Visit | SOJO Church, Concord N
 # ============================== NEW HOME =====================================
 newhome = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('shell-wide','The mill floor at Gibson Mill before build-out')}</div>
+  <div class="phero-img">{eager('fs-worship-wide','Hands raised in worship at the Kettle Room with gold light through the mill windows')}</div>
   <div class="wrap">
     <p class="crumb">Our New Home</p>
     <h1 class="display"><span class="script">The next chapter</span><br>Gibson Mill</h1>
-    <p class="lede">First Sunday in the new room: <strong>{MOVE}</strong>, 9 &amp; 11am.</p>
+    <p class="lede">We're in. Sundays at 9 &amp; 11am in the Kettle Room.</p>
     {thread('Know &middot; Grow &middot; Go','One room where a stranger meets Life, a family gets formed, and a church gets sent. That is what we are building at the Mill.')}
     <div class="btns">{btn('Get directions',MAPS,'btn',True)}
       {btn('Plan your visit','plan-a-visit.html','btn btn-ghost')}</div>
@@ -769,11 +769,29 @@ newhome = f'''
   </div>
 </section>
 
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">September 6, 2026 · First Sunday</p>
+    <div class="split split-6535" style="align-items:end">
+      <h2 class="display display-sm">And then<br>we filled it</h2>
+      <p class="lede">A hundred-year-old room, full again. Two services, every generation, communion
+      passed hand to hand down the rows. This is what the whole build was for.</p>
+    </div>
+    <div class="gal gal-cap">
+      {gi('g-half','fs-band','The SOJO worship team leading from the new stage at the Kettle Room','The worship team','Leading from the new stage, first service in the room.')}
+      {gi('g-half','fs-sojo-lift','A man in a SOJO shirt with both arms lifted in worship','Both hands','No caption needed.')}
+      {gi('g-third','fs-cafe-lounge','Couches and tables in the SOJO gathering space at Gibson Mill','The gathering space','Couches, tables, and room to actually sit down with somebody.')}
+      {gi('g-third','fs-couple-pray','A couple with heads bowed in prayer during the service','Prayer in the rows','First prayers prayed in the new room.')}
+      {gi('g-third','fs-communion-trays','Copper communion trays stacked on a table before the service','The table set','Communion, ready before the room filled.')}
+    </div>
+  </div>
+</section>
+
 <section class="sec concrete grain columns curtains sheen">
   <div class="wrap">
     <p class="eyebrow">August 2026 · The shell</p>
     <div class="split split-6535" style="align-items:end">
-      <h2 class="display display-sm">This is what<br>it looks like<br><span class="gold">right now</span></h2>
+      <h2 class="display display-sm">This is what<br>it looked like<br><span class="gold">one month before</span></h2>
       <p class="lede">Bare brick. Columns painted over a dozen times. A hundred years of somebody
       else's work still on the ceiling. We're not covering that up — we're building inside it.</p>
     </div>
@@ -827,6 +845,8 @@ newhome = f'''
         sign mounted at the top of the building. Inside, walk straight down the hallway to the end.</p>
         <p class="muted">Not sure? Roll your window down and ask anybody in a vest. That is
         literally their whole job on Sunday morning.</p>
+        <div class="figure" style="margin-top:22px">{img('fs-parking-team','Three SOJO parking team members in yellow vests waving cars in')}
+          <p class="figcap">The vest crew, ready to wave you in.</p></div>
       </div>
     </div>
     {rows([
@@ -886,7 +906,7 @@ PAGES.append(page('new-home.html', 'Our New Home — The Kettle Room at Gibson M
 # ============================== KIDS =========================================
 kids = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('k-tunnel','A child running through a tunnel of cheering SOJO volunteers')}</div>
+  <div class="phero-img">{eager('fs-kids-run','SOJO Kids running down the mill hallway with a leader, arms out like airplanes')}</div>
   <div class="wrap">
     <p class="crumb">Next Gen · SOJO Kids · Birth – 5th Grade · Sundays 9 &amp; 11am</p>
     <h1 class="display"><span class="script">Your kids are</span><br>the first thing<br>we think about</h1>
@@ -931,7 +951,7 @@ kids = f'''
         <h3>Preschool · 2–4 years</h3>
         <p>Hands-on activities, interactive Bible stories, worship and play — built to match their
         energy, curiosity, and growing independence.</p></div>
-      <div>{img('k-bibles','Two SOJO Kids reading their Bibles together')}
+      <div>{img('fs-kids-mat','SOJO Kids sitting together for the lesson in the new kids space')}
         <h3>Elementary · K–5th</h3>
         <p>High-energy worship, engaging teaching, and small groups where they build real friendships
         and start owning their own faith.</p></div>
