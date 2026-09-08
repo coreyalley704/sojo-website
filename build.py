@@ -478,29 +478,6 @@ home = f'''
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap">
-    <p class="eyebrow">Our mission</p>
-    <div class="split split-6535" style="align-items:end">
-      <h2 class="display display-sm">Know life.<br>Grow in peace.<br>Go in purpose.</h2>
-      <p class="lede">Three movements, and they run in that order. Everything we do fits under
-      one of them &mdash; or we stop doing it.</p>
-    </div>
-    {rows([
-      ("Know life",
-       "Finding family. Finding community. And more than anything, finding Jesus among His people &mdash; and finding His plan for your life. Life is not an achievement you unlock; it is a Person you meet, and you almost never meet Him alone.",
-       ("Read the whole thing","mission.html",False)),
-      ("Grow in peace",
-       "Peace with God first, then peace worked into you &mdash; in a group, through personal study and prayer, with people who have permission to ask you the hard question. Slow, on purpose, and impossible in a crowd.",
-       ("Find a group","groups.html",False)),
-      ("Go in purpose",
-       "What the first two look like when they overflow &mdash; into your home, your church, your work, your friends and neighbors. And through the church, into service and giving, where your money does what it could never do alone.",
-       ("Find your spot","serve.html",False)),
-    ])}
-    <div class="btns">{btn('How the mission works','mission.html')}</div>
-  </div>
-</section>
-
 <section class="sec tint">
   <div class="wrap split split-6535">
     <div>
