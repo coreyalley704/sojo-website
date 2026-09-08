@@ -451,10 +451,11 @@ PAGES = []
 # ============================== HOME =========================================
 home = f'''
 <section class="hero grain dark">
-  <div class="hero-img hero-rotate">
-    {eager('fs-worship-wide','Hands raised in worship at the Kettle Room with gold light through the mill windows','hr hr1')}
-    {eager('fs-hands-stage','Hands lifted toward the stage in worship at the Kettle Room','hr hr2')}
-    {eager('fs-worship-columns','The SOJO congregation worshipping among the original mill columns','hr hr3')}
+  <div class="hero-img">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+      poster="assets/img/hero-poster.webp" aria-hidden="true">
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="wrap hero-in">
     <p class="eyebrow">Concord, North Carolina · Sundays 9 &amp; 11am</p>
