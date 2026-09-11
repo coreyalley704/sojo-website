@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet Us Out There — SOJO Church, Concord NC</title>
+<meta name="description" content="You can meet us out there. SOJO Church is all over Concord this fall — Oktoberfest, Candy Crawl, the Christmas Parade, Santa, and Candlelight. Come say hi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@600;700&family=Inter:wght@500;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#302E2A; --cream:#F5F0E6; --gold:#BFAE86; --golddeep:#766645;
+  --blue:#92A29D; --green:#A6A98E; --sand:#D6CDB8; --muted:#605C55; --paper:#FFFCFA;
+  --blush:#EAC3D3; --warmgold:#EDCD96; --mint:#D0E2DC; --chart:#DDD694; --maroon:#8E5E5E;
+  --ink:#4A463F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Roboto,system-ui,-apple-system,sans-serif;color:var(--black);background:var(--cream);line-height:1.62;font-size:17px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;font-weight:900;text-transform:uppercase;line-height:.9;letter-spacing:-.005em}
+.script{font-family:Caveat,"Brush Script MT",cursive;font-weight:700;line-height:1.15}
+.label{font-family:Inter,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.17em;font-size:11.5px}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+.btn{display:inline-block;font-family:Inter,sans-serif;font-weight:800;font-size:13.5px;letter-spacing:.05em;text-decoration:none;padding:13px 18px;border-radius:2px;background:var(--black);color:var(--cream);transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:var(--warmgold);color:var(--black)}
+.btn.out{background:transparent;color:var(--black);box-shadow:inset 0 0 0 2px var(--black)}
+
+/* ── top ── */
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:16px;flex-wrap:wrap}
+.badge{font-family:Inter,sans-serif;font-weight:800;letter-spacing:.15em;font-size:12.5px;box-shadow:inset 0 0 0 2px var(--black);padding:7px 11px}
+.topnav{display:flex;gap:22px;align-items:center;font-family:Inter,sans-serif;font-weight:700;font-size:13px}
+.topnav a{text-decoration:none;color:var(--muted)}
+.topnav a:hover{color:var(--black)}
+@media(max-width:720px){.topnav{display:none}}
+
+/* ── HERO = EVENTS, above the fold ── */
+.hero{padding:14px 0 72px}
+.hl{display:grid;grid-template-columns:1.05fr .95fr;gap:10px 44px;align-items:end;margin-bottom:22px}
+.hero h1{font-size:clamp(40px,5.6vw,72px)}
+.hero h1 .lit{color:var(--maroon)}
+.hero .script{font-size:clamp(24px,2.7vw,32px);color:var(--golddeep);display:inline-block;transform:rotate(-1.6deg);margin-top:4px}
+.hero .lede{font-size:17px;max-width:470px;color:var(--ink);padding-bottom:4px}
+.hero .lede b{font-weight:500;color:var(--black);box-shadow:inset 0 -9px 0 var(--warmgold)}
+@media(max-width:860px){.hl{grid-template-columns:1fr;gap:18px}}
+
+.evlist{border-top:2px solid var(--black)}
+.ev{display:grid;grid-template-columns:104px 1fr 168px;gap:20px;align-items:center;padding:14px 0;border-bottom:1px solid var(--sand);position:relative}
+.ev:before{content:"";position:absolute;left:-26px;top:0;bottom:0;width:5px;background:var(--c);opacity:0}
+.ev:hover:before{opacity:1}
+.ev .d{font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:32px;line-height:.86;text-transform:uppercase;color:var(--c)}
+.ev .d small{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.1em;color:var(--muted);margin-top:4px;white-space:nowrap}
+.ev h3{font-family:Inter,sans-serif;font-weight:800;text-transform:none;letter-spacing:0;font-size:17.5px;line-height:1.28;margin-bottom:2px}
+.ev p{color:var(--ink);font-size:13.8px;line-height:1.45}
+.ev p .where{color:var(--muted)}
+.ev .act{text-align:right}
+.ev .kw{font-size:12.5px;padding:11px 15px}
+.ev .kw span{color:var(--warmgold)}
+.ev .det{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.05em;color:var(--muted);text-decoration:none;margin-top:7px}
+.ev .det:hover{color:var(--black)}
+.ev.tbd .d{opacity:.55}
+.ev .flag{display:inline-block;font-family:Inter,sans-serif;font-weight:800;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;background:var(--blush);color:var(--maroon);padding:2px 6px;border-radius:2px;margin-left:7px;vertical-align:2px}
+@media(max-width:760px){.ev{grid-template-columns:1fr;gap:9px;padding:20px 0}.ev .act{text-align:left}.ev .det{display:inline-block;margin:0 0 0 14px}}
+
+/* ── VOLUNTEER ── */
+.vol{background:var(--black);color:var(--cream);padding:82px 0}
+.vol .label{color:var(--warmgold)}
+.vol h2{font-size:clamp(46px,7.6vw,92px);color:var(--cream);margin:10px 0 6px}
+.vol .script{color:var(--warmgold);font-size:clamp(27px,3.6vw,40px);display:block;margin-bottom:14px}
+.vol .sub{max-width:600px;color:var(--sand);font-size:17.5px;margin-bottom:38px}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:16px}
+.vc{background:rgba(245,240,230,.055);box-shadow:inset 0 0 0 1px rgba(214,205,184,.28);border-radius:4px;padding:22px 20px 24px;display:flex;flex-direction:column}
+.vc .vd{font-family:Inter,sans-serif;font-weight:800;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);margin-bottom:9px}
+.vc h3{font-family:Inter,sans-serif;font-weight:800;text-transform:none;letter-spacing:0;font-size:17px;line-height:1.28;margin-bottom:9px}
+.vc p{font-size:13.8px;color:var(--sand);line-height:1.5;flex:1;margin-bottom:16px}
+.vc .need{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warmgold);margin-bottom:14px}
+.vc a{align-self:flex-start;font-family:Inter,sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.05em;text-decoration:none;background:var(--warmgold);color:var(--black);padding:11px 15px;border-radius:2px}
+.volfoot{margin-top:30px;padding-top:22px;border-top:1px solid rgba(214,205,184,.3);font-size:15px;color:var(--sand)}
+.volfoot a{color:var(--warmgold);font-weight:500}
+
+/* ── WHAT HAPPENS NEXT ── */
+.next{background:var(--mint);padding:82px 0}
+.next h2{font-size:clamp(44px,7vw,86px);margin-bottom:8px}
+.next .script{font-size:clamp(26px,3.4vw,38px);color:var(--golddeep);display:block;margin-bottom:34px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:34px}
+.st{padding:0 22px 0 0;position:relative}
+.st:not(:last-child):after{content:"";position:absolute;right:11px;top:14px;width:9px;height:9px;border-top:2px solid var(--golddeep);border-right:2px solid var(--golddeep);transform:rotate(45deg)}
+.st .n{font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:52px;line-height:.8;color:var(--golddeep);margin-bottom:7px}
+.st h4{font-family:Inter,sans-serif;font-weight:800;font-size:15.5px;margin-bottom:6px}
+.st p{font-size:14px;color:var(--ink);line-height:1.5}
+@media(max-width:820px){.flow{grid-template-columns:1fr 1fr;gap:24px 0}.st:nth-child(2):after{display:none}}
+@media(max-width:520px){.flow{grid-template-columns:1fr}.st:after{display:none!important}}
+.kwbar{background:var(--paper);border-radius:4px;padding:26px 28px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.kwbar .t{font-family:Inter,sans-serif;font-weight:800;font-size:16px;max-width:420px}
+.kwbar .t span{display:block;font-weight:400;font-size:14.5px;color:var(--muted);margin-top:5px}
+.kws{display:flex;flex-wrap:wrap;gap:8px}
+.kws a{font-family:Inter,sans-serif;font-weight:800;font-size:12px;letter-spacing:.08em;text-decoration:none;box-shadow:inset 0 0 0 2px var(--black);color:var(--black);padding:9px 13px;border-radius:2px}
+.kws a:hover{background:var(--black);color:var(--cream)}
+
+/* ── HEARTBEAT ── */
+.beat{padding:92px 0 40px;background:var(--paper);text-align:center}
+.beat .label{color:var(--muted)}
+.beat h2{font-size:clamp(46px,8vw,104px);margin:12px 0 4px}
+.beat .script{font-size:clamp(28px,3.8vw,46px);color:var(--maroon);display:block;margin-bottom:24px}
+.beat p{max-width:660px;margin:0 auto 30px;font-size:19px;color:var(--ink)}
+.video{position:relative;aspect-ratio:16/9;max-width:800px;margin:0 auto;background:var(--black);border-radius:4px;overflow:hidden;box-shadow:0 34px 64px -34px rgba(48,46,42,.6)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video .cap{position:absolute;left:0;bottom:0;padding:9px 14px;background:rgba(48,46,42,.88);color:var(--cream);font-family:Inter,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+
+.h3s{padding:0 0 0}
+.heart{padding:86px 0}
+.heart .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
+.heart h2{font-size:clamp(46px,8vw,100px)}
+.heart .hurt{font-family:Inter,sans-serif;font-weight:800;font-size:clamp(21px,2.9vw,29px);line-height:1.22;margin:6px 0 20px;max-width:540px}
+.heart .hurt em{font-style:normal;box-shadow:inset 0 -10px 0 var(--u)}
+.heart p{font-size:17.5px;max-width:560px;margin-bottom:15px}
+.heart .script{font-size:clamp(28px,3.7vw,42px);display:block;margin-top:16px}
+.heart .num{font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:clamp(150px,25vw,310px);line-height:.78;opacity:.16;text-align:right}
+.heart .cta{display:inline-block;margin-top:20px;font-family:Inter,sans-serif;font-weight:800;font-size:13.5px;letter-spacing:.05em;text-decoration:none;border-bottom:3px solid currentColor;padding-bottom:4px}
+.life{background:var(--warmgold);--u:rgba(142,91,94,.4)} .life .script{color:var(--maroon)}
+.peace{background:var(--mint);--u:rgba(118,102,69,.36)} .peace .script{color:var(--golddeep)}
+.purpose{background:var(--black);color:var(--cream);--u:rgba(221,214,148,.32)} .purpose h2{color:var(--chart)} .purpose .script{color:var(--warmgold)} .purpose .label{color:var(--sand)} .purpose p{color:var(--sand)} .purpose .hurt{color:var(--cream)}
+@media(max-width:820px){.heart .grid{grid-template-columns:1fr;gap:26px}.heart .num{text-align:left;font-size:118px;order:-1}}
+
+/* ── ASKS ── */
+.asks{padding:86px 0;background:var(--blush)}
+.asks h2{font-size:clamp(46px,7.6vw,92px);margin-bottom:6px}
+.asks .script{font-size:clamp(27px,3.6vw,40px);color:var(--maroon);display:block;margin-bottom:38px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.ask{background:var(--black);color:var(--cream);padding:28px 26px 32px;border-radius:4px;display:flex;flex-direction:column}
+.ask .label{color:var(--warmgold);margin-bottom:9px}
+.ask h3{font-size:38px;line-height:.94;margin-bottom:11px;color:var(--cream)}
+.ask p{font-size:14.5px;color:var(--sand);margin-bottom:20px;flex:1}
+.ask a{align-self:flex-start;font-family:Inter,sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.06em;text-decoration:none;background:var(--warmgold);color:var(--black);padding:12px 16px;border-radius:2px}
+@media(max-width:820px){.cols{grid-template-columns:1fr}}
+
+footer{padding:58px 0 52px;background:var(--cream)}
+footer .f{display:flex;flex-wrap:wrap;justify-content:space-between;gap:26px;align-items:flex-end}
+footer .big{font-size:clamp(32px,4.6vw,56px);max-width:600px;line-height:.97}
+footer p{font-size:14.5px;color:var(--muted);line-height:1.7}
+footer a{text-decoration:none;color:var(--black);font-weight:500}
+
+/* ── site bar (hybrid: one way home, nothing else) ── */
+.sitebar{background:var(--black);color:var(--cream)}
+.sb-in{display:flex;justify-content:space-between;align-items:center;padding:9px 0;gap:16px}
+.sb-brand{display:flex;align-items:center}
+.sb-brand img{display:block;height:20px;width:auto}
+.sb-back{font-family:Inter,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.07em;text-decoration:none;color:var(--sand);white-space:nowrap}
+.sb-back:hover{color:var(--warmgold)}
+</style>
+</head>
+<body>
+
+<div class="sitebar">
+  <div class="wrap sb-in">
+    <a class="sb-brand" href="https://sojo.church" aria-label="SOJO Church home">
+      <img src="/assets/img/brand/mark-cream.webp" alt="SOJO Church">
+    </a>
+    <a class="sb-back" href="https://sojo.church">VISIT SOJO.CHURCH &rarr;</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="top">
+    <div class="label" style="color:var(--muted)">Fall &amp; Christmas 2026</div>
+    <nav class="topnav">
+      <a href="#events">Events</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#heartbeat">Why we're here</a>
+      <a class="btn" href="sms:9804402850?&body=HELLO">Text HELLO to 980-440-2850</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ═══ EVENTS — ABOVE THE FOLD ═══ -->
+<section class="hero" id="events">
+  <div class="wrap">
+    <div class="hl">
+      <div>
+        <div class="label" style="color:var(--muted);margin-bottom:14px">Concord, NC · Gibson Mill</div>
+        <h1>You can meet<br>us out <span class="lit">there.</span></h1>
+        <span class="script">Come say hi.</span>
+      </div>
+      <p class="lede">We'd rather meet you in your city than wait for you to find ours. Here's <b>everywhere we'll be this fall</b> — and a word to text at each one so we can send you the good stuff.</p>
+    </div>
+
+    <div class="evlist">
+
+      <div class="ev" style="--c:var(--maroon)">
+        <div class="d">Sept<br>25–27<small>Fri · Sat · Sun</small></div>
+        <div>
+          <h3>Oktoberfest at the Mill</h3>
+          <p>Three days of music, German food, and a Kids Zone right outside our front door. Find the SOJO tent — we're the neighbors. <span class="where">Cabarrus Brewing Co., 329 McGill Ave NW</span></p>
+        </div>
+        <div class="act">
+          <a class="btn kw" href="sms:9804402850?&body=FEST">Text <span>FEST</span></a>
+          <a class="det" href="https://cabarrusfestivals.com/festivals/oktoberfest-2026" target="_blank" rel="noopener">Event details ↗</a>
+        </div>
+      </div>
+
+      <div class="ev tbd" style="--c:var(--golddeep)">
+        <div class="d">Oct<br>30<small>Friday · TBC</small></div>
+        <div>
+          <h3>Downtown Candy Crawl <span class="flag">Date TBC</span></h3>
+          <p>Union Street fills up with costumes and candy. Step into our 360° photobooth and we'll text you the video before you get home. <span class="where">Downtown Concord</span></p>
+        </div>
+        <div class="act">
+          <a class="btn kw" href="sms:9804402850?&body=CANDY">Text <span>CANDY</span></a>
+          <a class="det" href="https://downtownconcordnc.com/events/" target="_blank" rel="noopener">Event details ↗</a>
+        </div>
+      </div>
+
+      <div class="ev" style="--c:#5F7A72">
+        <div class="d">Nov<br>21<small>Saturday</small></div>
+        <div>
+          <h3>97th Concord Christmas Parade</h3>
+          <p>Two miles down Church, Buffalo, and Union. Look for our float — and enter to win Cookies with Mr. &amp; Mrs. Claus. <span class="where">Starts at Church St N &amp; Lake Concord Rd</span></p>
+        </div>
+        <div class="act">
+          <a class="btn kw" href="sms:9804402850?&body=FLOAT">Text <span>FLOAT</span></a>
+          <a class="det" href="https://concordnc.gov/Services/Things-to-Do/Christmas-Tree-Lighting-and-Parade" target="_blank" rel="noopener">Parade route ↗</a>
+        </div>
+      </div>
+
+      <div class="ev" style="--c:#7A7440">
+        <div class="d">Nov<br>28–29<small>Sat · Sun</small></div>
+        <div>
+          <h3>Carols, Candles &amp; Coffee · Pictures with Santa</h3>
+          <p>Saturday night, come sing. Candles, carols, hot coffee, and warm bread in your hands. Sunday, bring the kids back for free pictures with Santa. <span class="where">Gibson Mill · 325 McGill Ave NW</span></p>
+        </div>
+        <div class="act">
+          <a class="btn kw" href="sms:9804402850?&body=SANTA">Text <span>SANTA</span></a>
+          <a class="det" href="https://christmasatgibsonmill.com">All things Christmas ↗</a>
+        </div>
+      </div>
+
+      <div class="ev" style="--c:var(--maroon)">
+        <div class="d">Dec<br>5–6<small>Sat · Sun</small></div>
+        <div>
+          <h3>Christmas Festival &amp; Tree Lighting</h3>
+          <p>The whole Mill lights up — Santa, live music, the Lake Norman Big Band, a Kids Play Zone. Find the SOJO booth and say hello. <span class="where">Cabarrus Brewing Co. · 10am–8pm</span></p>
+        </div>
+        <div class="act">
+          <a class="btn kw" href="sms:9804402850?&body=LIGHTS">Text <span>LIGHTS</span></a>
+          <a class="det" href="https://cabarrusfestivals.com/festivals/christmas-tree-lighting-2026" target="_blank" rel="noopener">Festival details ↗</a>
+        </div>
+      </div>
+
+      <div class="ev" style="--c:var(--black)">
+        <div class="d">Dec<br>19–20<small>Sat · Sun</small></div>
+        <div>
+          <h3>Candlelight Christmas Services</h3>
+          <p>Carolers in the atrium, candles in a dark room, and the oldest story we know told plainly. Bring everybody. <span class="where">SOJO Church · Gibson Mill</span></p>
+        </div>
+        <div class="act">
+          <a class="btn kw" href="sms:9804402850?&body=CANDLE">Text <span>CANDLE</span></a>
+          <a class="det" href="https://sojo.church/plan-a-visit.html">Save your seat ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VOLUNTEER ═══ -->
+<section class="vol" id="volunteer">
+  <div class="wrap">
+    <div class="label">For the SOJO family</div>
+    <h2>None of this happens<br>without you.</h2>
+    <span class="script">Pick a date. Grab a spot.</span>
+    <p class="sub">Every one of these takes real people handing out real things and looking real neighbors in the eye. You don't need a title. You need two hours and a willingness to say hello.</p>
+
+    <div class="vgrid">
+      <div class="vc" style="--c:var(--warmgold)">
+        <div class="vd">Sept 25–27</div>
+        <h3>Oktoberfest tent</h3>
+        <p>Two-hour shifts across three days. Hand out coffee, talk to neighbors, point people to the keyword.</p>
+        <a href="#" data-pco="oktoberfest">Sign up</a>
+      </div>
+      <div class="vc" style="--c:var(--blush)">
+        <div class="vd">Oct 30</div>
+        <h3>Candy Crawl photobooth</h3>
+        <p>Run the 360 booth, keep the line moving, get phones in hands. The most fun job on the list.</p>
+        <a href="#" data-pco="candycrawl">Sign up</a>
+      </div>
+      <div class="vc" style="--c:var(--mint)">
+        <div class="vd">Nov · build week</div>
+        <h3>Parade float — build team</h3>
+        <p>Several nights and Saturdays leading up to the parade. Cut, paint, wire, haul. Come to one night or come to them all.</p>
+        <a href="#" data-pco="parade-build">Sign up</a>
+      </div>
+      <div class="vc" style="--c:var(--mint)">
+        <div class="vd">Nov 21</div>
+        <h3>Parade day-of team</h3>
+        <p>Stage the float, ride it, walk alongside handing out invites, and tear it down. Kids welcome on the float.</p>
+        <a href="#" data-pco="parade-day">Sign up</a>
+      </div>
+      <div class="vc" style="--c:var(--chart)">
+        <div class="vd">Nov 28 · Saturday</div>
+        <h3>Carols, Candles &amp; Coffee</h3>
+        <p>Sing, pour coffee, pass out candles and warm bread, and welcome everybody who wanders up from the Market.</p>
+        <a href="#" data-pco="carols">Sign up</a>
+      </div>
+      <div class="vc" style="--c:var(--chart)">
+        <div class="vd">Nov 29 · Sunday</div>
+        <h3>Pictures with Santa</h3>
+        <p>Greeters, photo line, check-in table, and the elves who keep a room full of kids happy.</p>
+        <a href="#" data-pco="santa">Sign up</a>
+      </div>
+      <div class="vc" style="--c:var(--sand)">
+        <div class="vd">Dec 5–6</div>
+        <h3>Tree Lighting booth</h3>
+        <p>Work our booth in the middle of the festival. Meet people, hand out invites, and point them to christmasatgibsonmill.com.</p>
+        <a href="#" data-pco="treelighting">Sign up</a>
+      </div>
+      <div class="vc" style="--c:var(--warmgold)">
+        <div class="vd">Dec 19–20</div>
+        <h3>Candlelight services</h3>
+        <p>Carolers, candle handlers, door greeters, and parking. Four services, all hands.</p>
+        <a href="#" data-pco="candlelight">Sign up</a>
+      </div>
+    </div>
+
+    <p class="volfoot">Not sure where you fit? <a href="sms:9804402850?&body=SERVE">Text SERVE to 980-440-2850</a> and we'll find you a spot that fits your life — not the other way around.</p>
+  </div>
+</section>
+
+<!-- ═══ WHAT HAPPENS NEXT ═══ -->
+<section class="next">
+  <div class="wrap">
+    <div class="label" style="color:var(--muted)">After you text us</div>
+    <h2>Here's exactly<br>what happens.</h2>
+    <span class="script">No tricks. No list you can't get off of.</span>
+
+    <div class="flow">
+      <div class="st">
+        <div class="n">01</div>
+        <h4>You get your thing</h4>
+        <p>Photo, video, or contest entry — on your phone in under a minute. That's the whole deal at the event.</p>
+      </div>
+      <div class="st">
+        <div class="n">02</div>
+        <h4>We ask about you</h4>
+        <p>A few days later, one question: can we pray for you? A real person reads the answer and writes back.</p>
+      </div>
+      <div class="st">
+        <div class="n">03</div>
+        <h4>You can ask us anything</h4>
+        <p>About church, about Jesus, about why we do this. Pastor Corey answers. Ask the hard one.</p>
+      </div>
+      <div class="st">
+        <div class="n">04</div>
+        <h4>We tell you where we'll be</h4>
+        <p>Then we stay in touch — lightly — and point you to the next thing. Reply STOP anytime and we're gone.</p>
+      </div>
+    </div>
+
+    <div class="kwbar">
+      <div class="t">Every keyword goes to the same number.
+        <span>Text any of these to 980-440-2850 — at an event or from your couch right now.</span></div>
+      <div class="kws">
+        <a href="sms:9804402850?&body=PRAY">PRAY</a>
+        <a href="sms:9804402850?&body=QUESTION">QUESTION</a>
+        <a href="sms:9804402850?&body=SERVE">SERVE</a>
+        <a href="sms:9804402850?&body=TRY5">TRY5</a>
+        <a href="sms:9804402850?&body=HELLO">HELLO</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HEARTBEAT ═══ -->
+<section class="beat" id="heartbeat">
+  <div class="wrap">
+    <div class="label">Our heartbeat for this city</div>
+    <h2>Why we keep<br>showing up.</h2>
+    <span class="script">Two minutes from our pastor.</span>
+    <p>We're not out there collecting names. We're out there because we believe this city is worth loving, and because what we've found is too good to keep in a building.</p>
+    <div class="video">
+      <!-- TODO: swap for the welcome film's video ID → https://www.youtube.com/embed/VIDEO_ID?rel=0 -->
+      <iframe src="https://www.youtube.com/embed/videoseries?list=UUl0vhjkyMWlfSxOP8Tqsu3g&rel=0" title="A message from Pastor Corey" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="cap">Pastor Corey · 2 min</div>
+    </div>
+  </div>
+</section>
+
+<div class="h3s">
+
+<section class="heart life">
+  <div class="wrap grid">
+    <div>
+      <div class="label" style="color:var(--golddeep)">01 · Know life</div>
+      <h2>Life</h2>
+      <p class="hurt">You were made to be part of something <em>bigger than yourself.</em></p>
+      <p>Not a trend. Not a hack somebody invented last year. Something ancient — older than this country, older than this city — that's been practiced and handed down and tested by ordinary people in every generation since.</p>
+      <p>It has held up under war, poverty, grief, and doubt. Tried and true. Millions of people have staked their lives on it and found it holds.</p>
+      <p>That's what we mean by life. Not a better version of your schedule. A Person, and a story you belong inside.</p>
+      <span class="script">It's older than you think. And it still works.</span>
+      <a class="cta" href="https://sojo.church/plan-a-visit.html">See what a Sunday looks like →</a>
+    </div>
+    <div class="num" style="color:var(--maroon)">01</div>
+  </div>
+</section>
+
+<section class="heart peace">
+  <div class="wrap grid">
+    <div class="num" style="color:var(--golddeep)">02</div>
+    <div>
+      <div class="label" style="color:var(--golddeep)">02 · Grow in peace</div>
+      <h2>Peace</h2>
+      <p class="hurt">The noise got so loud it <em>killed our peace.</em></p>
+      <p>Notifications, outrage, comparison, the endless scroll. A world engineered to distract you from your own life. Most of us are exhausted and can't name why.</p>
+      <p>Here's what surprised us about Jesus: He isn't only interested in the big spiritual questions. He's interested in the nitty-gritty — your Tuesday, your marriage, your money, the conversation you've been avoiding. He goes there.</p>
+      <p>And then He does the thing nobody else can. He puts peace in your soul — not by removing the noise, but by anchoring you underneath it.</p>
+      <span class="script">Quiet on the inside, even when it's loud out there.</span>
+      <a class="cta" href="sms:9804402850?&body=PRAY">Can we pray for you? Text PRAY →</a>
+    </div>
+  </div>
+</section>
+
+<section class="heart purpose">
+  <div class="wrap grid">
+    <div>
+      <div class="label">03 · Go in purpose</div>
+      <h2>Purpose</h2>
+      <p class="hurt">You were made for something <em>eternal.</em></p>
+      <p>Everyone is. Not everyone knows it. Most of what fills a life — the job, the house, the calendar — is real but temporary. It won't survive you.</p>
+      <p>But you were built to make something that lasts. To pour yourself into people and places where the results outlive your name on a building.</p>
+      <p>At SOJO you don't sit and watch that happen. You get sent — into your street, this city, the world. That's why we're at the parade and the tent and the tree lighting. A community with a cause.</p>
+      <span class="script">Your one life was meant to leave a mark.</span>
+      <a class="cta" href="sms:9804402850?&body=QUESTION">Got a question about Jesus? Ask me →</a>
+    </div>
+    <div class="num" style="color:var(--chart)">03</div>
+  </div>
+</section>
+
+</div>
+
+<!-- ═══ ASKS ═══ -->
+<section class="asks">
+  <div class="wrap">
+    <h2>Three ways in</h2>
+    <span class="script">Pick one. No pressure on the other two.</span>
+    <div class="cols">
+      <div class="ask">
+        <div class="label">Easiest</div>
+        <h3>Can we<br>pray for you?</h3>
+        <p>Tell us what's going on. Real people, real prayer. Nobody will knock on your door or put you on a list you can't leave.</p>
+        <a href="sms:9804402850?&body=PRAY">Text PRAY</a>
+      </div>
+      <div class="ask">
+        <div class="label">Honest</div>
+        <h3>Ask me<br>anything.</h3>
+        <p>About church, about Jesus, about the thing that's kept you away. It's Pastor Corey answering, not a bot. Ask the hard one.</p>
+        <a href="sms:9804402850?&body=QUESTION">Text QUESTION</a>
+      </div>
+      <div class="ask">
+        <div class="label">Brave</div>
+        <h3>Come<br>Sunday.</h3>
+        <p>Gibson Mill, 325 McGill Ave NW. We'll tell you where to park, what to do with your kids, and who to look for at the door.</p>
+        <a href="https://sojo.church/plan-a-visit.html">Plan a visit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap f">
+    <div class="display big">Helping people know life,<br>grow in peace,<br>and go in purpose.</div>
+    <div>
+      <p><a href="https://sojo.church">sojo.church</a> · 325 McGill Ave NW, Suite 210<br>Concord, NC 28027</p>
+      <p>Text <a href="sms:9804402850?&body=HELLO">980-440-2850</a> · <a href="https://instagram.com/wearesojo.church" target="_blank" rel="noopener">@wearesojo.church</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
