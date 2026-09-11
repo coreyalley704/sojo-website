@@ -74,17 +74,19 @@ NAV = [
         ("SOJO YA",              "next-gen.html#ya"),
     ]),
     ("Know",      "yada.html", [
-        ("Yada &mdash; Knowing God", "yada.html"),
+        ("Know Jesus",           "yada.html"),
         ("God&rsquo;s Plan for Life","gods-plan.html"),
         ("Partner with Him",     "partner.html"),
         ("Baptism",              "baptism.html"),
     ]),
-    ("Grow",      "next-steps.html", [
-        ("Next Steps",           "next-steps.html"),
+    ("Grow",      "how-to-grow.html", [
+        ("How to Grow",          "how-to-grow.html"),
+        ("Discover SOJO",        "discover-sojo.html"),
+        ("Discover More",        "discover-more.html"),
         ("Groups",               "groups.html"),
     ]),
     ("Go",        "serve.html", [
-        ("Serve",                "serve.html"),
+        ("Go in Purpose",        "serve.html"),
         ("Outreach &amp; Missions","missions.html"),
         ("SOJO Swag",            "swag.html"),
     ]),
@@ -512,12 +514,12 @@ home = f'''
         <h3>3 · Come to Discover SOJO</h3>
         <p>Last Sunday of every month, right after second service. A real meal, childcare, and every
         question you have got.</p>
-        <a class="link" href="{DISC}" target="_blank" rel="noopener">Sign up <span class="arw">&rarr;</span></a></div>
+        <a class="link" href="discover-sojo.html">Lunch is on us <span class="arw">&rarr;</span></a></div>
       <div>{img('fs-bibles-pray','A couple praying with their Bibles beside them during the service')}
         <h3>4 · Attend Discover More</h3>
         <p>A three-week virtual class on basic doctrine and discipleship. What we believe, and what
         following Jesus actually looks like.</p>
-        <a class="link" href="next-steps.html">See both tracks <span class="arw">&rarr;</span></a></div>
+        <a class="link" href="discover-more.html">All about Discover More <span class="arw">&rarr;</span></a></div>
     </div>
   </div>
 </section>
@@ -1334,6 +1336,250 @@ steps = f'''
 PAGES.append(page('next-steps.html', 'Next Steps | SOJO Church, Concord NC',
     'Your next steps at SOJO Church, Concord NC — visit, try five, Discover SOJO, Discover More, baptism, groups, and serving.', steps))
 
+# ============================== HOW TO GROW ==================================
+howgrow = f'''
+<section class="phero grain dark">
+  <div class="phero-img">{eager('fs-table-gather','People gathered around a table together after a SOJO service')}</div>
+  <div class="wrap">
+    <p class="crumb">Grow</p>
+    <h1 class="display"><span class="script">Nobody drifts</span><br>into growth</h1>
+    <p class="lede">Trees do not grow because they try hard. They grow because they are planted
+    in the right place. So do people.</p>
+    {thread('Grow','Peace with God first, then peace worked into you &mdash; slowly, on purpose, around tables, with people who know your name.')}
+    <div class="btns">{btn('Start with Discover SOJO','discover-sojo.html','btn')}
+      {btn('Find a group','groups.html','btn btn-ghost')}</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">Our heart for you</p>
+      <h2 class="display display-sm">Growth is fruit,<br>not effort</h2>
+      <p class="lede">Here is what we believe about growing: it is less like a gym membership and
+      more like an orchard.</p>
+      <p>You cannot white-knuckle your way into becoming more like Jesus. Fruit does not strain to
+      grow &mdash; it grows because the tree is planted by water, rooted in good soil, and pruned by
+      somebody who loves it. Scripture opens its songbook with exactly that picture: a person
+      planted by streams of water, bearing fruit in season.</p>
+      <p>So at SOJO, we are not going to hand you a self-improvement plan. We are going to help you
+      get planted &mdash; in the presence of God, at tables with His people &mdash; and let Him do
+      what He has always done with planted things.</p>
+      <p>That said, getting planted is not an accident either. There is a path, and it is short.</p>
+    </div>
+    <div class="figure">{img('fs-couple-pray','A couple with heads bowed in prayer during a SOJO service')}
+      <p class="figcap">Slow, on purpose, together.</p></div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap">
+    <p class="eyebrow">The path</p>
+    <h2 class="display display-sm">Four steps<br>into the soil</h2>
+    {rows([
+      ("1 &middot; Show up on Sundays",
+       "Not once &mdash; give us five. One Sunday tells you whether you like the music. Five tell you whether these are your people, and that is the part that changes anything.",
+       ("Plan a visit","plan-a-visit.html",False)),
+      ("2 &middot; Come to Discover SOJO",
+       "Last Sunday of the month, right after second service. We feed you a good lunch, tell you who we are, and &mdash; this is the part we care about most &mdash; we ask who you are. There is a shirt in your size waiting.",
+       ("Pull up a chair","discover-sojo.html",False)),
+      ("3 &middot; Take Discover More",
+       "A little teaching, a lot of discovering you &mdash; your story, your gifts, your heart &mdash; and where all of that fits in the life of this church.",
+       ("All about Discover More","discover-more.html",False)),
+      ("4 &middot; Get in a group",
+       "This is where planted happens. A table, a rhythm, and people with permission to ask you the hard question. Growth is impossible in a crowd and nearly inevitable at a table.",
+       ("Find your group","groups.html",False)),
+    ])}
+    <p class="muted" style="margin-top:30px;max-width:62ch">And then it overflows &mdash; into
+    serving, giving, and going. That is the whole design: you grow in peace so you can
+    <a class="link" href="serve.html">go in purpose</a>.</p>
+  </div>
+</section>
+
+<section class="sec dark grain">
+  <div class="wrap center">
+    <p class="script">One step at a time</p>
+    <h2 class="display display-sm">Get planted</h2>
+    <p class="lede" style="margin-inline:auto">You do not have to do all four this month. You just
+    have to take the next one.</p>
+    <div class="btns" style="justify-content:center">{btn('Sign up for Discover SOJO',DISC,'btn',True)}
+      {btn('Text us a question',SMS_QUESTION,'btn btn-ghost')}</div>
+  </div>
+</section>
+'''
+PAGES.append(page('how-to-grow.html', 'How to Grow | SOJO Church, Concord NC',
+    'How to grow at SOJO Church — get planted through Sundays, Discover SOJO, Discover More, and groups. Growth is fruit, not effort.', howgrow, active='how-to-grow.html'))
+
+# ============================== DISCOVER SOJO ================================
+dsojo = f'''
+<section class="phero grain dark">
+  <div class="phero-img">{eager('fs-cafe-lounge','Couches and tables in the SOJO gathering space at Gibson Mill')}</div>
+  <div class="wrap">
+    <p class="crumb">Grow &middot; Discover SOJO</p>
+    <h1 class="display"><span class="script">Pull up a chair.</span><br>Lunch is on us</h1>
+    <p class="lede">Last Sunday of every month, right after second service. A good meal, the story
+    of SOJO, and a table full of people who want to hear yours.</p>
+    {thread('Know','Most people do not join a church. They join a table &mdash; and figure out the rest from there.')}
+    <div class="btns">{btn('Save my seat',DISC,'btn',True)}
+      {btn('Plan a Sunday first','plan-a-visit.html','btn btn-ghost')}</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">The table</p>
+      <h2 class="display display-sm">We feed you.<br>We sit with you.<br>We learn your story.</h2>
+      <p class="lede">Discover SOJO is not a membership pitch with a slideshow. It is a meal.</p>
+      <p>You will sit at a table with a few other people &mdash; some brand new like you, some who
+      have been around &mdash; and over a genuinely good lunch we will tell you who SOJO is. Where
+      we came from, what we are about, and where we believe God is taking us.</p>
+      <p>Then the tables turn, literally. We want to know who <em>you</em> are &mdash; your story,
+      your family, what brought you through our doors. Churches love to talk about themselves.
+      We would rather leave knowing you.</p>
+      <div class="stripe" aria-hidden="true"></div>
+      <a class="link" href="our-story.html">Our story, if you want a head start <span class="arw">&rarr;</span></a>
+    </div>
+    <div class="figure">{img('fs-table-gather','People gathered around a table together at SOJO Church')}
+      <p class="figcap">This is the whole format.</p></div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap">
+    <p class="eyebrow">The hour, in three words</p>
+    <h2 class="display display-sm">Know. Grow. Go.</h2>
+    {rows([
+      ("Know",
+       "Who we are and Who this is all about. The story of SOJO, and the conviction underneath it: life is a Person, and you were made to know Him.",
+       None),
+      ("Grow",
+       "How people actually grow here &mdash; tables, groups, Discover More &mdash; and how we will help you get planted, at your pace.",
+       ("How to grow at SOJO","how-to-grow.html",False)),
+      ("Go",
+       "Where it all points: a church that exists for its city. You will hear where SOJO is going and how your story might be part of it.",
+       ("Go in purpose","serve.html",False)),
+    ])}
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split">
+    <div class="figure">{img('fs-kids-checkin','A young family welcomed at SOJO Kids check-in on Sunday morning')}
+      <p class="figcap">Kids covered. Lunch handled. Shirt waiting.</p></div>
+    <div>
+      <p class="eyebrow">The details</p>
+      <h2 class="display display-sm">Everything is<br>taken care of</h2>
+      <p><strong>Lunch:</strong> a genuinely good one, on us.</p>
+      <p><strong>Kids:</strong> childcare is provided, so you can actually finish a sentence and a
+      conversation.</p>
+      <p><strong>A gift:</strong> there is a SOJO shirt waiting for you &mdash; tell us your size
+      when you sign up and it will be at your seat.</p>
+      <p><strong>When:</strong> the last Sunday of every month, right after second service, in the
+      room where you just worshipped.</p>
+      <div class="btns">{btn('Sign up &mdash; and tell us your size',DISC,'btn',True)}</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark grain">
+  <div class="wrap center">
+    <p class="script">Your seat is real</p>
+    <h2 class="display display-sm">Come discover SOJO</h2>
+    <p class="lede" style="margin-inline:auto">One lunch. No pressure, no follow-up committee.
+    Just a table, a meal, and a church that wants to know you.</p>
+    <div class="btns" style="justify-content:center">{btn('Save my seat',DISC,'btn',True)}
+      {btn('Text us a question',SMS_QUESTION,'btn btn-ghost')}</div>
+  </div>
+</section>
+'''
+PAGES.append(page('discover-sojo.html', 'Discover SOJO | SOJO Church, Concord NC',
+    'Discover SOJO — lunch on us, the last Sunday of every month. Hear who we are, tell us your story. Childcare provided and a shirt in your size.', dsojo, active='how-to-grow.html'))
+
+# ============================== DISCOVER MORE ================================
+dmore = f'''
+<section class="phero grain dark">
+  <div class="phero-img">{eager('fs-listening','A man listening during the message by the tall mill windows')}</div>
+  <div class="wrap">
+    <p class="crumb">Grow &middot; Discover More</p>
+    <h1 class="display"><span class="script">Three weeks.</span><br>No question<br>off limits</h1>
+    <p class="lede">A little teaching from us. A lot of discovering <em>you</em> &mdash; your story,
+    your gifts, your heart &mdash; and where you fit in the life of this church.</p>
+    {thread('Grow','Peace with God is where growth starts. Discover More is where you slow down long enough to be known &mdash; because nobody grows anonymous.')}
+    <div class="btns">{btn('Sign up for Discover More',DMORE,'btn',True)}
+      {btn('Start with Discover SOJO','discover-sojo.html','btn btn-ghost')}</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">What it is</p>
+      <h2 class="display display-sm">We teach a little.<br>We listen a lot.</h2>
+      <p class="lede">Most classes are about the church telling you everything about itself.
+      Discover More flips that. This one is about <em>you</em>.</p>
+      <p>Yes, there is teaching &mdash; the foundations of following Jesus, what we believe and why,
+      the things worth building a life on. But the heart of Discover More is discovery in the other
+      direction: your story, your wiring, your gifts, and what God might be up to in you.</p>
+      <p>Because you were not made to attend this church. You were made to belong to it &mdash; and
+      belonging starts with being known. Bring your questions; nothing is off limits, and
+      &ldquo;I have no idea&rdquo; is a completely acceptable place to start.</p>
+      <div class="stripe" aria-hidden="true"></div>
+      <a class="link" href="beliefs.html">Read what we believe <span class="arw">&rarr;</span></a>
+    </div>
+    <div class="figure">{img('fs-bibles-pray','A couple praying with their Bibles beside them during the service')}
+      <p class="figcap">Bring your Bible and your questions.</p></div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap">
+    <p class="eyebrow">The shape of it</p>
+    <h2 class="display display-sm">Teaching, discovery,<br>and a place to land</h2>
+    {rows([
+      ("A time of teaching",
+       "The foundations of following Jesus &mdash; what we believe, why we believe it, and what it looks like on a Tuesday. Enough to build on, never a lecture you endure.",
+       ("What we believe","beliefs.html",False)),
+      ("A time of discovering you",
+       "The part that makes Discover More different. We ask about your story, your gifts, and your heart &mdash; and we actually listen. The goal is not information about SOJO. The goal is that you leave known.",
+       None),
+      ("A place to land",
+       "Knowing you is how we help you find your place &mdash; the right group, the right team, the right next step. Discover More is the doorway into the real life of this church, not another meeting about it.",
+       ("Find a group","groups.html",False)),
+    ])}
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="display display-sm">Good questions</h2>
+    {faq([
+      ("Do I have to take Discover SOJO first?",
+       "<p>No &mdash; but it helps. <a class='link' href='discover-sojo.html'>Discover SOJO</a> is the lunch: hear who we are, tell us who you are. Discover More goes deeper. Most people do them in that order, but the door is open either way.</p>"),
+      ("When and where does it meet?",
+       "<p>Virtually, over three weeks. Sign up and we will send you the current schedule and the link &mdash; you can be on your couch with a coffee.</p>"),
+      ("Is this only for new believers?",
+       "<p>Not at all. Plenty of people who have been in church for decades take it and tell us it is the first time the pieces fit together. New believer, lifelong attender, or still deciding what you think about all of this &mdash; you are welcome.</p>"),
+      ("What does it cost?",
+       "<p>Nothing.</p>"),
+    ])}
+  </div>
+</section>
+
+<section class="sec dark grain">
+  <div class="wrap center">
+    <p class="script">Ready when you are</p>
+    <h2 class="display display-sm">Take the next step</h2>
+    <p class="lede" style="margin-inline:auto">Three weeks from now you could understand your faith
+    better than you ever have. That is a good trade.</p>
+    <div class="btns" style="justify-content:center">{btn('Sign up for Discover More',DMORE,'btn',True)}
+      {btn('Text us a question',SMS_QUESTION,'btn btn-ghost')}</div>
+  </div>
+</section>
+'''
+PAGES.append(page('discover-more.html', 'Discover More | SOJO Church, Concord NC',
+    'Discover More at SOJO Church — a free three-week virtual class on what we believe and what following Jesus looks like. No question off limits.', dmore, active='how-to-grow.html'))
+
 # ============================== MISSION ======================================
 def movement(num, title, line, scripture, ref, paras, doing, photo, alt):
     body = ''.join(f'<p>{x}</p>' for x in paras)
@@ -1667,7 +1913,7 @@ nextgen = f'''
        ("Bring somebody","Seriously. This is the easiest thing at SOJO to invite a friend to."),
        ("Cost","Free. The meal is on us.")],
       f'<div class="btns">{btn("Ask about SOJO YA",PHONE_H,"btn")} {btn("Find a group","groups.html","btn btn-ghost")}</div>',
-      'sojo-teens','Young adults together at SOJO', anchor='ya')}
+      'fs-couple-cross','A young couple holding hands in worship with the cross in the window light', anchor='ya')}
 
   </div>
 </section>
@@ -1715,7 +1961,7 @@ PAGES.append(page('next-gen.html', 'Next Gen | SOJO Church, Concord NC',
 # ============================== SOJO YA =====================================
 ya = f'''
 <section class="phero grain dark">
-  <div class="phero-img">{eager('fs-teens','Two SOJO young adults standing together in worship')}</div>
+  <div class="phero-img">{eager('fs-bibles-pray','A young adult couple praying together with their Bibles beside them')}</div>
   <div class="wrap">
     <p class="crumb">Next Gen &middot; SOJO YA &middot; Ages 18&ndash;30 &middot; Fridays 6&ndash;8pm</p>
     <h1 class="display"><span class="script">Nobody eats</span><br>alone on<br>Fridays</h1>
@@ -1741,7 +1987,7 @@ ya = f'''
       the point. Whatever else is true about your Friday, you are not eating it alone.</p>
       {thread('Know &middot; Grow','This is where a lot of twenty-somethings find out the faith they inherited can actually be theirs &mdash; and find the people to build it with.')}
     </div>
-    <div class="figure">{img('sojo-teens','SOJO young adults together in the lobby')}</div>
+    <div class="figure">{img('fs-couple-cross','A young couple holding hands in worship at the Kettle Room')}</div>
   </div>
 </section>
 
@@ -3680,6 +3926,9 @@ Pages
 - [God's Plan for Life]({BASE_URL}gods-plan.html): the Bible's story, abundant life
 - [Partner with Him]({BASE_URL}partner.html): becoming a follower of Jesus
 - [Baptism]({BASE_URL}baptism.html): who, what, why, when, where, how
+- [How to Grow]({BASE_URL}how-to-grow.html): the growth pathway — Sundays, Discover SOJO, Discover More, groups
+- [Discover SOJO]({BASE_URL}discover-sojo.html): monthly lunch — hear who we are, tell us your story; childcare and a free shirt
+- [Discover More]({BASE_URL}discover-more.html): teaching plus discovering you — story, gifts, and your place in the church
 - [Next Steps]({BASE_URL}next-steps.html): Discover SOJO, Discover More
 - [Groups]({BASE_URL}groups.html): connect, community, care groups and classes
 - [Next Gen]({BASE_URL}next-gen.html): kids, youth, young adults
