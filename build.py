@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # SOJO Church site builder — emits dist/ (multi-page) and preview.html (single-file, data URIs)
 import os, re, base64, shutil, mimetypes
+import datetime as _dt
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(SRC, 'out')
@@ -88,9 +89,25 @@ NAV = [
     ("Go",        "serve.html", [
         ("Go in Purpose",        "serve.html"),
         ("Outreach &amp; Missions","missions.html"),
+        ("Meet Us Out There",    "/hello"),
         ("SOJO Swag",            "swag.html"),
     ]),
 ]
+
+# "Christmas at Gibson Mill" joins the Go menu on the first build on/after Nov 1,
+# and drops off again after Dec 26. To show it early, set SHOW_CHRISTMAS_NAV = True.
+SHOW_CHRISTMAS_NAV = None   # None = automatic by date; True/False to force
+def _christmas_nav_on():
+    if SHOW_CHRISTMAS_NAV is not None:
+        return SHOW_CHRISTMAS_NAV
+    t = _dt.date.today()
+    return _dt.date(t.year, 11, 1) <= t <= _dt.date(t.year, 12, 26)
+
+if _christmas_nav_on():
+    for _i, (_l, _h, _k) in enumerate(NAV):
+        if _l == "Go":
+            NAV[_i] = (_l, _h, _k[:3] + [("Christmas at Gibson Mill", "/christmas")] + _k[3:])
+            break
 
 FONTS = ("https://fonts.googleapis.com/css2?"
          "family=Big+Shoulders+Display:wght@300;400;500;600;700&"
@@ -1342,10 +1359,9 @@ howgrow = f'''
   <div class="phero-img">{eager('fs-table-gather','People gathered around a table together after a SOJO service')}</div>
   <div class="wrap">
     <p class="crumb">Grow</p>
-    <h1 class="display"><span class="script">Nobody drifts</span><br>into growth</h1>
-    <p class="lede">Trees do not grow because they try hard. They grow because they are planted
-    in the right place. So do people.</p>
-    {thread('Grow','Peace with God first, then peace worked into you &mdash; slowly, on purpose, around tables, with people who know your name.')}
+    <h1 class="display"><span class="script">Not the fruit.</span><br>The water</h1>
+    <p class="lede">You do not fix fruit by working on fruit. You change what the roots drink.</p>
+    {thread('Grow','Knowing about Jesus will not make you sweet. Tasting Him will. Growth is what happens on the way down &mdash; from your head into your heart, and out through your hands.')}
     <div class="btns">{btn('Start with Discover SOJO','discover-sojo.html','btn')}
       {btn('Find a group','groups.html','btn btn-ghost')}</div>
   </div>
@@ -1355,24 +1371,51 @@ howgrow = f'''
   <div class="wrap split split-6535">
     <div>
       <p class="eyebrow">Our heart for you</p>
-      <h2 class="display display-sm">Growth is fruit,<br>not effort</h2>
-      <p class="lede">Here is what we believe about growing: it is less like a gym membership and
-      more like an orchard.</p>
-      <p>You cannot white-knuckle your way into becoming more like Jesus. Fruit does not strain to
-      grow &mdash; it grows because the tree is planted by water, rooted in good soil, and pruned by
-      somebody who loves it. Scripture opens its songbook with exactly that picture: a person
-      planted by streams of water, bearing fruit in season.</p>
-      <p>So at SOJO, we are not going to hand you a self-improvement plan. We are going to help you
-      get planted &mdash; in the presence of God, at tables with His people &mdash; and let Him do
-      what He has always done with planted things.</p>
-      <p>That said, getting planted is not an accident either. There is a path, and it is short.</p>
+      <h2 class="display display-sm">Sweet fruit comes<br>from a tree that has<br>tasted the water</h2>
+      <p class="lede">You were made to bear fruit. And it is supposed to be sweet, not sour.</p>
+      <p>Here is the thing most of us get backwards. We try to fix the fruit. We work harder, behave
+      better, sign up for more. But a fruit tree does not bear fruit because it knows about water.
+      It bears fruit because it is <em>planted by it</em>.</p>
+      <p>Jeremiah describes a sick tree, and it is not a bad species &mdash; it is a fine tree in the
+      wrong place. Wrong conditions, not wrong tree. That is a lot of us: right beliefs, mostly
+      fruitless life. And that is not a verdict. It is a diagnosis with a cure.</p>
+      <p>You already know the difference. Nobody had to teach you what your favorite fruit tastes
+      like when it is ripe &mdash; you know because you have tasted it. The Bible has a word for
+      that kind of knowing: <a class="link" href="yada.html">yada</a>. Taste, not information.
+      So the question underneath all of this is not whether you have roots. Everybody has roots.
+      The question is what they are drinking.</p>
     </div>
     <div class="figure">{img('fs-couple-pray','A couple with heads bowed in prayer during a SOJO service')}
-      <p class="figcap">Slow, on purpose, together.</p></div>
+      <p class="figcap">Delight, not duty.</p></div>
   </div>
 </section>
 
 <section class="sec tint">
+  <div class="wrap">
+    <p class="eyebrow">Why we say &ldquo;grow in peace&rdquo;</p>
+    <div class="split split-6535" style="align-items:end">
+      <h2 class="display display-sm">Most of what a<br>healthy tree grows,<br>nobody sees</h2>
+      <p class="lede">A root system is about as wide as the branches above it. Nobody applauds roots.
+      But roots are the reason the tree does not panic in a dry year.</p>
+    </div>
+    {rows([
+      ("Delight comes before fruit",
+       "Psalm 1 does not open with discipline. It opens with delight &mdash; and delight is the thing you return to without being told. Nobody reminds you to check the score of the game you care about. That is the kind of attention God is after, and it is on offer.",
+       None),
+      ("Roots reach",
+       "Jeremiah says the healthy tree <em>sends its roots out</em> toward the stream. It is not sitting beside the water; it is reaching for it &mdash; in your mornings, your marriage, your money, your calendar. That reaching is the whole practice.",
+       None),
+      ("Peace is what the roots buy you",
+       "The tree by the stream &ldquo;will not worry in a year of drought.&rdquo; That is what we mean by peace &mdash; not a calm season, but a root system deep enough to hold you when the season is not calm.",
+       None),
+      ("The fruit was never for the tree",
+       "We have never seen a tree eat its own fruit. What grows in you gets tasted by somebody else &mdash; at your kitchen table, in this room, in places you will never set foot. Anybody can count the seeds in a peach; nobody can count the peaches in a seed.",
+       ("Go in purpose","serve.html",False)),
+    ])}
+  </div>
+</section>
+
+<section class="sec">
   <div class="wrap">
     <p class="eyebrow">The path</p>
     <h2 class="display display-sm">Four steps<br>into the soil</h2>
@@ -1390,25 +1433,27 @@ howgrow = f'''
        "This is where planted happens. A table, a rhythm, and people with permission to ask you the hard question. Growth is impossible in a crowd and nearly inevitable at a table.",
        ("Find your group","groups.html",False)),
     ])}
-    <p class="muted" style="margin-top:30px;max-width:62ch">And then it overflows &mdash; into
-    serving, giving, and going. That is the whole design: you grow in peace so you can
-    <a class="link" href="serve.html">go in purpose</a>.</p>
+    <p class="muted" style="margin-top:30px;max-width:62ch">None of it is the point by itself. Every
+    one of these is just a way of getting your roots closer to the water &mdash; and then it
+    overflows, into serving and giving and
+    <a class="link" href="serve.html">going in purpose</a>.</p>
   </div>
 </section>
 
 <section class="sec dark grain">
   <div class="wrap center">
-    <p class="script">One step at a time</p>
-    <h2 class="display display-sm">Get planted</h2>
-    <p class="lede" style="margin-inline:auto">You do not have to do all four this month. You just
-    have to take the next one.</p>
+    <p class="script">An invitation, not an indictment</p>
+    <h2 class="display display-sm">Come get wet</h2>
+    <p class="lede" style="margin-inline:auto">If you have believed all the right things and never
+    really been planted &mdash; that is not a failing grade. There is more available than what most
+    of us are tasting, and it starts with one step, not four.</p>
     <div class="btns" style="justify-content:center">{btn('Sign up for Discover SOJO',DISC,'btn',True)}
       {btn('Text us a question',SMS_QUESTION,'btn btn-ghost')}</div>
   </div>
 </section>
 '''
 PAGES.append(page('how-to-grow.html', 'How to Grow | SOJO Church, Concord NC',
-    'How to grow at SOJO Church — get planted through Sundays, Discover SOJO, Discover More, and groups. Growth is fruit, not effort.', howgrow, active='how-to-grow.html'))
+    'How to grow at SOJO Church, Concord NC — not the fruit, the water. Delight, roots, and the path: Sundays, Discover SOJO, Discover More, groups.', howgrow, active='how-to-grow.html'))
 
 # ============================== DISCOVER SOJO ================================
 dsojo = f'''
@@ -3858,6 +3903,27 @@ def _verify(pages):
         raise SystemExit('MISSING IMAGES: ' + repr(sorted(set(bad))))
     print('image refs: all resolve')
 
+# Standalone landing pages: full custom HTML that does NOT use LAYOUT (no site
+# header/footer). Each folder under standalone/ is copied verbatim into docs/,
+# so standalone/hello/index.html is served at sojo.church/hello.
+# They live here (not hand-dropped in docs/) because build_dist() wipes docs/.
+STANDALONE = os.path.join(SRC, 'standalone')
+STANDALONE_SLUGS = ['hello', 'christmas']   # also added to sitemap
+
+
+def copy_standalone():
+    if not os.path.isdir(STANDALONE):
+        return
+    for name in sorted(os.listdir(STANDALONE)):
+        src = os.path.join(STANDALONE, name)
+        if not os.path.isdir(src):
+            continue
+        dst = os.path.join(DIST, name)
+        if os.path.exists(dst): shutil.rmtree(dst)
+        shutil.copytree(src, dst)
+        print('standalone:', name, '->', '/' + name + '/')
+
+
 def build_dist():
     if os.path.exists(DIST): shutil.rmtree(DIST)
     shutil.copytree(OUT, DIST)
@@ -3875,11 +3941,15 @@ def build_dist():
             rel = os.path.relpath(os.path.join(root, f), os.path.join(DIST, 'assets/img')).replace(os.sep, '/')
             if f.endswith('.webp') and rel not in used and not rel.startswith('brand/'):
                 os.remove(os.path.join(root, f)); pruned += 1
+    copy_standalone()
     urls = ''.join(
         f'<url><loc>{BASE_URL if slug=="index.html" else BASE_URL+slug}</loc>'
         f'<changefreq>weekly</changefreq>'
         f'<priority>{"1.0" if slug=="index.html" else "0.8"}</priority></url>'
         for slug, _ in PAGES)
+    urls += ''.join(
+        f'<url><loc>{BASE_URL}{s}/</loc><changefreq>weekly</changefreq>'
+        f'<priority>0.9</priority></url>' for s in STANDALONE_SLUGS)
     with open(os.path.join(DIST, 'sitemap.xml'), 'w') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>'
                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
