@@ -89,7 +89,7 @@ NAV = [
     ("Go",        "serve.html", [
         ("Go in Purpose",        "serve.html"),
         ("Outreach &amp; Missions","missions.html"),
-        ("Meet Us Out There",    "/hello"),
+        ("Upcoming Outreach Events", "/hello"),
         ("SOJO Swag",            "swag.html"),
     ]),
 ]
