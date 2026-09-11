@@ -622,6 +622,27 @@ home = f'''
   </div>
 </section>
 
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">SOJO Swag</p>
+    <div class="split split-6535" style="align-items:end;margin-bottom:38px">
+      <h2 class="display display-sm">You're a walking<br><span class="ul">front door</span></h2>
+      <p class="lede">A shirt is a small thing. It&rsquo;s also the only sermon most people in
+      Concord will read on a Tuesday.</p>
+    </div>
+    <div class="trio">
+      <div>{img('swag/tee-inset-charcoal','SOJO Church tee in charcoal')}</div>
+      <div>{img('swag/sw-dadhat','SOJO Church dad hat')}</div>
+      <div>{img('swag/sw-tumbler','SOJO Church insulated tumbler')}</div>
+    </div>
+    <p class="figcap" style="margin-top:16px">Tees in nine colorways &middot; hats &middot;
+    drinkware &middot; tote &middot; notebook &middot; polo. Every dollar over cost goes back into
+    the room at Gibson Mill.</p>
+    <div class="btns">{btn('See the collection','swag.html')}
+      {btn(f'Text {PHONE_D} to hold one',PHONE_H,'btn btn-ghost')}</div>
+  </div>
+</section>
+
 <section class="sec sand">
   <div class="wrap loc">
     <div>
