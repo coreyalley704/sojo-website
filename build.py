@@ -40,8 +40,10 @@ LT   = "https://linktr.ee/wearesojo"
 # plainly how to actually get a shirt. No button on this site is allowed to dead-end.
 STORE = CC
 STORE_LIVE = False
-PHONE_D = "980-440-2850"
-PHONE_H = "tel:+19804402850"
+PHONE_D = "980-440-2850"          # Hello Church texting line (text only)
+# PHONE_H retired Sept 2026: the Hello Church line is text-only. Calls go to PHONE_CALL_H.
+PHONE_CALL_D = "704-918-4144"     # the church line that actually rings
+PHONE_CALL_H = "tel:+17049184144"
 EMAIL_GENERIC = "audrie@sojourner.church"   # all general inquiries go to Audrie
 
 # Hello Church texting — keyword-first bodies so auto-replies can match on the
@@ -323,7 +325,7 @@ def footer():
         <h5>Talk to a human</h5>
         <ul>
           <li><a href="{SMS_HELLO}">Text us &mdash; a human replies</a></li>
-          <li><a href="{PHONE_H}">Or call {PHONE_D}</a></li>
+          <li><a href="{PHONE_CALL_H}">Or call {PHONE_CALL_D}</a></li>
           <li><a href="mailto:{EMAIL_GENERIC}">{EMAIL_GENERIC}</a></li>
           <li><a href="{VISIT}" target="_blank" rel="noopener">Tell us you're coming</a></li>
           <li><a href="our-story.html">Our story</a></li>
@@ -408,7 +410,7 @@ LD = f'''<script type="application/ld+json">{{
 "alternateName":"SOJO","url":"https://sojo.church/",
 "description":"SOJO Church is a non-denominational church in Concord, NC meeting Sundays at 9 & 11am in The Kettle Room at Gibson Mill. A community with a cause: helping people know life, grow in peace, and go in purpose.",
 "slogan":"A community with a cause",
-"telephone":"+1-980-440-2850",
+"telephone":"+1-704-918-4144",
 "foundingDate":"2017",
 "founder":{{"@type":"Person","name":"Corey Alley","jobTitle":"Lead Pastor"}},
 "address":{{"@type":"PostalAddress","streetAddress":"325 McGill Ave NW, Suite 148","addressLocality":"Concord","addressRegion":"NC","postalCode":"28027","addressCountry":"US"}},
@@ -639,7 +641,7 @@ home = f'''
     drinkware &middot; tote &middot; notebook &middot; polo. Every dollar over cost goes back into
     the room at Gibson Mill.</p>
     <div class="btns">{btn('See the collection','swag.html')}
-      {btn(f'Text {PHONE_D} to hold one',PHONE_H,'btn btn-ghost')}</div>
+      {btn(f'Text {PHONE_D} to hold one',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 
@@ -736,7 +738,7 @@ visit = f'''
       <p>If you'd rather we know you're coming ahead of time, tell us — we'll look for you and have
       somebody meet you at the door.</p>
       <div class="btns">{btn("Tell us you're coming",VISIT,'btn',True)}
-        {btn('Call or text us',PHONE_H,'btn btn-ghost')}</div>
+        {btn('Text us &mdash; a human replies',SMS_HELLO,'btn btn-ghost')}</div>
     </div>
   </div>
 </section>
@@ -1006,7 +1008,7 @@ kids = f'''
       known, loved, and excited to come back. She builds the environments, trains the leaders, and
       keeps the standard high — because your kids are worth it.</p>
       <p>Got a question about allergies, special needs, check-in, or anything else? Ask her directly.</p>
-      <div class="btns">{btn('Call or text us',PHONE_H,'btn btn-ghost')}</div>
+      <div class="btns">{btn('Text us &mdash; a human replies',SMS_HELLO,'btn btn-ghost')}</div>
     </div>
   </div>
 </section>
@@ -1102,7 +1104,7 @@ youth = f'''
       and fell in love with it — the students first, then their parents, then the whole community
       around them.</p>
       <p>If your student is nervous about walking in, tell her. She'll make sure they're not alone.</p>
-      <div class="btns">{btn('Call or text us',PHONE_H,'btn btn-ghost')}</div>
+      <div class="btns">{btn('Text us &mdash; a human replies',SMS_HELLO,'btn btn-ghost')}</div>
     </div>
   </div>
 </section>
@@ -1312,7 +1314,7 @@ TRACK_B = track('B', 'Following<br>Jesus',
      ("Talk to somebody today",SMS_HELLO,False)),
     ("Get baptized",
      "Baptism is going public with a private decision. It doesn't save you; it announces that Jesus already did. If you've said yes to Him and haven't been baptized, this one is yours.",
-     ("Ask us about baptism",PHONE_H,False)),
+     ("Ask us about baptism",SMS_HELLO,False)),
     ("Join a group",
      "Faith grows in circles, not rows. A group is where church stops being a service you attend and becomes people who actually know you &mdash; who notice when you're gone and show up when it's bad.",
      ("Find a group","groups.html",False)),
@@ -1366,7 +1368,7 @@ steps = f'''
     <h2 class="display display-sm">Ask us</h2>
     <p class="lede">Call, text, or find somebody at the guest table on Sunday. That is genuinely
     what we are here for.</p>
-    <div class="btns" style="justify-content:center">{btn(f'Call or text {PHONE_D}',PHONE_H,'btn')}
+    <div class="btns" style="justify-content:center">{btn(f'Text {PHONE_D}',SMS_HELLO,'btn')}
       {btn('Plan a visit','plan-a-visit.html','btn btn-ghost')}</div>
   </div>
 </section>
@@ -1885,7 +1887,7 @@ nextgen = f'''
     Jesus for themselves instead of inheriting somebody else&rsquo;s faith.</p>
     {thread('Know &middot; Grow','A two-year-old learns Life is safe before she can spell any of this. A middle schooler learns peace is possible. A twenty-four-year-old learns purpose is real. Same three words, three different rooms.')}
     <div class="btns">{btn('Plan your visit','plan-a-visit.html')}
-      {btn('Call or text us',PHONE_H,'btn btn-ghost')}</div>
+      {btn('Text us &mdash; a human replies',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 
@@ -1978,7 +1980,7 @@ nextgen = f'''
        ("Dinner","Every week at 8. Come for the whole thing or just the table."),
        ("Bring somebody","Seriously. This is the easiest thing at SOJO to invite a friend to."),
        ("Cost","Free. The meal is on us.")],
-      f'<div class="btns">{btn("Ask about SOJO YA",PHONE_H,"btn")} {btn("Find a group","groups.html","btn btn-ghost")}</div>',
+      f'<div class="btns">{btn("Ask about SOJO YA",SMS_HELLO,"btn")} {btn("Find a group","groups.html","btn btn-ghost")}</div>',
       'fs-couple-cross','A young couple holding hands in worship with the cross in the window light', anchor='ya')}
 
   </div>
@@ -2016,7 +2018,7 @@ nextgen = f'''
     <p class="lede">Sundays at 9 and 11 for kids. Wednesdays at 6 for students. Fridays at 6 for
     young adults, with dinner at 8.</p>
     <div class="btns" style="justify-content:center">{btn('Plan your visit','plan-a-visit.html')}
-      {btn(f'Call or text {PHONE_D}',PHONE_H,'btn btn-ghost')}</div>
+      {btn(f'Text {PHONE_D}',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 '''
@@ -2033,7 +2035,7 @@ ya = f'''
     <h1 class="display"><span class="script">Nobody eats</span><br>alone on<br>Fridays</h1>
     <p class="lede">SOJO YA is for ages 18 to 30 &mdash; college, working, single, married, still
     figuring it out. Fridays 6 to 8, and dinner together at 8.</p>
-    <div class="btns">{btn('Ask about this Friday',PHONE_H,'btn')}
+    <div class="btns">{btn('Ask about this Friday',SMS_HELLO,'btn')}
       {btn('All of Next Gen','next-gen.html','btn btn-ghost')}</div>
   </div>
 </section>
@@ -2103,7 +2105,7 @@ ya = f'''
     <p class="script">Friday, 6pm</p>
     <h2 class="display display-sm">Come hungry</h2>
     <p class="lede">Show up once. Worst case, you get dinner out of it.</p>
-    <div class="btns" style="justify-content:center">{btn(f'Call or text {PHONE_D}',PHONE_H,'btn')}
+    <div class="btns" style="justify-content:center">{btn(f'Text {PHONE_D}',SMS_HELLO,'btn')}
       {btn('Plan a Sunday visit','plan-a-visit.html','btn btn-ghost')}</div>
   </div>
 </section>
@@ -2250,7 +2252,7 @@ beliefs = f'''
     <h2 class="display display-sm">Come anyway</h2>
     <p class="lede">This page is where we stand. It has never been the price of admission.</p>
     <div class="btns" style="justify-content:center">{btn('Plan your visit','plan-a-visit.html')}
-      {btn(f'Talk it through &mdash; {PHONE_D}',PHONE_H,'btn btn-ghost')}</div>
+      {btn(f'Talk it through &mdash; {PHONE_D}',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 '''
@@ -2458,7 +2460,7 @@ missions = f'''
        ("How we think about giving","give.html",False)),
       ("Go",
        "The Mission Trip Fund exists so cost is not the reason you stayed home. Ask us where the next team is headed.",
-       (f"Call or text {PHONE_D}",PHONE_H,False)),
+       (f"Text {PHONE_D}",SMS_HELLO,False)),
     ])}
   </div>
 </section>
@@ -2508,7 +2510,7 @@ groups = f'''
     Groups are how we fix that.</p>
     {thread('Grow','This is where you find a family. Peace with God is given in a moment. Peace with people gets built at a table, over months, with folks who know your actual week.')}
     <div class="btns">{btn('Browse groups in Church Center',GROUPS,'btn',True)}
-      {btn('Not sure where to start?',PHONE_H,'btn btn-ghost')}</div>
+      {btn('Not sure where to start?',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 
@@ -2624,7 +2626,7 @@ groups = f'''
        ("Open Church Center Groups",GROUPS,True)),
       ("Tell us what you&rsquo;re looking for",
        "Not sure which one fits? Text us the part of town you are in, what nights work, and what season of life you are in. We will point you at two or three.",
-       (f"Call or text {PHONE_D}",PHONE_H,False)),
+       (f"Text {PHONE_D}",SMS_HELLO,False)),
       ("Come to Discover SOJO first",
        "The last Sunday of every month. Meet leaders, ask questions, and find out where the groups actually are before you commit to one.",
        ("Sign up",DISC,True)),
@@ -2642,7 +2644,7 @@ groups = f'''
       consistency. If a group has ever mattered to you, leading one is how somebody else gets that.</p>
       <p>Connect Groups especially need leaders &mdash; if you already do a thing every week, you are
       most of the way to leading one.</p>
-      <div class="btns">{btn('Talk to us about leading',PHONE_H,'btn')}</div>
+      <div class="btns">{btn('Talk to us about leading',SMS_HELLO,'btn')}</div>
     </div>
     <div class="figure">{img('st-union-writing','SOJO members writing Scripture together')}</div>
   </div>
@@ -2671,7 +2673,7 @@ serve = f'''
     <h1 class="display"><span class="script">You were gifted</span><br>on purpose</h1>
     <p class="lede">"The greatest among you will be your servant." — Jesus, Matthew 23:11</p>
     {thread('Go','Serving is the other way people find a family here. You show up for a team, and six months later they are the ones showing up for you.')}
-    <div class="btns">{btn('Find your spot',PHONE_H,'btn')}</div>
+    <div class="btns">{btn('Find your spot',SMS_HELLO,'btn')}</div>
   </div>
 </section>
 
@@ -2687,7 +2689,7 @@ serve = f'''
       <p>Serving isn't filling a slot on a chart. It's the fastest way to stop attending a church and
       start belonging to one — you meet people, you grow, and you get to watch God use something you're
       actually good at.</p>
-      <div class="btns">{btn('Say yes',PHONE_H,'btn')}</div>
+      <div class="btns">{btn('Say yes',SMS_HELLO,'btn')}</div>
     </div>
     <div class="figure">{img('fs-table-gather','People gathered around a table together after the service')}</div>
   </div>
@@ -2736,7 +2738,7 @@ serve = f'''
         342 Penny Lane, Concord. Weekly, biweekly, or monthly — your call.</p>
         <h3 class="display display-xs" style="margin-top:34px">HellFighters of Concord</h3>
         <p>A local partnership reaching people the church usually misses. Ask us about it.</p>
-        <div class="btns">{btn('Ask about outreach',PHONE_H,'btn btn-ghost')}</div>
+        <div class="btns">{btn('Ask about outreach',SMS_HELLO,'btn btn-ghost')}</div>
       </div>
       <div class="figure">{img('n-pc-preach','Pastor Corey preaching at SOJO')}</div>
     </div>
@@ -2748,7 +2750,7 @@ serve = f'''
     <p class="script">One of those yeses</p>
     <h2 class="display display-sm">Could be yours</h2>
     <p class="lede">Tell us you're in and we'll help you find the spot that actually fits.</p>
-    <div class="btns" style="justify-content:center">{btn(f'Call or text {PHONE_D}',PHONE_H,'btn')}</div>
+    <div class="btns" style="justify-content:center">{btn(f'Text {PHONE_D}',SMS_HELLO,'btn')}</div>
   </div>
 </section>
 '''
@@ -2923,7 +2925,7 @@ give = f'''
        None),
       ("Stock, crypto, or a donor-advised fund",
        "Non-cash giving is tax-smart and often lets people give more than they thought possible without touching their bank account. Appreciated assets in particular can go further than cash.",
-       ("Ask us how",PHONE_H,False)),
+       ("Ask us how",SMS_HELLO,False)),
       ("Toward missions &mdash; here, near and far",
        "Nineteen partners, funded every year &mdash; hunger and foster care in Concord, church plants from here to San Diego, and, through The Timothy Initiative, <strong>one new church planted every month</strong>. Every partner is named on the Outreach page.",
        ("See every partner","missions.html",False)),
@@ -3003,7 +3005,7 @@ give = f'''
         <h3 style="margin-top:0">Legacy giving</h3>
         <p>I want to give beyond the tithe. Having established the ten percent, I want to invest
         over and above it to expand God's Kingdom and leave something lasting.</p>
-        <a class="link" href="{PHONE_H}">Talk to us <span class="arw">&rarr;</span></a>
+        <a class="link" href="{SMS_HELLO}">Talk to us <span class="arw">&rarr;</span></a>
       </div>
     </div>
     <p class="pull" style="margin-top:64px;max-width:26ch">We don&rsquo;t give <em>to</em> a church.
@@ -3019,7 +3021,7 @@ give = f'''
       ("Is this about the church needing money?",
        "<p>No. This journey is about discipleship and trust, not pressure. If the only thing that changed in ninety days was our bank balance, we would consider it a failure.</p>"),
       ("What if I'm struggling financially?",
-       f"<p>Then generosity should never be fear-driven, and we mean that. If money is genuinely tight, we would rather pray with you and help you build a plan than take your last twenty dollars. Call or text us at {PHONE_D} &mdash; that conversation stays between us.</p>"),
+       f"<p>Then generosity should never be fear-driven, and we mean that. If money is genuinely tight, we would rather pray with you and help you build a plan than take your last twenty dollars. Text us at {PHONE_D} or call {PHONE_CALL_D} &mdash; that conversation stays between us.</p>"),
       ("Why recurring giving?",
        "<p>Because it turns generosity into a steady practice instead of a sporadic action. You make the decision once, prayerfully, instead of re-litigating it every Sunday against whatever else came up that week.</p>"),
       ("Is generosity only about giving to the church?",
@@ -3324,7 +3326,7 @@ swag_page = f'''
        ("Plan your visit","plan-a-visit.html",False)),
       ("Text us and we&rsquo;ll set it aside",
        f"Send the mark, the color, and the size to {PHONE_D}. We will hold it at the guest table with your name on it and you can pay when you pick it up.",
-       (f"Text {PHONE_D}",PHONE_H,False)),
+       (f"Text {PHONE_D}",SMS_HELLO,False)),
       ("Watch Church Center",
        "New drops, restocks, and pre-orders get posted in the Church Center app alongside events and giving. It is also where the online store will live when it opens.",
        ("Open Church Center",CC,True)),
@@ -3771,7 +3773,7 @@ partner_page = f'''
     <div class="btns" style="margin-top:34px">
       {btn('I prayed this &mdash; text us','SMSJESUS')}
       {btn('I have questions','SMSQUESTION','btn btn-ghost')}
-      {btn(f'Or call {PHONE_D}',PHONE_H,'btn btn-ghost')}
+      {btn(f'Or call {PHONE_CALL_D}',PHONE_CALL_H,'btn btn-ghost')}
     </div>
   </div>
 </section>
@@ -3864,7 +3866,7 @@ baptism_page = f'''
     <div class="btns" style="margin-top:36px">
       {btn('I want to be baptized','SMSBAPTIZE')}
       {btn('I just prayed to follow Jesus','SMSJESUS','btn btn-ghost')}
-      {btn(f'Or call {PHONE_D}',PHONE_H,'btn btn-ghost')}
+      {btn(f'Or call {PHONE_CALL_D}',PHONE_CALL_H,'btn btn-ghost')}
     </div>
   </div>
 </section>
@@ -3996,7 +3998,7 @@ def build_dist():
 > Sundays at 9:00am & 11:00am in The Kettle Room at Gibson Mill, 325 McGill Ave NW,
 > Suite 148, Concord, NC 28027. Vision: "A community with a cause." Mission: helping
 > people know life, grow in peace, and go in purpose. Lead Pastor: Corey Alley ("PC").
-> Founded 2017. Call or text: 980-440-2850.
+> Founded 2017. Text: 980-440-2850. Call: 704-918-4144.
 
 Key facts
 - Service times: Sundays 9:00am and 11:00am
