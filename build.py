@@ -55,6 +55,10 @@ SMS_JESUS   = sms("JESUS",   "I just prayed to follow Jesus. My name is ")
 SMS_BAPTIZE = sms("BAPTIZE", "I want to be baptized. My name is ")
 SMS_QUESTION= sms("QUESTION","I have a question about following Jesus. My name is ")
 SMS_HELLO   = sms("HELLO",   "I'd like to talk with someone at SOJO. My name is ")
+# Plan-a-visit CTAs text the Hello Church line instead of the Church Center form (PC, Sept 2026).
+# Body is keyword-first so a VISIT automation can be switched on later with zero site changes;
+# until then it lands in the Conversations inbox and a human replies.
+SMS_VISIT   = sms("VISIT",   "I'm planning to visit SOJO. My name is ")
 
 # Grouped navigation. Top level is a real link (works with no JS); the panel
 # expands on hover or keyboard focus. Two of the five groups are named for the
@@ -327,7 +331,7 @@ def footer():
           <li><a href="{SMS_HELLO}">Text us &mdash; a human replies</a></li>
           <li><a href="{PHONE_CALL_H}">Or call {PHONE_CALL_D}</a></li>
           <li><a href="mailto:{EMAIL_GENERIC}">{EMAIL_GENERIC}</a></li>
-          <li><a href="{VISIT}" target="_blank" rel="noopener">Tell us you're coming</a></li>
+          <li><a href="{SMS_VISIT}">Tell us you're coming</a></li>
           <li><a href="our-story.html">Our story</a></li>
           <li><a href="mission.html">Our mission</a></li>
           <li><a href="about.html">Our team</a></li>
@@ -673,7 +677,7 @@ visit = f'''
     <h1 class="display"><span class="script">There's a seat</span><br>at the table</h1>
     <p class="lede">Everything you need to know before Sunday — and nothing you don't.</p>
     {thread('Know','Life is a Person, and most people meet Him surrounded by other people. That is all a first Sunday is for &mdash; not a decision, just a room.')}
-    <div class="btns">{btn("Tell us you're coming",VISIT,'btn',True)}
+    <div class="btns">{btn("Tell us you're coming",SMS_VISIT,'btn')}
       {btn('Get directions',MAPS,'btn btn-ghost',True)}</div>
   </div>
 </section>
@@ -737,8 +741,8 @@ visit = f'''
       your hands. No sign-up sheet, no follow-up ambush, no standing up in front of the room.</p>
       <p>If you'd rather we know you're coming ahead of time, tell us — we'll look for you and have
       somebody meet you at the door.</p>
-      <div class="btns">{btn("Tell us you're coming",VISIT,'btn',True)}
-        {btn('Text us &mdash; a human replies',SMS_HELLO,'btn btn-ghost')}</div>
+      <div class="btns">{btn("Tell us you're coming",SMS_VISIT,'btn')}
+        {btn('Get directions',MAPS,'btn btn-ghost',True)}</div>
     </div>
   </div>
 </section>
@@ -928,7 +932,7 @@ newhome = f'''
     <h2 class="display display-sm">September 6<br>9 &amp; 11am</h2>
     <p class="venue" style="margin-top:22px">{WAYF}</p>
     <p class="lede" style="margin-top:0">{ADDR1} · {ADDR2}</p>
-    <div class="btns" style="justify-content:center">{btn("Tell us you're coming",VISIT,'btn',True)}
+    <div class="btns" style="justify-content:center">{btn("Tell us you're coming",SMS_VISIT,'btn')}
       {btn('Get directions',MAPS,'btn btn-ghost',True)}</div>
   </div>
 </section>
@@ -1257,7 +1261,7 @@ about = f'''
     <h2 class="display display-sm">Come see for<br>yourself</h2>
     <p class="lede">Reading about a church only gets you so far.</p>
     <div class="btns" style="justify-content:center">{btn('Plan your visit','plan-a-visit.html')}
-      {btn("Tell us you're coming",VISIT,'btn btn-ghost',True)}</div>
+      {btn("Tell us you're coming",SMS_VISIT,'btn btn-ghost')}</div>
   </div>
 </section>
 '''
