@@ -3918,6 +3918,18 @@ notfound_body = f'''
     <a href="{SMS_HELLO}">Text us</a> &mdash; a human will point you the right way.</p>
   </div>
 </section>
+<script>
+/* Safety net for old links we never listed: a trailing-slash URL like /whatever/
+   gets one quiet try at /whatever.html before the visitor is left on this page. */
+(function(){{
+  var p = location.pathname.replace(/\/+$/, '');
+  if (!p || p === '/404' || p.indexOf('.') > -1) return;
+  var t = p + '.html';
+  fetch(t, {{method:'HEAD'}}).then(function(r){{
+    if (r.ok) location.replace(t + location.search + location.hash);
+  }}).catch(function(){{}});
+}})();
+</script>
 '''
 NOTFOUND = page('404.html', 'Page Not Found | SOJO Church',
     'That page moved on — but SOJO Church is right here. Sundays 9 & 11am at Gibson Mill, Concord NC.',
@@ -3959,6 +3971,82 @@ def copy_standalone():
         print('standalone:', name, '->', '/' + name + '/')
 
 
+# ---------------------------------------------------------------- legacy URLs
+# Google still has the old WordPress site indexed, and every one of those URLs
+# ends in a trailing slash, which GitHub Pages does NOT resolve to <slug>.html.
+# Result: somebody searches "sojo church watch", clicks the result, gets a 404.
+# These stubs return 200 with a canonical + instant refresh so the ranking
+# transfers to the new page instead of dying. Confirmed dead Sept 17, 2026.
+REDIRECTS = {
+    # same page, new extension — these were the live WordPress URLs
+    'watch':           'watch.html',
+    'youth':           'youth.html',
+    'kids':            'kids.html',
+    'give':            'give.html',
+    'groups':          'groups.html',
+    'baptism':         'baptism.html',
+    'beliefs':         'beliefs.html',
+    'serve':           'serve.html',
+    'missions':        'missions.html',
+    'next-steps':      'next-steps.html',
+    'our-story':       'our-story.html',
+    'discover-sojo':   'discover-sojo.html',
+    'discover-more':   'discover-more.html',
+    'mission':         'mission.html',
+    'next-gen':        'next-gen.html',
+    'young-adults':    'young-adults.html',
+    'how-to-grow':     'how-to-grow.html',
+    'partner':         'partner.html',
+    'swag':            'swag.html',
+    'new-home':        'new-home.html',
+    'plan-a-visit':    'plan-a-visit.html',
+    'yada':            'yada.html',
+    'gods-plan':       'gods-plan.html',
+    'about':           'about.html',
+    # renamed pages
+    'about-us':        'about.html',
+    'im-new':          'plan-a-visit.html',
+    'plan-your-visit': 'plan-a-visit.html',
+    'contact':         'plan-a-visit.html',
+    'salvation':       'gods-plan.html',
+    'rooted':          'how-to-grow.html',
+    # old content types with no direct replacement — sent somewhere sensible
+    'sermons':                  'watch.html',
+    'blog':                     'watch.html',
+    'series':                   'watch.html',
+    'series/people-of-purpose': 'watch.html',
+    'revival-nights':           'index.html',
+    'events':                   '/hello',
+}
+
+
+def _redirect_stub(target):
+    href = target if target.startswith('/') else '/' + target
+    return (
+        '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        f'<title>Redirecting to SOJO Church</title>\n'
+        f'<link rel="canonical" href="{BASE_URL.rstrip("/")}{href}">\n'
+        f'<meta http-equiv="refresh" content="0; url={href}">\n'
+        f'<script>location.replace("{href}"+location.search+location.hash)</script>\n'
+        '</head>\n<body style="margin:0;padding:48px;font-family:Roboto,Arial,sans-serif;'
+        'background:#F5F0E6;color:#2E2B24">\n'
+        '<p style="font-size:18px">This page moved. '
+        f'<a href="{href}" style="color:#766645">Continue to SOJO Church &rarr;</a></p>\n'
+        '</body>\n</html>\n')
+
+
+def emit_redirects():
+    n = 0
+    for old, target in REDIRECTS.items():
+        d = os.path.join(DIST, *old.split('/'))
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, 'index.html'), 'w', encoding='utf-8') as f:
+            f.write(_redirect_stub(target))
+        n += 1
+    print(f'redirects: {n} legacy URLs -> live pages')
+
+
 def build_dist():
     if os.path.exists(DIST): shutil.rmtree(DIST)
     shutil.copytree(OUT, DIST)
@@ -3977,6 +4065,7 @@ def build_dist():
             if f.endswith('.webp') and rel not in used and not rel.startswith('brand/'):
                 os.remove(os.path.join(root, f)); pruned += 1
     copy_standalone()
+    emit_redirects()
     urls = ''.join(
         f'<url><loc>{BASE_URL if slug=="index.html" else BASE_URL+slug}</loc>'
         f'<changefreq>weekly</changefreq>'
