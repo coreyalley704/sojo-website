@@ -85,6 +85,18 @@
     <a href="sms:+19804402850?&body=HELLO%20-%20I%27d%20like%20to%20talk%20with%20someone%20at%20SOJO.%20My%20name%20is%20">Text us</a> &mdash; a human will point you the right way.</p>
   </div>
 </section>
+<script>
+/* Safety net for old links we never listed: a trailing-slash URL like /whatever/
+   gets one quiet try at /whatever.html before the visitor is left on this page. */
+(function(){
+  var p = location.pathname.replace(/\/+$/, '');
+  if (!p || p === '/404' || p.indexOf('.') > -1) return;
+  var t = p + '.html';
+  fetch(t, {method:'HEAD'}).then(function(r){
+    if (r.ok) location.replace(t + location.search + location.hash);
+  }).catch(function(){});
+})();
+</script>
 
 </main>
 
