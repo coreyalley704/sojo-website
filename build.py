@@ -27,6 +27,7 @@ VISIT= CC + "/people/forms/484192"
 # to the Church Center events list, where Discover SOJO is visible — never to the
 # 90-Day Challenge event (3833678), which is what the old ID actually was.
 DISC = CC + "/registrations/signups/3848051"   # Discover SOJO — real signup (PC, Aug 26)
+SERVE_FORM = CC + "/people/forms/1264031"   # Serve team signup form (PC, Sept 2026)
 DMORE = CC + "/registrations/signups/3848052"  # Discover More — real signup (PC, Aug 26)
 GROUPS = CC + "/groups"
 EVENTS = CC + "/registrations/events"
@@ -55,10 +56,6 @@ SMS_JESUS   = sms("JESUS",   "I just prayed to follow Jesus. My name is ")
 SMS_BAPTIZE = sms("BAPTIZE", "I want to be baptized. My name is ")
 SMS_QUESTION= sms("QUESTION","I have a question about following Jesus. My name is ")
 SMS_HELLO   = sms("HELLO",   "I'd like to talk with someone at SOJO. My name is ")
-# Plan-a-visit CTAs text the Hello Church line instead of the Church Center form (PC, Sept 2026).
-# Body is keyword-first so a VISIT automation can be switched on later with zero site changes;
-# until then it lands in the Conversations inbox and a human replies.
-SMS_VISIT   = sms("VISIT",   "I'm planning to visit SOJO. My name is ")
 
 # Grouped navigation. Top level is a real link (works with no JS); the panel
 # expands on hover or keyboard focus. Two of the five groups are named for the
@@ -331,7 +328,7 @@ def footer():
           <li><a href="{SMS_HELLO}">Text us &mdash; a human replies</a></li>
           <li><a href="{PHONE_CALL_H}">Or call {PHONE_CALL_D}</a></li>
           <li><a href="mailto:{EMAIL_GENERIC}">{EMAIL_GENERIC}</a></li>
-          <li><a href="{SMS_VISIT}">Tell us you're coming</a></li>
+          <li><a href="{VISIT}" class="pyv-cta" target="_blank" rel="noopener">Tell us you're coming</a></li>
           <li><a href="our-story.html">Our story</a></li>
           <li><a href="mission.html">Our mission</a></li>
           <li><a href="about.html">Our team</a></li>
@@ -356,11 +353,19 @@ def footer():
     var o=m.classList.toggle('open'); b.setAttribute('aria-expanded',o?'true':'false');
     if(o){{m.style.maxHeight=(window.innerHeight-m.getBoundingClientRect().top)+'px';}}
   }});}}
+  // Visit Planner (lite.visitplanner.church, account Z84WYfwJ). embed.js is async,
+  // so on a slow phone a guest can tap before showVisitPlanner() exists. Always swallow
+  // the click and wait for the script rather than dumping them into Church Center —
+  // that fallback only fires if the embed never lands at all.
   document.addEventListener('click', function(e){{
     var t = e.target.closest ? e.target.closest('.pyv-cta') : null;
-    if (t && typeof window.showVisitPlanner === 'function') {{
-      e.preventDefault(); window.showVisitPlanner();
-    }}
+    if (!t) return;
+    e.preventDefault();
+    if (typeof window.showVisitPlanner === 'function') {{ window.showVisitPlanner(); return; }}
+    var waited = 0, iv = setInterval(function(){{
+      if (typeof window.showVisitPlanner === 'function') {{ clearInterval(iv); window.showVisitPlanner(); }}
+      else if ((waited += 100) >= 4000) {{ clearInterval(iv); window.location.href = t.href; }}
+    }}, 100);
   }});
   var pill=document.getElementById('countpill');
   if(pill){{
@@ -677,7 +682,7 @@ visit = f'''
     <h1 class="display"><span class="script">There's a seat</span><br>at the table</h1>
     <p class="lede">Everything you need to know before Sunday — and nothing you don't.</p>
     {thread('Know','Life is a Person, and most people meet Him surrounded by other people. That is all a first Sunday is for &mdash; not a decision, just a room.')}
-    <div class="btns">{btn("Tell us you're coming",SMS_VISIT,'btn')}
+    <div class="btns">{btn("Tell us you're coming",VISIT,'btn',True)}
       {btn('Get directions',MAPS,'btn btn-ghost',True)}</div>
   </div>
 </section>
@@ -741,8 +746,8 @@ visit = f'''
       your hands. No sign-up sheet, no follow-up ambush, no standing up in front of the room.</p>
       <p>If you'd rather we know you're coming ahead of time, tell us — we'll look for you and have
       somebody meet you at the door.</p>
-      <div class="btns">{btn("Tell us you're coming",SMS_VISIT,'btn')}
-        {btn('Get directions',MAPS,'btn btn-ghost',True)}</div>
+      <div class="btns">{btn("Tell us you're coming",VISIT,'btn',True)}
+        {btn('Text us &mdash; a human replies',SMS_HELLO,'btn btn-ghost')}</div>
     </div>
   </div>
 </section>
@@ -932,7 +937,7 @@ newhome = f'''
     <h2 class="display display-sm">September 6<br>9 &amp; 11am</h2>
     <p class="venue" style="margin-top:22px">{WAYF}</p>
     <p class="lede" style="margin-top:0">{ADDR1} · {ADDR2}</p>
-    <div class="btns" style="justify-content:center">{btn("Tell us you're coming",SMS_VISIT,'btn')}
+    <div class="btns" style="justify-content:center">{btn("Tell us you're coming",VISIT,'btn',True)}
       {btn('Get directions',MAPS,'btn btn-ghost',True)}</div>
   </div>
 </section>
@@ -1261,7 +1266,7 @@ about = f'''
     <h2 class="display display-sm">Come see for<br>yourself</h2>
     <p class="lede">Reading about a church only gets you so far.</p>
     <div class="btns" style="justify-content:center">{btn('Plan your visit','plan-a-visit.html')}
-      {btn("Tell us you're coming",SMS_VISIT,'btn btn-ghost')}</div>
+      {btn("Tell us you're coming",VISIT,'btn btn-ghost',True)}</div>
   </div>
 </section>
 '''
@@ -2677,7 +2682,8 @@ serve = f'''
     <h1 class="display"><span class="script">You were gifted</span><br>on purpose</h1>
     <p class="lede">"The greatest among you will be your servant." — Jesus, Matthew 23:11</p>
     {thread('Go','Serving is the other way people find a family here. You show up for a team, and six months later they are the ones showing up for you.')}
-    <div class="btns">{btn('Find your spot',SMS_HELLO,'btn')}</div>
+    <div class="btns">{btn('Find your spot',SERVE_FORM,'btn',True)}
+      {btn('Talk to a human first',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 
@@ -2693,7 +2699,7 @@ serve = f'''
       <p>Serving isn't filling a slot on a chart. It's the fastest way to stop attending a church and
       start belonging to one — you meet people, you grow, and you get to watch God use something you're
       actually good at.</p>
-      <div class="btns">{btn('Say yes',SMS_HELLO,'btn')}</div>
+      <div class="btns">{btn('Say yes',SERVE_FORM,'btn',True)}</div>
     </div>
     <div class="figure">{img('fs-table-gather','People gathered around a table together after the service')}</div>
   </div>
@@ -2705,26 +2711,26 @@ serve = f'''
     <h2 class="display display-sm">Seven teams,<br>one mission</h2>
     {rows([
       ("SOJO Kids",
-       "Sunday classrooms, check-in support, event help. Background check required — no exceptions.",
-       ("About SOJO Kids","kids.html",False)),
+       "Sunday classrooms, check-in support, event help. Background check required — no exceptions, and we start it as soon as you sign up.",
+       ("Sign up for Kids",SERVE_FORM,True)),
       ("SOJO YTH &amp; SOJO YA",
        "Wednesday-night small group leaders and chaperones for students, plus hosts and cooks for Friday-night young adults. Background check required for anyone with students.",
-       ("About Next Gen","next-gen.html",False)),
+       ("Sign up for Next Gen",SERVE_FORM,True)),
       ("Worship &amp; Production",
        "Vocalists, instrumentalists, sound, cameras, lights, slides. If you're musical or you like being behind the scenes, there's room.",
-       None),
+       ("Sign up for Worship",SERVE_FORM,True)),
       ("Hospitality",
        "Greeters, coffee bar, parking team. You'd be shocked how much of somebody's first impression rides on one person being genuinely glad they came.",
-       None),
+       ("Sign up for Hospitality",SERVE_FORM,True)),
       ("Outreach &amp; Missions",
        "Food drives, mission trips, local partnerships. Meeting tangible needs in Jesus' name — here, near, and far.",
-       None),
+       ("Sign up for Outreach",SERVE_FORM,True)),
       ("Finance Team",
        "Behind the scenes stewardship — budgeting, giving records, offering. Background check required.",
-       None),
+       ("Sign up for Finance",SERVE_FORM,True)),
       ("Group Leaders",
        "Lead a table. Training and support provided; you don't have to be a Bible scholar, you have to care about people.",
-       ("Find a group",GROUPS,True)),
+       ("Sign up to lead",SERVE_FORM,True)),
     ])}
   </div>
 </section>
@@ -2742,7 +2748,8 @@ serve = f'''
         342 Penny Lane, Concord. Weekly, biweekly, or monthly — your call.</p>
         <h3 class="display display-xs" style="margin-top:34px">HellFighters of Concord</h3>
         <p>A local partnership reaching people the church usually misses. Ask us about it.</p>
-        <div class="btns">{btn('Ask about outreach',SMS_HELLO,'btn btn-ghost')}</div>
+        <div class="btns">{btn('Sign up for outreach',SERVE_FORM,'btn',True)}
+        {btn('Ask a question first',SMS_HELLO,'btn btn-ghost')}</div>
       </div>
       <div class="figure">{img('n-pc-preach','Pastor Corey preaching at SOJO')}</div>
     </div>
@@ -2754,7 +2761,8 @@ serve = f'''
     <p class="script">One of those yeses</p>
     <h2 class="display display-sm">Could be yours</h2>
     <p class="lede">Tell us you're in and we'll help you find the spot that actually fits.</p>
-    <div class="btns" style="justify-content:center">{btn(f'Text {PHONE_D}',SMS_HELLO,'btn')}</div>
+    <div class="btns" style="justify-content:center">{btn('Sign up to serve',SERVE_FORM,'btn',True)}
+      {btn(f'Or text {PHONE_D}',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 '''
