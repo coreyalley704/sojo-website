@@ -1,480 +1,361 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meet Us Out There — SOJO Church, Concord NC</title>
-<meta name="description" content="You can meet us out there. SOJO Church is all over Concord this fall — Oktoberfest, Candy Crawl, the Christmas Parade, Santa, and Candlelight. Come say hi.">
+<title>SOJO Church — Concord, NC | Sundays 9 & 11am</title>
+<meta name="description" content="You were made to know life, grow in peace, and go in purpose. SOJO Church — Sundays 9 & 11am at Gibson Mill, Concord NC.">
+<meta property="og:title" content="SOJO Church — Concord, NC | Sundays 9 & 11am">
+<meta property="og:description" content="You were made to know life, grow in peace, and go in purpose. SOJO Church — Sundays 9 & 11am at Gibson Mill, Concord NC.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Caveat:wght@600;700&family=Inter:wght@500;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --black:#302E2A; --cream:#F5F0E6; --gold:#BFAE86; --golddeep:#766645;
-  --blue:#92A29D; --green:#A6A98E; --sand:#D6CDB8; --muted:#605C55; --paper:#FFFCFA;
-  --blush:#EAC3D3; --warmgold:#EDCD96; --mint:#D0E2DC; --chart:#DDD694; --maroon:#8E5E5E;
-  --ink:#4A463F;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Roboto,system-ui,-apple-system,sans-serif;color:var(--black);background:var(--cream);line-height:1.62;font-size:17px;-webkit-font-smoothing:antialiased}
-h1,h2,h3,.display{font-family:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;font-weight:900;text-transform:uppercase;line-height:.9;letter-spacing:-.005em}
-.script{font-family:Caveat,"Brush Script MT",cursive;font-weight:700;line-height:1.15}
-.label{font-family:Inter,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.17em;font-size:11.5px}
-a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
-.btn{display:inline-block;font-family:Inter,sans-serif;font-weight:800;font-size:13.5px;letter-spacing:.05em;text-decoration:none;padding:13px 18px;border-radius:2px;background:var(--black);color:var(--cream);transition:transform .12s}
-.btn:hover{transform:translateY(-2px)}
-.btn.gold{background:var(--warmgold);color:var(--black)}
-.btn.out{background:transparent;color:var(--black);box-shadow:inset 0 0 0 2px var(--black)}
-
-/* ── top ── */
-.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:16px;flex-wrap:wrap}
-.badge{font-family:Inter,sans-serif;font-weight:800;letter-spacing:.15em;font-size:12.5px;box-shadow:inset 0 0 0 2px var(--black);padding:7px 11px}
-.topnav{display:flex;gap:22px;align-items:center;font-family:Inter,sans-serif;font-weight:700;font-size:13px}
-.topnav a{text-decoration:none;color:var(--muted)}
-.topnav a:hover{color:var(--black)}
-@media(max-width:720px){.topnav{display:none}}
-
-/* ── HERO = EVENTS, above the fold ── */
-.hero{padding:14px 0 72px}
-.hl{display:grid;grid-template-columns:1.05fr .95fr;gap:10px 44px;align-items:end;margin-bottom:22px}
-.hero h1{font-size:clamp(40px,5.6vw,72px)}
-.hero h1 .lit{color:var(--maroon)}
-.hero .script{font-size:clamp(24px,2.7vw,32px);color:var(--golddeep);display:inline-block;transform:rotate(-1.6deg);margin-top:4px}
-.hero .lede{font-size:17px;max-width:470px;color:var(--ink);padding-bottom:4px}
-.hero .lede b{font-weight:500;color:var(--black);box-shadow:inset 0 -9px 0 var(--warmgold)}
-@media(max-width:860px){.hl{grid-template-columns:1fr;gap:18px}}
-
-.evlist{border-top:2px solid var(--black)}
-.ev{display:grid;grid-template-columns:104px 1fr 168px;gap:20px;align-items:center;padding:14px 0;border-bottom:1px solid var(--sand);position:relative}
-.ev:before{content:"";position:absolute;left:-26px;top:0;bottom:0;width:5px;background:var(--c);opacity:0}
-.ev:hover:before{opacity:1}
-.ev .d{font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:32px;line-height:.86;text-transform:uppercase;color:var(--c)}
-.ev .d small{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.1em;color:var(--muted);margin-top:4px;white-space:nowrap}
-.ev h3{font-family:Inter,sans-serif;font-weight:800;text-transform:none;letter-spacing:0;font-size:17.5px;line-height:1.28;margin-bottom:2px}
-.ev p{color:var(--ink);font-size:13.8px;line-height:1.45}
-.ev p .where{color:var(--muted)}
-.ev .act{text-align:right}
-.ev .kw{font-size:12.5px;padding:11px 15px}
-.ev .kw span{color:var(--warmgold)}
-.ev .det{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.05em;color:var(--muted);text-decoration:none;margin-top:7px}
-.ev .det:hover{color:var(--black)}
-.ev.tbd .d{opacity:.55}
-.ev .flag{display:inline-block;font-family:Inter,sans-serif;font-weight:800;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;background:var(--blush);color:var(--maroon);padding:2px 6px;border-radius:2px;margin-left:7px;vertical-align:2px}
-@media(max-width:760px){.ev{grid-template-columns:1fr;gap:9px;padding:20px 0}.ev .act{text-align:left}.ev .det{display:inline-block;margin:0 0 0 14px}}
-
-/* ── VOLUNTEER ── */
-.vol{background:var(--black);color:var(--cream);padding:82px 0}
-.vol .label{color:var(--warmgold)}
-.vol h2{font-size:clamp(46px,7.6vw,92px);color:var(--cream);margin:10px 0 6px}
-.vol .script{color:var(--warmgold);font-size:clamp(27px,3.6vw,40px);display:block;margin-bottom:14px}
-.vol .sub{max-width:600px;color:var(--sand);font-size:17.5px;margin-bottom:38px}
-.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:16px}
-.vc{background:rgba(245,240,230,.055);box-shadow:inset 0 0 0 1px rgba(214,205,184,.28);border-radius:4px;padding:22px 20px 24px;display:flex;flex-direction:column}
-.vc .vd{font-family:Inter,sans-serif;font-weight:800;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);margin-bottom:9px}
-.vc h3{font-family:Inter,sans-serif;font-weight:800;text-transform:none;letter-spacing:0;font-size:17px;line-height:1.28;margin-bottom:9px}
-.vc p{font-size:13.8px;color:var(--sand);line-height:1.5;flex:1;margin-bottom:16px}
-.vc .need{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warmgold);margin-bottom:14px}
-.vc a{align-self:flex-start;font-family:Inter,sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.05em;text-decoration:none;background:var(--warmgold);color:var(--black);padding:11px 15px;border-radius:2px}
-.volfoot{margin-top:30px;padding-top:22px;border-top:1px solid rgba(214,205,184,.3);font-size:15px;color:var(--sand)}
-.volfoot a{color:var(--warmgold);font-weight:500}
-
-/* ── WHAT HAPPENS NEXT ── */
-.next{background:var(--mint);padding:82px 0}
-.next h2{font-size:clamp(44px,7vw,86px);margin-bottom:8px}
-.next .script{font-size:clamp(26px,3.4vw,38px);color:var(--golddeep);display:block;margin-bottom:34px}
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:34px}
-.st{padding:0 22px 0 0;position:relative}
-.st:not(:last-child):after{content:"";position:absolute;right:11px;top:14px;width:9px;height:9px;border-top:2px solid var(--golddeep);border-right:2px solid var(--golddeep);transform:rotate(45deg)}
-.st .n{font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:52px;line-height:.8;color:var(--golddeep);margin-bottom:7px}
-.st h4{font-family:Inter,sans-serif;font-weight:800;font-size:15.5px;margin-bottom:6px}
-.st p{font-size:14px;color:var(--ink);line-height:1.5}
-@media(max-width:820px){.flow{grid-template-columns:1fr 1fr;gap:24px 0}.st:nth-child(2):after{display:none}}
-@media(max-width:520px){.flow{grid-template-columns:1fr}.st:after{display:none!important}}
-.kwbar{background:var(--paper);border-radius:4px;padding:26px 28px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
-.kwbar .t{font-family:Inter,sans-serif;font-weight:800;font-size:16px;max-width:420px}
-.kwbar .t span{display:block;font-weight:400;font-size:14.5px;color:var(--muted);margin-top:5px}
-.kws{display:flex;flex-wrap:wrap;gap:8px}
-.kws a{font-family:Inter,sans-serif;font-weight:800;font-size:12px;letter-spacing:.08em;text-decoration:none;box-shadow:inset 0 0 0 2px var(--black);color:var(--black);padding:9px 13px;border-radius:2px}
-.kws a:hover{background:var(--black);color:var(--cream)}
-
-/* ── HEARTBEAT ── */
-.beat{padding:92px 0 40px;background:var(--paper);text-align:center}
-.beat .label{color:var(--muted)}
-.beat h2{font-size:clamp(46px,8vw,104px);margin:12px 0 4px}
-.beat .script{font-size:clamp(28px,3.8vw,46px);color:var(--maroon);display:block;margin-bottom:24px}
-.beat p{max-width:660px;margin:0 auto 30px;font-size:19px;color:var(--ink)}
-.video{position:relative;aspect-ratio:16/9;max-width:800px;margin:0 auto;background:var(--black);border-radius:4px;overflow:hidden;box-shadow:0 34px 64px -34px rgba(48,46,42,.6)}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video .cap{position:absolute;left:0;bottom:0;padding:9px 14px;background:rgba(48,46,42,.88);color:var(--cream);font-family:Inter,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-
-.h3s{padding:0 0 0}
-.heart{padding:86px 0}
-.heart .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
-.heart h2{font-size:clamp(46px,8vw,100px)}
-.heart .hurt{font-family:Inter,sans-serif;font-weight:800;font-size:clamp(21px,2.9vw,29px);line-height:1.22;margin:6px 0 20px;max-width:540px}
-.heart .hurt em{font-style:normal;box-shadow:inset 0 -10px 0 var(--u)}
-.heart p{font-size:17.5px;max-width:560px;margin-bottom:15px}
-.heart .script{font-size:clamp(28px,3.7vw,42px);display:block;margin-top:16px}
-.heart .num{font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:clamp(150px,25vw,310px);line-height:.78;opacity:.16;text-align:right}
-.heart .cta{display:inline-block;margin-top:20px;font-family:Inter,sans-serif;font-weight:800;font-size:13.5px;letter-spacing:.05em;text-decoration:none;border-bottom:3px solid currentColor;padding-bottom:4px}
-.life{background:var(--warmgold);--u:rgba(142,91,94,.4)} .life .script{color:var(--maroon)}
-.peace{background:var(--mint);--u:rgba(118,102,69,.36)} .peace .script{color:var(--golddeep)}
-.purpose{background:var(--black);color:var(--cream);--u:rgba(221,214,148,.32)} .purpose h2{color:var(--chart)} .purpose .script{color:var(--warmgold)} .purpose .label{color:var(--sand)} .purpose p{color:var(--sand)} .purpose .hurt{color:var(--cream)}
-@media(max-width:820px){.heart .grid{grid-template-columns:1fr;gap:26px}.heart .num{text-align:left;font-size:118px;order:-1}}
-
-/* ── ASKS ── */
-.asks{padding:86px 0;background:var(--blush)}
-.asks h2{font-size:clamp(46px,7.6vw,92px);margin-bottom:6px}
-.asks .script{font-size:clamp(27px,3.6vw,40px);color:var(--maroon);display:block;margin-bottom:38px}
-.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.ask{background:var(--black);color:var(--cream);padding:28px 26px 32px;border-radius:4px;display:flex;flex-direction:column}
-.ask .label{color:var(--warmgold);margin-bottom:9px}
-.ask h3{font-size:38px;line-height:.94;margin-bottom:11px;color:var(--cream)}
-.ask p{font-size:14.5px;color:var(--sand);margin-bottom:20px;flex:1}
-.ask a{align-self:flex-start;font-family:Inter,sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.06em;text-decoration:none;background:var(--warmgold);color:var(--black);padding:12px 16px;border-radius:2px}
-@media(max-width:820px){.cols{grid-template-columns:1fr}}
-
-footer{padding:58px 0 52px;background:var(--cream)}
-footer .f{display:flex;flex-wrap:wrap;justify-content:space-between;gap:26px;align-items:flex-end}
-footer .big{font-size:clamp(32px,4.6vw,56px);max-width:600px;line-height:.97}
-footer p{font-size:14.5px;color:var(--muted);line-height:1.7}
-footer a{text-decoration:none;color:var(--black);font-weight:500}
-
-/* ── site bar (hybrid: one way home, nothing else) ── */
-.sitebar{background:var(--black);color:var(--cream)}
-.sb-in{display:flex;justify-content:space-between;align-items:center;padding:9px 0;gap:16px}
-.sb-brand{display:flex;align-items:center}
-.sb-brand img{display:block;height:20px;width:auto}
-.sb-back{font-family:Inter,sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.07em;text-decoration:none;color:var(--sand);white-space:nowrap}
-.sb-back:hover{color:var(--warmgold)}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F034W7H72Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F034W7H72Y');</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#BFAE86">
+<script type="text/javascript">window.pyvAccountKey = 'Z84WYfwJ'; window.pyvDomain = 'https://lite.visitplanner.church'; var pyvs = document.createElement('script'); pyvs.async = true; pyvs.type = 'text/javascript'; pyvs.src = 'https://lite.visitplanner.church/embed/embed.js'; document.head.appendChild(pyvs);</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">{
+"@context":"https://schema.org","@graph":[
+{"@type":"Church","@id":"https://sojo.church/#church","name":"SOJO Church",
+"alternateName":"SOJO","url":"https://sojo.church/",
+"description":"SOJO Church is a non-denominational church in Concord, NC meeting Sundays at 9 & 11am in The Kettle Room at Gibson Mill. A community with a cause: helping people know life, grow in peace, and go in purpose.",
+"slogan":"A community with a cause",
+"telephone":"+1-704-918-4144",
+"foundingDate":"2017",
+"founder":{"@type":"Person","name":"Corey Alley","jobTitle":"Lead Pastor"},
+"address":{"@type":"PostalAddress","streetAddress":"325 McGill Ave NW, Suite 148","addressLocality":"Concord","addressRegion":"NC","postalCode":"28027","addressCountry":"US"},
+"areaServed":["Concord NC","Kannapolis NC","Harrisburg NC","Charlotte NC","Cabarrus County"],
+"sameAs":["https://www.facebook.com/wearesojo.church/","https://www.instagram.com/sojo.church/","https://www.youtube.com/c/SOJOChurch","https://www.buzzsprout.com/2369654","https://linktr.ee/wearesojo"],
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"12:30"}],
+"logo":"https://sojo.church/assets/icons/icon-512.png","image":"https://sojo.church/assets/img/social.jpg"},
+{"@type":"WebSite","@id":"https://sojo.church/#website","url":"https://sojo.church/","name":"SOJO Church","publisher":{"@id":"https://sojo.church/#church"}}
+]}</script>
+<link rel="canonical" href="https://sojo.church/">
+<meta name="keywords" content="church in Concord NC, SOJO Church, churches near me, Gibson Mill church, non-denominational church Concord, Sunday service Concord NC">
+<meta property="og:url" content="https://sojo.church/">
+<meta property="og:site_name" content="SOJO Church">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sojo.church/assets/img/social.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sojo.church/assets/img/social.jpg">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<div class="sitebar">
-  <div class="wrap sb-in">
-    <a class="sb-brand" href="https://sojo.church" aria-label="SOJO Church home">
-      <img src="/assets/img/brand/mark-cream.webp" alt="SOJO Church">
+<div class="movebar" id="movebar"><div class="wrap">
+  <span class="countpill" id="countpill">WE MOVE SUNDAY, SEPTEMBER 6</span>
+  <span>New home: <a href="new-home.html">The Kettle Room at Gibson Mill</a> — 325 McGill Ave NW, Suite 148, Concord, NC 28027</span>
+</div></div>
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="index.html" aria-label="SOJO Church home">
+      <img src="assets/img/brand/stack-charcoal.webp" alt="SOJO Church" width="86" height="104">
     </a>
-    <a class="sb-back" href="https://sojo.church">VISIT SOJO.CHURCH &rarr;</a>
+    <nav class="main" aria-label="Main"><div class="navgrp"><a class="navtop" href="plan-a-visit.html">New Here<svg class="cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a><div class="navpanel"><div class="navpanel-in"><a href="plan-a-visit.html">Plan Your Visit</a><a href="new-home.html">Our New Home</a><a href="watch.html">Watch &amp; Listen</a></div></div></div><div class="navgrp"><a class="navtop" href="about.html">About<svg class="cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a><div class="navpanel"><div class="navpanel-in"><a href="our-story.html">Our Story</a><a href="mission.html">Our Mission</a><a href="about.html">Our Team</a><a href="beliefs.html">Our Beliefs</a></div></div></div><div class="navgrp"><a class="navtop" href="next-gen.html">Next Gen<svg class="cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a><div class="navpanel"><div class="navpanel-in"><a href="kids.html">SOJO Kids</a><a href="youth.html">SOJO YTH</a><a href="next-gen.html#ya">SOJO YA</a></div></div></div><div class="navgrp"><a class="navtop" href="yada.html">Know<svg class="cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a><div class="navpanel"><div class="navpanel-in"><a href="yada.html">Know Jesus</a><a href="gods-plan.html">God&rsquo;s Plan for Life</a><a href="partner.html">Partner with Him</a><a href="baptism.html">Baptism</a></div></div></div><div class="navgrp"><a class="navtop" href="how-to-grow.html">Grow<svg class="cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a><div class="navpanel"><div class="navpanel-in"><a href="how-to-grow.html">How to Grow</a><a href="discover-sojo.html">Discover SOJO</a><a href="discover-more.html">Discover More</a><a href="groups.html">Groups</a></div></div></div><div class="navgrp"><a class="navtop" href="serve.html">Go<svg class="cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a><div class="navpanel"><div class="navpanel-in"><a href="serve.html">Go in Purpose</a><a href="missions.html">Outreach &amp; Missions</a><a href="/hello">Upcoming Outreach Events</a><a href="swag.html">SOJO Swag</a></div></div></div></nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="btn hdr-give" href="give.html">Give</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false" id="burger"><span></span><span></span><span></span></button>
+    </div>
   </div>
-</div>
+  <div class="mnav" id="mnav"><details class="mgrp"><summary class="mgrp-h">New Here<svg class="mchev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></summary><a href="plan-a-visit.html">Plan Your Visit</a><a href="new-home.html">Our New Home</a><a href="watch.html">Watch &amp; Listen</a></details><details class="mgrp"><summary class="mgrp-h">About<svg class="mchev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></summary><a href="our-story.html">Our Story</a><a href="mission.html">Our Mission</a><a href="about.html">Our Team</a><a href="beliefs.html">Our Beliefs</a></details><details class="mgrp"><summary class="mgrp-h">Next Gen<svg class="mchev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></summary><a href="kids.html">SOJO Kids</a><a href="youth.html">SOJO YTH</a><a href="next-gen.html#ya">SOJO YA</a></details><details class="mgrp"><summary class="mgrp-h">Know<svg class="mchev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></summary><a href="yada.html">Know Jesus</a><a href="gods-plan.html">God&rsquo;s Plan for Life</a><a href="partner.html">Partner with Him</a><a href="baptism.html">Baptism</a></details><details class="mgrp"><summary class="mgrp-h">Grow<svg class="mchev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></summary><a href="how-to-grow.html">How to Grow</a><a href="discover-sojo.html">Discover SOJO</a><a href="discover-more.html">Discover More</a><a href="groups.html">Groups</a></details><details class="mgrp"><summary class="mgrp-h">Go<svg class="mchev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></summary><a href="serve.html">Go in Purpose</a><a href="missions.html">Outreach &amp; Missions</a><a href="/hello">Upcoming Outreach Events</a><a href="swag.html">SOJO Swag</a></details><div class="mgrp"><a class="mgrp-solo" href="give.html">Give</a></div></div>
+</header>
+<main id="main">
 
-<div class="wrap">
-  <div class="top">
-    <div class="label" style="color:var(--muted)">Fall &amp; Christmas 2026</div>
-    <nav class="topnav">
-      <a href="#events">Events</a>
-      <a href="#volunteer">Volunteer</a>
-      <a href="#heartbeat">Why we're here</a>
-      <a class="btn" href="sms:9804402850?&body=HELLO">Text HELLO to 980-440-2850</a>
-    </nav>
+<section class="hero grain dark">
+  <div class="hero-img">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+      poster="assets/img/hero-poster.webp" aria-hidden="true">
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
   </div>
-</div>
+  <div class="wrap hero-in">
+    <p class="eyebrow">Concord, North Carolina · Sundays 9 &amp; 11am</p>
+    <h1 class="display display-xl">
+      <span class="script">You were</span>
+      Made for<br>more
+    </h1>
+    <p class="lede lede-mission">You were made to <span class="mv">know</span> Life and have it
+    abundantly, <span class="mv">grow</span> in peace with God and people, and
+    <span class="mv">go</span> in your anointed purpose to help bring heaven to earth.</p>
+    <div class="btns">
+      <a class="btn" href="plan-a-visit.html">Plan your first visit</a>
+      <a class="btn btn-ghost" href="watch.html">Watch a message</a>
+    </div>
+    <div class="hero-meta">
+      <span>Sundays <b>9 &amp; 11am</b></span>
+      <span>From Sept 6 · <b>The Kettle Room at Gibson Mill</b></span>
+      <span><b>325 McGill Ave NW, Suite 148</b></span>
+    </div>
+  </div>
+</section>
 
-<!-- ═══ EVENTS — ABOVE THE FOLD ═══ -->
-<section class="hero" id="events">
+<section class="sec tint">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">Two minutes</p>
+      <h2 class="display display-sm">Meet SOJO<br>before you<br>walk in</h2>
+      <p class="lede">Press play. It is the fastest way to find out whether this is your kind of
+      church without giving up a Sunday to find out.</p>
+      <p>You will hear what we are about, see the people you would be sitting next to, and know what
+      Sunday morning actually feels like before you ever park the car.</p>
+      <div class="btns"><a class="btn" href="plan-a-visit.html">Want to know what a Sunday looks like? Click here</a></div>
+    </div>
+    <div class="vframe"><video controls preload="none" playsinline poster="assets/img/welcome-poster.webp" aria-label="Welcome to SOJO Church"><source src="assets/video/welcome.mp4" type="video/mp4">Your browser cannot play this video. <a href="assets/video/welcome.mp4">Download it instead.</a></video></div>
+  </div>
+</section>
+
+<section class="sec">
   <div class="wrap">
-    <div class="hl">
+    <p class="eyebrow">Where to go next</p>
+    <h2 class="display display-sm">Four steps,<br>in order</h2>
+    <div class="trio trio-4">
+      <div><img src="assets/img/fs-family-arrive.webp" alt="A family walking in with a SOJO greeter on Sunday morning" class="" loading="lazy" decoding="async" >
+        <h3>1 · Come for the first time</h3>
+        <p>Show up on a Sunday. That is the entire first step &mdash; no sign-up, no dressing up,
+        no knowing anybody.</p>
+        <a class="link" href="plan-a-visit.html">Plan a visit <span class="arw">&rarr;</span></a></div>
+      <div><img src="assets/img/fs-embrace.webp" alt="Two people embracing in the congregation during worship at the Kettle Room" class="tall" loading="lazy" decoding="async" >
+        <h3>2 · Try 5</h3>
+        <p>Five Sundays. Not to size up a stage &mdash; to meet the people. That is the part that
+        actually changes anything.</p>
+        <a class="link" href="next-steps.html">Why five <span class="arw">&rarr;</span></a></div>
+      <div><img src="assets/img/fs-table-gather.webp" alt="People gathered around a table together after the service" class="" loading="lazy" decoding="async" >
+        <h3>3 · Come to Discover SOJO</h3>
+        <p>Last Sunday of every month, right after second service. A real meal, childcare, and every
+        question you have got.</p>
+        <a class="link" href="discover-sojo.html">Lunch is on us <span class="arw">&rarr;</span></a></div>
+      <div><img src="assets/img/fs-bibles-pray.webp" alt="A couple praying with their Bibles beside them during the service" class="" loading="lazy" decoding="async" >
+        <h3>4 · Attend Discover More</h3>
+        <p>A three-week virtual class on basic doctrine and discipleship. What we believe, and what
+        following Jesus actually looks like.</p>
+        <a class="link" href="discover-more.html">All about Discover More <span class="arw">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark grain">
+  <div class="wrap">
+    <p class="eyebrow">From last Sunday</p>
+    <div class="split split-6535" style="align-items:end;margin-bottom:38px">
+      <h2 class="display display-sm">Hear the<br>latest message</h2>
+      <p class="lede">Updates itself every week. Whatever we said on Sunday is right here by Monday.</p>
+    </div>
+    <div class="yframe"><iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=UUl0vhjkyMWlfSxOP8Tqsu3g&rel=0" title="This week's message from SOJO Church" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <div class="btns"><a class="btn" href="watch.html">More messages</a>
+      <a class="btn btn-ghost" href="https://www.buzzsprout.com/2369654" target="_blank" rel="noopener">Listen to the podcast</a></div>
+  </div>
+</section>
+
+<section class="sec concrete grain columns sheen">
+  <div class="wrap">
+    <hr class="lane" style="margin-bottom:48px">
+    <p class="eyebrow">The next chapter</p>
+    <div class="split split-6535" style="align-items:end">
+      <h2 class="display">We're<br><span class="gold">home</span></h2>
+      <p class="lede">Same family. Same mission. A room twice the size &mdash; and on September 6
+      we filled it.</p>
+    </div>
+    <div class="gal">
+      <div class="g-half"><img src="assets/img/fs-worship-columns.webp" alt="The SOJO congregation worshipping among the original mill columns at the Kettle Room" class="" loading="lazy" decoding="async" ></div>
+      <div class="g-half"><img src="assets/img/fs-communion-pass.webp" alt="Communion passed down the rows on the first Sunday at Gibson Mill" class="tall" loading="lazy" decoding="async" ></div>
+      <div class="g-third"><img src="assets/img/fs-cafe-neon.webp" alt="The neon SOJO sign glowing on the brick wall of the cafe area" class="tall" loading="lazy" decoding="async" ></div>
+      <div class="g-third"><img src="assets/img/fs-kids-checkin.webp" alt="A family welcomed at the SOJO Kids check-in on Sunday morning" class="tall" loading="lazy" decoding="async" ></div>
+      <div class="g-third"><img src="assets/img/fs-couple-cross.webp" alt="A couple holding hands in worship with the cross in the window light" class="" loading="lazy" decoding="async" ></div>
+    </div>
+    <p class="figcap" style="margin-top:16px">First Sunday at the Kettle Room &middot; September 6, 2026.</p>
+    <div class="bignums">
+      <div class="bignum"><b>400+</b><span>Seats, up from 230</span></div>
+      <div class="bignum"><b>2×</b><span>The space we have now</span></div>
+      <div class="bignum"><b>400%</b><span>More room for kids &amp; youth</span></div>
+      <div class="bignum"><b>2027</b><span>Coffee shop &amp; permanent kids space</span></div>
+    </div>
+    <div class="btns"><a class="btn" href="new-home.html">Everything about the new home</a>
+      <a class="btn btn-ghost" href="https://maps.google.com/?q=325+McGill+Ave+NW+Suite+148+Concord+NC+28027" target="_blank" rel="noopener">Get directions</a></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">First things first</p>
+      <h2 class="display display-sm">We're <span class="ul">glad</span><br>you're here</h2>
+      <p class="lede">You don't have to dress up. You don't have to know anybody. You don't have to
+      have your life figured out, your questions answered, or your past cleaned up.</p>
+      <p>SOJO started in Corey and Betsy Alley's living room in 2017 with a simple conviction: a church
+      shouldn't exist for itself. If we closed our doors tomorrow, our city should miss us — not just
+      the people who show up on Sunday.</p>
+      <p>Nine years in, that is still the whole thing. We are <strong>a community with a
+      cause</strong> &mdash; and the cause is people. Helping them <strong>know life, grow in peace,
+      and go in purpose</strong>.</p>
+      <div class="stripe" aria-hidden="true"></div>
+      <a class="link" href="about.html">Our story <span class="arw">→</span></a>
+    </div>
+    <div class="figure">
+      <img src="assets/img/n-baptism-hug.webp" alt="A soaking-wet baptism hug at SOJO Church" class="" loading="lazy" decoding="async" >
+      <p class="figcap">Fresh out of the tank · SOJO Church</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap split">
+    <div class="figure"><img src="assets/img/fs-hands-stage.webp" alt="Hands lifted toward the stage in worship at the Kettle Room" class="" loading="lazy" decoding="async" ></div>
+    <div>
+      <p class="eyebrow">Try five</p>
+      <h2 class="display display-sm">Give us five<br>Sundays</h2>
+      <p class="lede">Not to size up a stage. To meet the people.</p>
+      <p>One visit tells you whether you like the music. Five tells you whether these are your people —
+      and that's the part that actually changes anything. Church is more than a moment on a stage.
+      It's a community you grow into.</p>
+      <p>Our hope isn't that SOJO becomes a place you attend. It's that it becomes a place that feels
+      like home.</p>
+      <div class="btns"><a class="btn" href="plan-a-visit.html">Plan your first Sunday</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">SOJO Swag</p>
+    <div class="split split-6535" style="align-items:end;margin-bottom:38px">
+      <h2 class="display display-sm">You're a walking<br><span class="ul">front door</span></h2>
+      <p class="lede">A shirt is a small thing. It&rsquo;s also the only sermon most people in
+      Concord will read on a Tuesday.</p>
+    </div>
+    <div class="trio">
+      <div><img src="assets/img/swag/tee-inset-charcoal.webp" alt="SOJO Church tee in charcoal" class="" loading="lazy" decoding="async" ></div>
+      <div><img src="assets/img/swag/sw-dadhat.webp" alt="SOJO Church dad hat" class="" loading="lazy" decoding="async" ></div>
+      <div><img src="assets/img/swag/sw-tumbler.webp" alt="SOJO Church insulated tumbler" class="" loading="lazy" decoding="async" ></div>
+    </div>
+    <p class="figcap" style="margin-top:16px">Tees in nine colorways &middot; hats &middot;
+    drinkware &middot; tote &middot; notebook &middot; polo. Every dollar over cost goes back into
+    the room at Gibson Mill.</p>
+    <div class="btns"><a class="btn" href="swag.html">See the collection</a>
+      <a class="btn btn-ghost" href="sms:+19804402850?&body=HELLO%20-%20I%27d%20like%20to%20talk%20with%20someone%20at%20SOJO.%20My%20name%20is%20">Text 980-440-2850 to hold one</a></div>
+  </div>
+</section>
+
+<section class="sec sand">
+  <div class="wrap loc">
+    <div>
+      <p class="eyebrow">Find us Sunday</p>
+      <p class="venue">The Kettle Room at Gibson Mill</p>
+      <p class="addr">325 McGill Ave NW, Suite 148<br>Concord, NC 28027
+        <span class="sub">Sundays at 9:00 &amp; 11:00am</span></p>
+      <div class="btns"><a class="btn" href="https://maps.google.com/?q=325+McGill+Ave+NW+Suite+148+Concord+NC+28027" target="_blank" rel="noopener">Get directions</a>
+        <a class="btn btn-ghost" href="new-home.html">How to find the room</a></div>
+    </div>
+    <div class="figure"><img src="assets/img/millsign.webp" alt="The historic Gibson Mill sign in Concord, North Carolina" class="" loading="lazy" decoding="async" >
+      <p class="figcap">Gibson Mill · Concord, NC</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr grain">
+  <div class="wrap">
+    <div class="ftr-top">
       <div>
-        <div class="label" style="color:var(--muted);margin-bottom:14px">Concord, NC · Gibson Mill</div>
-        <h1>You can meet<br>us out <span class="lit">there.</span></h1>
-        <span class="script">Come say hi.</span>
+        <img class="logo" src="assets/img/brand/stack-cream.webp" alt="SOJO Church" width="86" height="104">
+        <address class="addr-s">
+          <strong style="color:var(--gold-bright);font-weight:500">The Kettle Room at Gibson Mill</strong><br>
+          325 McGill Ave NW, Suite 148<br>Concord, NC 28027<br>
+          <a href="https://maps.google.com/?q=325+McGill+Ave+NW+Suite+148+Concord+NC+28027" target="_blank" rel="noopener">Get directions →</a>
+        </address>
+        <p style="margin-top:18px"><a href="https://g.page/r/CZlpDqi1RF66EBM/review" target="_blank" rel="noopener"
+          style="font-family:var(--f-label);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-bright);text-decoration:none">Love
+          SOJO? Tell Concord <span aria-hidden="true">★</span></a></p>
+        <div class="socials"><a href="https://www.facebook.com/wearesojo.church/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a><a href="https://www.instagram.com/sojo.church/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1018.6 12 6.6 6.6 0 0012 5.4zm0 10.9A4.3 4.3 0 1116.3 12 4.3 4.3 0 0112 16.3zm6.9-11.1a1.5 1.5 0 11-1.5-1.5 1.5 1.5 0 011.5 1.5z"/></svg></a><a href="https://www.youtube.com/c/SOJOChurch" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.5s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.3-1C16.6 4 12 4 12 4s-4.6 0-7.8.2c-.4 0-1.4.1-2.3 1C1.2 5.9 1 7.5 1 7.5S.8 9.4.8 11.3v1.4C.8 14.6 1 16.5 1 16.5s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.2 7.6.2s4.6 0 7.8-.2c.4 0 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.4c0-1.9-.2-3.8-.2-3.8zM9.8 15.1V8.9l6 3.1-6 3.1z"/></svg></a><a href="https://www.buzzsprout.com/2369654" target="_blank" rel="noopener" aria-label="Podcast"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.81-.87 7.08-.5 9.72 1.11.29.18.39.57.21.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.23.48.71.25 1.07zm.11-2.86C14.72 8.89 9.5 8.72 6.42 9.66a.93.93 0 11-.54-1.79c3.54-1.07 9.3-.87 12.96 1.3a.94.94 0 01-.96 1.61z"/></svg></a><a href="https://linktr.ee/wearesojo" target="_blank" rel="noopener" aria-label="Linktree"><svg viewBox="0 0 24 24"><path d="M11 2h2v6.1l4.3-4.3 1.4 1.4L14.4 9.5H21v2h-6.6l4.3 4.3-1.4 1.4L13 12.9V22h-2v-9.1l-4.3 4.3-1.4-1.4 4.3-4.3H3v-2h6.6L5.3 5.2l1.4-1.4L11 8.1V2z"/></svg></a></div>
       </div>
-      <p class="lede">We'd rather meet you in your city than wait for you to find ours. Here's <b>everywhere we'll be this fall</b> — and a word to text at each one so we can send you the good stuff.</p>
-    </div>
-
-    <div class="evlist">
-
-      <div class="ev" style="--c:var(--maroon)">
-        <div class="d">Sept<br>25–27<small>Fri · Sat · Sun</small></div>
-        <div>
-          <h3>Oktoberfest at the Mill</h3>
-          <p>Three days of music, German food, and a Kids Zone right outside our front door. Find the SOJO tent — we're the neighbors. <span class="where">Cabarrus Brewing Co., 329 McGill Ave NW</span></p>
-        </div>
-        <div class="act">
-          <a class="btn kw" href="sms:9804402850?&body=FEST">Text <span>FEST</span></a>
-          <a class="det" href="https://cabarrusfestivals.com/festivals/oktoberfest-2026" target="_blank" rel="noopener">Event details ↗</a>
-        </div>
+      <div>
+        <h5>Sundays</h5>
+        <ul>
+          <li>9:00am &amp; 11:00am</li>
+          <li><a href="plan-a-visit.html">Plan your visit</a></li>
+          <li><a href="new-home.html">Find the room</a></li>
+          <li><a href="watch.html">Watch online</a></li>
+        </ul>
       </div>
-
-      <div class="ev tbd" style="--c:var(--golddeep)">
-        <div class="d">Oct<br>30<small>Friday · TBC</small></div>
-        <div>
-          <h3>Downtown Candy Crawl <span class="flag">Date TBC</span></h3>
-          <p>Union Street fills up with costumes and candy. Step into our 360° photobooth and we'll text you the video before you get home. <span class="where">Downtown Concord</span></p>
-        </div>
-        <div class="act">
-          <a class="btn kw" href="sms:9804402850?&body=CANDY">Text <span>CANDY</span></a>
-          <a class="det" href="https://downtownconcordnc.com/events/" target="_blank" rel="noopener">Event details ↗</a>
-        </div>
+      <div>
+        <h5>Take a step</h5>
+        <ul>
+          <li><a href="next-steps.html">Next steps</a></li>
+          <li><a href="partner.html">Follow Jesus</a></li>
+          <li><a href="baptism.html">Baptism</a></li>
+          <li><a href="next-gen.html">Next Gen</a></li>
+          <li><a href="kids.html">SOJO Kids</a></li>
+          <li><a href="youth.html">SOJO YTH</a></li>
+          <li><a href="young-adults.html">SOJO YA</a></li>
+          <li><a href="serve.html">Serve</a></li>
+          <li><a href="missions.html">Outreach &amp; missions</a></li>
+          <li><a href="swag.html">Swag</a></li>
+          <li><a href="groups.html">Groups</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
       </div>
-
-      <div class="ev" style="--c:#5F7A72">
-        <div class="d">Nov<br>21<small>Saturday</small></div>
-        <div>
-          <h3>97th Concord Christmas Parade</h3>
-          <p>Two miles down Church, Buffalo, and Union. Look for our float — and enter to win Cookies with Mr. &amp; Mrs. Claus. <span class="where">Starts at Church St N &amp; Lake Concord Rd</span></p>
-        </div>
-        <div class="act">
-          <a class="btn kw" href="sms:9804402850?&body=FLOAT">Text <span>FLOAT</span></a>
-          <a class="det" href="https://concordnc.gov/Services/Things-to-Do/Christmas-Tree-Lighting-and-Parade" target="_blank" rel="noopener">Parade route ↗</a>
-        </div>
-      </div>
-
-      <div class="ev" style="--c:#7A7440">
-        <div class="d">Nov<br>28–29<small>Sat · Sun</small></div>
-        <div>
-          <h3>Carols, Candles &amp; Coffee · Pictures with Santa</h3>
-          <p>Saturday night, come sing. Candles, carols, hot coffee, and warm bread in your hands. Sunday, bring the kids back for free pictures with Santa. <span class="where">Gibson Mill · 325 McGill Ave NW</span></p>
-        </div>
-        <div class="act">
-          <a class="btn kw" href="sms:9804402850?&body=SANTA">Text <span>SANTA</span></a>
-          <a class="det" href="https://christmasatgibsonmill.com">All things Christmas ↗</a>
-        </div>
-      </div>
-
-      <div class="ev" style="--c:var(--maroon)">
-        <div class="d">Dec<br>5–6<small>Sat · Sun</small></div>
-        <div>
-          <h3>Christmas Festival &amp; Tree Lighting</h3>
-          <p>The whole Mill lights up — Santa, live music, the Lake Norman Big Band, a Kids Play Zone. Find the SOJO booth and say hello. <span class="where">Cabarrus Brewing Co. · 10am–8pm</span></p>
-        </div>
-        <div class="act">
-          <a class="btn kw" href="sms:9804402850?&body=LIGHTS">Text <span>LIGHTS</span></a>
-          <a class="det" href="https://cabarrusfestivals.com/festivals/christmas-tree-lighting-2026" target="_blank" rel="noopener">Festival details ↗</a>
-        </div>
-      </div>
-
-      <div class="ev" style="--c:var(--black)">
-        <div class="d">Dec<br>19–20<small>Sat · Sun</small></div>
-        <div>
-          <h3>Candlelight Christmas Services</h3>
-          <p>Carolers in the atrium, candles in a dark room, and the oldest story we know told plainly. Bring everybody. <span class="where">SOJO Church · Gibson Mill</span></p>
-        </div>
-        <div class="act">
-          <a class="btn kw" href="sms:9804402850?&body=CANDLE">Text <span>CANDLE</span></a>
-          <a class="det" href="https://sojo.church/plan-a-visit.html">Save your seat ↗</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ VOLUNTEER ═══ -->
-<section class="vol" id="volunteer">
-  <div class="wrap">
-    <div class="label">For the SOJO family</div>
-    <h2>None of this happens<br>without you.</h2>
-    <span class="script">Pick a date. Grab a spot.</span>
-    <p class="sub">Every one of these takes real people handing out real things and looking real neighbors in the eye. You don't need a title. You need two hours and a willingness to say hello.</p>
-
-    <div class="vgrid">
-      <div class="vc" style="--c:var(--warmgold)">
-        <div class="vd">Sept 25–27</div>
-        <h3>Oktoberfest tent</h3>
-        <p>Two-hour shifts across three days. Hand out coffee, talk to neighbors, point people to the keyword.</p>
-        <a href="#" data-pco="oktoberfest">Sign up</a>
-      </div>
-      <div class="vc" style="--c:var(--blush)">
-        <div class="vd">Oct 30</div>
-        <h3>Candy Crawl photobooth</h3>
-        <p>Run the 360 booth, keep the line moving, get phones in hands. The most fun job on the list.</p>
-        <a href="#" data-pco="candycrawl">Sign up</a>
-      </div>
-      <div class="vc" style="--c:var(--mint)">
-        <div class="vd">Nov · build week</div>
-        <h3>Parade float — build team</h3>
-        <p>Several nights and Saturdays leading up to the parade. Cut, paint, wire, haul. Come to one night or come to them all.</p>
-        <a href="#" data-pco="parade-build">Sign up</a>
-      </div>
-      <div class="vc" style="--c:var(--mint)">
-        <div class="vd">Nov 21</div>
-        <h3>Parade day-of team</h3>
-        <p>Stage the float, ride it, walk alongside handing out invites, and tear it down. Kids welcome on the float.</p>
-        <a href="#" data-pco="parade-day">Sign up</a>
-      </div>
-      <div class="vc" style="--c:var(--chart)">
-        <div class="vd">Nov 28 · Saturday</div>
-        <h3>Carols, Candles &amp; Coffee</h3>
-        <p>Sing, pour coffee, pass out candles and warm bread, and welcome everybody who wanders up from the Market.</p>
-        <a href="#" data-pco="carols">Sign up</a>
-      </div>
-      <div class="vc" style="--c:var(--chart)">
-        <div class="vd">Nov 29 · Sunday</div>
-        <h3>Pictures with Santa</h3>
-        <p>Greeters, photo line, check-in table, and the elves who keep a room full of kids happy.</p>
-        <a href="#" data-pco="santa">Sign up</a>
-      </div>
-      <div class="vc" style="--c:var(--sand)">
-        <div class="vd">Dec 5–6</div>
-        <h3>Tree Lighting booth</h3>
-        <p>Work our booth in the middle of the festival. Meet people, hand out invites, and point them to christmasatgibsonmill.com.</p>
-        <a href="#" data-pco="treelighting">Sign up</a>
-      </div>
-      <div class="vc" style="--c:var(--warmgold)">
-        <div class="vd">Dec 19–20</div>
-        <h3>Candlelight services</h3>
-        <p>Carolers, candle handlers, door greeters, and parking. Four services, all hands.</p>
-        <a href="#" data-pco="candlelight">Sign up</a>
+      <div>
+        <h5>Talk to a human</h5>
+        <ul>
+          <li><a href="sms:+19804402850?&body=HELLO%20-%20I%27d%20like%20to%20talk%20with%20someone%20at%20SOJO.%20My%20name%20is%20">Text us &mdash; a human replies</a></li>
+          <li><a href="tel:+17049184144">Or call 704-918-4144</a></li>
+          <li><a href="mailto:audrie@sojourner.church">audrie@sojourner.church</a></li>
+          <li><a href="https://sojo.churchcenter.com/people/forms/484192" class="pyv-cta" target="_blank" rel="noopener">Tell us you're coming</a></li>
+          <li><a href="our-story.html">Our story</a></li>
+          <li><a href="mission.html">Our mission</a></li>
+          <li><a href="about.html">Our team</a></li>
+          <li><a href="beliefs.html">Our beliefs</a></li>
+          <li><a href="https://sojo.churchcenter.com/registrations/events" target="_blank" rel="noopener">Church calendar</a></li>
+        </ul>
+        <p class="tagline">A community with a cause.</p>
+        <p class="mission-line">You were made to <b>know</b> Life and have it abundantly, <b>grow</b> in peace with God and people, and <b>go</b> in your anointed purpose to help bring heaven to earth.</p>
+        <p style="margin-top:14px"><a href="mission.html" style="font-family:var(--f-label);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-bright);text-decoration:none">Our mission &rarr;</a></p>
       </div>
     </div>
-
-    <p class="volfoot">Not sure where you fit? <a href="sms:9804402850?&body=SERVE">Text SERVE to 980-440-2850</a> and we'll find you a spot that fits your life — not the other way around.</p>
-  </div>
-</section>
-
-<!-- ═══ WHAT HAPPENS NEXT ═══ -->
-<section class="next">
-  <div class="wrap">
-    <div class="label" style="color:var(--muted)">After you text us</div>
-    <h2>Here's exactly<br>what happens.</h2>
-    <span class="script">No tricks. No list you can't get off of.</span>
-
-    <div class="flow">
-      <div class="st">
-        <div class="n">01</div>
-        <h4>You get your thing</h4>
-        <p>Photo, video, or contest entry — on your phone in under a minute. That's the whole deal at the event.</p>
-      </div>
-      <div class="st">
-        <div class="n">02</div>
-        <h4>We ask about you</h4>
-        <p>A few days later, one question: can we pray for you? A real person reads the answer and writes back.</p>
-      </div>
-      <div class="st">
-        <div class="n">03</div>
-        <h4>You can ask us anything</h4>
-        <p>About church, about Jesus, about why we do this. Pastor Corey answers. Ask the hard one.</p>
-      </div>
-      <div class="st">
-        <div class="n">04</div>
-        <h4>We tell you where we'll be</h4>
-        <p>Then we stay in touch — lightly — and point you to the next thing. Reply STOP anytime and we're gone.</p>
-      </div>
-    </div>
-
-    <div class="kwbar">
-      <div class="t">Every keyword goes to the same number.
-        <span>Text any of these to 980-440-2850 — at an event or from your couch right now.</span></div>
-      <div class="kws">
-        <a href="sms:9804402850?&body=PRAY">PRAY</a>
-        <a href="sms:9804402850?&body=QUESTION">QUESTION</a>
-        <a href="sms:9804402850?&body=SERVE">SERVE</a>
-        <a href="sms:9804402850?&body=TRY5">TRY5</a>
-        <a href="sms:9804402850?&body=HELLO">HELLO</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ HEARTBEAT ═══ -->
-<section class="beat" id="heartbeat">
-  <div class="wrap">
-    <div class="label">Our heartbeat for this city</div>
-    <h2>Why we keep<br>showing up.</h2>
-    <span class="script">Two minutes from our pastor.</span>
-    <p>We're not out there collecting names. We're out there because we believe this city is worth loving, and because what we've found is too good to keep in a building.</p>
-    <div class="video">
-      <!-- TODO: swap for the welcome film's video ID → https://www.youtube.com/embed/VIDEO_ID?rel=0 -->
-      <iframe src="https://www.youtube.com/embed/videoseries?list=UUl0vhjkyMWlfSxOP8Tqsu3g&rel=0" title="A message from Pastor Corey" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <div class="cap">Pastor Corey · 2 min</div>
-    </div>
-  </div>
-</section>
-
-<div class="h3s">
-
-<section class="heart life">
-  <div class="wrap grid">
-    <div>
-      <div class="label" style="color:var(--golddeep)">01 · Know life</div>
-      <h2>Life</h2>
-      <p class="hurt">You were made to be part of something <em>bigger than yourself.</em></p>
-      <p>Not a trend. Not a hack somebody invented last year. Something ancient — older than this country, older than this city — that's been practiced and handed down and tested by ordinary people in every generation since.</p>
-      <p>It has held up under war, poverty, grief, and doubt. Tried and true. Millions of people have staked their lives on it and found it holds.</p>
-      <p>That's what we mean by life. Not a better version of your schedule. A Person, and a story you belong inside.</p>
-      <span class="script">It's older than you think. And it still works.</span>
-      <a class="cta" href="https://sojo.church/plan-a-visit.html">See what a Sunday looks like →</a>
-    </div>
-    <div class="num" style="color:var(--maroon)">01</div>
-  </div>
-</section>
-
-<section class="heart peace">
-  <div class="wrap grid">
-    <div class="num" style="color:var(--golddeep)">02</div>
-    <div>
-      <div class="label" style="color:var(--golddeep)">02 · Grow in peace</div>
-      <h2>Peace</h2>
-      <p class="hurt">The noise got so loud it <em>killed our peace.</em></p>
-      <p>Notifications, outrage, comparison, the endless scroll. A world engineered to distract you from your own life. Most of us are exhausted and can't name why.</p>
-      <p>Here's what surprised us about Jesus: He isn't only interested in the big spiritual questions. He's interested in the nitty-gritty — your Tuesday, your marriage, your money, the conversation you've been avoiding. He goes there.</p>
-      <p>And then He does the thing nobody else can. He puts peace in your soul — not by removing the noise, but by anchoring you underneath it.</p>
-      <span class="script">Quiet on the inside, even when it's loud out there.</span>
-      <a class="cta" href="sms:9804402850?&body=PRAY">Can we pray for you? Text PRAY →</a>
-    </div>
-  </div>
-</section>
-
-<section class="heart purpose">
-  <div class="wrap grid">
-    <div>
-      <div class="label">03 · Go in purpose</div>
-      <h2>Purpose</h2>
-      <p class="hurt">You were made for something <em>eternal.</em></p>
-      <p>Everyone is. Not everyone knows it. Most of what fills a life — the job, the house, the calendar — is real but temporary. It won't survive you.</p>
-      <p>But you were built to make something that lasts. To pour yourself into people and places where the results outlive your name on a building.</p>
-      <p>At SOJO you don't sit and watch that happen. You get sent — into your street, this city, the world. That's why we're at the parade and the tent and the tree lighting. A community with a cause.</p>
-      <span class="script">Your one life was meant to leave a mark.</span>
-      <a class="cta" href="sms:9804402850?&body=QUESTION">Got a question about Jesus? Ask me →</a>
-    </div>
-    <div class="num" style="color:var(--chart)">03</div>
-  </div>
-</section>
-
-</div>
-
-<!-- ═══ ASKS ═══ -->
-<section class="asks">
-  <div class="wrap">
-    <h2>Three ways in</h2>
-    <span class="script">Pick one. No pressure on the other two.</span>
-    <div class="cols">
-      <div class="ask">
-        <div class="label">Easiest</div>
-        <h3>Can we<br>pray for you?</h3>
-        <p>Tell us what's going on. Real people, real prayer. Nobody will knock on your door or put you on a list you can't leave.</p>
-        <a href="sms:9804402850?&body=PRAY">Text PRAY</a>
-      </div>
-      <div class="ask">
-        <div class="label">Honest</div>
-        <h3>Ask me<br>anything.</h3>
-        <p>About church, about Jesus, about the thing that's kept you away. It's Pastor Corey answering, not a bot. Ask the hard one.</p>
-        <a href="sms:9804402850?&body=QUESTION">Text QUESTION</a>
-      </div>
-      <div class="ask">
-        <div class="label">Brave</div>
-        <h3>Come<br>Sunday.</h3>
-        <p>Gibson Mill, 325 McGill Ave NW. We'll tell you where to park, what to do with your kids, and who to look for at the door.</p>
-        <a href="https://sojo.church/plan-a-visit.html">Plan a visit</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap f">
-    <div class="display big">Helping people know life,<br>grow in peace,<br>and go in purpose.</div>
-    <div>
-      <p><a href="https://sojo.church">sojo.church</a> · 325 McGill Ave NW, Suite 210<br>Concord, NC 28027</p>
-      <p>Text <a href="sms:9804402850?&body=HELLO">980-440-2850</a> · <a href="https://instagram.com/wearesojo.church" target="_blank" rel="noopener">@wearesojo.church</a></p>
+    <div class="ftr-bot">
+      <span>© 2026 SOJO Church · Concord, NC</span>
+      <span>Sundays 9 &amp; 11am</span>
     </div>
   </div>
 </footer>
-
+<script>
+(function(){
+  var b=document.getElementById('burger'), m=document.getElementById('mnav');
+  if(b){b.addEventListener('click',function(){
+    var o=m.classList.toggle('open'); b.setAttribute('aria-expanded',o?'true':'false');
+    if(o){m.style.maxHeight=(window.innerHeight-m.getBoundingClientRect().top)+'px';}
+  });}
+  // Visit Planner (lite.visitplanner.church, account Z84WYfwJ). embed.js is async,
+  // so on a slow phone a guest can tap before showVisitPlanner() exists. Always swallow
+  // the click and wait for the script rather than dumping them into Church Center —
+  // that fallback only fires if the embed never lands at all.
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('.pyv-cta') : null;
+    if (!t) return;
+    e.preventDefault();
+    if (typeof window.showVisitPlanner === 'function') { window.showVisitPlanner(); return; }
+    var waited = 0, iv = setInterval(function(){
+      if (typeof window.showVisitPlanner === 'function') { clearInterval(iv); window.showVisitPlanner(); }
+      else if ((waited += 100) >= 4000) { clearInterval(iv); window.location.href = t.href; }
+    }, 100);
+  });
+  var pill=document.getElementById('countpill');
+  if(pill){
+    var move=new Date(2026,8,6,9,0,0), now=new Date();
+    var d=Math.ceil((move-now)/86400000);
+    if(d>1) pill.textContent=d+' DAYS UNTIL WE MOVE';
+    else if(d===1) pill.textContent='WE MOVE TOMORROW';
+    else if(d===0) pill.textContent='TODAY — SEE YOU AT THE MILL';
+    else { pill.textContent="WE'RE HOME"; }
+  }
+})();
+</script>
 </body>
 </html>
