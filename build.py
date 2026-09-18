@@ -954,7 +954,7 @@ kids = f'''
     <h1 class="display"><span class="script">Your kids are</span><br>the first thing<br>we think about</h1>
     <p class="lede">Safe, joyful, age-specific rooms during both services — so you can actually be present in yours.</p>
     {thread('Know','Long before your child can define any of this, she can know she is safe, loved, and wanted. That is where knowing Life starts.')}
-    <div class="btns">{btn("Pre-register your kids",VISIT,'btn',True)}
+    <div class="btns">{btn('Plan your visit','plan-a-visit.html')}
       {btn('All of Next Gen','next-gen.html','btn btn-ghost')}</div>
   </div>
 </section>
@@ -1007,8 +1007,8 @@ kids = f'''
 
 <section class="sec">
   <div class="wrap split">
-    <div class="figure figure-portrait">{img('team-jillian-goodhew','Jillian Goodhew, SOJO Kids Director','portrait')}
-      <p class="figcap">Jillian Goodhew &middot; SOJO Kids Director</p></div>
+    <div class="figure figure-portrait">{img('team-jillian-goodhew','Jillian Goodhew, SOJO Kids Coordinator','portrait')}
+      <p class="figcap">Jillian Goodhew &middot; Kids Coordinator</p></div>
     <div>
       <p class="eyebrow">Meet the director</p>
       <h2 class="display display-sm">Jillian<br>Goodhew</h2>
@@ -1153,7 +1153,7 @@ PAGES.append(page('youth.html', 'SOJO YTH | SOJO Church, Concord NC',
 team_members = [
     ('team-corey-alley','Corey Alley','Lead Pastor','corey@sojourner.church'),
     ('team-dan-conklin','Dan Conklin','Campus Pastor','dan@sojourner.church'),
-    ('team-jillian-goodhew','Jillian Goodhew','Kids Ministry Director','jillian@sojourner.church'),
+    ('team-jillian-goodhew','Jillian Goodhew','Kids Coordinator','jillian@sojourner.church'),
     ('team-audrie-cash','Audrie Cash','Youth Director','audrie@sojourner.church'),
     ('team-landace-alligood','Landace Alligood','Creative Arts Director','landace@sojourner.church'),
     ('team-wendy-martin','Wendy Martin','Guest Services','wendy@sojourner.church'),
@@ -1951,8 +1951,8 @@ nextgen = f'''
        ("Lower Elementary","5 years &ndash; 1st grade. High-energy worship and small group time."),
        ("Upper Elementary","2nd &ndash; 5th grade. Deeper Scripture and discussion-based small groups."),
        ("First-time check-in","At the guest station outside the SOJO Kids entrance. Returning families use the self-service station by the nursery."),
-       ("Director","Jillian Goodhew &mdash; ask her anything about allergies, special needs, or check-in.")],
-      f'<div class="btns">{btn("More about SOJO Kids","kids.html")} {btn("Pre-register your kids",VISIT,"btn btn-ghost",True)}</div>',
+       ("Kids Coordinator","Jillian Goodhew &mdash; ask her anything about allergies, special needs, or check-in.")],
+      f'<div class="btns">{btn("More about SOJO Kids","kids.html")}</div>',
       'kids','Elementary kids in a SOJO Kids small group', anchor='kids-env')}
 
     {env('02','SOJO YTH','6th &ndash; 12th grade','Wednesdays','6 &ndash; 8pm',
