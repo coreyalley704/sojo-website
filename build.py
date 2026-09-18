@@ -1010,7 +1010,7 @@ kids = f'''
     <div class="figure figure-portrait">{img('team-jillian-goodhew','Jillian Goodhew, SOJO Kids Coordinator','portrait')}
       <p class="figcap">Jillian Goodhew &middot; Kids Coordinator</p></div>
     <div>
-      <p class="eyebrow">Meet the director</p>
+      <p class="eyebrow">Meet the coordinator</p>
       <h2 class="display display-sm">Jillian<br>Goodhew</h2>
       <p class="lede">The heartbeat of SOJO Kids.</p>
       <p>Jillian is relentless about one thing: that every child who walks through those doors feels
