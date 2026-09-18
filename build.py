@@ -603,7 +603,7 @@ home = f'''
       <p>SOJO started in Corey and Betsy Alley's living room in 2017 with a simple conviction: a church
       shouldn't exist for itself. If we closed our doors tomorrow, our city should miss us — not just
       the people who show up on Sunday.</p>
-      <p>Nine years in, that is still the whole thing. We are <strong>a community with a
+      <p>Seven years of Sundays later, that is still the whole thing. We are <strong>a community with a
       cause</strong> &mdash; and the cause is people. Helping them <strong>know life, grow in peace,
       and go in purpose</strong>.</p>
       <div class="stripe" aria-hidden="true"></div>
@@ -3445,7 +3445,7 @@ story_page = f'''
       {gi('g-half','st-the25','The twenty-five people who moved together to Weddington Hills Elementary','The twenty-five','The group that moved from New Life to Weddington Hills together. This is the church before it looked like one.')}
       {gi('g-half','st-union-setup','SOJO Church meeting in the cafeteria at Weddington Hills Elementary','The cafeteria','Folding chairs, a school mural, a rolling stage. Set up and torn down every single Sunday.')}
       {gi('g-half','st-drivein-tailgate','Preaching from the cafeteria stage with hands raised in the room','Sunday morning','Hands up in a lunchroom. Nobody cared what the room was.')}
-      {gi('g-third','st-union-toddler','A boy being served food at a SOJO gathering','Always food','Some things have not changed in nine years.')}
+      {gi('g-third','st-union-toddler','A boy being served food at a SOJO gathering','Always food','Some things have not changed since the living room.')}
       {gi('g-third','st-drivein-crowd','SOJO members together in matching That SOJO Life shirts','That SOJO Life','The early crew, in the first shirts we ever printed.')}
       {gi('g-third','st-school-food','A meal shared at an early SOJO gathering','The table','Before there was a building there was a table.')}""",
       'New Life Church, then Weddington Hills Elementary · Concord, NC')}
