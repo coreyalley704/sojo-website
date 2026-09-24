@@ -50,3 +50,26 @@ invite a friend share · phone, text and socials.
 
 Analytics use the site's existing GA tag, so taps show up in the same place as
 the rest of sojo.church.
+
+## Giving numbers
+
+The two figures in the Generosity step are a **snapshot baked in at build
+time**, not live. GitHub Pages is static, and a Planning Center token can
+never go in this repo — it is public, and that token reads every donation
+record the church has.
+
+So they are only as fresh as the last rebuild. Two rules:
+
+- **Refresh them every week** when the page is rebuilt, and keep the
+  "Through <day>, <date>" line honest. A stale number with no date on it is
+  worse than no number.
+- **No budget comparison.** This is deliberate. A budget-versus-actual figure
+  on a page a first-time guest taps from their chair reads as a scoreboard —
+  behind looks like trouble, ahead looks like you don't need them. The brand
+  guide puts guilt-driven messaging on the avoid list. Transparency about
+  budget belongs somewhere people opt into: the Friday Five, a members page,
+  a quarterly update.
+
+The celebration sentence above the figures names what the giving *did*.
+Check those specifics each week — they should be true and current, not
+recycled.

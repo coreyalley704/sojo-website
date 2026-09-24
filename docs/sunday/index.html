@@ -45,7 +45,6 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F034W7H72Y');</script>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/icons/favicon-32.png" type="image/png" sizes="32x32">
-<link rel="icon" href="/assets/icons/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <link rel="canonical" href="https://sojo.church/sunday/">
 <meta property="og:title" content="Compassion Sunday — SOJO Church">
@@ -134,15 +133,21 @@ p{margin:0 0 1.1em; max-width:64ch}
 .btn-ghost:hover{background:var(--charcoal); color:var(--cream)}
 .btn-wide{width:100%}
 .btns{display:flex; flex-wrap:wrap; gap:14px; margin-top:26px}
+/* Every tappable thing has to announce itself. There is no hover on a
+   phone, so an underline that only appears on hover is invisible to the
+   person this page is actually for. */
 .link{
-  font-family:var(--f-ui); font-weight:600; font-size:.82rem; letter-spacing:.07em;
-  text-transform:uppercase; text-decoration:none; display:inline-flex; align-items:center; gap:.55em;
-  padding-bottom:5px; border-bottom:1px solid var(--gold); color:var(--charcoal);
-  transition:gap .2s,color .2s; align-self:start; width:fit-content; min-height:40px;
+  font-family:var(--f-ui); font-weight:700; font-size:.8rem; letter-spacing:.08em;
+  text-transform:uppercase; text-decoration:none;
+  display:inline-flex; align-items:center; gap:.6em;
+  min-height:46px; padding:0 17px;
+  border:1.5px solid var(--gold-deep); background:rgba(191,174,134,.13);
+  color:var(--gold-deep);
+  transition:background .2s,color .2s; align-self:start; width:fit-content;
 }
-.link:hover{gap:1em; color:var(--gold-deep)}
-.dark .link{color:var(--cream)}
-.dark .link:hover{color:var(--gold-bright)}
+.link:hover{background:var(--gold-deep); color:var(--cream)}
+.dark .link{border-color:var(--gold); color:var(--gold-bright); background:rgba(191,174,134,.14)}
+.dark .link:hover{background:var(--gold); color:var(--charcoal-2)}
 
 /* ---------- header ---------- */
 .hdr{position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
@@ -202,9 +207,13 @@ p{margin:0 0 1.1em; max-width:64ch}
 .trio .when{font-family:var(--f-ui); font-size:.72rem; font-weight:700; letter-spacing:.08em;
   text-transform:uppercase; color:var(--gold-deep)}
 .trio h3{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
-  font-size:1.35rem; margin:0; line-height:1.05}
+  font-size:1.35rem; margin:0; line-height:1.05; color:var(--gold-deep);
+  text-decoration:underline; text-decoration-color:var(--gold);
+  text-decoration-thickness:2px; text-underline-offset:5px}
 .trio p{color:var(--muted); font-size:.93rem; margin:0}
-.trio a:hover h3{color:var(--gold-deep)}
+.trio a::after{content:'Open \2192'; font-family:var(--f-ui); font-size:.72rem; font-weight:700;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--gold-deep); margin-top:4px}
+.trio a:hover h3{text-decoration-color:var(--gold-deep)}
 
 /* ---------- partner-wall style link list ---------- */
 .plist{display:grid; gap:1px; margin-top:26px; background:var(--line);
@@ -213,9 +222,12 @@ p{margin:0 0 1.1em; max-width:64ch}
   background:var(--cream); text-decoration:none; color:inherit; transition:background .18s; min-height:54px}
 a.pw:hover{background:var(--cream-2)}
 .pw-n{font-family:var(--f-display); font-weight:600; text-transform:uppercase; line-height:1.02;
-  font-size:1.12rem}
+  font-size:1.12rem; color:var(--gold-deep);
+  text-decoration:underline; text-decoration-color:var(--gold);
+  text-decoration-thickness:2px; text-underline-offset:4px}
 .pw-d{font-family:var(--f-ui); font-size:.76rem; line-height:1.45; color:var(--muted)}
-.pw-go{margin-left:auto; font-family:var(--f-ui); font-size:.78rem; color:var(--gold-deep); font-weight:700}
+.pw-go{margin-left:auto; font-family:var(--f-ui); font-size:1rem; color:var(--gold-deep);
+  font-weight:700; flex-shrink:0}
 .pw .stackt{display:flex; flex-direction:column; gap:3px; min-width:0}
 
 /* ---------- notes ---------- */
@@ -258,7 +270,8 @@ input[type=email]{width:100%; min-height:52px; padding:0 14px; background:#FFFCF
 .crow .lab{font-family:var(--f-ui); font-size:.7rem; font-weight:700; letter-spacing:.09em;
   text-transform:uppercase; color:var(--gold-bright); width:64px; flex-shrink:0}
 .crow .val{font-size:1rem; color:#E4DED2}
-.crow a{color:#E4DED2; text-decoration:none; border-bottom:1px solid var(--gold)}
+.crow a{color:var(--gold-bright); text-decoration:underline; text-decoration-color:var(--gold);
+  text-decoration-thickness:2px; text-underline-offset:4px; font-weight:600}
 .copy{margin-left:auto; min-height:38px; padding:0 14px; background:transparent;
   border:1px solid var(--line-dark); color:var(--cream); font-family:var(--f-ui);
   font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer}
@@ -278,6 +291,67 @@ input[type=email]{width:100%; min-height:52px; padding:0 14px; background:#FFFCF
   display:flex; justify-content:center; gap:14px; flex-wrap:wrap; text-align:center;
   font-family:var(--f-ui); font-size:.7rem; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-dark)}
 
+
+  /* Giving figures. A quiet two-up inside the order of service, not a hero
+     stat — this is a moment in the service, not a campaign. Numbers are a
+     Thursday snapshot baked in at build time: GitHub Pages is static and a
+     Planning Center token must never appear in a public repo. */
+  .figs{display:flex; flex-wrap:wrap; gap:26px 44px; margin:4px 0 2px;
+    padding:16px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .fig{display:flex; flex-direction:column; gap:3px}
+  .fig b{font-family:var(--f-display); font-weight:600; font-size:clamp(1.7rem,5vw,2.1rem);
+    line-height:1; color:var(--gold-deep); font-variant-numeric:tabular-nums}
+  .fig span{font-family:var(--f-ui); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted)}
+  .asof{font-family:var(--f-ui); font-size:.72rem; letter-spacing:.04em; color:var(--muted); margin:0}
+
+/* ============================================================
+   DESKTOP. Below this the page is a single column, which is
+   right for a phone in a chair. On a laptop that same column
+   stranded in the middle of a wide screen reads as an accident,
+   so from 1000px the section heading moves into a left rail and
+   the content sits beside it — the same move the main site makes
+   with .split. The hero image is only 738px wide natively, so it
+   is never allowed to stretch past that and blur.
+   ============================================================ */
+.hero-grid{padding-block:0}
+.hero-in{padding-block:clamp(38px,8vw,64px)}
+@media (max-width:899px){
+  /* full-bleed on a phone: pull back out of the wrap's gutter */
+  .hero-art{margin-inline:calc(var(--gut) * -1); width:calc(100% + var(--gut) * 2); max-width:none}
+}
+@media (min-width:900px){
+  .hero-grid{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+    gap:clamp(32px,4vw,60px); align-items:center; padding-block:clamp(48px,5vw,76px)}
+  .hero-art{order:2; max-width:738px; border-bottom:0; border-left:3px solid var(--gold)}
+  .hero-in{order:1; padding-block:0}
+  .trio{grid-template-columns:repeat(4,1fr)}
+  .whenrow{grid-template-columns:repeat(3,1fr)}
+  .plist{grid-template-columns:repeat(2,1fr)}
+}
+@media (min-width:1000px){
+  :root{--wrap:1100px}
+  /* Headings stay above their own content — a left rail needs a wrapper
+     element around each heading pair, and this page's sections don't have
+     one. Instead the page simply gets wider, the grids get more columns,
+     and every run of text keeps a readable measure. */
+  .sec{padding-block:clamp(64px,6vw,92px)}
+  .display-sm{font-size:clamp(2.1rem,3vw,2.8rem)}
+  .lede{font-size:1.24rem}
+  .rows{max-width:860px}
+  .row{grid-template-columns:auto minmax(0,1fr)}
+  .row p{max-width:62ch}
+  .noteblock{max-width:760px}
+  .noteblock textarea{max-width:760px}
+  input[type=email]{max-width:420px}
+  .btn-wide{width:auto; min-width:300px}
+  #inviteText{max-width:760px}
+  .contact{max-width:760px}
+  .whenrow{max-width:900px}
+  .plist{max-width:900px}
+}
+}
+
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
 </style>
@@ -294,8 +368,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 </header>
 
 <section class="hero">
-  <img class="hero-art" src="compassion-sunday.jpg" alt="Compassion Sunday">
-  <div class="wrap hero-in">
+  <div class="wrap hero-grid">
+    <img class="hero-art" src="compassion-sunday.jpg" alt="Compassion Sunday">
+    <div class="hero-in">
     <p class="eyebrow">Compassion Sunday</p>
     <h1 class="display">Somebody&rsquo;s name,<br>somebody&rsquo;s <span class="gold">face</span></h1>
     <p class="lede">Today isn&rsquo;t a normal Sunday. Pastor Corey and Matt just came back from seeing this work up close, and someone who grew up sponsored is going to tell you their story in their own words.</p>
@@ -303,6 +378,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <span><b>9:00 &amp; 11:00</b></span>
       <span>Gibson Mill</span>
       <span>About 75 minutes</span>
+      </div>
     </div>
   </div>
 </section>
@@ -330,7 +406,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
       <div class="row"><span class="num">03</span><div class="rt">
         <h3>Generosity</h3>
-        <p>We give because everything we have was given to us first.</p>
+        <p>In August, 280 gifts came through this church. That is what keeps the lights on at
+        the Mill, the kids&rsquo; rooms staffed every Sunday, and a SOJO crew handing cold water
+        to strangers at Oktoberfest. None of it happens on its own.</p>
+
+        <div class="figs">
+          <span class="fig"><b>$9,831</b><span>Last week</span></span>
+          <span class="fig"><b>$32,659</b><span>September so far</span></span>
+        </div>
+        <p class="asof">Week of Sept 15&ndash;21 &middot; 184 gifts so far this month</p>
+
         <a class="link" href="https://sojo.churchcenter.com/giving">Give now <span>&rarr;</span></a>
       </div></div>
 
@@ -458,7 +543,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <div><b>Wednesday</b><span>6:00pm</span><em>Youth &middot; 6th&ndash;12th grade</em></div>
     </div>
 
-    <p class="eyebrow" style="margin-top:44px">Find Your People</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Find Your People</p>
     <h2 class="display display-sm">Groups with room in them</h2>
 
     <nav class="plist">
@@ -494,9 +584,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     </div>
     <p class="status" id="inviteStatus"></p>
 
-    <hr class="rule-full" style="background:var(--line-dark); margin:38px 0 30px">
+  </div>
+</section>
 
+<section class="sec dark">
+  <div class="wrap">
     <p class="eyebrow">Stay Connected</p>
+    <h2 class="display display-sm">Find us any day</h2>
     <div class="contact">
       <div class="crow"><span class="lab">Call</span><span class="val"><a href="tel:+17049184144">704-918-4144</a></span><button class="copy" type="button" data-copy="7049184144">Copy</button></div>
       <div class="crow"><span class="lab">Text</span><span class="val"><a href="sms:+19804402850">980-440-2850</a></span><button class="copy" type="button" data-copy="9804402850">Copy</button></div>
