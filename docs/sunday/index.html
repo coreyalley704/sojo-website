@@ -1,0 +1,645 @@
+<!--
+  SOJO SUNDAY — the order of service page behind the chair tap tags.
+  Served at sojo.church/sunday
+
+  WHY THIS IS A STANDALONE PAGE
+    build_dist() wipes docs/ on every build, so this cannot live there.
+    copy_standalone() scans standalone/ on disk and copies each folder in
+    verbatim, after the docs/ wipe and after the photo prune — so this folder
+    and everything in it survives untouched. No build.py change is needed for
+    it to deploy. One optional one-liner: add 'sunday' to STANDALONE_SLUGS so
+    it lands in sitemap.xml. Do NOT add a 'sunday' key to REDIRECTS —
+    emit_redirects() runs after copy_standalone() and would overwrite this
+    index.html with a redirect stub.
+
+  WHY IT CARRIES ITS OWN CSS
+    It does not use LAYOUT, so it gets no site.css. The tokens at the top of
+    :root are copied from site.css so it reads as part of the site. It is also
+    the first page on this site with a form, and site.css has no form styling
+    at all — that lives here rather than polluting the shared stylesheet.
+    If the site's brand colors change, change them in :root below too.
+
+  IMAGES
+    Keep them in this folder and reference them relatively, as below. An
+    absolute /assets/img/*.webp reference would be at risk: the prune step
+    deletes any webp no LAYOUT page references.
+
+  EVERY WEEK
+    Ask Claude to rebuild this file from that Sunday's Planning Center plan
+    and sermon outline. Change the date in KEY_PREFIX in the script, or
+    last week's notes reappear on people's phones.
+
+  EMAIL
+    GitHub Pages is static — nothing runs, so nothing can send mail. Put a
+    form service URL in FORM_ENDPOINT. Left empty, the button says plainly
+    that it is not connected instead of faking a confirmation.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Compassion Sunday at SOJO Church — September 27, 9:00 and 11:00, Gibson Mill, Concord NC.">
+<meta name="theme-color" content="#F5F0E6">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F034W7H72Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F034W7H72Y');</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/assets/icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="canonical" href="https://sojo.church/sunday/">
+<meta property="og:title" content="Compassion Sunday — SOJO Church">
+<meta property="og:description" content="Today's order of service at SOJO Church. September 27, 9:00 and 11:00, Gibson Mill.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sojo.church/sunday/">
+<meta property="og:image" content="https://sojo.church/assets/img/social.jpg">
+<meta name="robots" content="noindex">
+<title>SOJO Sunday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SOJO SUNDAY — the order of service page for the chair tags.
+   Built on the same design system as the sojo.church site:
+   same tokens, same type, same rows-not-cards, same gold rules.
+   ============================================================ */
+:root{
+  --cream:#F5F0E6; --cream-2:#EFE8DA; --sand:#D6CDB8;
+  --gold:#BFAE86; --gold-bright:#D3C5A4; --gold-deep:#766645;
+  --charcoal:#302E2A; --charcoal-2:#26241F; --ink:#302E2A;
+  --muted:#605C55; --muted-dark:#AAA59D;
+  --blue:#92A29D; --green:#A6A98E;
+  --line:rgba(48,46,42,.18); --line-dark:rgba(245,240,230,.22);
+  --f-display:'Big Shoulders Display','Oswald','Arial Narrow',Impact,sans-serif;
+  --f-ui:'Inter',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --f-body:'Roboto',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --wrap:720px;
+  --gut:clamp(20px,5vw,40px);
+  --sec:clamp(44px,7vw,72px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:var(--f-body); font-size:17px; line-height:1.72;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block; height:auto}
+a{color:inherit}
+button,input,textarea{font:inherit}
+
+.wrap{max-width:var(--wrap); margin-inline:auto; padding-inline:var(--gut)}
+.sec{padding-block:var(--sec)}
+.dark{background:var(--charcoal); color:var(--cream)}
+.dark a{color:var(--cream)}
+
+/* ---------- type ---------- */
+.eyebrow{
+  font-family:var(--f-ui); font-size:12px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--gold-deep); margin:0 0 18px; display:flex; align-items:center; gap:12px;
+}
+.eyebrow::before{content:''; width:26px; height:2px; background:var(--gold); flex:0 0 auto}
+.dark .eyebrow{color:var(--gold-bright)}
+.display{
+  font-family:var(--f-display); font-weight:600; text-transform:uppercase;
+  line-height:.9; letter-spacing:-.005em; margin:0;
+  font-size:clamp(2.6rem,10vw,4.6rem);
+}
+.display-sm{font-size:clamp(1.7rem,5.5vw,2.5rem); line-height:.96}
+.display-xs{font-size:clamp(1.3rem,4vw,1.7rem); line-height:1.02}
+.lede{font-size:clamp(1.06rem,2.4vw,1.22rem); line-height:1.6; margin:20px 0 0; max-width:56ch}
+.dark .lede{color:#EFEADF}
+p{margin:0 0 1.1em; max-width:64ch}
+.muted{color:var(--muted)}
+.dark .muted{color:var(--muted-dark)}
+.gold{color:var(--gold)}
+.dark .gold{color:var(--gold-bright)}
+
+/* floor-paint motifs, same as the site */
+.lane{height:3px; border:0; margin:0; width:100%;
+  background:repeating-linear-gradient(90deg,var(--gold) 0 58px,transparent 58px 94px); opacity:.5}
+.dark .lane{opacity:.42}
+.rule-full{width:100%; height:1px; background:var(--line); border:0; margin:0}
+
+/* ---------- buttons and links ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.6em;
+  font-family:var(--f-ui); font-weight:600; font-size:.83rem;
+  letter-spacing:.07em; text-transform:uppercase; text-decoration:none;
+  padding:16px 30px; border:1px solid var(--charcoal); background:var(--charcoal); color:var(--cream);
+  transition:background .22s,color .22s,border-color .22s; min-height:52px; cursor:pointer;
+}
+.btn:hover{background:var(--gold-deep); border-color:var(--gold-deep); color:#fff}
+.btn-ghost{background:transparent; color:var(--charcoal); border-color:var(--charcoal)}
+.btn-ghost:hover{background:var(--charcoal); color:var(--cream)}
+.btn-wide{width:100%}
+.btns{display:flex; flex-wrap:wrap; gap:14px; margin-top:26px}
+.link{
+  font-family:var(--f-ui); font-weight:600; font-size:.82rem; letter-spacing:.07em;
+  text-transform:uppercase; text-decoration:none; display:inline-flex; align-items:center; gap:.55em;
+  padding-bottom:5px; border-bottom:1px solid var(--gold); color:var(--charcoal);
+  transition:gap .2s,color .2s; align-self:start; width:fit-content; min-height:40px;
+}
+.link:hover{gap:1em; color:var(--gold-deep)}
+.dark .link{color:var(--cream)}
+.dark .link:hover{color:var(--gold-bright)}
+
+/* ---------- header ---------- */
+.hdr{position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+  background:rgba(245,240,230,.95); backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--line)}
+.hdr-in{display:flex; align-items:center; gap:12px; padding-block:12px}
+.brand{display:flex; align-items:center; gap:11px; text-decoration:none}
+.brand img{height:34px; width:34px}
+.brand-txt{font-family:var(--f-display); text-transform:uppercase; font-size:1.3rem;
+  letter-spacing:.02em; line-height:1; font-weight:500}
+.brand-txt .o2{color:var(--gold-deep)}
+.hdr-when{margin-left:auto; font-family:var(--f-ui); font-size:.72rem; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--muted); text-align:right}
+
+/* ---------- hero ---------- */
+.hero{background:var(--charcoal); color:var(--cream)}
+.hero-art{width:100%; height:auto; display:block; border-bottom:3px solid var(--gold)}
+.hero-in{padding-block:clamp(38px,8vw,64px)}
+.hero h1{margin:0}
+.hero-meta{display:flex; flex-wrap:wrap; gap:0 28px; margin-top:28px; padding-top:18px;
+  border-top:1px solid var(--line-dark); font-family:var(--f-ui); font-size:.78rem;
+  letter-spacing:.06em; text-transform:uppercase; color:#E6E0D4}
+.hero-meta b{color:var(--gold-bright); font-weight:600}
+
+/* ---------- rows: the site's card replacement ---------- */
+.rows{margin-top:34px; border-top:1px solid var(--line)}
+.dark .rows{border-color:var(--line-dark)}
+.row{display:grid; grid-template-columns:auto 1fr; gap:clamp(14px,3.5vw,32px);
+  padding:24px 0; border-bottom:1px solid var(--line); align-items:start}
+.dark .row{border-color:var(--line-dark)}
+.row .num{font-family:var(--f-ui); font-size:.74rem; letter-spacing:.08em;
+  color:var(--gold-deep); padding-top:.5em; font-variant-numeric:tabular-nums}
+.dark .row .num{color:var(--gold-bright)}
+.row h3{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+  font-size:clamp(1.3rem,4.4vw,1.7rem); margin:0 0 6px; line-height:1.05}
+.row p{margin:0; color:var(--muted); font-size:.98rem}
+.dark .row p{color:var(--muted-dark)}
+.rt{display:flex; flex-direction:column; gap:12px; min-width:0}
+.songlist{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+.songlist li{position:relative; padding-left:26px; color:var(--muted); font-size:.97rem; line-height:1.5}
+.songlist li::before{content:''; position:absolute; left:0; top:.62em; width:14px; height:2px; background:var(--gold)}
+
+/* ---------- when rows (the weekly rhythm) ---------- */
+.whenrow{display:grid; grid-template-columns:repeat(2,1fr); gap:0 clamp(14px,3vw,32px); margin-top:20px}
+@media (max-width:560px){ .whenrow{grid-template-columns:1fr} }
+.whenrow > div{display:flex; flex-direction:column; gap:4px; padding:18px 0; border-top:1px solid var(--line)}
+.whenrow b{font-family:var(--f-display); font-weight:600; text-transform:uppercase;
+  font-size:clamp(1.2rem,3.6vw,1.5rem); line-height:1}
+.whenrow span{font-family:var(--f-ui); font-size:.78rem; font-weight:500; color:var(--muted)}
+.whenrow em{font-family:var(--f-ui); font-size:.8rem; font-weight:700; font-style:normal;
+  letter-spacing:.05em; color:var(--gold-deep); margin-top:2px}
+
+/* ---------- trio (announcements) ---------- */
+.trio{display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(20px,3.4vw,34px); margin-top:34px}
+@media (max-width:480px){ .trio{grid-template-columns:1fr; gap:24px} }
+.trio a{display:flex; flex-direction:column; align-items:flex-start; text-decoration:none; gap:7px}
+.trio .when{font-family:var(--f-ui); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--gold-deep)}
+.trio h3{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+  font-size:1.35rem; margin:0; line-height:1.05}
+.trio p{color:var(--muted); font-size:.93rem; margin:0}
+.trio a:hover h3{color:var(--gold-deep)}
+
+/* ---------- partner-wall style link list ---------- */
+.plist{display:grid; gap:1px; margin-top:26px; background:var(--line);
+  border-block:1px solid var(--line)}
+.pw{display:flex; align-items:baseline; gap:10px; padding:16px 2px 17px;
+  background:var(--cream); text-decoration:none; color:inherit; transition:background .18s; min-height:54px}
+a.pw:hover{background:var(--cream-2)}
+.pw-n{font-family:var(--f-display); font-weight:600; text-transform:uppercase; line-height:1.02;
+  font-size:1.12rem}
+.pw-d{font-family:var(--f-ui); font-size:.76rem; line-height:1.45; color:var(--muted)}
+.pw-go{margin-left:auto; font-family:var(--f-ui); font-size:.78rem; color:var(--gold-deep); font-weight:700}
+.pw .stackt{display:flex; flex-direction:column; gap:3px; min-width:0}
+
+/* ---------- notes ---------- */
+.noteblock{display:flex; flex-direction:column; gap:9px; padding:22px 0; border-top:1px solid var(--line)}
+.noteblock:first-of-type{border-top:0}
+.note-q{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+  font-size:clamp(1.15rem,3.6vw,1.45rem); line-height:1.1}
+textarea{
+  width:100%; min-height:82px; padding:13px 14px; background:#FFFCFA;
+  border:1px solid var(--line); border-radius:0; font-family:var(--f-body);
+  font-size:16px; line-height:1.55; color:var(--ink); resize:vertical;
+}
+textarea:focus-visible{outline:2px solid var(--gold); outline-offset:1px}
+.notes-saved{font-family:var(--f-ui); font-size:.72rem; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--muted); min-height:18px; margin-top:6px}
+
+/* ---------- forms ---------- */
+.field{display:flex; flex-direction:column; gap:8px}
+label.lbl{font-family:var(--f-ui); font-size:.72rem; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--muted)}
+input[type=email]{width:100%; min-height:52px; padding:0 14px; background:#FFFCFA;
+  border:1px solid var(--line); border-radius:0; font-family:var(--f-body); font-size:16px; color:var(--ink)}
+.dark input[type=email], .dark textarea{background:rgba(245,240,230,.07); border-color:var(--line-dark); color:var(--cream)}
+.check{display:flex; align-items:flex-start; gap:11px; margin-top:14px}
+.check input{width:19px; height:19px; margin:3px 0 0; accent-color:var(--gold-deep); flex-shrink:0}
+.check label{font-size:.95rem; color:var(--muted)}
+.dark .check label{color:var(--muted-dark)}
+.fine{font-family:var(--f-ui); font-size:.74rem; color:var(--muted); letter-spacing:.02em}
+.dark .fine{color:var(--muted-dark)}
+.notice{border:1px dashed var(--gold); padding:14px 16px; font-size:.95rem; line-height:1.55; margin-top:16px}
+.dark .notice{border-color:var(--gold-bright)}
+.status{font-family:var(--f-ui); font-size:.8rem; font-weight:600; letter-spacing:.04em;
+  color:var(--gold-deep); min-height:20px; margin-top:12px}
+.dark .status{color:var(--gold-bright)}
+
+/* ---------- contact ---------- */
+.contact{margin-top:8px}
+.crow{display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:15px 0; border-bottom:1px solid var(--line-dark)}
+.crow .lab{font-family:var(--f-ui); font-size:.7rem; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--gold-bright); width:64px; flex-shrink:0}
+.crow .val{font-size:1rem; color:#E4DED2}
+.crow a{color:#E4DED2; text-decoration:none; border-bottom:1px solid var(--gold)}
+.copy{margin-left:auto; min-height:38px; padding:0 14px; background:transparent;
+  border:1px solid var(--line-dark); color:var(--cream); font-family:var(--f-ui);
+  font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer}
+.copy:hover{background:var(--gold); border-color:var(--gold); color:var(--charcoal-2)}
+.socials{display:flex; gap:14px; margin-top:24px; flex-wrap:wrap}
+.socials a{width:44px; height:44px; border:1px solid var(--line-dark); display:grid; place-items:center;
+  transition:background .2s,border-color .2s}
+.socials a:hover{background:var(--gold); border-color:var(--gold)}
+.socials svg{width:18px; height:18px; fill:currentColor}
+.socials a:hover svg{fill:var(--charcoal-2)}
+
+/* ---------- footer ---------- */
+.ftr{background:var(--charcoal-2); color:var(--cream); padding-block:clamp(44px,7vw,68px) 0}
+.ftr .logo{height:96px; width:auto; margin:0 auto 20px; filter:brightness(0) invert(1); opacity:.82}
+.ftr .addr-s{font-style:normal; color:#E4DED2; font-size:.95rem; line-height:1.75; text-align:center}
+.ftr-bot{margin-top:clamp(30px,5vw,48px); padding-block:22px; border-top:1px solid var(--line-dark);
+  display:flex; justify-content:center; gap:14px; flex-wrap:wrap; text-align:center;
+  font-family:var(--f-ui); font-size:.7rem; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-dark)}
+
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="https://sojo.church">
+      <img src="sojo-mark.png" alt="SOJO Church">
+      <span class="brand-txt">S<span class="o2">OJ</span>O</span>
+    </a>
+    <span class="hdr-when">Sunday<br>September 27</span>
+  </div>
+</header>
+
+<section class="hero">
+  <img class="hero-art" src="compassion-sunday.jpg" alt="Compassion Sunday">
+  <div class="wrap hero-in">
+    <p class="eyebrow">Compassion Sunday</p>
+    <h1 class="display">Somebody&rsquo;s name,<br>somebody&rsquo;s <span class="gold">face</span></h1>
+    <p class="lede">Today isn&rsquo;t a normal Sunday. Pastor Corey and Matt just came back from seeing this work up close, and someone who grew up sponsored is going to tell you their story in their own words.</p>
+    <div class="hero-meta">
+      <span><b>9:00 &amp; 11:00</b></span>
+      <span>Gibson Mill</span>
+      <span>About 75 minutes</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Today&rsquo;s Order</p>
+    <h2 class="display display-sm">How the morning goes</h2>
+
+    <div class="rows">
+      <div class="row"><span class="num">01</span><div class="rt">
+        <h3>Welcome &amp; Baptism</h3>
+        <p>We&rsquo;re starting in the water. Somebody is going public with their faith this morning.</p>
+        <a class="link" href="https://sojo.churchcenter.com/registrations/events/3615384/reservations/new">I want to be baptized <span>&rarr;</span></a>
+      </div></div>
+
+      <div class="row"><span class="num">02</span><div class="rt">
+        <h3>Worship</h3>
+        <ul class="songlist">
+          <li>This Is A Move</li>
+          <li>I&rsquo;ve Witnessed It</li>
+          <li>Great Are You Lord</li>
+        </ul>
+      </div></div>
+
+      <div class="row"><span class="num">03</span><div class="rt">
+        <h3>Generosity</h3>
+        <p>We give because everything we have was given to us first.</p>
+        <a class="link" href="https://sojo.churchcenter.com/giving">Give now <span>&rarr;</span></a>
+      </div></div>
+
+      <div class="row"><span class="num">04</span><div class="rt">
+        <h3>Compassion</h3>
+        <p>Two minutes of film. Watch it with your whole attention.</p>
+      </div></div>
+
+      <div class="row"><span class="num">05</span><div class="rt">
+        <h3>The Message</h3>
+        <p>Pastor Corey and Matt on what they saw, then someone who was once a sponsored child tells you what it did in their life.</p>
+      </div></div>
+
+      <div class="row"><span class="num">06</span><div class="rt">
+        <h3>Your Next Step</h3>
+        <p>One child. One family. One month at a time.</p>
+        <p style="color:var(--ink); font-size:1.05rem"><b>Text SOJO to 83393</b> to sponsor a child before you leave the room.</p>
+      </div></div>
+
+      <div class="row"><span class="num">07</span><div class="rt">
+        <h3>Sending</h3>
+        <p>Go be the church in Concord this week.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="lane">
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Message Notes</p>
+    <h2 class="display display-sm">Write down what won&rsquo;t leave you alone</h2>
+    <p class="muted" style="margin-top:14px">Nothing to look up today. Just listen. These save on your phone as you type.</p>
+
+    <div style="margin-top:22px">
+      <div class="noteblock">
+        <span class="note-q">What did Corey and Matt see that you can&rsquo;t unsee?</span>
+        <textarea id="note1" rows="3" placeholder="Start typing&hellip;"></textarea>
+      </div>
+      <div class="noteblock">
+        <span class="note-q">In the story you just heard &mdash; what changed everything?</span>
+        <textarea id="note2" rows="3" placeholder="Start typing&hellip;"></textarea>
+      </div>
+      <div class="noteblock">
+        <span class="note-q">What is God asking you to actually do about it?</span>
+        <textarea id="note3" rows="3" placeholder="Start typing&hellip;"></textarea>
+      </div>
+      <span class="notes-saved" id="notesSaved"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="eyebrow">Take Sunday With You</p>
+    <h2 class="display display-sm">Don&rsquo;t leave it in the room</h2>
+    <p class="lede">Today&rsquo;s order of service, the songs, every link on this page, and your own notes &mdash; in your inbox before you pull out of the lot.</p>
+
+    <form id="sendForm" novalidate style="margin-top:26px">
+      <div class="field">
+        <label class="lbl" for="sendEmail">Your email</label>
+        <input id="sendEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+      </div>
+      <div class="check">
+        <input id="sendCal" name="calendar" type="checkbox" checked>
+        <label for="sendCal">Add this week&rsquo;s events to my calendar</label>
+      </div>
+      <div class="btns"><button class="btn btn-wide" type="submit">Send it to me</button></div>
+      <p class="fine" style="margin-top:14px">One email about today. We won&rsquo;t sign you up for anything you didn&rsquo;t ask for.</p>
+    </form>
+
+    <div class="notice" id="sendUnwired" hidden><b>Not connected yet.</b> This button has nowhere to send to until FORM_ENDPOINT is filled in. Nothing was sent, and no address was saved.</div>
+    <div class="notice" id="sendDone" hidden>On its way. Check your inbox in a minute or two.</div>
+
+    <p class="fine" style="margin-top:26px">Or fill out a Connection Card &mdash; it goes straight to our team.</p>
+    <div class="btns" style="margin-top:12px">
+      <a class="btn btn-ghost" href="https://go.myhello.church/v2/location/u7Nk3mMR6bl4lJdgYze5/form-builder-v2/lg1BNQ4ZiLB8JeZ8y3c4" style="color:var(--cream); border-color:rgba(245,240,230,.78); background:transparent">Connection Card</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Don&rsquo;t Miss</p>
+    <h2 class="display display-sm">What&rsquo;s next</h2>
+
+    <div class="trio">
+      <a href="https://sojo.churchcenter.com/registrations/events/3848051/reservations/new">
+        <span class="when">Today &middot; 12:30pm</span>
+        <h3>Discover SOJO</h3>
+        <p>After second service. Lunch, childcare, and a gift are on us.</p>
+      </a>
+      <a href="https://sojo.churchcenter.com/registrations/events/3885721/reservations/new">
+        <span class="when">Friday, Oct 30 &middot; 3&ndash;5pm</span>
+        <h3>Candy Crawl</h3>
+        <p>Union Street, thousands of families walking by. Two hours. We need a crew.</p>
+      </a>
+      <a href="https://sojo.churchcenter.com/registrations/events/3833678/reservations/new">
+        <span class="when">Open now</span>
+        <h3>Practicing Generosity</h3>
+        <p>A 90-day walk into open hands. Not a campaign.</p>
+      </a>
+      <a href="https://sojo.churchcenter.com/registrations/events/3848052/reservations/new">
+        <span class="when">Starts Oct 6</span>
+        <h3>Discover More</h3>
+        <p>Three weeks on the essentials. Bring your questions.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="lane">
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Every Week</p>
+    <h2 class="display display-sm">The rhythm</h2>
+
+    <div class="whenrow">
+      <div><b>Sunday</b><span>9:00 &amp; 11:00</span><em>Gathered worship</em></div>
+      <div><b>Sunday</b><span>5:00pm</span><em>SOJO Recovery</em></div>
+      <div><b>Sunday</b><span>7:00pm</span><em>SOJO YA &middot; ages 18&ndash;29</em></div>
+      <div><b>Monday</b><span>5:30pm</span><em>Prayer Team</em></div>
+      <div><b>Wednesday</b><span>6:00pm</span><em>Youth &middot; 6th&ndash;12th grade</em></div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:44px">Find Your People</p>
+    <h2 class="display display-sm">Groups with room in them</h2>
+
+    <nav class="plist">
+      <a class="pw" href="https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/sojo-ya">
+        <span class="stackt"><span class="pw-n">SOJO YA</span><span class="pw-d">Sundays, 7&ndash;9pm &middot; ages 18&ndash;29</span></span><span class="pw-go">&rarr;</span></a>
+      <a class="pw" href="https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-of-the-willow">
+        <span class="stackt"><span class="pw-n">Women of the Willow</span><span class="pw-d">Tuesdays, 6&ndash;8pm &middot; 30s and 40s</span></span><span class="pw-go">&rarr;</span></a>
+      <a class="pw" href="https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-s-weekly-bible-study">
+        <span class="stackt"><span class="pw-n">Women&rsquo;s Bible Study</span><span class="pw-d">Thursdays, 10am</span></span><span class="pw-go">&rarr;</span></a>
+      <a class="pw" href="https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/men-s-breakfast-club">
+        <span class="stackt"><span class="pw-n">Men&rsquo;s Breakfast Club</span><span class="pw-d">Fridays, 6:30am &middot; last week&rsquo;s message</span></span><span class="pw-go">&rarr;</span></a>
+      <a class="pw" href="https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/netflix-and-bills-couples-marriage-group-fun-fellowship-and-growth-together-for-couples">
+        <span class="stackt"><span class="pw-n">Couples &amp; Marriage</span><span class="pw-d">Every other Sunday, 4&ndash;6pm</span></span><span class="pw-go">&rarr;</span></a>
+      <a class="pw" href="https://sojo.churchcenter.com/groups">
+        <span class="stackt"><span class="pw-n">See all groups</span><span class="pw-d">Recovery, prayer, journaling, families, and more</span></span><span class="pw-go">&rarr;</span></a>
+    </nav>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="eyebrow">Bring Someone</p>
+    <h2 class="display display-sm">Invite one person</h2>
+    <p class="lede">Change the words so they sound like you. Then send it.</p>
+
+    <div class="field" style="margin-top:22px">
+      <label class="lbl" for="inviteText">Your message</label>
+      <textarea id="inviteText" rows="4">I&rsquo;m going to SOJO on Sunday &mdash; 9:00 or 11:00 at Gibson Mill, 325 McGill Ave. It runs about an hour and change. Come with me? https://sojo.church</textarea>
+    </div>
+    <div class="btns">
+      <button class="btn" type="button" id="inviteBtn" style="background:var(--cream); color:var(--charcoal); border-color:var(--cream)">Send this invite</button>
+      <button class="btn btn-ghost" type="button" id="inviteCopy" style="color:var(--cream); border-color:rgba(245,240,230,.78)">Copy it</button>
+    </div>
+    <p class="status" id="inviteStatus"></p>
+
+    <hr class="rule-full" style="background:var(--line-dark); margin:38px 0 30px">
+
+    <p class="eyebrow">Stay Connected</p>
+    <div class="contact">
+      <div class="crow"><span class="lab">Call</span><span class="val"><a href="tel:+17049184144">704-918-4144</a></span><button class="copy" type="button" data-copy="7049184144">Copy</button></div>
+      <div class="crow"><span class="lab">Text</span><span class="val"><a href="sms:+19804402850">980-440-2850</a></span><button class="copy" type="button" data-copy="9804402850">Copy</button></div>
+      <div class="crow"><span class="lab">Watch</span><span class="val"><a href="https://www.youtube.com/c/SOJOChurch">Past messages on YouTube</a></span></div>
+      <div class="crow"><span class="lab">Listen</span><span class="val"><a href="https://www.buzzsprout.com/2369654">The SOJO podcast</a></span></div>
+    </div>
+
+    <div class="socials">
+      <a href="https://www.facebook.com/wearesojo.church/" aria-label="SOJO Church on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+      <a href="https://www.instagram.com/sojo.church/" aria-label="SOJO Church on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.89 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16Zm0 6.68a3.16 3.16 0 1 0 0 6.32 3.16 3.16 0 0 0 0-6.32Zm0 5.21a2.05 2.05 0 1 1 0-4.1 2.05 2.05 0 0 1 0 4.1Zm4.02-5.35a.74.74 0 1 1 0-1.48.74.74 0 0 1 0 1.48Z"/></svg></a>
+      <a href="https://www.youtube.com/c/SOJOChurch" aria-label="SOJO Church on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <img class="logo" src="sojo-seal.png" alt="SOJO Church, Concord NC">
+    <address class="addr-s">
+      The Kettle Room at Gibson Mill<br>
+      325 McGill Ave NW, Suite 148<br>
+      Concord, NC 28027
+    </address>
+    <div class="ftr-bot"><span>Tapped from your seat &middot; See you next Sunday</span></div>
+  </div>
+</footer>
+
+<script>
+  // FORM ENDPOINT — your form service URL goes between the quotes.
+  var FORM_ENDPOINT = '';
+
+  (function () {
+    var NOTE_IDS = ['note1', 'note2', 'note3'];
+    var KEY_PREFIX = 'sojo-notes-2026-09-27-';
+
+    function store(action, key, value) {
+      try {
+        if (action === 'get') { return window.localStorage.getItem(key); }
+        window.localStorage.setItem(key, value);
+      } catch (err) {}
+      return null;
+    }
+
+    function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+      return new Promise(function (resolve, reject) {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed'; ta.style.top = '-1000px';
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        ok ? resolve() : reject();
+      });
+    }
+
+    var saved = document.getElementById('notesSaved');
+    var notes = [];
+    NOTE_IDS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) { return; }
+      notes.push(el);
+      var prior = store('get', KEY_PREFIX + id);
+      if (prior) { el.value = prior; }
+      el.addEventListener('input', function () {
+        store('set', KEY_PREFIX + id, el.value);
+        if (saved) { saved.textContent = 'Saved on this phone'; }
+      });
+    });
+    if (saved && notes.some(function (el) { return el.value; })) {
+      saved.textContent = 'Saved on this phone';
+    }
+
+    function collectNotes() {
+      return notes.map(function (el) {
+        var q = el.parentNode.querySelector('.note-q');
+        return (q ? q.textContent.trim() + '\n' : '') + el.value.trim();
+      }).filter(function (t) { return t.split('\n')[1]; }).join('\n\n');
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('.copy'), function (btn) {
+      btn.addEventListener('click', function () {
+        copyText(btn.getAttribute('data-copy')).then(function () {
+          btn.textContent = 'Copied';
+          setTimeout(function () { btn.textContent = 'Copy'; }, 2200);
+        }).catch(function () { btn.textContent = 'Select it'; });
+      });
+    });
+
+    var inviteBtn = document.getElementById('inviteBtn');
+    var inviteCopyBtn = document.getElementById('inviteCopy');
+    var inviteText = document.getElementById('inviteText');
+    var inviteStatus = document.getElementById('inviteStatus');
+    function say(m) { if (inviteStatus) { inviteStatus.textContent = m; } }
+
+    if (inviteBtn && inviteText) {
+      inviteBtn.addEventListener('click', function () {
+        var body = inviteText.value.trim();
+        if (!body) { inviteText.focus(); return; }
+        if (navigator.share) {
+          navigator.share({ text: body }).then(function () { say('Thanks for asking them.'); }).catch(function () {});
+          return;
+        }
+        copyText(body).then(function () {
+          say('No share menu here, so it is copied. Paste it into a text.');
+        }).catch(function () { inviteText.select(); say('Select the message above and copy it.'); });
+      });
+    }
+    if (inviteCopyBtn && inviteText) {
+      inviteCopyBtn.addEventListener('click', function () {
+        var body = inviteText.value.trim();
+        if (!body) { return; }
+        copyText(body).then(function () { say('Copied. Paste it into a text.'); })
+          .catch(function () { inviteText.select(); say('Press and hold to copy.'); });
+      });
+    }
+
+    var form = document.getElementById('sendForm');
+    var done = document.getElementById('sendDone');
+    if (!form) { return; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('sendEmail');
+      if (!email.value || email.value.indexOf('@') < 1) { email.focus(); return; }
+      var payload = new FormData(form);
+      payload.append('notes', collectNotes());
+      payload.append('service', 'Compassion Sunday, September 27 2026');
+
+      var endpoint = (typeof FORM_ENDPOINT === 'string') ? FORM_ENDPOINT : '';
+      if (!endpoint) {
+        var unwired = document.getElementById('sendUnwired');
+        if (unwired) { unwired.hidden = false; unwired.setAttribute('role', 'status'); }
+        return;
+      }
+      fetch(endpoint, { method: 'POST', body: payload }).catch(function () {});
+      form.hidden = true;
+      done.hidden = false;
+      done.setAttribute('role', 'status');
+    });
+  })();
+</script>
+</body>
+</html>
