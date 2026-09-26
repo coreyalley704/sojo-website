@@ -942,7 +942,7 @@ newhome = f'''
   </div>
 </section>
 '''
-PAGES.append(page('new-home.html', 'Our New Home — The Kettle Room at Gibson Mill | SOJO Church',
+PAGES.append(page('new-home.html', 'The Kettle Room at Gibson Mill | SOJO Church, Concord NC',
     f'SOJO Church moves to {WAYF} on {MOVE}, 2026. Parking, entrance, kids check-in and photos of the new space.', newhome))
 
 # ============================== KIDS =========================================
@@ -1029,7 +1029,7 @@ kids = f'''
       <h2 class="display display-sm">It keeps going<br>to thirty</h2>
       <p class="lede">After 5th grade comes <strong>SOJO YTH</strong> &mdash; 6th through 12th
       grade, Wednesdays 6&ndash;8pm. After that, <strong>SOJO YA</strong> for ages 18 to 30,
-      Fridays 6&ndash;8pm with dinner at 8.</p>
+      Sunday nights at 7, dinner included.</p>
       <p>The handoffs between environments are where most churches quietly lose people. We watch
       those on purpose.</p>
       <div class="btns">{btn('See all of Next Gen','next-gen.html')}
@@ -1040,8 +1040,8 @@ kids = f'''
 </section>
 '''
 PAGES.append(page('kids.html', 'SOJO Kids | SOJO Church, Concord NC',
-    'Safe, joyful kids ministry at SOJO Church in Concord, NC — nursery through 5th grade, '
-    'background-checked volunteers and secure check-in during both Sunday services.',
+    'Kids ministry at SOJO Church in Concord, NC — nursery through 5th grade, '
+    'background-checked leaders and secure check-in at both Sunday services.',
     kids, active='next-gen.html'))
 
 # ============================== YOUTH ========================================
@@ -1124,9 +1124,9 @@ youth = f'''
       <p class="eyebrow">Seniors</p>
       <h2 class="display display-sm">May shouldn&rsquo;t be<br>a cliff</h2>
       <p class="lede">Second semester of senior year, we start walking you over to <strong>SOJO YA</strong>
-      &mdash; Fridays, 6 to 8, dinner at 8.</p>
+      &mdash; Sunday nights at 7, dinner included.</p>
       <p>You do not have to pick. Keep coming Wednesday for as long as you want it and start showing
-      up Friday too. The overlap is the whole point: we would rather you have two rooms for a
+      up Sunday night too. The overlap is the whole point: we would rather you have two rooms for a
       semester than none the following fall, when half your friends leave for school and the other
       half start working.</p>
       <div class="btns">{btn('About SOJO YA','young-adults.html')}</div>
@@ -1907,7 +1907,7 @@ nextgen = f'''
     <div class="whenrow">
       <a href="#kids"><b>SOJO Kids</b><span>Birth &ndash; 5th grade</span><em>Sundays &middot; 9 &amp; 11am</em></a>
       <a href="#yth"><b>SOJO YTH</b><span>6th &ndash; 12th grade</span><em>Wednesdays &middot; 6&ndash;8pm</em></a>
-      <a href="#ya"><b>SOJO YA</b><span>18&ndash;30 &middot; seniors 2nd semester</span><em>Fridays &middot; 6&ndash;8pm</em></a>
+      <a href="#ya"><b>SOJO YA</b><span>18&ndash;30 &middot; seniors 2nd semester</span><em>Sunday nights &middot; 7pm</em></a>
     </div>
   </div>
 </section>
@@ -1927,7 +1927,7 @@ nextgen = f'''
       <p>Every leader across all three is screened, background-checked, and trained. That is the
       floor, not the ceiling.</p>
       <p><strong>And we build the handoffs on purpose.</strong> Second semester of senior year, we
-      start walking students from YTH into SOJO YA &mdash; Friday nights, with Wednesdays still open
+      start walking students from YTH into SOJO YA &mdash; Sunday nights, with Wednesdays still open
       to them. The overlap is deliberate. Graduation is where churches lose people, and we would
       rather a senior have two rooms for a semester than none the following fall.</p>
     </div>
@@ -1968,25 +1968,25 @@ nextgen = f'''
        ("Teaching","Straight out of Scripture, aimed at the life they are actually living"),
        ("Small groups","Led by screened, background-checked, trained adults"),
        ("Leader","Audrie Cash &mdash; tell her if your student is nervous walking in and she will make sure they are not alone."),
-       ("Seniors","In the second semester of senior year we start walking seniors over to SOJO YA on Friday nights. They keep Wednesdays as long as they want them.")],
+       ("Seniors","In the second semester of senior year we start walking seniors over to SOJO YA on Sunday nights. They keep Wednesdays as long as they want them.")],
       f'<div class="btns">{btn("More about SOJO YTH","youth.html")} {btn("Church calendar",EVENTS,"btn btn-ghost",True)}</div>',
       'g2-yth-mural','SOJO YTH students together at the SOJO missions mural', flip=True, anchor='yth')}
 
-    {env('03','SOJO YA','Ages 18 &ndash; 30 &middot; and seniors from 2nd semester','Fridays','6 &ndash; 8pm, dinner at 8',
-      'Young adults, Friday nights, and nobody eats alone afterward.',
+    {env('03','SOJO YA','Ages 18 &ndash; 30 &middot; and seniors from 2nd semester','Sunday nights','7pm, dinner included',
+      'Young adults, Sunday nights, and nobody eats alone afterward.',
       ["This is the season most people quietly leave church &mdash; not because they decided "
        "against Jesus, but because nobody made a place for the version of them that just moved out, "
        "started a job, ended a relationship, or stopped being made to go.",
-       "So we made one. Friday nights, six to eight: worship, real teaching, and honest "
+       "So we made one. Sunday nights at seven: worship, real teaching, and honest "
        "conversation about the things this decade actually hands you &mdash; work, money, dating, "
        "loneliness, and what you believe now that it is entirely your call.",
-       "<strong>Then dinner at eight.</strong> Every week. That part is not an add-on; it is half "
-       "the point. Whatever else is true about your Friday, you are not eating it alone."],
-      [("When","Fridays, 6:00 &ndash; 8:00pm &mdash; dinner together at 8:00pm"),
+       "<strong>Then dinner.</strong> Every week. That part is not an add-on; it is half "
+       "the point. However the week went, you are not eating Sunday night alone."],
+      [("When","Sunday nights at 7:00pm &mdash; dinner together after"),
        ("Who","Ages 18 &ndash; 30. College, working, single, married, still figuring it out."),
-       ("High school seniors","Second semester of senior year, you are welcome here. Come to Friday and keep going to YTH on Wednesday &mdash; the overlap is on purpose."),
+       ("High school seniors","Second semester of senior year, you are welcome here. Come Sunday night and keep going to YTH on Wednesday &mdash; the overlap is on purpose."),
        ("What happens","Worship, teaching, and conversation that does not stay surface"),
-       ("Dinner","Every week at 8. Come for the whole thing or just the table."),
+       ("Dinner","Every week. Come for the whole thing or just the table."),
        ("Bring somebody","Seriously. This is the easiest thing at SOJO to invite a friend to."),
        ("Cost","Free. The meal is on us.")],
       f'<div class="btns">{btn("Ask about SOJO YA",SMS_HELLO,"btn")} {btn("Find a group","groups.html","btn btn-ghost")}</div>',
@@ -2024,27 +2024,27 @@ nextgen = f'''
   <div class="wrap-narrow">
     <p class="script">One night, one Sunday</p>
     <h2 class="display display-sm">Just bring<br>them once</h2>
-    <p class="lede">Sundays at 9 and 11 for kids. Wednesdays at 6 for students. Fridays at 6 for
-    young adults, with dinner at 8.</p>
+    <p class="lede">Sundays at 9 and 11 for kids. Wednesdays at 6 for students. Sunday nights
+    at 7 for young adults, with dinner.</p>
     <div class="btns" style="justify-content:center">{btn('Plan your visit','plan-a-visit.html')}
       {btn(f'Text {PHONE_D}',SMS_HELLO,'btn btn-ghost')}</div>
   </div>
 </section>
 '''
 PAGES.append(page('next-gen.html', 'Next Gen | SOJO Church, Concord NC',
-    'SOJO Next Gen — SOJO Kids (birth to 5th grade, Sundays 9 & 11am), SOJO YTH (6th-12th grade, '
-    'Wednesdays 6-8pm) and SOJO YA (18-30, Fridays 6-8pm with dinner at 8).', nextgen))
+    'SOJO Kids (birth to 5th grade, Sundays 9 & 11am), SOJO YTH (6th-12th grade, Wednesdays '
+    '6-8pm) and SOJO YA (18-30, Sunday nights at 7) in Concord, NC.', nextgen))
 
 # ============================== SOJO YA =====================================
 ya = f'''
 <section class="phero grain dark">
   <div class="phero-img">{eager('fs-bibles-pray','A young adult couple praying together with their Bibles beside them')}</div>
   <div class="wrap">
-    <p class="crumb">Next Gen &middot; SOJO YA &middot; Ages 18&ndash;30 &middot; Fridays 6&ndash;8pm</p>
-    <h1 class="display"><span class="script">Nobody eats</span><br>alone on<br>Fridays</h1>
+    <p class="crumb">Next Gen &middot; SOJO YA &middot; Ages 18&ndash;30 &middot; Sunday nights at 7</p>
+    <h1 class="display"><span class="script">Nobody eats</span><br>alone on<br>Sundays</h1>
     <p class="lede">SOJO YA is for ages 18 to 30 &mdash; college, working, single, married, still
-    figuring it out. Fridays 6 to 8, and dinner together at 8.</p>
-    <div class="btns">{btn('Ask about this Friday',SMS_HELLO,'btn')}
+    figuring it out. Sunday nights at 7, and dinner together after.</p>
+    <div class="btns">{btn('Ask about this Sunday',SMS_HELLO,'btn')}
       {btn('All of Next Gen','next-gen.html','btn btn-ghost')}</div>
   </div>
 </section>
@@ -2057,11 +2057,11 @@ ya = f'''
       <p class="lede">Most people who leave church leave in this one &mdash; not because they
       decided against Jesus, but because nobody made a place for the version of them that just
       moved out, started a job, ended a relationship, or stopped being made to go.</p>
-      <p>So we made one. Friday nights are worship, real teaching, and honest conversation about
+      <p>So we made one. Sunday nights are worship, real teaching, and honest conversation about
       the things this decade actually hands you &mdash; work, money, dating, loneliness, and what
       you believe now that it is entirely your call.</p>
-      <p><strong>Then dinner at eight, every week.</strong> That part is not an add-on; it is half
-      the point. Whatever else is true about your Friday, you are not eating it alone.</p>
+      <p><strong>Then dinner, every week.</strong> That part is not an add-on; it is half
+      the point. However the week went, you are not eating Sunday night alone.</p>
       {thread('Know &middot; Grow','This is where a lot of twenty-somethings find out the faith they inherited can actually be theirs &mdash; and find the people to build it with.')}
     </div>
     <div class="figure">{img('fs-couple-cross','A young couple holding hands in worship at the Kettle Room')}</div>
@@ -2074,7 +2074,7 @@ ya = f'''
     <h2 class="display display-sm">Straight<br>answers</h2>
     {rows([
       ("When and where",
-       f"Fridays, 6:00&ndash;8:00pm at {WAYF}, {ADDR1}, {ADDR2}. Dinner together at 8:00pm, on us.",
+       f"Sunday nights at 7:00pm at {WAYF}, {ADDR1}, {ADDR2}. Dinner together after, on us.",
        ("Get directions",MAPS,True)),
       ("Who it&rsquo;s for",
        "Ages 18&ndash;30. College students, people working full time, married couples, single people, and everyone still deciding what they are. You do not need to bring anybody or know anybody.",
@@ -2082,8 +2082,8 @@ ya = f'''
       ("High school seniors",
        "Second semester of senior year, you are welcome here &mdash; and you can keep Wednesdays at SOJO YTH as long as you want them. The overlap is on purpose: we would rather you have two rooms for a semester than none the following fall.",
        ("About SOJO YTH","youth.html",False)),
-      ("What a Friday looks like",
-       "Worship, teaching aimed at this decade of life, honest conversation, and a real dinner. Come for the whole thing or just come to the table at 8.",
+      ("What a Sunday night looks like",
+       "Worship, teaching aimed at this decade of life, honest conversation, and a real dinner. Come for the whole thing or just come to the table for dinner.",
        None),
       ("Cost",
        "Free, dinner included. Bring a friend &mdash; this is the easiest thing at SOJO to invite somebody to.",
@@ -2095,13 +2095,13 @@ ya = f'''
 <section class="sec concrete grain columns sheen">
   <div class="wrap split split-6535">
     <div>
-      <p class="eyebrow">Beyond Friday</p>
+      <p class="eyebrow">Beyond the table</p>
       <h2 class="display display-sm">This is a<br>launch pad</h2>
       <p class="lede">YA is not meant to be an island for your twenties. It is where you build the
       faith and the friendships you carry into everything after.</p>
       <p>From here people join groups, lead SOJO Kids rooms, run cameras, go on mission trips, and
       show up early to set chairs. Purpose is not something YA graduates into later &mdash; it
-      starts on a Friday.</p>
+      starts on a Sunday night.</p>
       <div class="btns">{btn('Find a group','groups.html')}
         {btn('Start serving','serve.html','btn btn-ghost')}</div>
     </div>
@@ -2111,7 +2111,7 @@ ya = f'''
 
 <section class="sec sand center">
   <div class="wrap-narrow">
-    <p class="script">Friday, 6pm</p>
+    <p class="script">Sunday, 7pm</p>
     <h2 class="display display-sm">Come hungry</h2>
     <p class="lede">Show up once. Worst case, you get dinner out of it.</p>
     <div class="btns" style="justify-content:center">{btn(f'Text {PHONE_D}',SMS_HELLO,'btn')}
@@ -2120,8 +2120,8 @@ ya = f'''
 </section>
 '''
 PAGES.append(page('young-adults.html', 'SOJO YA — Young Adults | SOJO Church, Concord NC',
-    'SOJO YA — young adults 18 to 30 in Concord, NC. Fridays 6-8pm at Gibson Mill with dinner '
-    'together at 8. High school seniors welcome from second semester.', ya, active='next-gen.html'))
+    'SOJO YA — young adults 18 to 30 in Concord, NC. Sunday nights at 7 at Gibson Mill, '
+    'dinner included. High school seniors welcome from second semester.', ya, active='next-gen.html'))
 
 # ============================== WHAT WE BELIEVE ==============================
 def belief(num, title, text, refs):
@@ -2266,8 +2266,8 @@ beliefs = f'''
 </section>
 '''
 PAGES.append(page('beliefs.html', 'What We Believe | SOJO Church, Concord NC',
-    'The SOJO Church doctrinal position — nine essential beliefs we hold firm, held alongside an '
-    'open hand on secondary matters and a genuine welcome for dialogue.', beliefs, active='about.html'))
+    'Nine essential beliefs SOJO Church in Concord, NC holds firm — with an open hand on '
+    'secondary matters and a real welcome for your questions.', beliefs, active='about.html'))
 
 # ============================== MISSIONS =====================================
 # Partner lists come from PC's FY missions budget. Per-partner dollar amounts are
@@ -2669,8 +2669,8 @@ groups = f'''
 </section>
 '''
 PAGES.append(page('groups.html', 'Groups | SOJO Church, Concord NC',
-    'Four kinds of groups at SOJO Church in Concord, NC — Connect Groups, Community Groups, '
-    'Care Groups (SOJO Ink, Recovery, Grief Recovery, DivorceCare) and Classes.',
+    'Four kinds of groups at SOJO Church in Concord, NC — Connect, Community, '
+    'Care (Recovery, Grief Recovery, DivorceCare) and Classes.',
     groups, active='groups.html'))
 
 # ============================== SERVE ========================================
@@ -2714,7 +2714,7 @@ serve = f'''
        "Sunday classrooms, check-in support, event help. Background check required — no exceptions, and we start it as soon as you sign up.",
        ("Sign up for Kids",SERVE_FORM,True)),
       ("SOJO YTH &amp; SOJO YA",
-       "Wednesday-night small group leaders and chaperones for students, plus hosts and cooks for Friday-night young adults. Background check required for anyone with students.",
+       "Wednesday-night small group leaders and chaperones for students, plus hosts and cooks for Sunday-night young adults. Background check required for anyone with students.",
        ("Sign up for Next Gen",SERVE_FORM,True)),
       ("Worship &amp; Production",
        "Vocalists, instrumentalists, sound, cameras, lights, slides. If you're musical or you like being behind the scenes, there's room.",
@@ -3530,8 +3530,8 @@ story_page = f'''
 </section>
 '''
 PAGES.append(page('our-story.html', 'Our Story | SOJO Church, Concord NC',
-    'Seven years of SOJO Church in Concord, NC — from a living room in 2017 to a school cafeteria, '
-    'a drive-in parking lot, six years on Union Street, and now Gibson Mill.',
+    'Seven years of SOJO Church in Concord, NC — a living room in 2017, a school cafeteria, '
+    'a drive-in lot, six years on Union Street, and now Gibson Mill.',
     story_page, active='about.html'))
 
 # ============================== KNOW: YADA ===================================
@@ -3804,7 +3804,7 @@ partner_page = f'''
 {thread('know','You don&rsquo;t clean up to come to him. You come to him, and he does the rest.')}
 '''
 partner_page = partner_page.replace('SMSJESUS', SMS_JESUS).replace('SMSQUESTION', SMS_QUESTION)
-PAGES.append(page('partner.html', 'Partner with Him — Becoming a Follower of Jesus | SOJO Church',
+PAGES.append(page('partner.html', 'Become a Follower of Jesus | SOJO Church, Concord NC',
     'What it means to become a Christian: apprenticeship to Jesus, grace, repentance, belief — and a prayer to start. We walk with you.',
     partner_page, active='partner.html'))
 
@@ -4105,7 +4105,7 @@ Key facts
 - Service times: Sundays 9:00am and 11:00am
 - Location: The Kettle Room at Gibson Mill, 325 McGill Ave NW, Suite 148, Concord, NC 28027 (moved September 6, 2026)
 - Style: come as you are; casual dress; about 75 minutes; kids ministry at both services
-- Kids: SOJO Kids (birth-5th grade, Sundays) · Youth: SOJO YTH (6th-12th, Wednesdays 6-8pm) · Young adults: SOJO YA (18-30, Fridays 6-8pm)
+- Kids: SOJO Kids (birth-5th grade, Sundays) · Youth: SOJO YTH (6th-12th, Wednesdays 6-8pm) · Young adults: SOJO YA (18-30, Sunday nights at 7)
 - Beliefs: historic Christian faith, non-denominational; firm on essentials, open-handed dialogue on secondary matters
 
 Pages
@@ -4132,7 +4132,7 @@ Pages
 - [Watch]({BASE_URL}watch.html): messages online
 - [SOJO Kids]({BASE_URL}kids.html): birth-5th grade, Sundays
 - [SOJO YTH]({BASE_URL}youth.html): 6th-12th grade, Wednesdays 6-8pm
-- [SOJO YA]({BASE_URL}young-adults.html): ages 18-30, Fridays 6-8pm
+- [SOJO YA]({BASE_URL}young-adults.html): ages 18-30, Sunday nights at 7
 - [SOJO Swag]({BASE_URL}swag.html): church merch
 """
     with open(os.path.join(DIST, 'llms.txt'), 'w') as f:
