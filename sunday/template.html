@@ -387,24 +387,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <img src="sojo-mark.png" alt="SOJO Church">
       <span class="brand-txt">S<span class="o2">OJ</span>O</span>
     </a>
-    <span class="hdr-when">Sunday<br>October 4</span>
+    <span class="hdr-when">Sunday<br>{{WEEK_SHORT}}</span>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap hero-grid">
-    <img class="hero-art" src="community-sunday.jpg" alt="Community Sunday at SOJO Church">
+    <img class="hero-art" src="{{HERO_ART}}" alt="{{HERO_ART_ALT}}">
     <div class="hero-in">
-    <p class="eyebrow">Welcome</p>
-    <h1 class="display">Not from a stage.<br>Around a <span class="gold">table</span>.</h1>
-    <p class="lede">This is how “deeper together” actually happens — around a table with people who know your name. This morning we’re introducing our new small group leaders and praying over them as a church. Come stand with them.</p>
+    <p class="eyebrow">{{HERO_EYEBROW}}</p>
+    <h1 class="display">{{HERO_HEADLINE}}</h1>
+    <p class="lede">{{HERO_LEDE}}</p>
     <div class="hero-meta">
       <span><b>9:00 &amp; 11:00</b></span>
       <span>Gibson Mill</span>
-      <span>About 75 minutes</span>
+      <span>{{RUNTIME}}</span>
       </div>
     <div class="btns" style="margin-top:22px">
-      <a class="btn" href="https://www.youtube.com/@SOJOChurch/live" style="background:var(--cream); color:var(--charcoal); border-color:var(--cream)">
+      <a class="btn" href="{{LIVE_URL}}" style="background:var(--cream); color:var(--charcoal); border-color:var(--cream)">
         <span class="livedot" aria-hidden="true"></span>Watch live
       </a>
       <!-- NEW HERE PDF: drop the file in beside index.html, put its name in the
@@ -414,8 +414,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       </div>
 
     <div class="hello">
-      <p>Welcome. If you’re new here, we’re so glad you came. Fill out a Connect Card if you haven’t already — and consider giving us five Sundays. That’s about how long it takes to stop feeling like a visitor.</p>
-      <a class="link" href="https://go.myhello.church/v2/location/u7Nk3mMR6bl4lJdgYze5/form-builder-v2/lg1BNQ4ZiLB8JeZ8y3c4">Connect Card <span>&rarr;</span></a>
+      <p>{{WELCOME_NOTE}}</p>
+      <a class="link" href="{{CONNECT_URL}}">Connect Card <span>&rarr;</span></a>
     </div>
     </div>
   </div>
@@ -426,32 +426,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <h2 class="display display-xs">How the morning goes</h2>
 
     <div class="flow">
-      <div class="fl"><span class="n">01</span><div><span class="t">Welcome</span></div></div>
-
-      <div class="fl"><span class="n">02</span><div><span class="t">Worship</span>
-        <p class="d">Yes I Will · Holy Forever</p></div></div>
-
-      <div class="fl"><span class="n">03</span><div><span class="t">Generosity</span></div></div>
-
-      <div class="fl"><span class="n">04</span><div><span class="t">The Message</span>
-        <p class="d">Pastor Dan Conklin</p></div></div>
-
-      <div class="fl"><span class="n">05</span><div><span class="t">Response</span>
-        <p class="d">Christ Be Magnified</p></div></div>
-
-      <div class="fl"><span class="n">06</span><div><span class="t">Communion</span>
-        <p class="d">The table is open to anyone who follows Jesus. If that’s not you yet, no pressure — just let it pass.</p></div></div>
-
-      <div class="fl"><span class="n">07</span><div><span class="t">Baptism</span>
-        <p class="d">Somebody is going public with their faith this morning.</p></div></div>
-
-      <div class="fl"><span class="n">08</span><div><span class="t">Praying Over Our Leaders</span>
-        <p class="d">Introducing our new small group leaders and praying over them together.</p></div></div>
+{{FLOW}}
     </div>
 
     <div class="btns">
-      <a class="btn" href="https://sojo.churchcenter.com/groups">Learn more about groups</a>
-      <a class="btn btn-ghost" href="https://sojo.churchcenter.com/registrations/events/3926602/reservations/new">Sign up for Wednesday night</a>
+{{FLOW_BUTTONS}}
     </div>
   </div>
 </section>
@@ -466,9 +445,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     it was ours to start with.</p>
 
     <div class="ways">
-      <div><b>Check</b><span>Made out to SOJO Church. Hand it to an usher when they come by.</span></div>
-      <div><b>Cash</b><span>Use an envelope and put your name on it — that’s the only way we can credit the gift to you at the end of the year.</span></div>
-      <div><b>Online</b><span>One time or recurring, from your phone. Takes about a minute.</span></div>
+{{GIVING_WAYS}}
     </div>
 
     <div class="btns" style="margin-top:22px">
@@ -483,10 +460,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     the Mill, and the kids&rsquo; rooms staffed every Sunday is what your giving does.</p>
 
     <div class="figs">
-      <span class="fig"><b>$8,618</b><span>Last week</span></span>
-      <span class="fig"><b>$41,029</b><span>September</span></span>
+      <span class="fig"><b>{{GIVING_WEEK}}</b><span>Last week</span></span>
+      <span class="fig"><b>{{GIVING_MONTH}}</b><span>{{GIVING_MONTH_LABEL}}</span></span>
     </div>
-    <p class="asof">Week of Sep 21 – Sep 27 · 243 gifts in September</p>
+    <p class="asof">{{GIVING_ASOF}}</p>
   </div>
 </section>
 
@@ -495,13 +472,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <p class="eyebrow">Bring Someone</p>
     <h2 class="display display-sm">Invite one person</h2>
 
-    <img class="seriesart" src="babel.jpg" alt="BABEL — a five-week series at SOJO Church. Old gods. New names. Genesis 11 to Acts 2.">
+    <img class="seriesart" src="{{INVITE_ART}}" alt="{{INVITE_ART_ALT}}">
 
-    <p class="lede">A whole civilization decided it could build its way to God. We are still building towers — money, power, politics, technology. Same old gods, new names. Bring one person who’s asking why the world feels the way it does right now.</p>
+    <p class="lede">{{INVITE_LEDE}}</p>
 
     <div class="field" style="margin-top:22px">
       <label class="lbl" for="inviteText">Your message</label>
-      <textarea id="inviteText" rows="5">Come with me to church next week — we’re talking about the craziness in the world and how God’s plan is better than we can ever imagine. 9:00 or 11:00 at Gibson Mill, 325 McGill Ave. About an hour and change. https://sojo.church</textarea>
+      <textarea id="inviteText" rows="5">{{INVITE_TEXT}}</textarea>
     </div>
     <div class="btns">
       <button class="btn" type="button" id="inviteBtn" style="background:var(--cream); color:var(--charcoal); border-color:var(--cream)">Send this invite</button>
@@ -520,22 +497,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <p class="muted" style="margin-top:14px">Nothing to look up today. Just listen. These save on your phone as you type.</p>
 
     <div style="margin-top:22px">
-      <div class="noteblock">
-        <span class="note-q">What landed on you this morning?</span>
-        <textarea id="note1" rows="2" placeholder="Start typing&hellip;"></textarea>
-      </div>
-      <div class="noteblock">
-        <span class="note-q">Who already knows your name here — and who doesn’t yet?</span>
-        <textarea id="note2" rows="2" placeholder="Start typing&hellip;"></textarea>
-      </div>
-      <div class="noteblock">
-        <span class="note-q">One name you’re going to learn before you leave the room.</span>
-        <textarea id="note3" rows="2" placeholder="Start typing&hellip;"></textarea>
-      </div>
-      <div class="noteblock">
-        <span class="note-q">One person you’re going to bring to BABEL next Sunday.</span>
-        <textarea id="note4" rows="2" placeholder="Start typing&hellip;"></textarea>
-      </div>
+{{NOTE_BLOCKS}}
       <span class="notes-saved" id="notesSaved"></span>
     </div>
   </div>
@@ -566,7 +528,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
     <p class="fine" style="margin-top:26px">It goes straight to our team. It&rsquo;s how we know you were here.</p>
     <div class="btns" style="margin-top:12px">
-      <a class="btn btn-ghost" href="https://go.myhello.church/v2/location/u7Nk3mMR6bl4lJdgYze5/form-builder-v2/lg1BNQ4ZiLB8JeZ8y3c4" style="color:var(--cream); border-color:rgba(245,240,230,.78); background:transparent">Connection Card</a>
+      <a class="btn btn-ghost" href="{{CONNECT_URL}}" style="color:var(--cream); border-color:rgba(245,240,230,.78); background:transparent">Connection Card</a>
     </div>
   </div>
 </section>
@@ -577,35 +539,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <h2 class="display display-sm">What&rsquo;s next</h2>
 
     <div class="trio">
-      <a href="https://sojo.church/">
-        <span class="when">Next Sunday, Oct 11</span>
-        <h3>BABEL</h3>
-        <p>We are still building towers. New series — every week stands on its own.</p>
-      </a>
-      <a href="https://sojo.churchcenter.com/registrations/events/3926602/reservations/new">
-        <span class="when">Wed, Oct 14 · 6:30–8:00pm</span>
-        <h3>Genesis 1–11</h3>
-        <p>The soil the whole story grows out of. Youth and adults meet separately.</p>
-      </a>
-      <a href="https://sojo.churchcenter.com/registrations/events/3848052/reservations/new">
-        <span class="when">Starts Tue, Oct 6 · 7pm</span>
-        <h3>Discover More</h3>
-        <p>Three weeks on the essentials. Bring your questions.</p>
-      </a>
-      <a href="https://sojo.churchcenter.com/registrations/events/3915581/reservations/new">
-        <span class="when">Wed, Oct 7 · 6:00pm</span>
-        <h3>Fields of Faith</h3>
-        <p>Youth, at Atrium Health Ballpark in Kannapolis. We meet outside the gates.</p>
-      </a>
+{{TILES}}
     </div>
 
     <div class="swag">
-      <img src="swag.jpg" alt="Every shirt is a Bible">
+      <img src="{{SWAG_ART}}" alt="{{SWAG_TITLE}}">
       <div class="swag-t">
         <p class="eyebrow">SOJO Swag</p>
-        <h3 class="display display-xs">Every shirt is a Bible</h3>
-        <p>Printed on demand when you order it, so nothing sits in a box in a closet. And every piece that sells puts a Bible in the hands of somebody who just met Jesus.</p>
-        <a class="link" href="https://sojo.church/swag.html">See the swag <span>&rarr;</span></a>
+        <h3 class="display display-xs">{{SWAG_TITLE}}</h3>
+        <p>{{SWAG_BODY}}</p>
+        <a class="link" href="{{SWAG_URL}}">See the swag <span>&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -619,15 +562,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <h2 class="display display-sm">Two things worth saying out loud</h2>
 
     <div class="rows">
-      <div class="row"><span class="num">&mdash;</span><div class="rt">
-        <h3>Twenty-five new faces</h3>
-        <p style="color:var(--ink)">Our first Discover SOJO in the new home was packed — about twenty-five people who said, “I want to know more about this place.” So here’s your job. If you see someone you don’t recognize this morning, don’t wait for a greeter. Say hi. Learn a name. Invite them to sit with you. That’s how a crowd becomes a family.</p>
-        <a class="link" href="https://sojo.churchcenter.com/registrations/events/3848051/reservations/new">Next Discover SOJO · Oct 25 <span>&rarr;</span></a>
-      </div></div>
-      <div class="row"><span class="num">&mdash;</span><div class="rt">
-        <h3>Thank you, Jessica and Sarah</h3>
-        <p style="color:var(--ink)">Oktoberfest happened because two people said yes and then did the work. Jessica and Sarah — thank you for putting us on our own back doorstep with the love of Jesus. And to everyone who served: you were people of peace this weekend. Well done.</p>
-      </div></div>
+{{PASTOR_NOTES}}
     </div>
   </div>
 </section>
@@ -640,11 +575,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <h2 class="display display-sm">The rhythm</h2>
 
     <div class="whenrow">
-      <div><b>Sunday</b><span>9:00 &amp; 11:00</span><em>Gathered worship</em></div>
-      <div><b>Sunday</b><span>5:00pm</span><em>SOJO Recovery</em></div>
-      <div><b>Sunday</b><span>7:00pm</span><em>SOJO YA · ages 18–29</em></div>
-      <div><b>Monday</b><span>5:30pm</span><em>Prayer Team</em></div>
-      <div><b>Wednesday</b><span>6:00pm</span><em>Youth · 6th–12th grade</em></div>
+{{RHYTHM}}
     </div>
 
   </div>
@@ -656,17 +587,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <h2 class="display display-sm">Groups with room in them</h2>
 
     <nav class="plist">
-      <a class="pw" href="https://sojo.churchcenter.com/groups/x/ya">
-        <span class="stackt"><span class="pw-n">SOJO YA</span><span class="pw-d">Sundays, 7-9pm</span></span><span class="pw-go">&rarr;</span></a>
-      <a class="pw" href="https://sojo.churchcenter.com/groups/x/w">
-        <span class="stackt"><span class="pw-n">Women of the Willow</span><span class="pw-d">Tuesdays, 6-8pm</span></span><span class="pw-go">&rarr;</span></a>
-      <a class="pw" href="https://sojo.churchcenter.com/groups">
-        <span class="stackt"><span class="pw-n">See all groups</span><span class="pw-d">Recovery, prayer, journaling, families, and more</span></span><span class="pw-go">&rarr;</span></a>
+{{GROUPS}}
     </nav>
 
     <div class="btns">
-      <a class="btn" href="https://sojo.churchcenter.com/groups">Tell me about groups</a>
-      <a class="btn btn-ghost" href="https://sojo.churchcenter.com/registrations/events/3926602/reservations/new">Wednesday nights</a>
+{{GROUP_BUTTONS}}
     </div>
   </div>
 </section>
@@ -701,20 +626,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       Concord, NC 28027
     </address>
     <div class="ftr-bot"><span>Tapped from your seat &middot; See you next Sunday</span>
-      <span style="opacity:.45">Built 2026-09-30 13:02 UTC</span></div>
+      <span style="opacity:.45">Built {{BUILT_AT}}</span></div>
   </div>
 </footer>
 
 <script>
   /* Filled by build_sunday.py from content.json. Leave the endpoint blank and
      the email form hides itself rather than taking an address it cannot use. */
-  var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-  var FORM_KEY = '08842af3-4a91-46a5-a8d5-119a5fe10989';
+  var FORM_ENDPOINT = '{{FORM_ENDPOINT}}';
+  var FORM_KEY = '{{FORM_KEY}}';
 </script>
 <script>
   (function () {
-    var NOTE_IDS = Array.from({length: 4}, function (_, i) { return 'note' + (i + 1); });
-    var KEY_PREFIX = 'sojo-notes-2026-10-04-';
+    var NOTE_IDS = Array.from({length: {{NOTE_COUNT}}}, function (_, i) { return 'note' + (i + 1); });
+    var KEY_PREFIX = 'sojo-notes-{{WEEK_ISO}}-';
 
     function store(action, key, value) {
       try {
@@ -825,8 +750,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       payload.append('subject', 'Sunday page — ' + email.value);
       payload.append('from_name', 'SOJO Sunday page');
       payload.append('notes', collectNotes());
-      payload.append('service', 'Community Sunday, October 4 2026');
-      payload.append('replyto', 'info@sojourner.church');
+      payload.append('service', '{{LABEL}}, {{WEEK_LONG}} 2026');
+      payload.append('replyto', '{{REPLY_TO}}');
 
       var endpoint = (typeof FORM_ENDPOINT === 'string') ? FORM_ENDPOINT : '';
       if (!endpoint || !FORM_KEY) {

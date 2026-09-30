@@ -1,0 +1,677 @@
+<title>SOJO Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SOJO LIVE — the Sunday page for people who are not in the room.
+
+   Same design system as /sunday, different job. In the room the page is a
+   companion to what is in front of you. At home the page IS the room: the
+   video is the main event and the bulletin runs alongside it.
+
+   The one decision everything else follows from: the video is pinned. On a
+   phone, a video that scrolls away makes the whole page useless — you cannot
+   read along with something you cannot see.
+   ============================================================ */
+:root{
+  --cream:#F5F0E6; --cream-2:#EFE8DA; --sand:#D6CDB8;
+  --gold:#BFAE86; --gold-bright:#D3C5A4; --gold-deep:#766645;
+  --charcoal:#302E2A; --charcoal-2:#26241F; --ink:#302E2A;
+  --muted:#605C55; --muted-dark:#AAA59D;
+  --live:#B4453C;
+  --line:rgba(48,46,42,.18); --line-dark:rgba(245,240,230,.22);
+  --f-display:'Big Shoulders Display','Oswald','Arial Narrow',Impact,sans-serif;
+  --f-ui:'Inter',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --f-body:'Roboto',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --wrap:720px; --gut:clamp(20px,5vw,40px); --sec:clamp(40px,6vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--f-body);font-size:17px;line-height:1.72;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit}
+button,input,textarea{font:inherit}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+.sec{padding-block:var(--sec)}
+.dark{background:var(--charcoal);color:var(--cream)}
+.dark a{color:var(--cream)}
+
+.eyebrow{font-family:var(--f-ui);font-size:12px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 16px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:26px;height:2px;background:var(--gold);flex:0 0 auto}
+.dark .eyebrow{color:var(--gold-bright)}
+.display{font-family:var(--f-display);font-weight:600;text-transform:uppercase;
+  line-height:.92;letter-spacing:-.005em;margin:0;font-size:clamp(2rem,7vw,3rem)}
+.display-sm{font-size:clamp(1.6rem,5vw,2.3rem);line-height:.98}
+.display-xs{font-size:clamp(1.25rem,3.8vw,1.6rem);line-height:1.04}
+.lede{font-size:clamp(1.02rem,2.2vw,1.16rem);line-height:1.62;margin:16px 0 0;max-width:56ch}
+.dark .lede{color:#EFEADF}
+p{margin:0 0 1.1em;max-width:64ch}
+.muted{color:var(--muted)}
+.dark .muted{color:var(--muted-dark)}
+.gold{color:var(--gold)}
+.lane{height:3px;border:0;margin:0;width:100%;
+  background:repeating-linear-gradient(90deg,var(--gold) 0 58px,transparent 58px 94px);opacity:.5}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  font-family:var(--f-ui);font-weight:600;font-size:.83rem;letter-spacing:.07em;
+  text-transform:uppercase;text-decoration:none;padding:15px 28px;
+  border:1px solid var(--charcoal);background:var(--charcoal);color:var(--cream);
+  min-height:52px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.btn:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:#fff}
+.btn-ghost{background:transparent;color:var(--charcoal);border-color:var(--charcoal)}
+.btn-ghost:hover{background:var(--charcoal);color:var(--cream)}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+@media(max-width:560px){.btns .btn{flex:1 1 100%}}
+.link{font-family:var(--f-ui);font-weight:700;font-size:.8rem;letter-spacing:.08em;
+  text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;
+  gap:.6em;min-height:46px;padding:0 17px;border:1.5px solid var(--gold-deep);
+  background:rgba(191,174,134,.13);color:var(--gold-deep);align-self:start;width:fit-content}
+.link:hover{background:var(--gold-deep);color:var(--cream)}
+.dark .link{border-color:var(--gold);color:var(--gold-bright);background:rgba(191,174,134,.14)}
+
+/* ---------- the stage: video + status, pinned ---------- */
+.stage{position:sticky;top:0;z-index:40;background:var(--charcoal-2);
+  box-shadow:0 8px 24px rgba(38,36,31,.22)}
+.stage-in{max-width:var(--wrap);margin-inline:auto}
+.frame{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* Shown until the stream is live, and if the embed cannot load at all. */
+.frame .holder{position:absolute;inset:0;display:grid;place-content:center;
+  text-align:center;gap:10px;padding:20px;color:var(--sand);
+  background:linear-gradient(165deg,#35322D,#26241F)}
+.frame .holder b{font-family:var(--f-display);text-transform:uppercase;font-weight:600;
+  font-size:clamp(1.3rem,4vw,1.9rem);color:var(--cream);line-height:1}
+.frame .holder span{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.04em}
+
+.statusbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:9px clamp(14px,4vw,20px);background:var(--charcoal);
+  border-top:1px solid rgba(245,240,230,.14)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--live);flex:0 0 auto;
+  box-shadow:0 0 0 0 rgba(180,69,60,.55);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(180,69,60,.55)}
+  70%{box-shadow:0 0 0 7px rgba(180,69,60,0)}100%{box-shadow:0 0 0 0 rgba(180,69,60,0)}}
+.dot.off{background:var(--sand);animation:none;box-shadow:none}
+.statusbar .st{font-family:var(--f-ui);font-size:.74rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--cream)}
+.statusbar .now{font-family:var(--f-ui);font-size:.74rem;color:var(--sand);
+  margin-left:auto;text-align:right}
+.statusbar .now b{color:var(--gold-bright);font-weight:600}
+
+/* ---------- the order, as chapters ---------- */
+.chapters{margin-top:20px;border-top:1px solid var(--line)}
+.ch{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 clamp(12px,3vw,20px);
+  width:100%;text-align:left;padding:13px 4px;border:0;border-bottom:1px solid var(--line);
+  background:transparent;align-items:baseline;cursor:pointer;font:inherit;color:inherit}
+.ch:hover{background:var(--cream-2)}
+.ch .at{font-family:var(--f-ui);font-size:.7rem;font-weight:600;letter-spacing:.06em;
+  color:var(--gold-deep);font-variant-numeric:tabular-nums;min-width:3.4em}
+.ch .t{font-family:var(--f-display);text-transform:uppercase;font-weight:500;
+  font-size:1.06rem;line-height:1.12;display:block}
+.ch .d{font-family:var(--f-ui);font-size:.79rem;line-height:1.5;color:var(--muted);
+  margin:3px 0 0;max-width:52ch}
+/* Where we are, as far as the plan knows. Deliberately understated — the plan
+   is an estimate, and a bold progress bar would claim a precision we do not have. */
+.ch.on{background:rgba(191,174,134,.16);box-shadow:inset 3px 0 0 var(--gold)}
+.ch.on .t{color:var(--gold-deep)}
+.ch.done{opacity:.55}
+.chnote{font-family:var(--f-ui);font-size:.74rem;color:var(--muted);margin:12px 0 0}
+
+/* ---------- notes ---------- */
+.noteblock{display:flex;flex-direction:column;gap:9px;padding:20px 0;border-top:1px solid var(--line)}
+.noteblock:first-of-type{border-top:0}
+.note-q{font-family:var(--f-display);text-transform:uppercase;font-weight:500;
+  font-size:clamp(1.1rem,3.4vw,1.35rem);line-height:1.1}
+textarea{width:100%;min-height:78px;padding:12px 13px;background:#FFFCFA;
+  border:1px solid var(--line);border-radius:0;font-family:var(--f-body);
+  font-size:16px;line-height:1.55;color:var(--ink);resize:vertical}
+.notes-saved{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);min-height:18px;margin-top:6px}
+
+/* ---------- tiles / ways ---------- */
+.trio{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,30px);margin-top:28px}
+@media(max-width:480px){.trio{grid-template-columns:1fr;gap:22px}}
+@media(min-width:900px){.trio{grid-template-columns:repeat(4,1fr)}}
+.trio a{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;gap:6px}
+.trio .when{font-family:var(--f-ui);font-size:.71rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold-deep)}
+.trio h3{font-family:var(--f-display);text-transform:uppercase;font-weight:500;
+  font-size:1.3rem;margin:0;line-height:1.05;color:var(--gold-deep);
+  text-decoration:underline;text-decoration-color:var(--gold);
+  text-decoration-thickness:2px;text-underline-offset:5px}
+.trio p{color:var(--muted);font-size:.92rem;margin:0}
+.trio a::after{content:'Open \2192';font-family:var(--f-ui);font-size:.71rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--gold-deep);margin-top:3px}
+
+.figs{display:flex;flex-wrap:wrap;gap:22px 40px;margin:16px 0 2px;padding:15px 0;
+  border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark)}
+.fig{display:flex;flex-direction:column;gap:3px}
+.fig b{font-family:var(--f-display);font-weight:600;font-size:clamp(1.6rem,4.6vw,2rem);
+  line-height:1;color:var(--gold-bright);font-variant-numeric:tabular-nums}
+.fig span{font-family:var(--f-ui);font-size:.71rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted-dark)}
+.asof{font-family:var(--f-ui);font-size:.72rem;color:var(--muted-dark);margin:0}
+
+.field{display:flex;flex-direction:column;gap:8px}
+label.lbl{font-family:var(--f-ui);font-size:.72rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted)}
+.dark label.lbl{color:var(--muted-dark)}
+input[type=email]{width:100%;min-height:52px;padding:0 14px;background:#FFFCFA;
+  border:1px solid var(--line);border-radius:0;font-family:var(--f-body);font-size:16px;color:var(--ink)}
+.dark input[type=email],.dark textarea{background:rgba(245,240,230,.07);
+  border-color:var(--line-dark);color:var(--cream)}
+.fine{font-family:var(--f-ui);font-size:.74rem;color:var(--muted)}
+.dark .fine{color:var(--muted-dark)}
+.notice{border:1px dashed var(--gold);padding:13px 15px;font-size:.93rem;line-height:1.55;margin-top:14px}
+.status{font-family:var(--f-ui);font-size:.8rem;font-weight:600;color:var(--gold-deep);
+  min-height:20px;margin-top:10px}
+.dark .status{color:var(--gold-bright)}
+
+.ftr{background:var(--charcoal-2);color:var(--cream);padding-block:clamp(36px,6vw,56px) 0}
+.ftr .logo{height:80px;width:auto;margin:0 auto 16px;filter:brightness(0) invert(1);opacity:.82}
+.ftr .addr-s{font-style:normal;color:#E4DED2;font-size:.93rem;line-height:1.72;text-align:center}
+.ftr-bot{margin-top:clamp(24px,4vw,40px);padding-block:20px;border-top:1px solid var(--line-dark);
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center;
+  font-family:var(--f-ui);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted-dark)}
+
+@media(min-width:1000px){
+  :root{--wrap:1040px}
+  .sec{padding-block:clamp(52px,5vw,76px)}
+  .chapters,.noteblock,.contact{max-width:760px}
+}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--gold);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="stage">
+  <div class="stage-in">
+    <div class="frame">
+      <div class="holder" id="holder">
+        <b id="holderTitle">Service starts at 9:00</b>
+        <span id="holderSub">The stream opens a few minutes beforehand.</span>
+      </div>
+      <iframe id="player" hidden title="SOJO Church live stream"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="statusbar">
+      <span class="dot off" id="dot" aria-hidden="true"></span>
+      <span class="st" id="statusText">Not live yet</span>
+      <span class="now" id="nowText"></span>
+    </div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Community Sunday &middot; October 4</p>
+    <h1 class="display">Not from a stage.<br>Around a <span class="gold">table</span>.</h1>
+    <p class="lede">This is how “deeper together” actually happens — around a table with people who know your name. This morning we’re introducing our new small group leaders and praying over them as a church. Come stand with them.</p>
+
+    <div class="notice" style="margin-top:22px">
+      <b>Watching from home?</b> Tell us you&rsquo;re here. It&rsquo;s the only way we know &mdash;
+      we can see the room, but we can&rsquo;t see you.
+    </div>
+    <div class="btns">
+      <a class="btn" href="https://go.myhello.church/v2/location/u7Nk3mMR6bl4lJdgYze5/form-builder-v2/lg1BNQ4ZiLB8JeZ8y3c4">I&rsquo;m watching &mdash; say hello</a>
+      <a class="btn btn-ghost" href="https://sojo.churchcenter.com/giving">Give online</a>
+    </div>
+  </div>
+</section>
+
+<hr class="lane">
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Follow Along</p>
+    <h2 class="display display-sm">This morning, in order</h2>
+    <div class="chapters" id="chapters">      <button class="ch" type="button" data-at="0"><span class="at">0:00</span><span><span class="t">Welcome</span></span></button>
+      <button class="ch" type="button" data-at="60"><span class="at">1:00</span><span><span class="t">Worship</span>
+        <span class="d">Yes I Will · Holy Forever</span></span></button>
+      <button class="ch" type="button" data-at="906"><span class="at">15:06</span><span><span class="t">Generosity</span></span></button>
+      <button class="ch" type="button" data-at="1326"><span class="at">22:06</span><span><span class="t">The Message</span>
+        <span class="d">Pastor Dan Conklin</span></span></button>
+      <button class="ch" type="button" data-at="3726"><span class="at">62:06</span><span><span class="t">Response</span>
+        <span class="d">Christ Be Magnified</span></span></button>
+      <button class="ch" type="button" data-at="3726"><span class="at">62:06</span><span><span class="t">Communion</span>
+        <span class="d">The table is open to anyone who follows Jesus. If that’s not you yet, no pressure — just let it pass.</span></span></button>
+      <button class="ch" type="button" data-at="4026"><span class="at">67:06</span><span><span class="t">Baptism</span>
+        <span class="d">Somebody is going public with their faith this morning.</span></span></button>
+      <button class="ch" type="button" data-at="4026"><span class="at">67:06</span><span><span class="t">Praying Over Our Leaders</span>
+        <span class="d">Introducing our new small group leaders and praying over them together.</span></span></button></div>
+    <p class="chnote" id="chNote"></p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Message Notes</p>
+    <h2 class="display display-sm">Write it down</h2>
+    <p class="muted" style="margin-top:12px">These save on this device as you type, and come
+      along in the email if you send it to yourself.</p>
+    <div style="margin-top:20px">
+      <div class="noteblock">
+        <span class="note-q">What landed on you this morning?</span>
+        <textarea id="note1" rows="2" placeholder="Start typing&hellip;"></textarea>
+      </div>
+      <div class="noteblock">
+        <span class="note-q">Who already knows your name here — and who doesn’t yet?</span>
+        <textarea id="note2" rows="2" placeholder="Start typing&hellip;"></textarea>
+      </div>
+      <div class="noteblock">
+        <span class="note-q">One name you’re going to learn before you leave the room.</span>
+        <textarea id="note3" rows="2" placeholder="Start typing&hellip;"></textarea>
+      </div>
+      <div class="noteblock">
+        <span class="note-q">One person you’re going to bring to BABEL next Sunday.</span>
+        <textarea id="note4" rows="2" placeholder="Start typing&hellip;"></textarea>
+      </div>
+      <span class="notes-saved" id="notesSaved"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="eyebrow">Take It With You</p>
+    <h2 class="display display-sm">Send yourself this morning</h2>
+    <p class="lede" id="sendLead">Your email, and we&rsquo;ll send the order of service, every
+      link on this page, and whatever you wrote down.</p>
+
+    <form id="sendForm" novalidate style="margin-top:22px">
+      <div class="field">
+        <label class="lbl" for="sendEmail">Your email</label>
+        <input id="sendEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+      </div>
+      <input type="checkbox" name="botcheck" id="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="btns"><button class="btn" type="submit" style="background:var(--cream);color:var(--charcoal);border-color:var(--cream)">Send it to me</button></div>
+      <p class="fine" style="margin-top:12px">One email about today. Nothing else.</p>
+    </form>
+    <div class="notice" id="sendUnwired" hidden>Email isn&rsquo;t switched on yet &mdash; use the
+      Connect Card above and we&rsquo;ll get today&rsquo;s program to you.</div>
+    <div class="notice" id="sendDone" hidden>Got it &mdash; thank you. Your notes are saved on
+      this device either way.</div>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="eyebrow">Generosity</p>
+    <h2 class="display display-sm">Worship through giving</h2>
+    <p class="lede">This part of the morning is worship, the same as the singing. From where
+      you are, online is the way &mdash; one time or recurring, and it takes about a minute.</p>
+
+    <div class="figs">
+      <span class="fig"><b>$8,618</b><span>Last week</span></span>
+      <span class="fig"><b>$41,029</b><span>September</span></span>
+    </div>
+    <p class="asof">Week of Sep 21 – Sep 27 · 243 gifts in September</p>
+
+    <div class="btns">
+      <a class="btn" href="https://sojo.churchcenter.com/giving" style="background:var(--cream);color:var(--charcoal);border-color:var(--cream)">Give online</a>
+      <a class="btn btn-ghost" href="https://sojo.church/give.html#challenge" style="color:var(--cream);border-color:rgba(245,240,230,.78)">The 90-day challenge</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Don&rsquo;t Miss</p>
+    <h2 class="display display-sm">What&rsquo;s next</h2>
+    <div class="trio">
+      <a href="https://sojo.church/">
+        <span class="when">Next Sunday, Oct 11</span>
+        <h3>BABEL</h3>
+        <p>We are still building towers. New series — every week stands on its own.</p>
+      </a>
+      <a href="https://sojo.churchcenter.com/registrations/events/3926602/reservations/new">
+        <span class="when">Wed, Oct 14 · 6:30–8:00pm</span>
+        <h3>Genesis 1–11</h3>
+        <p>The soil the whole story grows out of. Youth and adults meet separately.</p>
+      </a>
+      <a href="https://sojo.churchcenter.com/registrations/events/3848052/reservations/new">
+        <span class="when">Starts Tue, Oct 6 · 7pm</span>
+        <h3>Discover More</h3>
+        <p>Three weeks on the essentials. Bring your questions.</p>
+      </a>
+      <a href="https://sojo.churchcenter.com/registrations/events/3915581/reservations/new">
+        <span class="when">Wed, Oct 7 · 6:00pm</span>
+        <h3>Fields of Faith</h3>
+        <p>Youth, at Atrium Health Ballpark in Kannapolis. We meet outside the gates.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="lane">
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="eyebrow">Bring Someone</p>
+    <h2 class="display display-sm">Invite one person</h2>
+    <p class="lede">A whole civilization decided it could build its way to God. We are still building towers — money, power, politics, technology. Same old gods, new names. Bring one person who’s asking why the world feels the way it does right now.</p>
+    <div class="field" style="margin-top:20px">
+      <label class="lbl" for="inviteText">Your message</label>
+      <textarea id="inviteText" rows="5">Come with me to church next week — we’re talking about the craziness in the world and how God’s plan is better than we can ever imagine. 9:00 or 11:00 at Gibson Mill, 325 McGill Ave. About an hour and change. https://sojo.church</textarea>
+    </div>
+    <div class="btns">
+      <button class="btn" type="button" id="inviteBtn" style="background:var(--cream);color:var(--charcoal);border-color:var(--cream)">Send this invite</button>
+      <button class="btn btn-ghost" type="button" id="inviteCopy" style="color:var(--cream);border-color:rgba(245,240,230,.78)">Copy it</button>
+    </div>
+    <p class="status" id="inviteStatus"></p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">In The Room Instead?</p>
+    <h2 class="display display-xs">The chair-back version lives at <a href="/sunday/" style="color:var(--gold-deep)">sojo.church/sunday</a></h2>
+    <p class="muted" style="margin-top:10px">Same morning, built for people who are there.</p>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <img class="logo" src="sojo-seal.png" alt="SOJO Church, Concord NC">
+    <address class="addr-s">
+      Sundays 9:00 &amp; 11:00<br>
+      The Kettle Room at Gibson Mill<br>
+      325 McGill Ave NW, Suite 148, Concord, NC 28027
+    </address>
+    <div class="ftr-bot">
+      <span>Watching along &middot; See you next Sunday</span>
+      <span style="opacity:.45">Built 2026-09-30 13:02 UTC</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
+  var FORM_KEY = '08842af3-4a91-46a5-a8d5-119a5fe10989';
+  var YT_CHANNEL = 'UCl0vhjkyMWlfSxOP8Tqsu3g';
+  var YT_REPLAY = '';        /* a video id, once the recording exists */
+  var SERVICES = ["09:00", "11:00"];        /* ["09:00","11:00"], church local */
+  var SERVICE_SECONDS = 4326;
+  var CHAPTERS = [{"t": 0, "title": "Welcome"}, {"t": 60, "title": "Worship"}, {"t": 906, "title": "Generosity"}, {"t": 1326, "title": "The Message"}, {"t": 3726, "title": "Response"}, {"t": 3726, "title": "Communion"}, {"t": 4026, "title": "Baptism"}, {"t": 4026, "title": "Praying Over Our Leaders"}];
+  var TZ = 'America/New_York';
+</script>
+<script>
+(function () {
+  'use strict';
+
+  var NOTE_IDS = Array.from({length: 4}, function (_, i) { return 'note' + (i + 1); });
+  var KEY_PREFIX = 'sojo-live-2026-10-04-';
+
+  function store(op, key, val) {
+    try {
+      if (op === 'get') { return window.localStorage.getItem(key); }
+      window.localStorage.setItem(key, val);
+    } catch (e) {}
+    return null;
+  }
+
+  /* ---------------------------------------------------------- the clock
+
+     Everything about "where are we" is wall-clock, not player time.
+
+     A live YouTube stream reports its position inside the DVR buffer, which
+     does not map cleanly onto "minutes into the service" — and fighting that
+     API produces an indicator that is confidently wrong. The service start
+     time is known, the plan's item lengths are known, so elapsed time is just
+     arithmetic, and it degrades honestly: if the service starts late, the
+     marker is late by exactly that much, and nothing pretends otherwise.
+
+     The viewer could be in any timezone, so church-local time comes from Intl
+     rather than from their device clock. */
+
+  function churchNow() {
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: TZ, hour12: false,
+      weekday: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit'
+    }).formatToParts(new Date()).reduce(function (o, p) { o[p.type] = p.value; return o; }, {});
+    return {
+      day: parts.weekday,
+      seconds: (+parts.hour) * 3600 + (+parts.minute) * 60 + (+parts.second)
+    };
+  }
+
+  function hhmmToSeconds(s) {
+    var p = s.split(':');
+    return (+p[0]) * 3600 + (+p[1]) * 60;
+  }
+
+  var PRE_ROLL = 10 * 60;   /* the stream is usually up before the service */
+  var GRACE = 20 * 60;      /* services run long; keep the page in live mode */
+
+  function serviceState() {
+    var now = churchNow();
+    if (now.day !== 'Sun') { return { mode: 'off' }; }
+    for (var i = 0; i < SERVICES.length; i++) {
+      var start = hhmmToSeconds(SERVICES[i]);
+      var end = start + SERVICE_SECONDS + GRACE;
+      if (now.seconds >= start - PRE_ROLL && now.seconds < end) {
+        return { mode: 'live', elapsed: now.seconds - start, label: SERVICES[i] };
+      }
+      if (now.seconds < start - PRE_ROLL) {
+        return { mode: 'soon', at: SERVICES[i] };
+      }
+    }
+    return { mode: 'after' };
+  }
+
+  function mmss(s) {
+    if (s < 0) { s = 0; }
+    var m = Math.floor(s / 60);
+    return m + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  }
+
+  function niceTime(hhmm) {
+    var p = hhmm.split(':'), h = +p[0];
+    return (h % 12 || 12) + (p[1] === '00' ? '' : ':' + p[1]) + (h < 12 ? 'am' : 'pm');
+  }
+
+  /* ---------------------------------------------------------- the video */
+
+  var frameEl = document.getElementById('player');
+  var holder = document.getElementById('holder');
+  var mounted = '';
+
+  function mount(src, kind) {
+    if (mounted === src) { return; }
+    mounted = src;
+    frameEl.src = src;
+    frameEl.hidden = false;
+    holder.hidden = true;
+  }
+
+  function showHolder(title, sub) {
+    holder.hidden = false;
+    frameEl.hidden = true;
+    mounted = '';
+    document.getElementById('holderTitle').textContent = title;
+    document.getElementById('holderSub').textContent = sub;
+  }
+
+  /* ---------------------------------------------------------- chapters */
+
+  var chEls = [].slice.call(document.querySelectorAll('.ch'));
+
+  function markChapters(elapsed, live) {
+    var current = -1;
+    if (live) {
+      for (var i = 0; i < CHAPTERS.length; i++) {
+        if (elapsed >= CHAPTERS[i].t) { current = i; }
+      }
+    }
+    chEls.forEach(function (el, i) {
+      el.classList.toggle('on', i === current);
+      el.classList.toggle('done', current > -1 && i < current);
+    });
+    return current;
+  }
+
+  chEls.forEach(function (el) {
+    el.addEventListener('click', function () {
+      var at = +el.getAttribute('data-at');
+      if (YT_REPLAY) {
+        /* On a recording the timestamp is real, so jump to it. */
+        mount('https://www.youtube.com/embed/' + encodeURIComponent(YT_REPLAY) +
+              '?start=' + at + '&autoplay=1&rel=0', 'replay');
+        document.querySelector('.stage').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        /* Live, the timestamp is an estimate off the plan, so scrolling the
+           page is honest and seeking the DVR would not be. */
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+
+  /* ---------------------------------------------------------- tick */
+
+  var dot = document.getElementById('dot');
+  var statusText = document.getElementById('statusText');
+  var nowText = document.getElementById('nowText');
+  var chNote = document.getElementById('chNote');
+
+  function tick() {
+    var s = serviceState();
+
+    if (s.mode === 'live') {
+      if (YT_CHANNEL) {
+        mount('https://www.youtube.com/embed/live_stream?channel=' +
+              encodeURIComponent(YT_CHANNEL) + '&autoplay=1&rel=0', 'live');
+      } else {
+        showHolder('We are live', 'Open the stream on YouTube.');
+      }
+      dot.classList.remove('off');
+      statusText.textContent = s.elapsed < 0 ? 'Starting soon' : 'Live now';
+      var idx = markChapters(s.elapsed, true);
+      nowText.innerHTML = idx > -1
+        ? 'Now: <b>' + CHAPTERS[idx].title + '</b>'
+        : 'Service starts at ' + niceTime(s.label);
+      chNote.textContent = 'Times come from this morning’s plan, so they drift if the ' +
+        'service runs long. Tap anything to jump to it on the page.';
+
+    } else if (s.mode === 'soon') {
+      showHolder('Service starts at ' + niceTime(s.at),
+                 'The stream opens a few minutes beforehand.');
+      dot.classList.add('off');
+      statusText.textContent = 'Not live yet';
+      nowText.textContent = 'Today at ' + niceTime(s.at);
+      markChapters(0, false);
+      chNote.textContent = 'This is the order for this morning.';
+
+    } else {
+      if (YT_REPLAY) {
+        mount('https://www.youtube.com/embed/' + encodeURIComponent(YT_REPLAY) + '?rel=0', 'replay');
+        statusText.textContent = 'Watch the replay';
+        chNote.textContent = 'Tap any moment to jump straight to it.';
+      } else {
+        showHolder('That’s a wrap', 'The recording goes up shortly. Join us Sunday at 9:00 or 11:00.');
+        statusText.textContent = 'Replay coming soon';
+        chNote.textContent = 'This was the order this morning.';
+      }
+      dot.classList.add('off');
+      nowText.textContent = '';
+      markChapters(0, false);
+    }
+  }
+
+  tick();
+  setInterval(tick, 15000);
+
+  /* ---------------------------------------------------------- notes, share, email
+     Same behaviour as the in-room page, so somebody who uses both gets the
+     same page twice rather than two different pages. */
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.top = '-1000px';
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? resolve() : reject();
+    });
+  }
+
+  var saved = document.getElementById('notesSaved');
+  var notes = [];
+  NOTE_IDS.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) { return; }
+    notes.push(el);
+    var prior = store('get', KEY_PREFIX + id);
+    if (prior) { el.value = prior; }
+    el.addEventListener('input', function () {
+      store('set', KEY_PREFIX + id, el.value);
+      if (saved) { saved.textContent = 'Saved on this device'; }
+    });
+  });
+  if (saved && notes.some(function (el) { return el.value; })) {
+    saved.textContent = 'Saved on this device';
+  }
+
+  function collectNotes() {
+    return notes.map(function (el) {
+      var q = el.parentNode.querySelector('.note-q');
+      return (q ? q.textContent.trim() + '\n' : '') + el.value.trim();
+    }).filter(function (t) { return t.split('\n')[1]; }).join('\n\n');
+  }
+
+  var inviteText = document.getElementById('inviteText');
+  var inviteStatus = document.getElementById('inviteStatus');
+  function say(m) { if (inviteStatus) { inviteStatus.textContent = m; } }
+
+  document.getElementById('inviteBtn').addEventListener('click', function () {
+    var body = inviteText.value.trim();
+    if (!body) { inviteText.focus(); return; }
+    if (navigator.share) {
+      navigator.share({ text: body }).then(function () { say('Thanks for asking them.'); }).catch(function () {});
+      return;
+    }
+    copyText(body).then(function () { say('Copied. Paste it into a text.'); })
+      .catch(function () { inviteText.select(); say('Select the message above and copy it.'); });
+  });
+  document.getElementById('inviteCopy').addEventListener('click', function () {
+    var body = inviteText.value.trim();
+    if (!body) { return; }
+    copyText(body).then(function () { say('Copied. Paste it into a text.'); })
+      .catch(function () { inviteText.select(); say('Press and hold to copy.'); });
+  });
+
+  var form = document.getElementById('sendForm');
+  var done = document.getElementById('sendDone');
+  if (!(typeof FORM_ENDPOINT === 'string' && FORM_ENDPOINT && FORM_KEY)) {
+    form.hidden = true;
+    document.getElementById('sendLead').hidden = true;
+    document.getElementById('sendUnwired').hidden = false;
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('sendEmail');
+    if (!email.value || email.value.indexOf('@') < 1) { email.focus(); return; }
+    var payload = new FormData(form);
+    payload.append('access_key', FORM_KEY);
+    payload.append('subject', 'Watching online — ' + email.value);
+    payload.append('from_name', 'SOJO Live page');
+    payload.append('notes', collectNotes());
+    payload.append('service', 'Community Sunday, October 4 2026 (online)');
+    payload.append('replyto', 'info@sojourner.church');
+    fetch(FORM_ENDPOINT, { method: 'POST', body: payload }).catch(function () {});
+    form.hidden = true;
+    done.hidden = false;
+    done.setAttribute('role', 'status');
+  });
+})();
+</script>

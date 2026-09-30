@@ -1,0 +1,265 @@
+{
+  "_README": "This file is the week's voice. Planning Center supplies the facts — order of service, songs, giving totals, sign-up links and dates, groups. Everything here is what a person writes. Edit it in the admin page at /sunday/admin/, or edit it here directly if you are comfortable with JSON. Links are written by NAME, not by ID: {\"signup\": \"discover sojo\"} is looked up against live Planning Center every build, so a sign-up that gets closed or deleted quietly drops off the page instead of 404ing a guest.",
+  "label": "Community Sunday",
+  "runtime": "About 75 minutes",
+  "live_url": "https://www.youtube.com/@SOJOChurch/live",
+  "connect_card": {
+    "url": "https://go.myhello.church/v2/location/u7Nk3mMR6bl4lJdgYze5/form-builder-v2/lg1BNQ4ZiLB8JeZ8y3c4"
+  },
+  "email": {
+    "endpoint": "https://api.web3forms.com/submit",
+    "key": "08842af3-4a91-46a5-a8d5-119a5fe10989",
+    "reply_to": "info@sojourner.church"
+  },
+  "hero": {
+    "eyebrow": "Welcome",
+    "headline": "Not from a stage.<br>Around a <span class=\"gold\">table</span>.",
+    "lede": "This is how “deeper together” actually happens — around a table with people who know your name. This morning we’re introducing our new small group leaders and praying over them as a church. Come stand with them.",
+    "art": "community-sunday.jpg",
+    "art_alt": "Community Sunday at SOJO Church"
+  },
+  "welcome_note": "Welcome. If you’re new here, we’re so glad you came. Fill out a Connect Card if you haven’t already — and consider giving us five Sundays. That’s about how long it takes to stop feeling like a visitor.",
+  "flow": {
+    "_README": "Planning Center gives the order. These rename items and add the one line of detail a guest needs. Keys match the PCO item title, lowercased. 'hide' drops an item. 'insert' adds something PCO does not carry (Communion). '{{songs}}' expands to the worship set, '{{songs_after}}' to the response song.",
+    "items": {
+      "welcome": {
+        "title": "Welcome"
+      },
+      "yes i will": {
+        "title": "Worship",
+        "detail": "{{songs}}"
+      },
+      "giving talk": {
+        "title": "Generosity"
+      },
+      "message": {
+        "title": "The Message",
+        "detail": "Pastor Dan Conklin"
+      },
+      "christ be magnified": {
+        "title": "Response",
+        "detail": "{{songs_after}}"
+      },
+      "baptism": {
+        "title": "Baptism",
+        "detail": "Somebody is going public with their faith this morning."
+      },
+      "closing announcements": {
+        "title": "Praying Over Our Leaders",
+        "detail": "Introducing our new small group leaders and praying over them together."
+      }
+    },
+    "hide": [
+      "holy forever",
+      "flow moment",
+      "giving video"
+    ],
+    "fallback": [
+      {
+        "title": "Welcome"
+      },
+      {
+        "title": "Worship"
+      },
+      {
+        "title": "Generosity"
+      },
+      {
+        "title": "The Message"
+      },
+      {
+        "title": "Response"
+      },
+      {
+        "title": "Sending"
+      }
+    ],
+    "insert": [
+      {
+        "after": "Christ Be Magnified",
+        "title": "Communion",
+        "detail": "The table is open to anyone who follows Jesus. If that’s not you yet, no pressure — just let it pass."
+      }
+    ]
+  },
+  "note_prompts": [
+    "What landed on you this morning?",
+    "Who already knows your name here — and who doesn’t yet?",
+    "One name you’re going to learn before you leave the room.",
+    "One person you’re going to bring to BABEL next Sunday."
+  ],
+  "generosity": {
+    "ways": [
+      {
+        "label": "Check",
+        "text": "Made out to SOJO Church. Hand it to an usher when they come by."
+      },
+      {
+        "label": "Cash",
+        "text": "Use an envelope and put your name on it — that’s the only way we can credit the gift to you at the end of the year."
+      },
+      {
+        "label": "Online",
+        "text": "One time or recurring, from your phone. Takes about a minute."
+      }
+    ],
+    "fallback": {
+      "week_amount": "—",
+      "month_amount": "—",
+      "month_name": "This month",
+      "asof": "Giving figures are updated each week from Planning Center."
+    }
+  },
+  "announcements": [
+    {
+      "when": "Next Sunday, Oct 11",
+      "title": "BABEL",
+      "body": "We are still building towers. New series — every week stands on its own.",
+      "link": {
+        "url": "https://sojo.church/"
+      }
+    },
+    {
+      "when": "Wed, Oct 14 · 6:30–8:00pm",
+      "title": "Genesis 1–11",
+      "body": "The soil the whole story grows out of. Youth and adults meet separately.",
+      "link": {
+        "signup": "wednesday night bible study"
+      }
+    },
+    {
+      "when": "Starts Tue, Oct 6 · 7pm",
+      "title": "Discover More",
+      "body": "Three weeks on the essentials. Bring your questions.",
+      "link": {
+        "signup": "discover more"
+      }
+    },
+    {
+      "when": "Wed, Oct 7 · 6:00pm",
+      "title": "Fields of Faith",
+      "body": "Youth, at Atrium Health Ballpark in Kannapolis. We meet outside the gates.",
+      "link": {
+        "signup": "youth field of faith night"
+      }
+    }
+  ],
+  "swag": {
+    "title": "Every shirt is a Bible",
+    "body": "Printed on demand when you order it, so nothing sits in a box in a closet. And every piece that sells puts a Bible in the hands of somebody who just met Jesus.",
+    "art": "swag.jpg",
+    "url": "https://sojo.church/swag.html"
+  },
+  "pastor_notes": [
+    {
+      "title": "Twenty-five new faces",
+      "body": "Our first Discover SOJO in the new home was packed — about twenty-five people who said, “I want to know more about this place.” So here’s your job. If you see someone you don’t recognize this morning, don’t wait for a greeter. Say hi. Learn a name. Invite them to sit with you. That’s how a crowd becomes a family.",
+      "link": {
+        "signup": "discover sojo",
+        "label": "Next Discover SOJO · Oct 25"
+      }
+    },
+    {
+      "title": "Thank you, Jessica and Sarah",
+      "body": "Oktoberfest happened because two people said yes and then did the work. Jessica and Sarah — thank you for putting us on our own back doorstep with the love of Jesus. And to everyone who served: you were people of peace this weekend. Well done."
+    }
+  ],
+  "invite": {
+    "art": "babel.jpg",
+    "art_alt": "BABEL — a five-week series at SOJO Church. Old gods. New names. Genesis 11 to Acts 2.",
+    "lede": "A whole civilization decided it could build its way to God. We are still building towers — money, power, politics, technology. Same old gods, new names. Bring one person who’s asking why the world feels the way it does right now.",
+    "text": "Come with me to church next week — we’re talking about the craziness in the world and how God’s plan is better than we can ever imagine. 9:00 or 11:00 at Gibson Mill, 325 McGill Ave. About an hour and change. https://sojo.church"
+  },
+  "rhythm": [
+    {
+      "day": "Sunday",
+      "time": "9:00 & 11:00",
+      "what": "Gathered worship"
+    },
+    {
+      "day": "Sunday",
+      "time": "5:00pm",
+      "what": "SOJO Recovery"
+    },
+    {
+      "day": "Sunday",
+      "time": "7:00pm",
+      "what": "SOJO YA · ages 18–29"
+    },
+    {
+      "day": "Monday",
+      "time": "5:30pm",
+      "what": "Prayer Team"
+    },
+    {
+      "day": "Wednesday",
+      "time": "6:00pm",
+      "what": "Youth · 6th–12th grade"
+    }
+  ],
+  "groups": {
+    "_README": "Used only if the Planning Center Groups read comes back empty.",
+    "fallback": [
+      {
+        "name": "SOJO YA",
+        "when": "Sundays, 7–9pm · ages 18–29",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/sojo-ya"
+      },
+      {
+        "name": "Women of the Willow",
+        "when": "Tuesdays, 6–8pm · 30s and 40s",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-of-the-willow"
+      },
+      {
+        "name": "Women’s Bible Study",
+        "when": "Thursdays, 10am",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-s-weekly-bible-study"
+      },
+      {
+        "name": "Men’s Breakfast Club",
+        "when": "Fridays, 6:30am · last week’s message",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/men-s-breakfast-club"
+      },
+      {
+        "name": "Couples & Marriage",
+        "when": "Every other Sunday, 4–6pm",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/netflix-and-bills-couples-marriage-group-fun-fellowship-and-growth-together-for-couples"
+      }
+    ]
+  },
+  "buttons": {
+    "_README": "The two calls to action under the order of service and under the groups list. A button whose link will not resolve is dropped rather than shipped dead.",
+    "flow": [
+      {
+        "label": "Learn more about groups",
+        "link": {
+          "url": "https://sojo.churchcenter.com/groups"
+        },
+        "style": "btn"
+      },
+      {
+        "label": "Sign up for Wednesday night",
+        "link": {
+          "signup": "wednesday night bible study"
+        },
+        "style": "btn btn-ghost"
+      }
+    ],
+    "groups": [
+      {
+        "label": "Tell me about groups",
+        "link": {
+          "url": "https://sojo.churchcenter.com/groups"
+        },
+        "style": "btn"
+      },
+      {
+        "label": "Wednesday nights",
+        "link": {
+          "signup": "wednesday night bible study"
+        },
+        "style": "btn btn-ghost"
+      }
+    ]
+  }
+}
