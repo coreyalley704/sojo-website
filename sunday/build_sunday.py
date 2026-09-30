@@ -51,6 +51,34 @@ def esc(s):
     return html.escape(str(s if s is not None else ""), quote=True)
 
 
+def wrap(body, title, description, icon="sojo-mark.png"):
+    """
+    Put the page inside a real HTML document.
+
+    The templates start at <title> because they are fragments. Without this
+    they ship with no doctype, no <head>, no charset and — the one that
+    actually breaks things — no viewport meta. A page with no viewport meta
+    is laid out by phones at 980px and then scaled down to fit, which makes
+    every word small and the whole thing feel like a desktop site squeezed
+    onto a phone. For a page whose entire job is to be read off a phone in a
+    chair, that single missing line is the difference between working and not.
+    """
+    cut = body.index("<title>")
+    head, rest = body[:cut], body[cut:]
+    return (
+        "<!doctype html>\n<html lang=\"en\">\n<head>\n"
+        "<meta charset=\"utf-8\">\n"
+        "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\">\n"
+        f"<meta name=\"description\" content=\"{esc(description)}\">\n"
+        "<meta name=\"theme-color\" content=\"#302E2A\">\n"
+        f"<link rel=\"icon\" href=\"{esc(icon)}\">\n"
+        f"<link rel=\"apple-touch-icon\" href=\"{esc(icon)}\">\n"
+        + head.strip() + ("\n" if head.strip() else "")
+        + rest.strip()
+        + "\n</body>\n</html>\n"
+    ).replace("</style>\n", "</style>\n</head>\n<body>\n", 1)
+
+
 def load_content():
     with open(CONTENT, encoding="utf-8") as f:
         return json.load(f)
@@ -479,6 +507,11 @@ def build(sunday, offline=False):
     if leftover:
         notes.append("UNFILLED placeholders: " + ", ".join(sorted(set(leftover))))
 
+    page = wrap(page, "SOJO Sunday",
+                f"{content.get('label', 'Sunday')} at SOJO Church, "
+                f"{sunday:%B} {sunday.day} — order of service, message notes, "
+                f"and what’s next.")
+
     os.makedirs(ARCHIVE, exist_ok=True)
     with open(os.path.join(OUT, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
@@ -508,6 +541,9 @@ def build(sunday, offline=False):
         left = re.findall(r"\{\{([A-Z_]+)\}\}", live)
         if left:
             notes.append("live page UNFILLED: " + ", ".join(sorted(set(left))))
+        live = wrap(live, "SOJO Live",
+                    f"Watch SOJO Church live — {content.get('label', 'Sunday')}, "
+                    f"{sunday:%B} {sunday.day}. Follow the order of service as it happens.")
         os.makedirs(LIVE_OUT, exist_ok=True)
         os.makedirs(os.path.join(LIVE_OUT, "archive"), exist_ok=True)
         with open(os.path.join(LIVE_OUT, "index.html"), "w", encoding="utf-8") as f:

@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sunday page — editor</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#302E2A">
+<link rel="icon" href="../sunday/sojo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600&family=Inter:wght@400;500;600;700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   The editor for the Sunday page.
+
+   It edits content.json and nothing else. Everything Planning Center
+   already knows — the order of service, the songs, the giving totals, the
+   sign-up links and dates, the groups — is pulled at build time and is
+   deliberately not editable here. Two people typing the same fact into two
+   systems is how a bulletin ends up disagreeing with the plan.
+
+   It needs no server. Load it, edit, and it keeps your work in this browser.
+   When you are done you either save straight to the site (if the save box has
+   been set up) or download content.json and drop it in the repo.
+   ============================================================ */
+:root{
+  --cream:#F5F0E6; --cream-2:#EFE8DA; --sand:#D6CDB8;
+  --gold:#BFAE86; --gold-deep:#766645; --charcoal:#302E2A; --charcoal-2:#26241F;
+  --muted:#605C55; --line:rgba(48,46,42,.18); --bad:#8C3A32; --ok:#4F6B4A;
+  --f-display:'Big Shoulders Display','Arial Narrow',sans-serif;
+  --f-ui:'Inter',system-ui,-apple-system,sans-serif;
+  --f-body:'Roboto',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--cream);color:var(--charcoal);
+  font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+
+.bar{position:sticky;top:0;z-index:20;background:var(--charcoal);color:var(--cream);
+  padding:12px clamp(16px,4vw,32px);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.bar h1{font-family:var(--f-display);text-transform:uppercase;font-weight:600;
+  font-size:1.4rem;margin:0;letter-spacing:.02em}
+.bar .sp{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+.state{font-family:var(--f-ui);font-size:.72rem;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--sand);align-self:center}
+
+.wrap{max-width:900px;margin-inline:auto;padding:clamp(20px,4vw,40px) clamp(16px,4vw,32px) 90px}
+
+.note{border-left:3px solid var(--gold);background:var(--cream-2);
+  padding:14px 18px;margin:0 0 26px;font-size:.93rem;line-height:1.6}
+.note b{font-weight:600}
+
+fieldset{border:0;border-top:1px solid var(--line);margin:0 0 6px;padding:26px 0 6px}
+legend{font-family:var(--f-display);text-transform:uppercase;font-weight:600;
+  font-size:1.3rem;letter-spacing:.01em;padding:0}
+.hint{font-family:var(--f-ui);font-size:.8rem;color:var(--muted);margin:2px 0 18px;max-width:64ch}
+
+label{display:block;margin:0 0 16px}
+label > span{display:block;font-family:var(--f-ui);font-size:.72rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+input[type=text],input[type=url],textarea,select{
+  width:100%;padding:11px 13px;background:#FFFCFA;border:1px solid var(--line);
+  border-radius:0;font:16px/1.55 var(--f-body);color:var(--charcoal);resize:vertical}
+textarea{min-height:82px}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{
+  outline:2px solid var(--gold);outline-offset:2px}
+.count{font-family:var(--f-ui);font-size:.7rem;color:var(--muted);text-align:right;margin-top:3px}
+.count.over{color:var(--bad);font-weight:700}
+
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--f-ui);
+  font-weight:600;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;
+  padding:12px 20px;min-height:44px;border:1px solid var(--charcoal);
+  background:var(--charcoal);color:var(--cream);cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+.btn.light{background:var(--cream);color:var(--charcoal);border-color:var(--cream)}
+.btn.light:hover{background:var(--gold);border-color:var(--gold)}
+.btn.ghost{background:transparent;color:var(--charcoal);border-color:var(--charcoal)}
+.btn.ghost:hover{background:var(--charcoal);color:var(--cream)}
+.bar .btn.ghost{color:var(--cream);border-color:rgba(245,240,230,.7)}
+.btn.sm{padding:7px 12px;min-height:34px;font-size:.68rem}
+.btn.danger{background:transparent;color:var(--bad);border-color:var(--bad)}
+.btn.danger:hover{background:var(--bad);color:#fff}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 22px}
+
+.item{border:1px solid var(--line);background:var(--cream-2);padding:16px 16px 4px;margin:0 0 14px}
+.item .top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.item .top b{font-family:var(--f-ui);font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold-deep)}
+.item .top .sp{margin-left:auto;display:flex;gap:6px}
+.two{display:grid;gap:0 14px;grid-template-columns:1fr}
+@media(min-width:620px){.two{grid-template-columns:1fr 1fr}}
+
+.linkrow{display:grid;gap:0 10px;grid-template-columns:130px 1fr;align-items:start}
+@media(max-width:520px){.linkrow{grid-template-columns:1fr}}
+
+.save{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--charcoal-2);
+  color:var(--cream);padding:12px clamp(16px,4vw,32px);display:flex;gap:12px;
+  align-items:center;flex-wrap:wrap;border-top:1px solid rgba(245,240,230,.2)}
+.save .msg{font-family:var(--f-ui);font-size:.8rem;color:var(--sand);margin-left:auto}
+.save .msg.bad{color:#E8A49C}
+.save .msg.ok{color:#B9CDB4}
+
+dialog{border:1px solid var(--line);background:var(--cream);padding:0;max-width:520px;width:92vw}
+dialog::backdrop{background:rgba(38,36,31,.6)}
+.dlg{padding:24px}
+.dlg h2{font-family:var(--f-display);text-transform:uppercase;font-weight:600;margin:0 0 10px;font-size:1.5rem}
+.dlg p{font-size:.92rem;color:var(--muted);margin:0 0 16px}
+pre{background:var(--charcoal-2);color:var(--cream);padding:14px;overflow:auto;
+  font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;max-height:40vh}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <h1>Sunday page</h1>
+  <span class="state" id="state">Loading&hellip;</span>
+  <span class="sp">
+    <button class="btn ghost sm" type="button" id="btnJson">View JSON</button>
+    <button class="btn light sm" type="button" id="btnPreview">Preview</button>
+  </span>
+</header>
+
+<div class="wrap">
+
+  <p class="note" id="intro">
+    <b>This edits the words. Planning Center supplies the facts.</b>
+    The order of service, the songs, the giving totals, the sign-up links and their
+    dates, and the groups list are all pulled from Planning Center when the page is
+    built &mdash; so they are not here to edit. Everything below is what a person writes.
+    Your work is kept in this browser as you type.
+  </p>
+
+  <fieldset>
+    <legend>This week</legend>
+    <p class="hint">The label rides along in the email people send themselves, so make it
+      the name you would say out loud.</p>
+    <div class="two">
+      <label><span>Label</span><input type="text" data-k="label" placeholder="Community Sunday"></label>
+      <label><span>Runtime</span><input type="text" data-k="runtime" placeholder="About 75 minutes"></label>
+    </div>
+    <label><span>Live stream link</span><input type="url" data-k="live_url"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Top of the page</legend>
+    <p class="hint">The headline can hold one gold phrase &mdash; wrap it in
+      <code>&lt;span class="gold"&gt;&lt;/span&gt;</code> &mdash; and <code>&lt;br&gt;</code> for a line break.
+      Keep the lede to three sentences; on a phone it is the last thing read before the order.</p>
+    <label><span>Eyebrow</span><input type="text" data-k="hero.eyebrow" placeholder="Welcome"></label>
+    <label><span>Headline</span><textarea data-k="hero.headline" rows="2"></textarea></label>
+    <label><span>Lede</span><textarea data-k="hero.lede" rows="4" data-max="320"></textarea></label>
+    <div class="two">
+      <label><span>Header image file</span><input type="text" data-k="hero.art" placeholder="community-sunday.jpg"></label>
+      <label><span>Image description</span><input type="text" data-k="hero.art_alt"></label>
+    </div>
+    <p class="hint">Image files live in <code>sunday/art/</code> in the repo. Put the file there,
+      then type its name here.</p>
+    <label><span>Welcome note</span><textarea data-k="welcome_note" rows="4" data-max="300"></textarea></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Order of service</legend>
+    <p class="hint">Planning Center decides what is in the service and what order it goes in.
+      These rename items into words a guest understands and add the one line of detail that
+      helps. The key on the left is the Planning Center item title.</p>
+    <div id="flowItems"></div>
+    <div class="row"><button class="btn ghost sm" type="button" data-add="flow">Rename another item</button></div>
+
+    <p class="hint"><b>Hidden items.</b> Production cues that should not appear on the page,
+      one per line, using the Planning Center title.</p>
+    <label><span>Hide</span><textarea data-k="flow.hide" data-list="1" rows="3"></textarea></label>
+
+    <p class="hint"><b>Added items.</b> Things the church does that the plan does not carry &mdash;
+      Communion is the standing example.</p>
+    <div id="insertItems"></div>
+    <div class="row"><button class="btn ghost sm" type="button" data-add="insert">Add an item</button></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Message notes</legend>
+    <p class="hint">The questions people type into during the message. Three or four.
+      They save on the person's phone and ride along in the email they send themselves.</p>
+    <div id="promptItems"></div>
+    <div class="row"><button class="btn ghost sm" type="button" data-add="prompt">Add a question</button></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Generosity</legend>
+    <p class="hint">The numbers come from Planning Center every build. These are the ways to give.</p>
+    <div id="wayItems"></div>
+    <div class="row"><button class="btn ghost sm" type="button" data-add="way">Add a way to give</button></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>What's next</legend>
+    <p class="hint">Four tiles reads best. Link each one to a Planning Center sign-up
+      <b>by name</b> &mdash; the exact name of the sign-up &mdash; and the build looks it up fresh
+      each week. If a sign-up gets closed or deleted, the tile drops off the page instead
+      of sending somebody to a dead link.</p>
+    <div id="annItems"></div>
+    <div class="row"><button class="btn ghost sm" type="button" data-add="ann">Add a tile</button></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>From Pastor Corey</legend>
+    <p class="hint">The part of the page that sounds like a person. Two notes is plenty.</p>
+    <div id="pastorItems"></div>
+    <div class="row"><button class="btn ghost sm" type="button" data-add="pastor">Add a note</button></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Invite one person</legend>
+    <p class="hint">The share text is what somebody sends to a friend. Write it the way
+      they would say it, not the way a church would.</p>
+    <div class="two">
+      <label><span>Series artwork file</span><input type="text" data-k="invite.art"></label>
+      <label><span>Image description</span><input type="text" data-k="invite.art_alt"></label>
+    </div>
+    <label><span>Lede</span><textarea data-k="invite.lede" rows="4" data-max="320"></textarea></label>
+    <label><span>Share text</span><textarea data-k="invite.text" rows="4" data-max="300"></textarea></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Swag</legend>
+    <div class="two">
+      <label><span>Headline</span><input type="text" data-k="swag.title"></label>
+      <label><span>Image file</span><input type="text" data-k="swag.art"></label>
+    </div>
+    <label><span>Body</span><textarea data-k="swag.body" rows="3" data-max="260"></textarea></label>
+    <label><span>Link</span><input type="url" data-k="swag.url"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>The weekly rhythm</legend>
+    <p class="hint">Changes a few times a year, not weekly. Leave it alone most weeks.</p>
+    <div id="rhythmItems"></div>
+    <div class="row"><button class="btn ghost sm" type="button" data-add="rhythm">Add a line</button></div>
+  </fieldset>
+
+</div>
+
+<div class="save">
+  <button class="btn light" type="button" id="btnSave">Save to the site</button>
+  <button class="btn ghost" type="button" id="btnDownload">Download content.json</button>
+  <button class="btn ghost" type="button" id="btnRevert">Discard my changes</button>
+  <span class="msg" id="msg"></span>
+</div>
+
+<dialog id="dlgJson"><div class="dlg">
+  <h2>content.json</h2>
+  <p>This is exactly what gets saved. Useful for checking a change, or for pasting
+     into the repo by hand.</p>
+  <pre id="jsonOut"></pre>
+  <div class="row" style="margin-bottom:0">
+    <button class="btn" type="button" id="btnCopyJson">Copy</button>
+    <button class="btn ghost" type="button" data-close>Close</button>
+  </div>
+</div></dialog>
+
+<dialog id="dlgSave"><div class="dlg">
+  <h2 id="saveTitle">Save to the site</h2>
+  <p id="saveBody"></p>
+  <label id="pwWrap"><span>Password</span><input type="password" id="pw" autocomplete="current-password"></label>
+  <div class="row" style="margin-bottom:0">
+    <button class="btn" type="button" id="btnSaveGo">Save</button>
+    <button class="btn ghost" type="button" data-close>Cancel</button>
+  </div>
+</div></dialog>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Set this once the save endpoint exists (see sunday/SETUP.md). Until then
+     the editor works fully and you publish by downloading content.json. */
+  var SAVE_ENDPOINT = '';
+
+  var SOURCE = '../sunday/content.json';
+  var DRAFT_KEY = 'sojo-sunday-admin-draft';
+
+  var data = null, original = null, dirty = false;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+
+  function store(op, key, val) {
+    try {
+      if (op === 'get') { return localStorage.getItem(key); }
+      if (op === 'del') { localStorage.removeItem(key); return null; }
+      localStorage.setItem(key, val);
+    } catch (e) { /* private window, blocked storage — the editor still works */ }
+    return null;
+  }
+
+  function say(text, kind) {
+    var m = $('#msg');
+    m.textContent = text || '';
+    m.className = 'msg' + (kind ? ' ' + kind : '');
+  }
+
+  function setState(t) { $('#state').textContent = t; }
+
+  function get(path) {
+    return path.split('.').reduce(function (o, k) {
+      return (o == null) ? undefined : o[k];
+    }, data);
+  }
+
+  function set(path, val) {
+    var keys = path.split('.'), last = keys.pop();
+    var o = keys.reduce(function (acc, k) {
+      if (acc[k] == null || typeof acc[k] !== 'object') { acc[k] = {}; }
+      return acc[k];
+    }, data);
+    o[last] = val;
+    touch();
+  }
+
+  function touch() {
+    dirty = true;
+    setState('Unsaved changes');
+    store('set', DRAFT_KEY, JSON.stringify(data));
+  }
+
+  /* ---------------------------------------------------------- repeaters
+     Each list section is rendered from the data and re-rendered on change.
+     Deliberately dumb: no framework, no build step, nothing to keep current. */
+
+  function textField(label, val, on, opts) {
+    opts = opts || {};
+    var l = document.createElement('label');
+    l.innerHTML = '<span></span>';
+    $('span', l).textContent = label;
+    var el = document.createElement(opts.area ? 'textarea' : 'input');
+    if (opts.area) { el.rows = opts.rows || 3; } else { el.type = opts.type || 'text'; }
+    el.value = val == null ? '' : val;
+    if (opts.placeholder) { el.placeholder = opts.placeholder; }
+    el.addEventListener('input', function () { on(el.value); });
+    l.appendChild(el);
+    return l;
+  }
+
+  function linkField(link, on) {
+    /* A link is a sign-up name, a form name, or a plain URL. Naming the sign-up
+       is the right default: the build resolves it against live Planning Center,
+       so a closed sign-up drops the tile instead of shipping a dead link. */
+    link = link || {};
+    var kind = link.signup ? 'signup' : (link.form ? 'form' : 'url');
+    var wrap = document.createElement('div');
+    wrap.className = 'linkrow';
+
+    var sel = document.createElement('select');
+    [['signup', 'Sign-up name'], ['form', 'Form name'], ['url', 'Web address']]
+      .forEach(function (o) {
+        var opt = document.createElement('option');
+        opt.value = o[0]; opt.textContent = o[1];
+        if (o[0] === kind) { opt.selected = true; }
+        sel.appendChild(opt);
+      });
+
+    var val = document.createElement('input');
+    val.type = 'text';
+    val.value = link.signup || link.form || link.url || '';
+    val.placeholder = kind === 'url' ? 'https://…' : 'exact name in Planning Center';
+
+    function emit() {
+      var o = {};
+      if (val.value.trim()) { o[sel.value] = val.value.trim(); }
+      if (link.label) { o.label = link.label; }
+      on(o);
+    }
+    sel.addEventListener('change', function () {
+      val.placeholder = sel.value === 'url' ? 'https://…' : 'exact name in Planning Center';
+      emit();
+    });
+    val.addEventListener('input', emit);
+
+    var s1 = document.createElement('label'); s1.innerHTML = '<span>Link by</span>'; s1.appendChild(sel);
+    var s2 = document.createElement('label'); s2.innerHTML = '<span>Value</span>'; s2.appendChild(val);
+    wrap.appendChild(s1); wrap.appendChild(s2);
+    return wrap;
+  }
+
+  function card(title, onRemove) {
+    var d = document.createElement('div');
+    d.className = 'item';
+    var top = document.createElement('div');
+    top.className = 'top';
+    var b = document.createElement('b'); b.textContent = title;
+    var sp = document.createElement('span'); sp.className = 'sp';
+    var rm = document.createElement('button');
+    rm.type = 'button'; rm.className = 'btn danger sm'; rm.textContent = 'Remove';
+    rm.addEventListener('click', function () {
+      if (confirm('Remove "' + title + '"?')) { onRemove(); }
+    });
+    sp.appendChild(rm);
+    top.appendChild(b); top.appendChild(sp);
+    d.appendChild(top);
+    return d;
+  }
+
+  function renderFlow() {
+    var host = $('#flowItems'); host.textContent = '';
+    var items = (data.flow && data.flow.items) || {};
+    Object.keys(items).forEach(function (key) {
+      var it = items[key] || {};
+      var c = card(key, function () { delete data.flow.items[key]; touch(); renderFlow(); });
+      var g = document.createElement('div'); g.className = 'two';
+      g.appendChild(textField('Shown as', it.title, function (v) { it.title = v; touch(); }));
+      g.appendChild(textField('Detail', it.detail, function (v) { it.detail = v; touch(); },
+        { placeholder: '{{songs}} for the worship set' }));
+      c.appendChild(g);
+      host.appendChild(c);
+    });
+  }
+
+  function renderInsert() {
+    var host = $('#insertItems'); host.textContent = '';
+    var rows = (data.flow && data.flow.insert) || [];
+    rows.forEach(function (r, i) {
+      var c = card(r.title || 'Added item', function () { rows.splice(i, 1); touch(); renderInsert(); });
+      var g = document.createElement('div'); g.className = 'two';
+      g.appendChild(textField('Title', r.title, function (v) { r.title = v; touch(); }));
+      g.appendChild(textField('Goes after', r.after, function (v) { r.after = v; touch(); },
+        { placeholder: 'Planning Center item title' }));
+      c.appendChild(g);
+      c.appendChild(textField('Detail', r.detail, function (v) { r.detail = v; touch(); },
+        { area: true, rows: 2 }));
+      host.appendChild(c);
+    });
+  }
+
+  function renderPrompts() {
+    var host = $('#promptItems'); host.textContent = '';
+    (data.note_prompts || []).forEach(function (q, i) {
+      var c = card('Question ' + (i + 1), function () {
+        data.note_prompts.splice(i, 1); touch(); renderPrompts();
+      });
+      c.appendChild(textField('Question', q, function (v) {
+        data.note_prompts[i] = v; touch();
+      }, { area: true, rows: 2 }));
+      host.appendChild(c);
+    });
+  }
+
+  function renderWays() {
+    var host = $('#wayItems'); host.textContent = '';
+    var rows = (data.generosity && data.generosity.ways) || [];
+    rows.forEach(function (w, i) {
+      var c = card(w.label || 'Way to give', function () { rows.splice(i, 1); touch(); renderWays(); });
+      c.appendChild(textField('Label', w.label, function (v) { w.label = v; touch(); }));
+      c.appendChild(textField('How it works', w.text, function (v) { w.text = v; touch(); },
+        { area: true, rows: 2 }));
+      host.appendChild(c);
+    });
+  }
+
+  function renderAnn() {
+    var host = $('#annItems'); host.textContent = '';
+    var rows = data.announcements || [];
+    rows.forEach(function (a, i) {
+      var c = card(a.title || 'Tile', function () { rows.splice(i, 1); touch(); renderAnn(); });
+      var g = document.createElement('div'); g.className = 'two';
+      g.appendChild(textField('When', a.when, function (v) { a.when = v; touch(); },
+        { placeholder: 'Wed, Oct 14 · 6:30pm' }));
+      g.appendChild(textField('Title', a.title, function (v) { a.title = v; touch(); }));
+      c.appendChild(g);
+      c.appendChild(textField('One line', a.body, function (v) { a.body = v; touch(); },
+        { area: true, rows: 2 }));
+      c.appendChild(linkField(a.link, function (l) { a.link = l; touch(); }));
+      host.appendChild(c);
+    });
+  }
+
+  function renderPastor() {
+    var host = $('#pastorItems'); host.textContent = '';
+    var rows = data.pastor_notes || [];
+    rows.forEach(function (n, i) {
+      var c = card(n.title || 'Note', function () { rows.splice(i, 1); touch(); renderPastor(); });
+      c.appendChild(textField('Title', n.title, function (v) { n.title = v; touch(); }));
+      c.appendChild(textField('Body', n.body, function (v) { n.body = v; touch(); },
+        { area: true, rows: 5 }));
+      c.appendChild(textField('Button text (optional)', (n.link || {}).label, function (v) {
+        n.link = n.link || {}; n.link.label = v; touch();
+      }));
+      c.appendChild(linkField(n.link, function (l) {
+        l.label = (n.link || {}).label; n.link = l; touch();
+      }));
+      host.appendChild(c);
+    });
+  }
+
+  function renderRhythm() {
+    var host = $('#rhythmItems'); host.textContent = '';
+    var rows = data.rhythm || [];
+    rows.forEach(function (r, i) {
+      var c = card(r.day + ' · ' + r.time, function () { rows.splice(i, 1); touch(); renderRhythm(); });
+      var g = document.createElement('div'); g.className = 'two';
+      g.appendChild(textField('Day', r.day, function (v) { r.day = v; touch(); }));
+      g.appendChild(textField('Time', r.time, function (v) { r.time = v; touch(); }));
+      c.appendChild(g);
+      c.appendChild(textField('What', r.what, function (v) { r.what = v; touch(); }));
+      host.appendChild(c);
+    });
+  }
+
+  function renderAll() {
+    $$('[data-k]').forEach(function (el) {
+      var k = el.getAttribute('data-k');
+      var v = get(k);
+      if (el.hasAttribute('data-list')) { v = (v || []).join('\n'); }
+      el.value = v == null ? '' : v;
+    });
+    renderFlow(); renderInsert(); renderPrompts(); renderWays();
+    renderAnn(); renderPastor(); renderRhythm();
+  }
+
+  /* ---------------------------------------------------------- wiring */
+
+  document.addEventListener('input', function (e) {
+    var el = e.target;
+    if (!el.hasAttribute || !el.hasAttribute('data-k')) { return; }
+    var k = el.getAttribute('data-k');
+    var v = el.value;
+    if (el.hasAttribute('data-list')) {
+      v = v.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+    }
+    set(k, v);
+    var max = parseInt(el.getAttribute('data-max') || '0', 10);
+    if (max) {
+      var c = el.parentNode.querySelector('.count');
+      if (!c) {
+        c = document.createElement('div'); c.className = 'count';
+        el.parentNode.appendChild(c);
+      }
+      c.textContent = el.value.length + ' / ' + max;
+      c.classList.toggle('over', el.value.length > max);
+    }
+  });
+
+  $$('[data-add]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var what = b.getAttribute('data-add');
+      if (what === 'flow') {
+        var key = (prompt('Planning Center item title (exactly as it reads in the plan):') || '').trim().toLowerCase();
+        if (!key) { return; }
+        data.flow = data.flow || {}; data.flow.items = data.flow.items || {};
+        data.flow.items[key] = { title: '', detail: '' };
+        renderFlow();
+      } else if (what === 'insert') {
+        data.flow = data.flow || {}; data.flow.insert = data.flow.insert || [];
+        data.flow.insert.push({ title: '', after: '', detail: '' });
+        renderInsert();
+      } else if (what === 'prompt') {
+        data.note_prompts = data.note_prompts || [];
+        data.note_prompts.push(''); renderPrompts();
+      } else if (what === 'way') {
+        data.generosity = data.generosity || {}; data.generosity.ways = data.generosity.ways || [];
+        data.generosity.ways.push({ label: '', text: '' }); renderWays();
+      } else if (what === 'ann') {
+        data.announcements = data.announcements || [];
+        data.announcements.push({ when: '', title: '', body: '', link: {} }); renderAnn();
+      } else if (what === 'pastor') {
+        data.pastor_notes = data.pastor_notes || [];
+        data.pastor_notes.push({ title: '', body: '' }); renderPastor();
+      } else if (what === 'rhythm') {
+        data.rhythm = data.rhythm || [];
+        data.rhythm.push({ day: '', time: '', what: '' }); renderRhythm();
+      }
+      touch();
+    });
+  });
+
+  /* The _README keys are kept on purpose. They are the instructions for whoever
+     opens content.json by hand six months from now, and stripping them here
+     would delete that documentation the first time anybody pressed Save. */
+  function payload() { return JSON.stringify(data, null, 2); }
+
+  $('#btnJson').addEventListener('click', function () {
+    $('#jsonOut').textContent = payload();
+    $('#dlgJson').showModal();
+  });
+  $('#btnCopyJson').addEventListener('click', function () {
+    navigator.clipboard.writeText(payload()).then(function () {
+      $('#btnCopyJson').textContent = 'Copied';
+      setTimeout(function () { $('#btnCopyJson').textContent = 'Copy'; }, 1800);
+    }).catch(function () { $('#btnCopyJson').textContent = 'Select it above'; });
+  });
+  $$('[data-close]').forEach(function (b) {
+    b.addEventListener('click', function () { b.closest('dialog').close(); });
+  });
+
+  $('#btnPreview').addEventListener('click', function () {
+    window.open('../sunday/', '_blank', 'noopener');
+  });
+
+  $('#btnDownload').addEventListener('click', function () {
+    var blob = new Blob([payload()], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'content.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+    say('Downloaded. Put it in sunday/content.json in the repo and commit.', 'ok');
+  });
+
+  $('#btnRevert').addEventListener('click', function () {
+    if (!confirm('Throw away your changes and go back to what is published?')) { return; }
+    data = JSON.parse(JSON.stringify(original));
+    store('del', DRAFT_KEY);
+    dirty = false; setState('Matches the published page');
+    renderAll(); say('Reverted.', 'ok');
+  });
+
+  $('#btnSave').addEventListener('click', function () {
+    if (!SAVE_ENDPOINT) {
+      $('#saveTitle').textContent = 'Saving straight to the site is not set up yet';
+      $('#saveBody').textContent =
+        'Until it is, use "Download content.json" and put the file in sunday/content.json ' +
+        'in the repo. Setting up direct save takes about twenty minutes and is written up ' +
+        'in sunday/SETUP.md.';
+      $('#pwWrap').hidden = true;
+      $('#btnSaveGo').hidden = true;
+      $('#dlgSave').showModal();
+      return;
+    }
+    $('#saveTitle').textContent = 'Save to the site';
+    $('#saveBody').textContent =
+      'This publishes the words you have written. The page rebuilds with fresh ' +
+      'Planning Center data and goes live in a minute or two.';
+    $('#pwWrap').hidden = false;
+    $('#btnSaveGo').hidden = false;
+    $('#dlgSave').showModal();
+  });
+
+  $('#btnSaveGo').addEventListener('click', function () {
+    var pw = $('#pw').value;
+    if (!pw) { $('#pw').focus(); return; }
+    $('#btnSaveGo').disabled = true;
+    say('Saving…');
+    fetch(SAVE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Sojo-Key': pw },
+      body: payload()
+    }).then(function (r) {
+      if (!r.ok) { throw new Error('save refused (' + r.status + ')'); }
+      return r.json();
+    }).then(function () {
+      original = JSON.parse(payload());
+      store('del', DRAFT_KEY);
+      dirty = false; setState('Saved');
+      say('Saved. The page rebuilds in a minute or two.', 'ok');
+      $('#dlgSave').close();
+    }).catch(function (err) {
+      say(err.message + ' — your work is still here. Try again, or download the file.', 'bad');
+    }).finally(function () { $('#btnSaveGo').disabled = false; });
+  });
+
+  window.addEventListener('beforeunload', function (e) {
+    if (dirty) { e.preventDefault(); e.returnValue = ''; }
+  });
+
+  /* ---------------------------------------------------------- load */
+
+  fetch(SOURCE, { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) { throw new Error('could not read the published content.json'); }
+      return r.json();
+    })
+    .then(function (live) {
+      original = live;
+      var draft = store('get', DRAFT_KEY);
+      if (draft) {
+        try {
+          data = JSON.parse(draft);
+          dirty = true;
+          setState('Unsaved changes from earlier');
+          say('Picked up where you left off. "Discard my changes" goes back to what is published.');
+        } catch (e) { data = JSON.parse(JSON.stringify(live)); }
+      } else {
+        data = JSON.parse(JSON.stringify(live));
+        setState('Matches the published page');
+      }
+      renderAll();
+    })
+    .catch(function (err) {
+      setState('Could not load');
+      say(err.message, 'bad');
+      var draft = store('get', DRAFT_KEY);
+      if (draft) {
+        try {
+          data = JSON.parse(draft); original = JSON.parse(draft);
+          renderAll();
+          say('Working from your saved draft — the published file could not be read.', 'bad');
+        } catch (e) { /* nothing to recover */ }
+      }
+    });
+})();
+</script>
+</body>
+</html>
