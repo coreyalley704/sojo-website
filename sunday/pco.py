@@ -208,11 +208,16 @@ def giving(sunday):
     wk_start, wk_end = last_complete_week(sunday)
     week_cents, week_n = _donation_total(wk_start, wk_end)
 
-    # The calendar month that just finished, or the current one if the service
-    # falls late enough in a month for that to be the more useful number.
-    m_start = wk_end.replace(day=1)
-    nxt = (m_start + dt.timedelta(days=32)).replace(day=1)
-    m_end = min(nxt - dt.timedelta(days=1), sunday)
+    # The last calendar month that actually FINISHED.
+    #
+    # The old rule used the current month-to-date, and on the second Sunday of
+    # a month that produced two numbers within a hundred dollars of each other
+    # — "$10,044 last week" beside "$10,172 in October" — which reads to a
+    # guest like the page is broken rather than like a month is young. A
+    # finished month is always a real comparison. On Oct 11 that's September;
+    # it only rolls to October once November 1 arrives.
+    m_end = sunday.replace(day=1) - dt.timedelta(days=1)   # last day of prev month
+    m_start = m_end.replace(day=1)
     month_cents, month_n = _donation_total(m_start, m_end)
 
     def money(c):

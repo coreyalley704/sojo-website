@@ -233,6 +233,54 @@ def render_giving(content, data):
     }
 
 
+def render_study_guide(content, data):
+    """
+    The deeper-dive block under the note prompts.
+
+    Some weeks carry a study guide and most will not, so this renders nothing
+    at all when `study_guide` is absent. A Google Doc is linked by its export
+    URL rather than its /edit URL: /edit asks a phone to open the Docs app and
+    can land a guest on a sign-in screen, while /export?format=pdf hands them
+    a file. Set `url` directly to override.
+    """
+    sg = content.get("study_guide") or {}
+    url = (sg.get("url") or "").strip()
+    doc = (sg.get("google_doc_id") or "").strip()
+    if not url and doc:
+        url = "https://docs.google.com/document/d/{}/export?format=pdf".format(doc)
+    if not url:
+        return ""
+    title = sg.get("title") or "This week's study guide"
+    body = sg.get("body") or ""
+    label = sg.get("label") or "Download the study guide"
+    return (
+        '\n    <div class="guide">\n'
+        '      <p class="eyebrow">Go Deeper</p>\n'
+        '      <h3 class="display display-xs">{}</h3>\n'
+        '      {}\n'
+        '      <a class="link" href="{}">{} <span>&rarr;</span></a>\n'
+        '    </div>'
+    ).format(esc(title),
+             "<p>{}</p>".format(esc(body)) if body else "",
+             esc(url), esc(label))
+
+
+def img_tag(cls, block):
+    """
+    An <img> only if there is actually an image.
+
+    A week that has no artwork for a section used to ship <img src=""> , which
+    a browser renders as a broken-image box with the alt text beside it — the
+    one thing on the page that looks like a mistake rather than a choice. Some
+    weeks simply have no art, and those weeks should just not have an image.
+    """
+    name = (block or {}).get("art") or ""
+    if not name.strip():
+        return ""
+    return '<img class="{}" src="{}" alt="{}">'.format(
+        cls, esc(name), esc((block or {}).get("art_alt", "")))
+
+
 def render_announcements(content, data):
     """
     The What's Next tiles.
@@ -266,12 +314,14 @@ def render_rhythm(content, data):
     )
 
 
-def render_groups(content, data):
+def render_groups(content, data, limit=None):
     """
     Groups. Planning Center first, content.json as the fallback — a hand-written
     list here beats an empty section if the Groups read fails.
     """
     rows = data.get("groups") or content.get("groups", {}).get("fallback", [])
+    if limit:
+        rows = rows[:limit]
     out = []
     for g in rows:
         sched = g.get("schedule") or g.get("when", "")
@@ -469,6 +519,7 @@ def build(sunday, offline=False):
         "HERO_EYEBROW":    esc(hero.get("eyebrow", "Welcome")),
         "HERO_HEADLINE":   hero.get("headline", ""),   # allows <span class="gold">
         "HERO_LEDE":       esc(hero.get("lede", "")),
+        "HERO_ART_TAG":    img_tag("hero-art", hero),
         "HERO_ART":        esc(hero.get("art", "")),
         "HERO_ART_ALT":    esc(hero.get("art_alt", "")),
         "RUNTIME":         esc(content.get("runtime", "About 75 minutes")),
@@ -477,11 +528,19 @@ def build(sunday, offline=False):
         "FLOW_BUTTONS":    render_buttons(content, data, "flow"),
         "GROUP_BUTTONS":   render_buttons(content, data, "groups"),
         "NOTE_BLOCKS":     notes_html,
+        "STUDY_GUIDE":     render_study_guide(content, data),
         "NOTE_COUNT":      str(note_count),
         "TILES":           tiles,
         "PASTOR_NOTES":    render_pastor(content, data),
+        # The heading used to read "Two things worth saying out loud" no
+        # matter how many notes were underneath it. A page that miscounts
+        # its own contents is the kind of small wrongness people notice.
+        "PASTOR_HEAD":     esc(content.get("pastor_head") or "{} worth saying out loud".format(
+            {1: "One thing", 2: "Two things", 3: "Three things", 4: "Four things",
+             5: "Five things"}.get(len(content.get("pastor_notes") or []), "A few things"))),
         "RHYTHM":          render_rhythm(content, data),
         "GROUPS":          render_groups(content, data),
+        "INVITE_ART_TAG":  img_tag("seriesart", invite),
         "INVITE_ART":      esc(invite.get("art", "")),
         "INVITE_ART_ALT":  esc(invite.get("art_alt", "")),
         "INVITE_LEDE":     esc(invite.get("lede", "")),
@@ -493,6 +552,8 @@ def build(sunday, offline=False):
         "LIVE_URL":        esc(content.get("live_url", "")),
         "CONNECT_URL":     esc(resolve_link(content.get("connect_card"), data)
                                or content.get("connect_card", {}).get("url", "")),
+        "TRYFIVE_URL":     esc(resolve_link(content.get("try_five"), data)
+                               or content.get("try_five", {}).get("url", "")),
         "FORM_ENDPOINT":   esc(content.get("email", {}).get("endpoint", "")),
         "FORM_KEY":        esc(content.get("email", {}).get("key", "")),
         "REPLY_TO":        esc(content.get("email", {}).get("reply_to", "")),

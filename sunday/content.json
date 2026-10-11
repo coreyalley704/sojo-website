@@ -1,10 +1,14 @@
 {
   "_README": "This file is the week's voice. Planning Center supplies the facts — order of service, songs, giving totals, sign-up links and dates, groups. Everything here is what a person writes. Edit it in the admin page at /sunday/admin/, or edit it here directly if you are comfortable with JSON. Links are written by NAME, not by ID: {\"signup\": \"discover sojo\"} is looked up against live Planning Center every build, so a sign-up that gets closed or deleted quietly drops off the page instead of 404ing a guest.",
-  "label": "Community Sunday",
-  "runtime": "About 75 minutes",
+  "label": "BABEL · Week One",
+  "runtime": "About 80 minutes",
   "live_url": "https://www.youtube.com/@SOJOChurch/live",
   "connect_card": {
-    "url": "https://go.myhello.church/v2/location/u7Nk3mMR6bl4lJdgYze5/form-builder-v2/lg1BNQ4ZiLB8JeZ8y3c4"
+    "url": "https://api.leadconnectorhq.com/widget/form/lg1BNQ4ZiLB8JeZ8y3c4"
+  },
+  "try_five": {
+    "_README": "The second button beside Connect Card. Point this at the Hello Church 'will you try 5?' form once it exists. Until then it falls back to the plan-a-visit page.",
+    "url": "https://sojo.church/plan-a-visit.html"
   },
   "email": {
     "endpoint": "https://api.web3forms.com/submit",
@@ -12,20 +16,20 @@
     "reply_to": "info@sojourner.church"
   },
   "hero": {
-    "eyebrow": "Welcome",
-    "headline": "Not from a stage.<br>Around a <span class=\"gold\">table</span>.",
-    "lede": "This is how “deeper together” actually happens — around a table with people who know your name. This morning we’re introducing our new small group leaders and praying over them as a church. Come stand with them.",
-    "art": "community-sunday.jpg",
-    "art_alt": "Community Sunday at SOJO Church"
+    "eyebrow": "Week One · The Gate",
+    "headline": "One kind of seeing<br><span class=\"gold\">takes</span>.<br>The other <span class=\"gold\">covers</span>.",
+    "lede": "How do you tell the difference between being wanted and being loved? Genesis 6 has four verses most people skip — heavenly beings saw that the daughters of men were beautiful, and they took. The Bible follows what came of that for a thousand years. This morning we follow it too, to a mountain at the gate of the dead, where Jesus asked his friends who they said he was.",
+    "art": "babel.jpg",
+    "art_alt": "BABEL — a five-week series at SOJO Church. Old gods. New names. Genesis 11 to Acts 2."
   },
-  "welcome_note": "Welcome. If you’re new here, we’re so glad you came. Fill out a Connect Card if you haven’t already — and consider giving us five Sundays. That’s about how long it takes to stop feeling like a visitor.",
+  "welcome_note": "Welcome. If this is your first Sunday here, you picked an unusual one — stay with it, nothing is required of you but listening. Fill out a Connect Card if you haven't already, and then give us five Sundays. That's about how long it takes to stop feeling like a visitor.",
   "flow": {
-    "_README": "Planning Center gives the order. These rename items and add the one line of detail a guest needs. Keys match the PCO item title, lowercased. 'hide' drops an item. 'insert' adds something PCO does not carry (Communion). '{{songs}}' expands to the worship set, '{{songs_after}}' to the response song.",
+    "_README": "Planning Center gives the order. These rename items and add the one line of detail a guest needs. Keys match the PCO item title, lowercased. 'hide' drops an item. 'insert' adds something PCO does not carry. '{{songs}}' expands to the worship set, '{{songs_after}}' to the response song.",
     "items": {
       "welcome": {
         "title": "Welcome"
       },
-      "yes i will": {
+      "outsing the angels": {
         "title": "Worship",
         "detail": "{{songs}}"
       },
@@ -34,23 +38,27 @@
       },
       "message": {
         "title": "The Message",
-        "detail": "Pastor Dan Conklin"
+        "detail": "Pastor Corey · The Gate — Genesis 6, a mountain in the north, and the question Jesus asked at the gate of the dead."
       },
-      "christ be magnified": {
+      "communion": {
+        "title": "Communion",
+        "detail": "In a first-century wedding the groom offered a cup, and if she drank, she had said yes. That is the cup Jesus handed his friends. The table is open to anyone who follows him — if that's not you yet, no pressure, just let it pass."
+      },
+      "trust in god": {
         "title": "Response",
         "detail": "{{songs_after}}"
       },
       "baptism": {
         "title": "Baptism",
-        "detail": "Somebody is going public with their faith this morning."
+        "detail": "Somebody is going public with their faith this morning. The next Baptism Sunday is October 25 — text BAPTIZE to 980-440-2850 and someone will walk you through it."
       },
       "closing announcements": {
-        "title": "Praying Over Our Leaders",
-        "detail": "Introducing our new small group leaders and praying over them together."
+        "title": "Sending",
+        "detail": "Shoeboxes, Wednesday nights, and where to be next."
       }
     },
     "hide": [
-      "holy forever",
+      "what a beautiful name",
       "flow moment",
       "giving video"
     ],
@@ -68,26 +76,29 @@
         "title": "The Message"
       },
       {
+        "title": "Communion"
+      },
+      {
         "title": "Response"
       },
       {
         "title": "Sending"
       }
     ],
-    "insert": [
-      {
-        "after": "Christ Be Magnified",
-        "title": "Communion",
-        "detail": "The table is open to anyone who follows Jesus. If that’s not you yet, no pressure — just let it pass."
-      }
-    ]
+    "insert": []
   },
   "note_prompts": [
-    "What landed on you this morning?",
-    "Who already knows your name here — and who doesn’t yet?",
-    "One name you’re going to learn before you leave the room.",
-    "One person you’re going to bring to BABEL next Sunday."
+    "Where have you settled for being wanted?",
+    "What did you hear in Ezekiel 16 that you did not expect?",
+    "Who do you say that he is?"
   ],
+  "study_guide": {
+    "_README": "The Go Deeper block under the note prompts. Give it either a google_doc_id (it becomes a PDF download link) or a url. Leave the whole block out on a week with no guide and nothing renders.",
+    "title": "The Gate — the long version",
+    "body": "Every passage behind this morning, the three ways Christians have read Genesis 6, what the Book of Enoch is and is not, the mountain, and a reading list. Twenty pages. You do not need it to follow Jesus — it is here for the ones who want the texts in front of them.",
+    "label": "Download the study guide",
+    "google_doc_id": "1r9woP8rJ6JmXC1ux40qAZ6DQ13ilyPyQPMBSMnI11ZY"
+  },
   "generosity": {
     "ways": [
       {
@@ -96,7 +107,7 @@
       },
       {
         "label": "Cash",
-        "text": "Use an envelope and put your name on it — that’s the only way we can credit the gift to you at the end of the year."
+        "text": "Use an envelope and put your name on it — that's the only way we can credit the gift to you at the end of the year."
       },
       {
         "label": "Online",
@@ -106,41 +117,41 @@
     "fallback": {
       "week_amount": "—",
       "month_amount": "—",
-      "month_name": "This month",
+      "month_name": "Last month",
       "asof": "Giving figures are updated each week from Planning Center."
     }
   },
   "announcements": [
     {
-      "when": "Next Sunday, Oct 11",
-      "title": "BABEL",
-      "body": "We are still building towers. New series — every week stands on its own.",
+      "when": "All October",
+      "title": "Operation Christmas Child",
+      "body": "Grab an empty shoebox at the Mill, fill it, bring it back. One box is one kid finding out that somebody they will never meet knows their name.",
       "link": {
-        "url": "https://sojo.church/"
+        "url": "https://www.samaritanspurse.org/operation-christmas-child/pack-a-shoe-box/"
       }
     },
     {
       "when": "Wed, Oct 14 · 6:30–8:00pm",
       "title": "Genesis 1–11",
-      "body": "The soil the whole story grows out of. Youth and adults meet separately.",
+      "body": "The soil this whole series grows out of, slowly, with your questions welcome. Youth and adults meet separately.",
       "link": {
         "signup": "wednesday night bible study"
       }
     },
     {
-      "when": "Starts Tue, Oct 6 · 7pm",
-      "title": "Discover More",
-      "body": "Three weeks on the essentials. Bring your questions.",
+      "when": "Sun, Oct 25 · after second service",
+      "title": "Discover SOJO",
+      "body": "Lunch, childcare, and the people behind all this. If you are new, this is the one to come to.",
       "link": {
-        "signup": "discover more"
+        "signup": "discover sojo"
       }
     },
     {
-      "when": "Wed, Oct 7 · 6:00pm",
-      "title": "Fields of Faith",
-      "body": "Youth, at Atrium Health Ballpark in Kannapolis. We meet outside the gates.",
+      "when": "Wed, Oct 28 · 6:00–8:00pm",
+      "title": "Youth Harvest Night",
+      "body": "Pumpkins, a fire pit, s'mores, and a devotional at the Bowens'. Bring a chair.",
       "link": {
-        "signup": "youth field of faith night"
+        "signup": "youth harvest night"
       }
     }
   ],
@@ -152,23 +163,31 @@
   },
   "pastor_notes": [
     {
-      "title": "Twenty-five new faces",
-      "body": "Our first Discover SOJO in the new home was packed — about twenty-five people who said, “I want to know more about this place.” So here’s your job. If you see someone you don’t recognize this morning, don’t wait for a greeter. Say hi. Learn a name. Invite them to sit with you. That’s how a crowd becomes a family.",
+      "title": "Why we are going here",
+      "body": "Five weeks in Genesis 6 to 12, and then Acts. I want three things to be true in you by the end. One: there are powers bent against God, and they work by hurting the people he made in his image. Two: the thing everyone is building right now is not neutral, and I think it is going to cost us. Three — and this is the one I actually care about — there is a Kingdom that Jesus died to open, and you can taste how good God is inside it. Every week stands on its own. Nothing to catch up on."
+    },
+    {
+      "title": "About the leaders you prayed over",
+      "body": "Last Sunday you stood up and prayed over our new small group leaders. I want you to know what you were actually doing. You were sending people out. Every one of them is opening a table this fall — a living room, a meal, and a seat at it for somebody who does not have a place yet. If you prayed for them, finish the prayer. Go sit at one of those tables.",
       "link": {
-        "signup": "discover sojo",
-        "label": "Next Discover SOJO · Oct 25"
+        "url": "https://sojo.churchcenter.com/groups",
+        "label": "Find a table"
       }
     },
     {
-      "title": "Thank you, Jessica and Sarah",
-      "body": "Oktoberfest happened because two people said yes and then did the work. Jessica and Sarah — thank you for putting us on our own back doorstep with the love of Jesus. And to everyone who served: you were people of peace this weekend. Well done."
+      "title": "Give us five Sundays",
+      "body": "If you are new, this is the only thing I will ask of you today. Not membership. Not a commitment. Five Sundays. That is about how long it takes to stop scanning the room and start recognizing faces — to stop being a visitor and start being somebody who gets missed when you are not here. Tap Try 5 up top and let us know you are in. Then come to Discover SOJO on the 25th and meet us properly.",
+      "link": {
+        "signup": "discover sojo",
+        "label": "Discover SOJO · Oct 25"
+      }
     }
   ],
   "invite": {
-    "art": "babel.jpg",
-    "art_alt": "BABEL — a five-week series at SOJO Church. Old gods. New names. Genesis 11 to Acts 2.",
-    "lede": "A whole civilization decided it could build its way to God. We are still building towers — money, power, politics, technology. Same old gods, new names. Bring one person who’s asking why the world feels the way it does right now.",
-    "text": "Come with me to church next week — we’re talking about the craziness in the world and how God’s plan is better than we can ever imagine. 9:00 or 11:00 at Gibson Mill, 325 McGill Ave. About an hour and change. https://sojo.church"
+    "art": "",
+    "art_alt": "",
+    "lede": "Everybody you know is watching the same world you are and quietly wondering what is going on with it. This series says it out loud. Bring one person who has been asking.",
+    "text": "Come with me to church Sunday — we're in a series about why the world feels the way it does right now, and how God's plan is better than anything we could build. 9:00 or 11:00 at Gibson Mill, 325 McGill Ave. About an hour and change. https://sojo.church"
   },
   "rhythm": [
     {
@@ -178,23 +197,23 @@
     },
     {
       "day": "Sunday",
-      "time": "5:00pm",
-      "what": "SOJO Recovery"
-    },
-    {
-      "day": "Sunday",
       "time": "7:00pm",
       "what": "SOJO YA · ages 18–29"
     },
     {
       "day": "Monday",
       "time": "5:30pm",
-      "what": "Prayer Team"
+      "what": "Prayer Night"
     },
     {
       "day": "Wednesday",
       "time": "6:00pm",
       "what": "Youth · 6th–12th grade"
+    },
+    {
+      "day": "Wednesday",
+      "time": "6:30pm",
+      "what": "Genesis 1–11 · adults"
     }
   ],
   "groups": {
@@ -211,13 +230,13 @@
         "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-of-the-willow"
       },
       {
-        "name": "Women’s Bible Study",
+        "name": "Women's Bible Study",
         "when": "Thursdays, 10am",
         "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-s-weekly-bible-study"
       },
       {
-        "name": "Men’s Breakfast Club",
-        "when": "Fridays, 6:30am · last week’s message",
+        "name": "Men's Breakfast Club",
+        "when": "Fridays, 6:30am · last week's message",
         "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/men-s-breakfast-club"
       },
       {
