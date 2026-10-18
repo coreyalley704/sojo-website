@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="BABEL · Week Two at SOJO Church, October 18 — order of service, message notes, and what’s next.">
+<meta name="theme-color" content="#302E2A">
+<link rel="icon" href="sojo-mark.png">
+<link rel="apple-touch-icon" href="sojo-mark.png">
+<title>SOJO Sunday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SOJO SUNDAY — the order of service page for the chair tags.
+   Built on the same design system as the sojo.church site:
+   same tokens, same type, same rows-not-cards, same gold rules.
+   ============================================================ */
+:root{
+  --cream:#F5F0E6; --cream-2:#EFE8DA; --sand:#D6CDB8;
+  --gold:#BFAE86; --gold-bright:#D3C5A4; --gold-deep:#766645;
+  --charcoal:#302E2A; --charcoal-2:#26241F; --ink:#302E2A;
+  --muted:#605C55; --muted-dark:#AAA59D;
+  --blue:#92A29D; --green:#A6A98E;
+  --line:rgba(48,46,42,.18); --line-dark:rgba(245,240,230,.22);
+  --f-display:'Big Shoulders Display','Oswald','Arial Narrow',Impact,sans-serif;
+  --f-ui:'Inter',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --f-body:'Roboto',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --wrap:720px;
+  --gut:clamp(20px,5vw,40px);
+  --sec:clamp(44px,7vw,72px);
+}
+*,*::before,*::after{box-sizing:border-box}
+/* .btn and friends set display, which outranks the browser's own rule for
+   [hidden]. Without this, anything hidden in the markup renders anyway. */
+[hidden]{display:none!important}
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:var(--f-body); font-size:17px; line-height:1.72;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block; height:auto}
+a{color:inherit}
+button,input,textarea{font:inherit}
+
+.wrap{max-width:var(--wrap); margin-inline:auto; padding-inline:var(--gut)}
+.sec{padding-block:var(--sec)}
+.dark{background:var(--charcoal); color:var(--cream)}
+.dark a{color:var(--cream)}
+
+/* ---------- type ---------- */
+.eyebrow{
+  font-family:var(--f-ui); font-size:12px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--gold-deep); margin:0 0 18px; display:flex; align-items:center; gap:12px;
+}
+.eyebrow::before{content:''; width:26px; height:2px; background:var(--gold); flex:0 0 auto}
+.dark .eyebrow{color:var(--gold-bright)}
+.display{
+  font-family:var(--f-display); font-weight:600; text-transform:uppercase;
+  line-height:.9; letter-spacing:-.005em; margin:0;
+  font-size:clamp(2.6rem,10vw,4.6rem);
+}
+.display-sm{font-size:clamp(1.7rem,5.5vw,2.5rem); line-height:.96}
+.display-xs{font-size:clamp(1.3rem,4vw,1.7rem); line-height:1.02}
+.lede{font-size:clamp(1.06rem,2.4vw,1.22rem); line-height:1.6; margin:20px 0 0; max-width:56ch}
+.dark .lede{color:#EFEADF}
+p{margin:0 0 1.1em; max-width:64ch}
+.muted{color:var(--muted)}
+.dark .muted{color:var(--muted-dark)}
+.gold{color:var(--gold)}
+.dark .gold{color:var(--gold-bright)}
+
+/* floor-paint motifs, same as the site */
+.lane{height:3px; border:0; margin:0; width:100%;
+  background:repeating-linear-gradient(90deg,var(--gold) 0 58px,transparent 58px 94px); opacity:.5}
+.dark .lane{opacity:.42}
+.rule-full{width:100%; height:1px; background:var(--line); border:0; margin:0}
+
+/* ---------- buttons and links ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.6em;
+  font-family:var(--f-ui); font-weight:600; font-size:.83rem;
+  letter-spacing:.07em; text-transform:uppercase; text-decoration:none;
+  padding:16px 30px; border:1px solid var(--charcoal); background:var(--charcoal); color:var(--cream);
+  transition:background .22s,color .22s,border-color .22s; min-height:52px; cursor:pointer;
+}
+.btn:hover{background:var(--gold-deep); border-color:var(--gold-deep); color:#fff}
+.btn-ghost{background:transparent; color:var(--charcoal); border-color:var(--charcoal)}
+.btn-ghost:hover{background:var(--charcoal); color:var(--cream)}
+.btn-wide{width:100%}
+.btns{display:flex; flex-wrap:wrap; gap:14px; margin-top:26px}
+/* Every tappable thing has to announce itself. There is no hover on a
+   phone, so an underline that only appears on hover is invisible to the
+   person this page is actually for. */
+.link{
+  font-family:var(--f-ui); font-weight:700; font-size:.8rem; letter-spacing:.08em;
+  text-transform:uppercase; text-decoration:none;
+  display:inline-flex; align-items:center; gap:.6em;
+  min-height:46px; padding:0 17px;
+  border:1.5px solid var(--gold-deep); background:rgba(191,174,134,.13);
+  color:var(--gold-deep);
+  transition:background .2s,color .2s; align-self:start; width:fit-content;
+}
+.link:hover{background:var(--gold-deep); color:var(--cream)}
+.dark .link{border-color:var(--gold); color:var(--gold-bright); background:rgba(191,174,134,.14)}
+.dark .link:hover{background:var(--gold); color:var(--charcoal-2)}
+/* Two buttons side by side only work if one of them is clearly the first
+   choice. Connect Card is the ask; Try 5 is the follow-on. */
+.hero .link, .dark .link{border-color:var(--gold); color:var(--gold-bright); background:rgba(191,174,134,.14)}
+.hero .link.first, .dark .link.first{background:var(--cream); border-color:var(--cream); color:var(--charcoal-2)}
+.hero .link.first:hover, .dark .link.first:hover{background:var(--gold-bright); border-color:var(--gold-bright)}
+
+/* ---------- header ---------- */
+.hdr{position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+  background:rgba(245,240,230,.95); backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--line)}
+.hdr-in{display:flex; align-items:center; gap:12px; padding-block:12px}
+.brand{display:flex; align-items:center; gap:11px; text-decoration:none}
+.brand img{height:34px; width:34px}
+.brand-txt{font-family:var(--f-display); text-transform:uppercase; font-size:1.3rem;
+  letter-spacing:.02em; line-height:1; font-weight:500}
+.brand-txt .o2{color:var(--gold-deep)}
+.hdr-when{margin-left:auto; font-family:var(--f-ui); font-size:.72rem; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--muted); text-align:right}
+
+/* ---------- jump bar ----------
+   A twelve-screen page needs a way to get somewhere. Four chips under the
+   header, sticky with it, so the order of service is one tap away from any
+   point in the page instead of a scroll. */
+.jump{display:flex; gap:0; border-top:1px solid var(--line); overflow-x:auto;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:1 0 auto; text-align:center; white-space:nowrap;
+  font-family:var(--f-ui); font-size:.7rem; font-weight:700; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--gold-deep); text-decoration:none;
+  padding:11px 14px; min-height:42px; display:flex; align-items:center;
+  justify-content:center; border-right:1px solid var(--line)}
+.jump a:last-child{border-right:0}
+.jump a:active{background:var(--cream-2)}
+@media (min-width:900px){ .jump{max-width:var(--wrap); margin-inline:auto; border-top:0} }
+/* anchors sit under the sticky header without the heading hiding beneath it */
+#order,#give,#notes,#next{scroll-margin-top:104px}
+
+/* ---------- hero ---------- */
+.hero{background:var(--charcoal); color:var(--cream)}
+.hero-art{width:100%; height:auto; display:block; border-bottom:3px solid var(--gold)}
+.hero-in{padding-block:clamp(38px,8vw,64px)}
+.hero h1{margin:0}
+.hero-meta{display:flex; flex-wrap:wrap; gap:0 28px; margin-top:28px; padding-top:18px;
+  border-top:1px solid var(--line-dark); font-family:var(--f-ui); font-size:.78rem;
+  letter-spacing:.06em; text-transform:uppercase; color:#E6E0D4}
+.hero-meta b{color:var(--gold-bright); font-weight:600}
+
+/* ---------- rows: the site's card replacement ---------- */
+.rows{margin-top:34px; border-top:1px solid var(--line)}
+.dark .rows{border-color:var(--line-dark)}
+.row{display:grid; grid-template-columns:auto 1fr; gap:clamp(14px,3.5vw,32px);
+  padding:24px 0; border-bottom:1px solid var(--line); align-items:start}
+.dark .row{border-color:var(--line-dark)}
+.row .num{font-family:var(--f-ui); font-size:.74rem; letter-spacing:.08em;
+  color:var(--gold-deep); padding-top:.5em; font-variant-numeric:tabular-nums}
+.dark .row .num{color:var(--gold-bright)}
+.row h3{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+  font-size:clamp(1.3rem,4.4vw,1.7rem); margin:0 0 6px; line-height:1.05}
+.row p{margin:0; color:var(--muted); font-size:.98rem}
+.dark .row p{color:var(--muted-dark)}
+.rt{display:flex; flex-direction:column; gap:12px; min-width:0}
+.songlist{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+.songlist li{position:relative; padding-left:26px; color:var(--muted); font-size:.97rem; line-height:1.5}
+.songlist li::before{content:''; position:absolute; left:0; top:.62em; width:14px; height:2px; background:var(--gold)}
+
+/* ---------- when rows (the weekly rhythm) ---------- */
+.whenrow{display:grid; grid-template-columns:repeat(2,1fr); gap:0 clamp(14px,3vw,32px); margin-top:20px}
+@media (max-width:560px){ .whenrow{grid-template-columns:1fr} }
+.whenrow > div{display:flex; flex-direction:column; gap:4px; padding:18px 0; border-top:1px solid var(--line)}
+.whenrow b{font-family:var(--f-display); font-weight:600; text-transform:uppercase;
+  font-size:clamp(1.2rem,3.6vw,1.5rem); line-height:1}
+.whenrow span{font-family:var(--f-ui); font-size:.78rem; font-weight:500; color:var(--muted)}
+.whenrow em{font-family:var(--f-ui); font-size:.8rem; font-weight:700; font-style:normal;
+  letter-spacing:.05em; color:var(--gold-deep); margin-top:2px}
+
+/* ---------- trio (announcements) ---------- */
+.trio{display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(20px,3.4vw,34px); margin-top:34px}
+@media (max-width:480px){ .trio{grid-template-columns:repeat(2,1fr); gap:20px 14px}
+  .trio h3{font-size:1.06rem} .trio p{font-size:.82rem} .trio .when{font-size:.66rem} }
+.trio a{display:flex; flex-direction:column; align-items:flex-start; text-decoration:none; gap:7px}
+.trio .when{font-family:var(--f-ui); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--gold-deep)}
+.trio h3{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+  font-size:1.35rem; margin:0; line-height:1.05; color:var(--gold-deep);
+  text-decoration:underline; text-decoration-color:var(--gold);
+  text-decoration-thickness:2px; text-underline-offset:5px}
+.trio p{color:var(--muted); font-size:.93rem; margin:0}
+.trio a::after{content:'Open \2192'; font-family:var(--f-ui); font-size:.72rem; font-weight:700;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--gold-deep); margin-top:4px}
+.trio a:hover h3{text-decoration-color:var(--gold-deep)}
+
+/* ---------- partner-wall style link list ---------- */
+.plist{display:grid; gap:1px; margin-top:26px; background:var(--line);
+  border-block:1px solid var(--line)}
+.pw{display:flex; align-items:baseline; gap:10px; padding:16px 2px 17px;
+  background:var(--cream); text-decoration:none; color:inherit; transition:background .18s; min-height:54px}
+a.pw:hover{background:var(--cream-2)}
+.pw-n{font-family:var(--f-display); font-weight:600; text-transform:uppercase; line-height:1.02;
+  font-size:1.12rem; color:var(--gold-deep);
+  text-decoration:underline; text-decoration-color:var(--gold);
+  text-decoration-thickness:2px; text-underline-offset:4px}
+.pw-d{font-family:var(--f-ui); font-size:.76rem; line-height:1.45; color:var(--muted)}
+.pw-go{margin-left:auto; font-family:var(--f-ui); font-size:1rem; color:var(--gold-deep);
+  font-weight:700; flex-shrink:0}
+.pw .stackt{display:flex; flex-direction:column; gap:3px; min-width:0}
+
+/* ---------- notes ---------- */
+.noteblock{display:flex; flex-direction:column; gap:9px; padding:22px 0; border-top:1px solid var(--line)}
+.noteblock:first-of-type{border-top:0}
+.note-q{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+  font-size:clamp(1.15rem,3.6vw,1.45rem); line-height:1.1}
+textarea{
+  width:100%; min-height:82px; padding:13px 14px; background:#FFFCFA;
+  border:1px solid var(--line); border-radius:0; font-family:var(--f-body);
+  font-size:16px; line-height:1.55; color:var(--ink); resize:vertical;
+}
+textarea:focus-visible{outline:2px solid var(--gold); outline-offset:1px}
+/* The invite text is meant to be read and then sent, not scrolled inside a
+   box. It has to show the whole message without the person poking at it. */
+#inviteText{min-height:196px}
+.notes-saved{font-family:var(--f-ui); font-size:.72rem; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--muted); min-height:18px; margin-top:6px}
+
+/* ---------- forms ---------- */
+.field{display:flex; flex-direction:column; gap:8px}
+label.lbl{font-family:var(--f-ui); font-size:.72rem; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--muted)}
+input[type=email]{width:100%; min-height:52px; padding:0 14px; background:#FFFCFA;
+  border:1px solid var(--line); border-radius:0; font-family:var(--f-body); font-size:16px; color:var(--ink)}
+.dark input[type=email], .dark textarea{background:rgba(245,240,230,.07); border-color:var(--line-dark); color:var(--cream)}
+.check{display:flex; align-items:flex-start; gap:11px; margin-top:14px}
+.check input{width:19px; height:19px; margin:3px 0 0; accent-color:var(--gold-deep); flex-shrink:0}
+.check label{font-size:.95rem; color:var(--muted)}
+.dark .check label{color:var(--muted-dark)}
+.fine{font-family:var(--f-ui); font-size:.74rem; color:var(--muted); letter-spacing:.02em}
+.dark .fine{color:var(--muted-dark)}
+.notice{border:1px dashed var(--gold); padding:14px 16px; font-size:.95rem; line-height:1.55; margin-top:16px}
+.dark .notice{border-color:var(--gold-bright)}
+.status{font-family:var(--f-ui); font-size:.8rem; font-weight:600; letter-spacing:.04em;
+  color:var(--gold-deep); min-height:20px; margin-top:12px}
+.dark .status{color:var(--gold-bright)}
+
+/* ---------- contact ---------- */
+.contact{margin-top:8px}
+.crow{display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:15px 0; border-bottom:1px solid var(--line-dark)}
+.crow .lab{font-family:var(--f-ui); font-size:.7rem; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--gold-bright); width:64px; flex-shrink:0}
+.crow .val{font-size:1rem; color:#E4DED2}
+.crow a{color:var(--gold-bright); text-decoration:underline; text-decoration-color:var(--gold);
+  text-decoration-thickness:2px; text-underline-offset:4px; font-weight:600}
+.copy{margin-left:auto; min-height:38px; padding:0 14px; background:transparent;
+  border:1px solid var(--line-dark); color:var(--cream); font-family:var(--f-ui);
+  font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer}
+.copy:hover{background:var(--gold); border-color:var(--gold); color:var(--charcoal-2)}
+.socials{display:flex; gap:14px; margin-top:24px; flex-wrap:wrap}
+.socials a{width:44px; height:44px; border:1px solid var(--line-dark); display:grid; place-items:center;
+  transition:background .2s,border-color .2s}
+.socials a:hover{background:var(--gold); border-color:var(--gold)}
+.socials svg{width:18px; height:18px; fill:currentColor}
+.socials a:hover svg{fill:var(--charcoal-2)}
+
+/* ---------- folds ----------
+   Reference material, one tap away instead of eight screens of scroll. Open
+   on a laptop where the room exists, closed on a phone where it does not. */
+.fold{border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.fold > summary{list-style:none; cursor:pointer; display:flex; align-items:center;
+  gap:14px; padding:20px 2px; min-height:56px;
+  font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+  font-size:clamp(1.3rem,4.4vw,1.7rem); line-height:1.05}
+.fold > summary::-webkit-details-marker{display:none}
+.fold > summary svg{width:15px; height:10px; margin-left:auto; flex:0 0 auto;
+  color:var(--gold-deep); transition:transform .22s}
+.fold[open] > summary svg{transform:rotate(180deg)}
+.fold > summary:hover{color:var(--gold-deep)}
+.fold-in{padding-bottom:12px}
+.fold-in .eyebrow{display:none}
+.fold-in > h2{display:none}
+.sec:has(> .wrap > .fold){padding-block:0}
+@media (min-width:900px){ .fold > summary{pointer-events:none} .fold-in{display:block!important} }
+
+/* ---------- footer ---------- */
+.ftr{background:var(--charcoal-2); color:var(--cream); padding-block:clamp(44px,7vw,68px) 0}
+.ftr .logo{height:96px; width:auto; margin:0 auto 20px; filter:brightness(0) invert(1); opacity:.82}
+.ftr .addr-s{font-style:normal; color:#E4DED2; font-size:.95rem; line-height:1.75; text-align:center}
+.ftr-bot{margin-top:clamp(30px,5vw,48px); padding-block:22px; border-top:1px solid var(--line-dark);
+  display:flex; justify-content:center; gap:14px; flex-wrap:wrap; text-align:center;
+  font-family:var(--f-ui); font-size:.7rem; letter-spacing:.07em; text-transform:uppercase; color:var(--muted-dark)}
+
+
+  /* Giving figures. A quiet two-up inside the order of service, not a hero
+     stat — this is a moment in the service, not a campaign. Numbers are a
+     Thursday snapshot baked in at build time: GitHub Pages is static and a
+     Planning Center token must never appear in a public repo. */
+  .figs{display:flex; flex-wrap:wrap; gap:26px 44px; margin:4px 0 2px;
+    padding:16px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .fig{display:flex; flex-direction:column; gap:3px}
+  .fig b{font-family:var(--f-display); font-weight:600; font-size:clamp(1.7rem,5vw,2.1rem);
+    line-height:1; color:var(--gold-deep); font-variant-numeric:tabular-nums}
+  .fig span{font-family:var(--f-ui); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted)}
+  .asof{font-family:var(--f-ui); font-size:.72rem; letter-spacing:.04em; color:var(--muted); margin:0}
+
+  /* ---------- the flow of service ----------
+     Deliberately quiet. This is a glance, not a read: nobody sitting in a
+     chair needs a paragraph about what "Welcome" means. Small type, tight
+     rows, one line of detail only where the detail is actually useful —
+     who is speaking, which songs. */
+  .sec-flow{padding-block:clamp(34px,4.5vw,50px)}
+  .flow{margin-top:22px; border-top:1px solid var(--line)}
+  .fl{display:grid; grid-template-columns:auto minmax(0,1fr);
+    gap:0 clamp(12px,3vw,22px); padding:12px 0;
+    border-bottom:1px solid var(--line); align-items:baseline}
+  .fl .n{font-family:var(--f-ui); font-size:.66rem; font-weight:600; letter-spacing:.09em;
+    color:var(--gold-deep); font-variant-numeric:tabular-nums}
+  .fl .t{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+    font-size:1.08rem; line-height:1.12; display:block}
+  .fl .d{font-family:var(--f-ui); font-size:.8rem; line-height:1.5;
+    color:var(--muted); margin:3px 0 0; max-width:52ch}
+  .sec-flow .btns{margin-top:24px}
+  @media (max-width:560px){ .sec-flow .btns .btn{flex:1 1 100%} }
+
+
+  /* the study guide — the long version, for the few who want it. It sits
+     under the note prompts because that is where somebody who was actually
+     taking notes ends up. A gold rule above it, no box: this is a door, not
+     an advertisement. */
+  .guide{margin-top:30px; padding-top:24px; border-top:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:flex-start; gap:12px}
+  .guide .eyebrow{margin:0}
+  .guide h3{margin:0; max-width:22ch}
+  .guide p{margin:0; color:var(--muted); font-size:.95rem; line-height:1.62; max-width:56ch}
+
+
+  /* follow along — the message outline, for the person who wants to keep their
+     place. Numbered rows with the references in gold, two lines of substance
+     each. Deliberately not a transcript: if it can be read while listening it
+     helps, and if it has to be read instead of listening it does not. */
+  .fa{margin-top:26px; border-top:1px solid var(--line)}
+  .fa-row{display:grid; grid-template-columns:auto minmax(0,1fr);
+    gap:0 clamp(12px,3vw,22px); padding:18px 0; border-bottom:1px solid var(--line);
+    align-items:baseline}
+  .fa-row .n{font-family:var(--f-ui); font-size:.66rem; font-weight:700; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold-deep); font-variant-numeric:tabular-nums}
+  .fa-row h3{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+    font-size:1.2rem; line-height:1.08; margin:0}
+  .fa-ref{font-family:var(--f-ui); font-size:.74rem; font-weight:700; letter-spacing:.05em;
+    color:var(--gold-deep); margin:5px 0 0; display:block}
+  .fa-row p.fa-b{margin:7px 0 0; color:var(--muted); font-size:.93rem; line-height:1.6; max-width:58ch}
+  .fa-call{margin-top:28px; padding:20px 0 4px 18px; border-left:2px solid var(--gold);
+    display:flex; flex-direction:column; align-items:flex-start; gap:12px}
+  .fa-call .q{font-family:var(--f-display); text-transform:uppercase; font-weight:500;
+    font-size:clamp(1.1rem,3.4vw,1.35rem); line-height:1.12; margin:0}
+  .fa-call p{margin:0; color:var(--muted); font-size:.95rem; line-height:1.62; max-width:56ch}
+  .fa-refrain{font-family:var(--f-display); text-transform:uppercase; font-weight:600;
+    font-size:clamp(1.25rem,4.4vw,1.75rem); line-height:1.05; margin:30px 0 0;
+    color:var(--gold-deep); max-width:20ch}
+
+  .sec-give{padding-block:clamp(34px,4.5vw,50px); background:var(--cream-2)}
+  .givelede{font-size:1rem; line-height:1.62; color:var(--muted); margin:14px 0 4px; max-width:58ch}
+
+  /* the three ways to give. Same rows-not-cards logic as the rest of the
+     page — a hairline between each, no boxes. */
+  .ways{display:grid; gap:0 clamp(16px,3vw,32px); margin-top:22px;
+    border-top:1px solid var(--line)}
+  .ways > div{display:flex; flex-direction:column; gap:5px;
+    padding:15px 0; border-bottom:1px solid var(--line)}
+  .ways b{font-family:var(--f-display); font-weight:600; text-transform:uppercase;
+    font-size:1.05rem; line-height:1; letter-spacing:.01em}
+  .ways span{font-family:var(--f-ui); font-size:.82rem; line-height:1.55; color:var(--muted)}
+  @media (min-width:760px){
+    .ways{grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--line)}
+    .ways > div{border-bottom:0}
+  }
+
+  /* the welcome note. Sits between Watch Live and Today's Order, which is
+     where a first-time guest's eye lands after the headline. Quiet — a gold
+     rule and small type, not a banner. */
+  .hello{margin-top:26px; padding:16px 0 4px 18px; border-left:2px solid var(--gold);
+    display:flex; flex-direction:column; align-items:flex-start; gap:12px}
+  .hello p{margin:0; font-size:.95rem; line-height:1.62; color:#E6E0D4; max-width:56ch}
+  .hello b{color:var(--gold-bright); font-weight:600}
+
+  /* swag — the one announcement that needs a picture, because nobody buys a
+     shirt they have not seen. Image beside the copy, stacked on a phone. */
+  .swag{margin-top:clamp(34px,5vw,48px); padding-top:clamp(28px,4vw,38px);
+    border-top:1px solid var(--line); display:grid; gap:clamp(18px,3vw,34px);
+    grid-template-columns:118px minmax(0,1fr); align-items:start}
+  .swag img{width:100%; max-width:300px; background:var(--cream-2)}
+  .swag-t{display:flex; flex-direction:column; align-items:flex-start; gap:10px}
+  .swag-t .eyebrow{margin:0}
+  .swag-t h3{margin:0}
+  .swag-t p{margin:0; color:var(--muted); font-size:.95rem; line-height:1.62; max-width:52ch}
+  @media (min-width:700px){
+    .swag{grid-template-columns:260px minmax(0,1fr)}
+    .swag img{max-width:260px}
+  }
+
+  /* series artwork — full-bleed on a phone, contained on a laptop so the
+     1100px original is never stretched past its own resolution */
+  .seriesart{width:100%; height:auto; margin:26px 0 4px; border:1px solid var(--line-dark)}
+  @media (max-width:899px){
+    .seriesart{margin-inline:calc(var(--gut) * -1); width:calc(100% + var(--gut) * 2);
+      max-width:none; border-inline:0}
+  }
+  @media (min-width:900px){ .seriesart{max-width:620px} }
+
+  /* the live dot — a quiet pulse, not a klaxon */
+  .livedot{width:9px; height:9px; border-radius:50%; background:#B4453C; flex:0 0 auto;
+    box-shadow:0 0 0 0 rgba(180,69,60,.55); animation:livepulse 2.4s ease-out infinite}
+  @keyframes livepulse{
+    0%{box-shadow:0 0 0 0 rgba(180,69,60,.55)}
+    70%{box-shadow:0 0 0 7px rgba(180,69,60,0)}
+    100%{box-shadow:0 0 0 0 rgba(180,69,60,0)}
+  }
+
+/* ============================================================
+   DESKTOP. Below this the page is a single column, which is
+   right for a phone in a chair. On a laptop that same column
+   stranded in the middle of a wide screen reads as an accident,
+   so from 1000px the section heading moves into a left rail and
+   the content sits beside it — the same move the main site makes
+   with .split. The hero image is only 738px wide natively, so it
+   is never allowed to stretch past that and blur.
+   ============================================================ */
+.hero-grid{padding-block:0}
+.hero-in{padding-block:clamp(38px,8vw,64px)}
+@media (max-width:899px){
+  /* full-bleed on a phone: pull back out of the wrap's gutter */
+  .hero-art{margin-inline:calc(var(--gut) * -1); width:calc(100% + var(--gut) * 2); max-width:none}
+}
+@media (min-width:900px){
+  .hero-grid{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+    gap:clamp(32px,4vw,60px); align-items:center; padding-block:clamp(48px,5vw,76px)}
+  .hero-art{order:2; max-width:738px; border-bottom:0; border-left:3px solid var(--gold)}
+  .hero-in{order:1; padding-block:0}
+  .trio{grid-template-columns:repeat(4,1fr)}
+  .whenrow{grid-template-columns:repeat(3,1fr)}
+  .plist{grid-template-columns:repeat(2,1fr)}
+}
+@media (min-width:1000px){
+  :root{--wrap:1100px}
+  /* Headings stay above their own content — a left rail needs a wrapper
+     element around each heading pair, and this page's sections don't have
+     one. Instead the page simply gets wider, the grids get more columns,
+     and every run of text keeps a readable measure. */
+  .sec{padding-block:clamp(64px,6vw,92px)}
+  .display-sm{font-size:clamp(2.1rem,3vw,2.8rem)}
+  .lede{font-size:1.24rem}
+  .rows{max-width:860px}
+  .row{grid-template-columns:auto minmax(0,1fr)}
+  .row p{max-width:62ch}
+  .noteblock{max-width:760px}
+  .noteblock textarea{max-width:760px}
+  input[type=email]{max-width:420px}
+  .btn-wide{width:auto; min-width:300px}
+  #inviteText{max-width:760px}
+  .contact{max-width:760px}
+  .whenrow{max-width:900px}
+  .plist{max-width:900px}
+}
+
+/* Phone: the page is read a few inches from someone's face in a chair, so the
+   generous desktop rhythm just becomes scrolling. Sections tighten, the hero
+   stops taking a screen and a half, and every tap target clears 44px. */
+@media (max-width:560px){
+  :root{--sec:30px; --gut:18px}
+  .hero-in{padding-block:26px 30px}
+  .display{font-size:clamp(2.1rem,8.5vw,2.6rem)}
+  .display-sm{font-size:clamp(1.45rem,6vw,1.8rem)}
+  .lede{font-size:1rem; margin-top:14px}
+  .hello{margin-top:18px; padding:13px 0 2px 14px}
+  .hello p{font-size:.9rem}
+  .rows{margin-top:22px}
+  .row{padding:18px 0}
+  .trio{margin-top:22px; gap:20px}
+  .plist{margin-top:18px}
+  .whenrow{margin-top:14px}
+  .whenrow > div{padding:14px 0}
+  .noteblock{padding:16px 0}
+  .figs{gap:18px 30px; padding:13px 0}
+  .seriesart{margin-block:20px 2px}
+  .swag{margin-top:26px; padding-top:22px; gap:16px}
+  .swag-t h3{font-size:1.5rem; line-height:1.02}
+  .swag-t p{font-size:.9rem; line-height:1.55}
+  .copy{min-height:44px}
+  .crow{padding:13px 0}
+  .crow a{display:inline-block; padding-block:11px}
+  .ftr .logo{height:66px}
+}
+
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="https://sojo.church">
+      <img src="sojo-mark.png" alt="SOJO Church">
+      <span class="brand-txt">S<span class="o2">OJ</span>O</span>
+    </a>
+    <span class="hdr-when">Sunday<br>October 18</span>
+  </div>
+  <nav class="jump" aria-label="Jump to a section">
+    <a href="#order">Order</a>
+    <a href="#notes">Notes</a>
+    <a href="#give">Give</a>
+    <a href="#next">What&rsquo;s Next</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <img class="hero-art" src="babel.jpg" alt="BABEL — a five-week series at SOJO Church. Old gods. New names. Genesis 11 to Acts 2.">
+    <div class="hero-in">
+    <p class="eyebrow">Week Two · The Door</p>
+    <h1 class="display">Can judgment<br>be <span class="gold">mercy</span>?</h1>
+    <p class="lede">God looks at a world that has torn itself apart and says he will wipe it away — and the word for his grief is the word for a woman in labor. This morning we read the flood slowly, and find that God never once judges without leaving a door open on the way out.</p>
+    <div class="hero-meta">
+      <span><b>9:00 &amp; 11:00</b></span>
+      <span>Gibson Mill</span>
+      <span>About 75 minutes</span>
+      </div>
+    <div class="btns" style="margin-top:22px">
+      <a class="btn" href="https://www.youtube.com/@SOJOChurch/live" style="background:var(--cream); color:var(--charcoal); border-color:var(--cream)">
+        <span class="livedot" aria-hidden="true"></span>Watch live
+      </a>
+      <!-- NEW HERE PDF: drop the file in beside index.html, put its name in the
+           href, and delete the hidden attribute. Nothing else to change. -->
+      <a class="btn btn-ghost" id="newHerePdf" hidden href="new-to-sojo.pdf"
+         style="color:var(--cream); border-color:rgba(245,240,230,.78)">New here? Start with this</a>
+      </div>
+
+    <div class="hello">
+      <p>Welcome. If this is your first Sunday, you can pick this story up cold — nothing to catch up on. Fill out a Connect Card if you haven&#x27;t already, and then give us five Sundays. That&#x27;s about how long it takes to stop feeling like a visitor.</p>
+      <div class="btns" style="margin-top:2px">
+        <a class="link first" href="https://api.leadconnectorhq.com/widget/form/lg1BNQ4ZiLB8JeZ8y3c4">Connect Card <span>&rarr;</span></a>
+        <a class="link" href="https://sojo.church/plan-a-visit.html">Try 5 <span>&rarr;</span></a>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+<section class="sec sec-flow" id="order">
+  <div class="wrap">
+    <p class="eyebrow">Today&rsquo;s Order</p>
+    <h2 class="display display-xs">How the morning goes</h2>
+
+    <div class="flow">
+      <div class="fl"><span class="n">01</span><div><span class="t">Welcome</span></div></div>
+
+      <div class="fl"><span class="n">02</span><div><span class="t">Worship</span>
+        <p class="d">New Thing Coming · Jesus Be The Name</p></div></div>
+
+      <div class="fl"><span class="n">03</span><div><span class="t">Generosity</span></div></div>
+
+      <div class="fl"><span class="n">04</span><div><span class="t">The Message</span>
+        <p class="d">Pastor Corey · The Door — Genesis 6, and the question of whether judgment can also be mercy.</p></div></div>
+
+      <div class="fl"><span class="n">05</span><div><span class="t">Response</span>
+        <p class="d">What a God</p></div></div>
+
+      <div class="fl"><span class="n">06</span><div><span class="t">Baptism</span>
+        <p class="d">Planned and spontaneous, first service. If today is your day, tell somebody in a SOJO shirt — or text BAPTIZE to 980-440-2850.</p></div></div>
+
+      <div class="fl"><span class="n">07</span><div><span class="t">Sending</span>
+        <p class="d">Discover SOJO, groups, and Wednesday nights.</p></div></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="sec sec-give" id="give">
+  <div class="wrap">
+    <p class="eyebrow">Generosity</p>
+    <h2 class="display display-xs">Worship through giving</h2>
+
+    <p class="givelede">This part of the morning is worship, the same as the singing. It
+    isn&rsquo;t dues, and it isn&rsquo;t a fee for the room. It&rsquo;s how we say out loud that none of
+    it was ours to start with.</p>
+
+    <div class="ways">
+      <div><b>Check</b><span>Made out to SOJO Church. Hand it to an usher when they come by.</span></div>
+      <div><b>Cash</b><span>Use an envelope and put your name on it — that&#x27;s the only way we can credit the gift to you at the end of the year.</span></div>
+      <div><b>Online</b><span>One time or recurring, from your phone. Takes about a minute.</span></div>
+    </div>
+
+    <div class="btns" style="margin-top:22px">
+      <a class="btn" href="https://sojo.churchcenter.com/giving">Give online</a>
+      <a class="btn btn-ghost" href="https://sojo.church/give.html#challenge">The 90-day challenge</a>
+    </div>
+
+
+    <div class="figs">
+      <span class="fig"><b>$8,288</b><span>Last week</span></span>
+      <span class="fig"><b>$41,989</b><span>September</span></span>
+    </div>
+    <p class="asof">Week of Oct 5 – Oct 11 · 246 gifts in September</p>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <p class="eyebrow">Bring Someone</p>
+    <h2 class="display display-sm">Invite one person</h2>
+
+    
+
+    <p class="lede">Everybody you know is watching the same world you are and quietly wondering what is going on with it. This series says it out loud. Bring one person who has been asking.</p>
+
+    <div class="field" style="margin-top:22px">
+      <label class="lbl" for="inviteText">Your message</label>
+      <textarea id="inviteText" rows="5">Come with me to church Sunday — we&#x27;re in a series about why the world feels the way it does right now, and how God&#x27;s plan is better than anything we could build. 9:00 or 11:00 at Gibson Mill, 325 McGill Ave. About an hour and change. https://sojo.church</textarea>
+    </div>
+    <div class="btns">
+      <button class="btn" type="button" id="inviteBtn" style="background:var(--cream); color:var(--charcoal); border-color:var(--cream)">Send this invite</button>
+      <button class="btn btn-ghost" type="button" id="inviteCopy" style="color:var(--cream); border-color:rgba(245,240,230,.78)">Copy it</button>
+    </div>
+    <p class="status" id="inviteStatus"></p>
+  </div>
+</section>
+
+<hr class="lane">
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow" id="notes">Follow Along</p>
+    <h2 class="display display-sm">The Door</h2>
+    <p class="muted" style="margin-top:14px">Where we are going this morning. Turn there with us if you want to.</p>
+    <div class="fa">
+      <div class="fa-row">
+        <span class="n">One</span>
+        <div>
+          <h3>Un-creation</h3>
+          <span class="fa-ref">Genesis 6:5–7</span>
+          <p class="fa-b">Mankind, animals, crawling things, birds — that is the list from Genesis 1, backward. The one who said let there be is about to say let there not be. And the word for his grief is the word for a woman&#x27;s pain in labor.</p>
+        </div>
+      </div>
+      <div class="fa-row">
+        <span class="n">Two</span>
+        <div>
+          <h3>The blood and the city</h3>
+          <span class="fa-ref">Genesis 4:7, 4:10, 4:23–24</span>
+          <p class="fa-b">Sin is crouching at the door, God tells Cain — and Cain walks past it. The ground gets a voice. Judgment and a mark in the same breath. Then the first city, built by a man on the run, and five generations later Lamech writes a song about killing.</p>
+        </div>
+      </div>
+      <div class="fa-row">
+        <span class="n">Three</span>
+        <div>
+          <h3>One family</h3>
+          <span class="fa-ref">Genesis 4:26, 6:9</span>
+          <p class="fa-b">In a world full of Lamechs, one line begins to call on the name of the LORD. Nine generations later comes a man whose father named him Rest. The Bible says one thing about him: Noah walked with God.</p>
+        </div>
+      </div>
+      <div class="fa-row">
+        <span class="n">Four</span>
+        <div>
+          <h3>The clock, and the however</h3>
+          <span class="fa-ref">Genesis 6:3, 6:8–9</span>
+          <p class="fa-b">The flood starts with a number, not with water. A hundred and twenty years — and Peter says every one of them was spent building the ark. Then the best word in the chapter: Noah, however, found favor. The first time grace appears in the Bible.</p>
+        </div>
+      </div>
+      <div class="fa-row">
+        <span class="n">Five</span>
+        <div>
+          <h3>The door</h3>
+          <span class="fa-ref">Genesis 6:16, 6:22, 7:16 · Romans 1:24–25 · Hebrews 12:24 · John 10:9</span>
+          <p class="fa-b">Cain built a city with no instructions. Noah built a boat with nothing but instructions. One door, in the side. Noah walked through it — and then the LORD shut him in. Abel&#x27;s blood cried out for justice; this blood says better things.</p>
+        </div>
+      </div>
+    </div>
+    <div class="fa-call">
+      <p class="q">What has God told you to do that doesn&#x27;t make sense yet?</p>
+      <p class="q">Have you walked through the door?</p>
+      <p>Some of you have stood next to the ark your whole life. You know the story. You never got in. He is not asking you to understand the flood — he is asking you to walk through the door. If today is the day, text JESUS to 980-440-2850.</p>
+    </div>
+    <p class="fa-refrain">God never judges without leaving a door.</p>
+
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow" id="next">Don&rsquo;t Miss</p>
+    <h2 class="display display-sm">What&rsquo;s next</h2>
+
+    <div class="trio">
+      <a href="https://sojo.churchcenter.com/registrations/events/3848051/reservations/new">
+        <span class="when">Next Sunday, Oct 25 · after second service</span>
+        <h3>Discover SOJO</h3>
+        <p>Lunch, childcare, and the people behind all this. If you are new, this is the one to come to.</p>
+      </a>
+      <a href="https://sojo.churchcenter.com/registrations/events/3926602/reservations/new">
+        <span class="when">Wed, Oct 21 · 6:30–8:00pm</span>
+        <h3>Genesis 1–11</h3>
+        <p>The soil this whole series grows out of, slowly, with your questions welcome. Youth and adults meet separately.</p>
+      </a>
+      <a href="https://www.samaritanspurse.org/operation-christmas-child/pack-a-shoe-box/">
+        <span class="when">All October</span>
+        <h3>Operation Christmas Child</h3>
+        <p>Grab an empty shoebox at the Mill, fill it, bring it back. One box is one kid finding out that somebody they will never meet knows their name.</p>
+      </a>
+      <a href="https://sojo.churchcenter.com/registrations/events/3915755/reservations/new">
+        <span class="when">Wed, Oct 28 · 6:00–8:00pm</span>
+        <h3>Youth Harvest Night</h3>
+        <p>Pumpkins, a fire pit, s&#x27;mores, and a devotional at the Bowens&#x27;. Bring a chair.</p>
+      </a>
+    </div>
+
+    <div class="swag">
+      <img src="swag.jpg" alt="Every shirt is a Bible">
+      <div class="swag-t">
+        <p class="eyebrow">SOJO Swag</p>
+        <h3 class="display display-xs">Every shirt is a Bible</h3>
+        <p>Printed on demand when you order it, so nothing sits in a box in a closet. And every piece that sells puts a Bible in the hands of somebody who just met Jesus.</p>
+        <a class="link" href="https://sojo.church/swag.html">See the swag <span>&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="lane">
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">From Pastor Corey</p>
+    <h2 class="display display-sm">One thing worth saying out loud</h2>
+
+    <div class="rows">
+      <div class="row"><span class="num">&mdash;</span><div class="rt">
+        <h3>Stand next to somebody today</h3>
+        <p style="color:var(--ink)">We are baptizing people this morning, planned and spontaneous, and I want you to do one thing with that. Do not just watch it. Find the person afterward and tell them you saw it. Say their name. That is the whole job of a church on a day like this — to be the people standing on the bank when somebody comes up out of the water.</p>
+        <a class="link" href="https://sojo.churchcenter.com/registrations/events/3615384/reservations/new">I want to be baptized <span>&rarr;</span></a>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="lane">
+
+<section class="sec">
+  <div class="wrap">
+    <details class="fold">
+      <summary><span>The weekly rhythm</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary>
+      <div class="fold-in">
+    <p class="eyebrow">Every Week</p>
+    <h2 class="display display-sm">The rhythm</h2>
+
+    <div class="whenrow">
+      <div><b>Sunday</b><span>9:00 &amp; 11:00</span><em>Gathered worship</em></div>
+      <div><b>Sunday</b><span>7:00pm</span><em>SOJO YA · ages 18–29</em></div>
+      <div><b>Monday</b><span>5:30pm</span><em>Prayer Night</em></div>
+      <div><b>Wednesday</b><span>6:00pm</span><em>Youth · 6th–12th grade</em></div>
+      <div><b>Wednesday</b><span>6:30pm</span><em>Genesis 1–11 · adults</em></div>
+    </div>
+
+  </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <details class="fold">
+      <summary><span>Groups with room in them</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary>
+      <div class="fold-in">
+    <p class="eyebrow">Find Your People</p>
+    <h2 class="display display-sm">Groups with room in them</h2>
+
+    <nav class="plist">
+      <a class="pw" href="https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/sojo-ya">
+        <span class="stackt"><span class="pw-n">SOJO YA</span><span class="pw-d">Sundays, 7-9pm · ages 18-29</span></span><span class="pw-go">&rarr;</span></a>
+      <a class="pw" href="https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-of-the-willow">
+        <span class="stackt"><span class="pw-n">Women of the Willow</span><span class="pw-d">Tuesdays, 6-8pm · 30s and 40s</span></span><span class="pw-go">&rarr;</span></a>
+      <a class="pw" href="https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/men-s-breakfast-club">
+        <span class="stackt"><span class="pw-n">Men&#x27;s Breakfast Club</span><span class="pw-d">Fridays, 6:30am</span></span><span class="pw-go">&rarr;</span></a>
+      <a class="pw" href="https://sojo.churchcenter.com/groups">
+        <span class="stackt"><span class="pw-n">See all groups</span><span class="pw-d">Recovery, prayer, journaling, families, and more</span></span><span class="pw-go">&rarr;</span></a>
+    </nav>
+
+  </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <details class="fold">
+      <summary><span>Call, text, watch, listen</span><svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary>
+      <div class="fold-in">
+    <p class="eyebrow">Stay Connected</p>
+    <h2 class="display display-sm">Find us any day</h2>
+    <div class="contact">
+      <div class="crow"><span class="lab">Call</span><span class="val"><a href="tel:+17049184144">704-918-4144</a></span><button class="copy" type="button" data-copy="7049184144">Copy</button></div>
+      <div class="crow"><span class="lab">Text</span><span class="val"><a href="sms:+19804402850">980-440-2850</a></span><button class="copy" type="button" data-copy="9804402850">Copy</button></div>
+      <div class="crow"><span class="lab">Email</span><span class="val"><a href="mailto:info@sojourner.church">info@sojourner.church</a></span><button class="copy" type="button" data-copy="info@sojourner.church">Copy</button></div>
+      <div class="crow"><span class="lab">Live</span><span class="val"><a href="https://www.youtube.com/@SOJOChurch/live">Watch this morning&rsquo;s service</a></span><button class="copy" type="button" data-copy="https://www.youtube.com/@SOJOChurch/live">Copy link</button></div>
+      <div class="crow"><span class="lab">Watch</span><span class="val"><a href="https://www.youtube.com/@SOJOChurch">Past messages on YouTube</a></span></div>
+    </div>
+
+    <div class="socials">
+      <a href="https://www.facebook.com/wearesojo.church/" aria-label="SOJO Church on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+      <a href="https://www.instagram.com/sojo.church/" aria-label="SOJO Church on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.89 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16Zm0 6.68a3.16 3.16 0 1 0 0 6.32 3.16 3.16 0 0 0 0-6.32Zm0 5.21a2.05 2.05 0 1 1 0-4.1 2.05 2.05 0 0 1 0 4.1Zm4.02-5.35a.74.74 0 1 1 0-1.48.74.74 0 0 1 0 1.48Z"/></svg></a>
+      <a href="https://www.youtube.com/c/SOJOChurch" aria-label="SOJO Church on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg></a>
+    </div>
+  </div>
+    </details>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <img class="logo" src="sojo-seal.png" alt="SOJO Church, Concord NC">
+    <address class="addr-s">
+      The Kettle Room at Gibson Mill<br>
+      325 McGill Ave NW, Suite 148<br>
+      Concord, NC 28027
+    </address>
+    <div class="ftr-bot"><span>Tapped from your seat &middot; See you next Sunday</span>
+      <span style="opacity:.45">Built 2026-10-18 03:08 UTC</span></div>
+  </div>
+</footer>
+
+<script>
+  /* Filled by build_sunday.py from content.json. Leave the endpoint blank and
+     the email form hides itself rather than taking an address it cannot use. */
+  var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
+  var FORM_KEY = '08842af3-4a91-46a5-a8d5-119a5fe10989';
+</script>
+<script>
+  (function () {
+    var NOTE_IDS = Array.from({length: 0}, function (_, i) { return 'note' + (i + 1); });
+    var KEY_PREFIX = 'sojo-notes-2026-10-18-';
+
+    function store(action, key, value) {
+      try {
+        if (action === 'get') { return window.localStorage.getItem(key); }
+        window.localStorage.setItem(key, value);
+      } catch (err) {}
+      return null;
+    }
+
+    function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+      return new Promise(function (resolve, reject) {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed'; ta.style.top = '-1000px';
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        ok ? resolve() : reject();
+      });
+    }
+
+    var saved = document.getElementById('notesSaved');
+    var notes = [];
+    NOTE_IDS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) { return; }
+      notes.push(el);
+      var prior = store('get', KEY_PREFIX + id);
+      if (prior) { el.value = prior; }
+      el.addEventListener('input', function () {
+        store('set', KEY_PREFIX + id, el.value);
+        if (saved) { saved.textContent = 'Saved on this phone'; }
+      });
+    });
+    if (saved && notes.some(function (el) { return el.value; })) {
+      saved.textContent = 'Saved on this phone';
+    }
+
+    function collectNotes() {
+      return notes.map(function (el) {
+        var q = el.parentNode.querySelector('.note-q');
+        return (q ? q.textContent.trim() + '\n' : '') + el.value.trim();
+      }).filter(function (t) { return t.split('\n')[1]; }).join('\n\n');
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('.copy'), function (btn) {
+      btn.addEventListener('click', function () {
+        copyText(btn.getAttribute('data-copy')).then(function () {
+          btn.textContent = 'Copied';
+          setTimeout(function () { btn.textContent = 'Copy'; }, 2200);
+        }).catch(function () { btn.textContent = 'Select it'; });
+      });
+    });
+
+    var inviteBtn = document.getElementById('inviteBtn');
+    var inviteCopyBtn = document.getElementById('inviteCopy');
+    var inviteText = document.getElementById('inviteText');
+    var inviteStatus = document.getElementById('inviteStatus');
+    function say(m) { if (inviteStatus) { inviteStatus.textContent = m; } }
+
+    if (inviteBtn && inviteText) {
+      inviteBtn.addEventListener('click', function () {
+        var body = inviteText.value.trim();
+        if (!body) { inviteText.focus(); return; }
+        if (navigator.share) {
+          navigator.share({ text: body }).then(function () { say('Thanks for asking them.'); }).catch(function () {});
+          return;
+        }
+        copyText(body).then(function () {
+          say('No share menu here, so it is copied. Paste it into a text.');
+        }).catch(function () { inviteText.select(); say('Select the message above and copy it.'); });
+      });
+    }
+    if (inviteCopyBtn && inviteText) {
+      inviteCopyBtn.addEventListener('click', function () {
+        var body = inviteText.value.trim();
+        if (!body) { return; }
+        copyText(body).then(function () { say('Copied. Paste it into a text.'); })
+          .catch(function () { inviteText.select(); say('Press and hold to copy.'); });
+      });
+    }
+
+    /* The email-it-to-me section was removed; its handler went with it.
+       Put the section back in the template and restore this from git. */
+  })();
+</script>
+</body>
+</html>

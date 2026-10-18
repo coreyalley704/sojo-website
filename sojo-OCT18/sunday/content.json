@@ -1,0 +1,308 @@
+{
+  "_README": "This file is the week's voice. Planning Center supplies the facts — order of service, songs, giving totals, sign-up links and dates, groups. Everything here is what a person writes. Edit it in the admin page at /sunday/admin/, or edit it here directly if you are comfortable with JSON. Links are written by NAME, not by ID: {\"signup\": \"discover sojo\"} is looked up against live Planning Center every build, so a sign-up that gets closed or deleted quietly drops off the page instead of 404ing a guest.",
+  "label": "BABEL · Week Two",
+  "runtime": "About 75 minutes",
+  "live_url": "https://www.youtube.com/@SOJOChurch/live",
+  "connect_card": {
+    "url": "https://api.leadconnectorhq.com/widget/form/lg1BNQ4ZiLB8JeZ8y3c4"
+  },
+  "try_five": {
+    "_README": "The second button beside Connect Card. Point this at the Hello Church 'will you try 5?' form once it exists. Until then it falls back to the plan-a-visit page.",
+    "url": "https://sojo.church/plan-a-visit.html"
+  },
+  "email": {
+    "endpoint": "https://api.web3forms.com/submit",
+    "key": "08842af3-4a91-46a5-a8d5-119a5fe10989",
+    "reply_to": "info@sojourner.church"
+  },
+  "hero": {
+    "eyebrow": "Week Two · The Door",
+    "headline": "Can judgment<br>be <span class=\"gold\">mercy</span>?",
+    "lede": "God looks at a world that has torn itself apart and says he will wipe it away — and the word for his grief is the word for a woman in labor. This morning we read the flood slowly, and find that God never once judges without leaving a door open on the way out.",
+    "art": "babel.jpg",
+    "art_alt": "BABEL — a five-week series at SOJO Church. Old gods. New names. Genesis 11 to Acts 2."
+  },
+  "welcome_note": "Welcome. If this is your first Sunday, you can pick this story up cold — nothing to catch up on. Fill out a Connect Card if you haven't already, and then give us five Sundays. That's about how long it takes to stop feeling like a visitor.",
+  "flow": {
+    "_README": "Planning Center gives the order. These rename items and add the one line of detail a guest needs. Keys match the PCO item title, lowercased. 'hide' drops an item. 'insert' adds something PCO does not carry. '{{songs}}' expands to the worship set, '{{songs_after}}' to the response song.",
+    "items": {
+      "welcome": {
+        "title": "Welcome"
+      },
+      "new thing coming": {
+        "title": "Worship",
+        "detail": "{{songs}}"
+      },
+      "giving talk": {
+        "title": "Generosity"
+      },
+      "message": {
+        "title": "The Message",
+        "detail": "Pastor Corey · The Door — Genesis 6, and the question of whether judgment can also be mercy."
+      },
+      "what a god": {
+        "title": "Response",
+        "detail": "{{songs_after}}"
+      },
+      "baptism": {
+        "title": "Baptism",
+        "detail": "Planned and spontaneous, first service. If today is your day, tell somebody in a SOJO shirt — or text BAPTIZE to 980-440-2850."
+      },
+      "closing announcements": {
+        "title": "Sending",
+        "detail": "Discover SOJO, groups, and Wednesday nights."
+      }
+    },
+    "hide": [
+      "jesus be the name",
+      "flow moment",
+      "message bumper",
+      "giving video"
+    ],
+    "fallback": [
+      {
+        "title": "Welcome"
+      },
+      {
+        "title": "Worship"
+      },
+      {
+        "title": "Generosity"
+      },
+      {
+        "title": "The Message"
+      },
+      {
+        "title": "Response"
+      },
+      {
+        "title": "Baptism"
+      },
+      {
+        "title": "Sending"
+      }
+    ],
+    "insert": []
+  },
+  "follow_along": {
+    "_README": "The Follow Along outline that replaced the note-taking fields. Points are the movements of the message — heading, references, two lines. Leave the whole block out on a week with no outline and the section collapses to its heading.",
+    "title": "The Door",
+    "lede": "Where we are going this morning. Turn there with us if you want to.",
+    "refrain": "God never judges without leaving a door.",
+    "points": [
+      {
+        "title": "Un-creation",
+        "refs": "Genesis 6:5–7",
+        "body": "Mankind, animals, crawling things, birds — that is the list from Genesis 1, backward. The one who said let there be is about to say let there not be. And the word for his grief is the word for a woman's pain in labor."
+      },
+      {
+        "title": "The blood and the city",
+        "refs": "Genesis 4:7, 4:10, 4:23–24",
+        "body": "Sin is crouching at the door, God tells Cain — and Cain walks past it. The ground gets a voice. Judgment and a mark in the same breath. Then the first city, built by a man on the run, and five generations later Lamech writes a song about killing."
+      },
+      {
+        "title": "One family",
+        "refs": "Genesis 4:26, 6:9",
+        "body": "In a world full of Lamechs, one line begins to call on the name of the LORD. Nine generations later comes a man whose father named him Rest. The Bible says one thing about him: Noah walked with God."
+      },
+      {
+        "title": "The clock, and the however",
+        "refs": "Genesis 6:3, 6:8–9",
+        "body": "The flood starts with a number, not with water. A hundred and twenty years — and Peter says every one of them was spent building the ark. Then the best word in the chapter: Noah, however, found favor. The first time grace appears in the Bible."
+      },
+      {
+        "title": "The door",
+        "refs": "Genesis 6:16, 6:22, 7:16 · Romans 1:24–25 · Hebrews 12:24 · John 10:9",
+        "body": "Cain built a city with no instructions. Noah built a boat with nothing but instructions. One door, in the side. Noah walked through it — and then the LORD shut him in. Abel's blood cried out for justice; this blood says better things."
+      }
+    ],
+    "call": {
+      "questions": [
+        "What has God told you to do that doesn't make sense yet?",
+        "Have you walked through the door?"
+      ],
+      "body": "Some of you have stood next to the ark your whole life. You know the story. You never got in. He is not asking you to understand the flood — he is asking you to walk through the door. If today is the day, text JESUS to 980-440-2850."
+    }
+  },
+  "generosity": {
+    "ways": [
+      {
+        "label": "Check",
+        "text": "Made out to SOJO Church. Hand it to an usher when they come by."
+      },
+      {
+        "label": "Cash",
+        "text": "Use an envelope and put your name on it — that's the only way we can credit the gift to you at the end of the year."
+      },
+      {
+        "label": "Online",
+        "text": "One time or recurring, from your phone. Takes about a minute."
+      }
+    ],
+    "fallback": {
+      "week_amount": "—",
+      "month_amount": "—",
+      "month_name": "Last month",
+      "asof": "Giving figures are updated each week from Planning Center."
+    }
+  },
+  "announcements": [
+    {
+      "when": "Next Sunday, Oct 25 · after second service",
+      "title": "Discover SOJO",
+      "body": "Lunch, childcare, and the people behind all this. If you are new, this is the one to come to.",
+      "link": {
+        "signup": "discover sojo"
+      }
+    },
+    {
+      "when": "Wed, Oct 21 · 6:30–8:00pm",
+      "title": "Genesis 1–11",
+      "body": "The soil this whole series grows out of, slowly, with your questions welcome. Youth and adults meet separately.",
+      "link": {
+        "signup": "wednesday night bible study"
+      }
+    },
+    {
+      "when": "All October",
+      "title": "Operation Christmas Child",
+      "body": "Grab an empty shoebox at the Mill, fill it, bring it back. One box is one kid finding out that somebody they will never meet knows their name.",
+      "link": {
+        "url": "https://www.samaritanspurse.org/operation-christmas-child/pack-a-shoe-box/"
+      }
+    },
+    {
+      "when": "Wed, Oct 28 · 6:00–8:00pm",
+      "title": "Youth Harvest Night",
+      "body": "Pumpkins, a fire pit, s'mores, and a devotional at the Bowens'. Bring a chair.",
+      "link": {
+        "signup": "youth harvest night"
+      }
+    }
+  ],
+  "swag": {
+    "title": "Every shirt is a Bible",
+    "body": "Printed on demand when you order it, so nothing sits in a box in a closet. And every piece that sells puts a Bible in the hands of somebody who just met Jesus.",
+    "art": "swag.jpg",
+    "url": "https://sojo.church/swag.html"
+  },
+  "pastor_notes": [
+    {
+      "title": "Stand next to somebody today",
+      "body": "We are baptizing people this morning, planned and spontaneous, and I want you to do one thing with that. Do not just watch it. Find the person afterward and tell them you saw it. Say their name. That is the whole job of a church on a day like this — to be the people standing on the bank when somebody comes up out of the water.",
+      "link": {
+        "signup": "baptism registration",
+        "label": "I want to be baptized"
+      }
+    }
+  ],
+  "invite": {
+    "art": "",
+    "art_alt": "",
+    "lede": "Everybody you know is watching the same world you are and quietly wondering what is going on with it. This series says it out loud. Bring one person who has been asking.",
+    "text": "Come with me to church Sunday — we're in a series about why the world feels the way it does right now, and how God's plan is better than anything we could build. 9:00 or 11:00 at Gibson Mill, 325 McGill Ave. About an hour and change. https://sojo.church"
+  },
+  "rhythm": [
+    {
+      "day": "Sunday",
+      "time": "9:00 & 11:00",
+      "what": "Gathered worship"
+    },
+    {
+      "day": "Sunday",
+      "time": "7:00pm",
+      "what": "SOJO YA · ages 18–29"
+    },
+    {
+      "day": "Monday",
+      "time": "5:30pm",
+      "what": "Prayer Night"
+    },
+    {
+      "day": "Wednesday",
+      "time": "6:00pm",
+      "what": "Youth · 6th–12th grade"
+    },
+    {
+      "day": "Wednesday",
+      "time": "6:30pm",
+      "what": "Genesis 1–11 · adults"
+    }
+  ],
+  "groups": {
+    "_README": "Used only if the Planning Center Groups read comes back empty.",
+    "fallback": [
+      {
+        "name": "SOJO YA",
+        "when": "Sundays, 7–9pm · ages 18–29",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/sojo-ya"
+      },
+      {
+        "name": "Women of the Willow",
+        "when": "Tuesdays, 6–8pm · 30s and 40s",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-of-the-willow"
+      },
+      {
+        "name": "Women's Bible Study",
+        "when": "Thursdays, 10am",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/women-s-weekly-bible-study"
+      },
+      {
+        "name": "Men's Breakfast Club",
+        "when": "Fridays, 6:30am · last week's message",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/men-s-breakfast-club"
+      },
+      {
+        "name": "Couples & Marriage",
+        "when": "Every other Sunday, 4–6pm",
+        "url": "https://sojo.churchcenter.com/groups/community-groups-sojo-small-groups/netflix-and-bills-couples-marriage-group-fun-fellowship-and-growth-together-for-couples"
+      }
+    ]
+  },
+  "buttons": {
+    "_README": "The two calls to action under the order of service and under the groups list. A button whose link will not resolve is dropped rather than shipped dead.",
+    "flow": [
+      {
+        "label": "Learn more about groups",
+        "link": {
+          "url": "https://sojo.churchcenter.com/groups"
+        },
+        "style": "btn"
+      },
+      {
+        "label": "Sign up for Wednesday night",
+        "link": {
+          "signup": "wednesday night bible study"
+        },
+        "style": "btn btn-ghost"
+      }
+    ],
+    "groups": [
+      {
+        "label": "Tell me about groups",
+        "link": {
+          "url": "https://sojo.churchcenter.com/groups"
+        },
+        "style": "btn"
+      },
+      {
+        "label": "Wednesday nights",
+        "link": {
+          "signup": "wednesday night bible study"
+        },
+        "style": "btn btn-ghost"
+      }
+    ]
+  },
+  "live": {
+    "_README": "The /live page. youtube_channel_id makes the embed find whatever that channel is streaming, so nobody hunts for a video ID each week. replay_video_id is set after the service to turn the page into the replay with working chapters.",
+    "service_times": [
+      "09:00",
+      "11:00"
+    ],
+    "youtube_channel_id": "UCl0vhjkyMWlfSxOP8Tqsu3g",
+    "replay_video_id": "",
+    "give_url": "https://sojo.churchcenter.com/giving",
+    "challenge_url": "https://sojo.church/give.html#challenge"
+  }
+}
