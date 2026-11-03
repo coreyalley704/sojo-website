@@ -63,6 +63,11 @@ SMS_HELLO   = sms("HELLO",   "I'd like to talk with someone at SOJO. My name is 
 NAV = [
     ("New Here",  "plan-a-visit.html", [
         ("Plan Your Visit",      "plan-a-visit.html"),
+        # These two were added to the live site through a web upload without
+        # coming back into build.py, which is why a rebuild used to strip them
+        # off all 26 pages. Restored here so build.py is authoritative again.
+        ("This Sunday",          "sunday/"),
+        ("Watch Live",           "live/"),
         ("Our New Home",         "new-home.html"),
         ("Watch &amp; Listen",   "watch.html"),
     ]),
@@ -479,7 +484,51 @@ def page(slug, title, desc, body, active=None, ld=False):
 PAGES = []
 
 # ============================== HOME =========================================
+# The seasonal bar and the home-page block ride the same Nov 1 - Dec 26 gate as
+# the nav link, so the whole campaign appears and disappears in one place.
+XMAS_BAR = '''
+<a class="xmas-bar" href="/christmas">
+  <span class="xb-k">Christmas at the Mill</span>
+  <span class="xb-t">Parade Nov 21 &middot; Carols Nov 28 &middot; Santa Nov 29 &middot;
+  Candlelight Dec 11 &amp; 13 &middot; Christmas Eve Dec 24</span>
+  <span class="xb-c">See everything <span class="arw">&rarr;</span></span>
+</a>
+''' if _christmas_nav_on() else ''
+
+XMAS_HOME = f'''
+<section class="sec xmas-sec">
+  <div class="wrap xmas-grid">
+    <div>
+      <p class="eyebrow">November &amp; December at Gibson Mill</p>
+      <h2 class="display display-sm">I&rsquo;ll be home<br>for <em>Christmas</em></h2>
+      <p class="lede">A parade, a market, a tree lighting, Santa, carols by candlelight and
+      warm bread in your hands &mdash; all of it in one old cotton mill on McGill Avenue.</p>
+      <p>Bring the in-laws who are in town. Bring the kid who won&rsquo;t sit still. Bring the
+      friend who hasn&rsquo;t been inside a church since they were twelve. Nobody here is
+      counting how long it&rsquo;s been.</p>
+      <ul class="xm-dates">
+        <li><b>Concord Christmas Parade</b><span>Sat Nov 21</span></li>
+        <li><b>Carols, Candles &amp; Coffee</b><span>Sat Nov 28</span></li>
+        <li><b>Santa at SOJO</b><span>Sun Nov 29</span></li>
+        <li><b>Candlelight Christmas Services</b><span>Dec 11 &amp; 13</span></li>
+        <li><b>Christmas Eve Candlelight</b><span>Thu Dec 24 &middot; 6pm</span></li>
+      </ul>
+      <div class="btns">
+        {btn('See everything happening','/christmas')}
+        {btn('Save your seat','/christmas#candlelight','btn btn-ghost')}
+      </div>
+    </div>
+    <div>
+      <img class="xm-art" src="/christmas/img/hero-wide.jpg" width="1600" height="900"
+        loading="lazy" decoding="async"
+        alt="I&rsquo;ll be home for Christmas &mdash; Christmas at the Mill">
+    </div>
+  </div>
+</section>
+''' if _christmas_nav_on() else ''
+
 home = f'''
+{XMAS_BAR}
 <section class="hero grain dark">
   <div class="hero-img">
     <video class="hero-video" autoplay muted loop playsinline preload="metadata"
@@ -507,6 +556,8 @@ home = f'''
     </div>
   </div>
 </section>
+
+{XMAS_HOME}
 
 <section class="sec tint">
   <div class="wrap split split-6535">

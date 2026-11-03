@@ -1019,3 +1019,55 @@ a.pw:hover .pw-go{color:var(--charcoal)}
 .team-mail{display:block; font-family:var(--f-ui); font-size:.78rem; color:var(--gold-deep);
   text-decoration:none; margin-top:4px; overflow-wrap:anywhere}
 .team-mail:hover{text-decoration:underline}
+
+/* ============================================================
+   CHRISTMAS AT THE MILL — seasonal bar + home block
+   Lives on the home page from Nov 1 to Dec 26 (see build.py's
+   _christmas_nav_on). Deliberately off-palette: the Christmas
+   campaign has its own firelit brand, and the point of the bar
+   is that it does not look like the rest of the page.
+   ============================================================ */
+:root{
+  --xm-night:#140E09; --xm-bark:#241710; --xm-ember:#E8A857;
+  --xm-flame:#F7CE88;  --xm-cream:#F8F1E4; --xm-sand:#DBC9AF; --xm-red:#C04D40;
+}
+
+/* the thin bar above everything */
+.xmas-bar{display:flex; align-items:center; justify-content:center; gap:14px 20px;
+  flex-wrap:wrap; text-align:center; text-decoration:none; padding:11px 18px;
+  background:linear-gradient(90deg,#8E3029,var(--xm-red) 38%,var(--xm-ember));
+  color:#2B1908; font-family:var(--f-ui); transition:filter .15s}
+.xmas-bar:hover{filter:brightness(1.06)}
+.xmas-bar .xb-k{font-weight:800; letter-spacing:.14em; text-transform:uppercase; font-size:.72rem;
+  background:#2B1908; color:var(--xm-flame); border-radius:999px; padding:5px 12px; white-space:nowrap}
+.xmas-bar .xb-t{font-weight:600; font-size:.84rem; letter-spacing:.01em}
+.xmas-bar .xb-c{font-weight:800; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase;
+  white-space:nowrap; text-decoration:underline; text-underline-offset:3px}
+@media(max-width:640px){ .xmas-bar{gap:8px 14px; padding:10px 14px}
+  .xmas-bar .xb-t{font-size:.78rem; line-height:1.4} }
+
+/* the home-page block */
+.xmas-sec{background:var(--xm-night); color:var(--xm-cream); position:relative; overflow:hidden}
+.xmas-sec:before{content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(900px 420px at 72% 18%,rgba(232,168,87,.20),transparent 62%)}
+.xmas-sec .wrap{position:relative}
+.xmas-grid{display:grid; grid-template-columns:1.02fr .98fr; gap:46px; align-items:center}
+@media(max-width:900px){ .xmas-grid{grid-template-columns:1fr; gap:28px} }
+.xmas-grid .xm-art{width:100%; border-radius:16px; display:block;
+  box-shadow:0 26px 64px rgba(0,0,0,.55)}
+.xmas-sec .eyebrow{color:var(--xm-ember)}
+.xmas-sec h2{color:var(--xm-cream)}
+.xmas-sec h2 em{font-style:normal; color:var(--xm-flame)}
+.xmas-sec .lede,.xmas-sec p{color:var(--xm-sand)}
+.xm-dates{list-style:none; margin:22px 0 26px; padding:0}
+.xm-dates li{display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+  padding:9px 0; border-bottom:1px solid rgba(248,241,228,.15); font-family:var(--f-ui)}
+.xm-dates li:first-child{border-top:1px solid rgba(248,241,228,.15)}
+.xm-dates b{font-weight:700; font-size:.95rem; color:var(--xm-cream)}
+.xm-dates span{font-weight:600; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--xm-ember); white-space:nowrap}
+.xmas-sec .btn{background:linear-gradient(180deg,var(--xm-flame),var(--xm-ember));
+  color:#2B1908; border-color:transparent}
+.xmas-sec .btn-ghost{background:transparent; color:var(--xm-cream);
+  box-shadow:inset 0 0 0 2px rgba(248,241,228,.5)}
+.xmas-sec .btn-ghost:hover{box-shadow:inset 0 0 0 2px var(--xm-ember); color:var(--xm-flame)}
