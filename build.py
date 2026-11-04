@@ -509,16 +509,15 @@ XMAS_BAR = '''
 
 XMAS_HOME = f'''
 <section class="sec xmas-sec">
-  <picture class="xmas-art">
-    <source media="(max-width:900px)" srcset="/christmas/img/key-tall.jpg">
-    <img src="/christmas/img/key-wide.jpg"
-      alt="I&rsquo;ll be home for Christmas &mdash; Christmas at the Mill"
+  <picture class="xmas-bg">
+    <source media="(max-width:900px)" srcset="/christmas/img/bg-tall.jpg">
+    <img src="/christmas/img/bg-wide.jpg" alt="" aria-hidden="true"
       loading="lazy" decoding="async">
   </picture>
-  <div class="xmas-fade"></div>
+  <div class="xmas-scrim"></div>
   <div class="wrap xm-stack">
-    <h2 class="vh">Christmas at the Mill &mdash; I&rsquo;ll be home for Christmas</h2>
     <p class="eyebrow">November &amp; December at Gibson Mill</p>
+    <h2 class="display display-sm">Come home for <em>Christmas</em></h2>
     {xmas_video_frame()}
     <p class="xm-lede">A parade, a market, a tree lighting, Santa, carols by candlelight and
     warm bread in your hands &mdash; all of it in one old cotton mill on McGill Avenue.
