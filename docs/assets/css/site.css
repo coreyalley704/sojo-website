@@ -1051,9 +1051,17 @@ a.pw:hover .pw-go{color:var(--charcoal)}
   color:var(--xm-cream); padding-block:clamp(56px,7vw,96px)}
 .xmas-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
   object-position:50% 58%}
+/* Weighted left so the copy stays legible while the photograph actually reads
+   on the right. On a phone the columns stack, so it falls back to a flat veil. */
 .xmas-scrim{position:absolute; inset:0; background:
-  linear-gradient(180deg,rgba(20,14,9,.72) 0%,rgba(20,14,9,.80) 55%,rgba(20,14,9,.94) 100%),
-  radial-gradient(760px 420px at 14% 32%,rgba(232,168,87,.22),transparent 68%)}
+  linear-gradient(90deg,rgba(20,14,9,.93) 0%,rgba(20,14,9,.86) 38%,rgba(20,14,9,.50) 100%),
+  linear-gradient(180deg,rgba(20,14,9,.30),rgba(20,14,9,.52)),
+  radial-gradient(700px 400px at 12% 30%,rgba(232,168,87,.18),transparent 66%)}
+@media(max-width:900px){
+  .xmas-scrim{background:
+    linear-gradient(180deg,rgba(20,14,9,.74) 0%,rgba(20,14,9,.86) 46%,rgba(20,14,9,.92) 100%),
+    radial-gradient(620px 380px at 50% 18%,rgba(232,168,87,.18),transparent 70%)}
+}
 .xmas-sec > .wrap{position:relative; z-index:1}
 
 .xmas-grid{display:grid; grid-template-columns:1.06fr .94fr; gap:clamp(28px,4vw,58px);
@@ -1074,16 +1082,25 @@ a.pw:hover .pw-go{color:var(--charcoal)}
   color:var(--xm-flame); white-space:nowrap}
 .xm-chips span{font-weight:600; font-size:.88rem; color:var(--xm-cream); white-space:nowrap}
 
-/* the campaign poster — the designed key art, used as the designer made it */
-.xm-poster{display:block; position:relative; border-radius:18px; overflow:hidden;
-  box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(248,241,228,.12);
-  transition:transform .25s ease, box-shadow .25s ease}
-.xm-poster img{display:block; width:100%; height:auto}
-.xm-poster:hover{transform:translateY(-4px);
-  box-shadow:0 38px 84px rgba(0,0,0,.68), 0 0 0 1px rgba(232,168,87,.45)}
-@media(min-width:901px){ .xm-poster{max-width:420px; margin-inline:auto} }
+/* the video slot — key art stands in until the invite video is cut */
+.xm-video{position:relative; aspect-ratio:16/9; border-radius:18px; overflow:hidden;
+  background:var(--xm-bark);
+  box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(248,241,228,.12)}
+.xm-video img,.xm-video video,.xm-video iframe{position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover; border:0; display:block}
+.xm-video.is-soon img{filter:saturate(1.02)}
+.xm-play{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:76px; height:76px; border-radius:999px; display:grid; place-items:center;
+  font-size:23px; padding-left:5px; color:#2B1908;
+  background:linear-gradient(180deg,var(--xm-flame),var(--xm-ember));
+  box-shadow:0 14px 42px rgba(232,168,87,.5)}
+/* the ribbon sits under the frame, not on top of the lockup */
+.xm-soon{display:block; margin-top:11px; text-align:center;
+  font-family:var(--f-ui); font-weight:700; font-size:.64rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--xm-sand)}
 @media(max-width:900px){
-  .xm-poster{order:-1; max-width:460px; margin:0 auto 4px}  /* art leads on a phone */
+  .xm-vwrap{order:-1; margin-bottom:4px}   /* video leads on a phone */
+  .xm-play{width:62px; height:62px; font-size:19px}
 }
 
 .xmas-sec .btn{background:linear-gradient(180deg,var(--xm-flame),var(--xm-ember));

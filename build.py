@@ -117,6 +117,31 @@ if _christmas_nav_on():
             NAV[_i] = (_l, _h, _k[:3] + [("Christmas at Gibson Mill", "/christmas")] + _k[3:])
             break
 
+# Christmas invite video. Paste it here once it is cut -- either form works:
+#   a YouTube ID ............. XMAS_VIDEO = "dQw4w9WgXcQ"
+#   a file under out/ ........ XMAS_VIDEO = "assets/video/christmas.mp4"
+# Left empty, the block shows the key art with a "coming soon" ribbon instead.
+XMAS_VIDEO = ""
+
+def xmas_video_frame():
+    poster = "/christmas/img/key-wide.jpg"
+    alt = "I&rsquo;ll be home for Christmas &mdash; Christmas at the Mill"
+    if not XMAS_VIDEO:
+        return (f'<div class="xm-vwrap"><div class="xm-video is-soon">'
+                f'<img src="{poster}" alt="{alt}" loading="lazy" decoding="async">'
+                f'<span class="xm-play" aria-hidden="true">&#9654;</span></div>'
+                f'<span class="xm-soon">Video coming soon</span></div>')
+    if XMAS_VIDEO.endswith(".mp4"):
+        return (f'<div class="xm-vwrap"><div class="xm-video"><video controls preload="none" playsinline '
+                f'poster="{poster}" aria-label="Christmas at the Mill">'
+                f'<source src="{XMAS_VIDEO}" type="video/mp4">'
+                f'Your browser cannot play this video. '
+                f'<a href="{XMAS_VIDEO}">Download it instead.</a></video></div></div>')
+    return (f'<div class="xm-vwrap"><div class="xm-video"><iframe src="https://www.youtube-nocookie.com/embed/'
+            f'{XMAS_VIDEO}?rel=0" title="Christmas at the Mill" loading="lazy" '
+            f'allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" '
+            f'allowfullscreen></iframe></div></div>')
+
 FONTS = ("https://fonts.googleapis.com/css2?"
          "family=Big+Shoulders+Display:wght@300;400;500;600;700&"
          "family=Inter:wght@400;500;600;700&"
@@ -508,11 +533,7 @@ XMAS_HOME = f'''
         {btn('Save your seat','/christmas#candlelight','btn btn-ghost')}
       </div>
     </div>
-    <a class="xm-poster" href="/christmas" aria-label="Christmas at the Mill">
-      <img src="/christmas/img/key-poster.jpg" width="900" height="1492"
-        loading="lazy" decoding="async"
-        alt="I&rsquo;ll be home for Christmas &mdash; Christmas at the Mill">
-    </a>
+    {xmas_video_frame()}
   </div>
 </section>
 ''' if _christmas_nav_on() else ''
