@@ -121,11 +121,11 @@ if _christmas_nav_on():
 #   a YouTube ID ............. XMAS_VIDEO = "dQw4w9WgXcQ"
 #   a file under out/ ........ XMAS_VIDEO = "assets/video/christmas.mp4"
 # Left empty, the block shows the key art with a "coming soon" ribbon instead.
-XMAS_VIDEO = ""
+XMAS_VIDEO = "/assets/video/christmas.mp4"
 
 def xmas_video_frame():
-    poster = "/christmas/img/p-pc.jpg"
-    alt = "Pastor Corey Alley speaking at SOJO Church"
+    poster = "/christmas/img/video-poster.jpg"
+    alt = "Pastor Corey inviting you to Christmas at the Mill"
     if not XMAS_VIDEO:
         return (f'<div class="xm-vwrap"><div class="xm-video is-soon">'
                 f'<img src="{poster}" alt="{alt}" loading="lazy" decoding="async">'
