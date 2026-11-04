@@ -263,10 +263,6 @@ def header(active):
         for l, h, k in NAV) + '<div class="mgrp"><a class="mgrp-solo" href="give.html">Give</a></div>'
 
     return f'''
-<div class="movebar" id="movebar"><div class="wrap">
-  <span class="countpill" id="countpill">WE MOVE {MOVE.upper()}</span>
-  <span>New home: <a href="new-home.html">{WAYF}</a> — {ADDR1}, {ADDR2}</span>
-</div></div>
 <header class="hdr">
   <div class="wrap hdr-in">
     <a class="brand" href="index.html" aria-label="SOJO Church home">
@@ -372,15 +368,6 @@ def footer():
       else if ((waited += 100) >= 4000) {{ clearInterval(iv); window.location.href = t.href; }}
     }}, 100);
   }});
-  var pill=document.getElementById('countpill');
-  if(pill){{
-    var move=new Date(2026,8,6,9,0,0), now=new Date();
-    var d=Math.ceil((move-now)/86400000);
-    if(d>1) pill.textContent=d+' DAYS UNTIL WE MOVE';
-    else if(d===1) pill.textContent='WE MOVE TOMORROW';
-    else if(d===0) pill.textContent='TODAY — SEE YOU AT THE MILL';
-    else {{ pill.textContent="WE'RE HOME"; }}
-  }}
 }})();
 </script>'''
 
@@ -497,6 +484,9 @@ XMAS_BAR = '''
 
 XMAS_HOME = f'''
 <section class="sec xmas-sec">
+  <img class="xmas-bg" src="/christmas/img/foot.jpg" alt="" aria-hidden="true"
+    loading="lazy" decoding="async">
+  <div class="xmas-scrim"></div>
   <div class="wrap xmas-grid">
     <div>
       <p class="eyebrow">November &amp; December at Gibson Mill</p>
@@ -506,22 +496,25 @@ XMAS_HOME = f'''
       <p>Bring the in-laws who are in town. Bring the kid who won&rsquo;t sit still. Bring the
       friend who hasn&rsquo;t been inside a church since they were twelve. Nobody here is
       counting how long it&rsquo;s been.</p>
-      <ul class="xm-dates">
-        <li><b>Concord Christmas Parade</b><span>Sat Nov 21</span></li>
-        <li><b>Carols, Candles &amp; Coffee</b><span>Sat Nov 28</span></li>
-        <li><b>Santa at SOJO</b><span>Sun Nov 29</span></li>
-        <li><b>Candlelight Christmas Services</b><span>Dec 11 &amp; 13</span></li>
-        <li><b>Christmas Eve Candlelight</b><span>Thu Dec 24 &middot; 6pm</span></li>
+      <ul class="xm-chips">
+        <li><b>Sat Nov 21</b><span>Christmas Parade</span></li>
+        <li><b>Sat Nov 28</b><span>Carols, Candles &amp; Coffee</span></li>
+        <li><b>Sun Nov 29</b><span>Santa at SOJO</span></li>
+        <li><b>Dec 11 &amp; 13</b><span>Candlelight Services</span></li>
+        <li><b>Thu Dec 24</b><span>Christmas Eve &middot; 6pm</span></li>
       </ul>
       <div class="btns">
         {btn('See everything happening','/christmas')}
         {btn('Save your seat','/christmas#candlelight','btn btn-ghost')}
       </div>
     </div>
-    <div>
-      <img class="xm-art" src="/christmas/img/hero-wide.jpg" width="1600" height="900"
-        loading="lazy" decoding="async"
-        alt="I&rsquo;ll be home for Christmas &mdash; Christmas at the Mill">
+    <div class="xm-cluster">
+      <img class="xc-tall" src="/christmas/img/p-candlefeat.jpg" loading="lazy" decoding="async"
+        alt="The room holding candles at a SOJO candlelight Christmas service">
+      <img class="xc-a" src="/christmas/img/p-santa.jpg" loading="lazy" decoding="async"
+        alt="A family having their picture made with Santa at SOJO">
+      <img class="xc-b" src="/christmas/img/p-parade.jpg" loading="lazy" decoding="async"
+        alt="The SOJO float in the Concord Christmas Parade">
     </div>
   </div>
 </section>

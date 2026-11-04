@@ -50,10 +50,6 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<div class="movebar" id="movebar"><div class="wrap">
-  <span class="countpill" id="countpill">WE MOVE SUNDAY, SEPTEMBER 6</span>
-  <span>New home: <a href="new-home.html">The Kettle Room at Gibson Mill</a> — 325 McGill Ave NW, Suite 148, Concord, NC 28027</span>
-</div></div>
 <header class="hdr">
   <div class="wrap hdr-in">
     <a class="brand" href="index.html" aria-label="SOJO Church home">
@@ -291,15 +287,6 @@
       else if ((waited += 100) >= 4000) { clearInterval(iv); window.location.href = t.href; }
     }, 100);
   });
-  var pill=document.getElementById('countpill');
-  if(pill){
-    var move=new Date(2026,8,6,9,0,0), now=new Date();
-    var d=Math.ceil((move-now)/86400000);
-    if(d>1) pill.textContent=d+' DAYS UNTIL WE MOVE';
-    else if(d===1) pill.textContent='WE MOVE TOMORROW';
-    else if(d===0) pill.textContent='TODAY — SEE YOU AT THE MILL';
-    else { pill.textContent="WE'RE HOME"; }
-  }
 })();
 </script>
 </body>
