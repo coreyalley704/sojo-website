@@ -1046,60 +1046,60 @@ a.pw:hover .pw-go{color:var(--charcoal)}
 @media(max-width:640px){ .xmas-bar{gap:8px 14px; padding:10px 14px}
   .xmas-bar .xb-t{font-size:.78rem; line-height:1.4} }
 
-/* the home-page block — full-bleed scene, chips, and a photo cluster */
+/* the home-page block — PC's key art crowns the section and carries the
+   headline, so the <h2> is there for structure and screen readers only.
+   The lockup fills its own artboard edge to edge, so it cannot double as a
+   backdrop with room for copy on top; it gets the top band, and the copy sits
+   in the dark field the art fades into. */
 .xmas-sec{position:relative; overflow:hidden; background:var(--xm-night);
-  color:var(--xm-cream); padding-block:clamp(56px,7vw,96px)}
-.xmas-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  object-position:50% 58%}
-/* Weighted left so the copy stays legible while the photograph actually reads
-   on the right. On a phone the columns stack, so it falls back to a flat veil. */
-.xmas-scrim{position:absolute; inset:0; background:
-  linear-gradient(90deg,rgba(20,14,9,.93) 0%,rgba(20,14,9,.86) 38%,rgba(20,14,9,.50) 100%),
-  linear-gradient(180deg,rgba(20,14,9,.30),rgba(20,14,9,.52)),
-  radial-gradient(700px 400px at 12% 30%,rgba(232,168,87,.18),transparent 66%)}
-@media(max-width:900px){
-  .xmas-scrim{background:
-    linear-gradient(180deg,rgba(20,14,9,.74) 0%,rgba(20,14,9,.86) 46%,rgba(20,14,9,.92) 100%),
-    radial-gradient(620px 380px at 50% 18%,rgba(232,168,87,.18),transparent 70%)}
-}
+  color:var(--xm-cream); padding:0}
+.xmas-art{display:block; position:relative}
+.xmas-art img{display:block; width:100%; height:clamp(300px,40vw,560px);
+  object-fit:cover; object-position:50% 32%}
+.xmas-fade{position:absolute; left:0; right:0; height:190px; pointer-events:none;
+  top:clamp(300px,40vw,560px); transform:translateY(-100%);
+  background:linear-gradient(180deg,rgba(20,14,9,0),rgba(20,14,9,.86) 62%,var(--xm-night))}
 .xmas-sec > .wrap{position:relative; z-index:1}
 
-.xmas-grid{display:grid; grid-template-columns:1.06fr .94fr; gap:clamp(28px,4vw,58px);
-  align-items:center}
-@media(max-width:900px){ .xmas-grid{grid-template-columns:1fr; gap:30px} }
+.xm-stack{display:flex; flex-direction:column; align-items:center; text-align:center;
+  padding-block:clamp(10px,2vw,24px) clamp(44px,5vw,68px); width:100%}
+.xm-stack .vh{position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0}
+.xm-stack .eyebrow{color:var(--xm-flame); margin-bottom:18px}
+.xm-lede{max-width:62ch; margin:20px auto 0; color:var(--xm-sand);
+  font-size:clamp(1rem,1.15vw,1.12rem); line-height:1.6}
 
-.xmas-sec .eyebrow{color:var(--xm-flame)}
-.xmas-sec h2{color:var(--xm-cream); text-wrap:balance}
-.xmas-sec h2 em{font-style:normal; color:var(--xm-flame)}
-.xmas-sec .lede,.xmas-sec p{color:var(--xm-sand)}
-
-/* dates as chips, not a table */
-.xm-chips{display:flex; flex-wrap:wrap; gap:9px; margin:24px 0 26px; padding:0; list-style:none}
-.xm-chips li{display:flex; flex-direction:column; gap:2px; padding:9px 15px; border-radius:12px;
-  background:rgba(248,241,228,.07); border:1px solid rgba(248,241,228,.16);
-  font-family:var(--f-ui); backdrop-filter:blur(2px)}
-.xm-chips b{font-weight:800; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--xm-flame); white-space:nowrap}
-.xm-chips span{font-weight:600; font-size:.88rem; color:var(--xm-cream); white-space:nowrap}
-
-/* the video slot — key art stands in until the invite video is cut */
+/* video sits at the heart of the stack */
+.xm-vwrap{width:100%; max-width:720px}
 .xm-video{position:relative; aspect-ratio:16/9; border-radius:18px; overflow:hidden;
   background:var(--xm-bark);
-  box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(248,241,228,.12)}
+  box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(248,241,228,.14)}
 .xm-video img,.xm-video video,.xm-video iframe{position:absolute; inset:0;
   width:100%; height:100%; object-fit:cover; border:0; display:block}
-.xm-video.is-soon img{filter:saturate(1.02)}
 .xm-play{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
   width:76px; height:76px; border-radius:999px; display:grid; place-items:center;
   font-size:23px; padding-left:5px; color:#2B1908;
   background:linear-gradient(180deg,var(--xm-flame),var(--xm-ember));
   box-shadow:0 14px 42px rgba(232,168,87,.5)}
-/* the ribbon sits under the frame, not on top of the lockup */
 .xm-soon{display:block; margin-top:11px; text-align:center;
   font-family:var(--f-ui); font-weight:700; font-size:.64rem; letter-spacing:.2em;
   text-transform:uppercase; color:var(--xm-sand)}
+
+/* dates as chips, centred under the video */
+.xm-chips{display:flex; flex-wrap:wrap; justify-content:center; gap:9px;
+  margin:24px 0 26px; padding:0; list-style:none}
+.xm-chips li{display:flex; flex-direction:column; gap:2px; padding:9px 15px;
+  border-radius:12px; background:rgba(248,241,228,.08);
+  border:1px solid rgba(248,241,228,.18); font-family:var(--f-ui);
+  backdrop-filter:blur(2px)}
+.xm-chips b{font-weight:800; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--xm-flame); white-space:nowrap}
+.xm-chips span{font-weight:600; font-size:.88rem; color:var(--xm-cream); white-space:nowrap}
+.xm-stack .btns{justify-content:center}
+
 @media(max-width:900px){
-  .xm-vwrap{order:-1; margin-bottom:4px}   /* video leads on a phone */
+  .xmas-art img{height:clamp(420px,86vw,620px); object-position:50% 22%}
+  .xmas-fade{top:clamp(420px,86vw,620px); height:150px}
   .xm-play{width:62px; height:62px; font-size:19px}
 }
 
