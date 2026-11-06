@@ -569,6 +569,32 @@ home = f'''
 
 {XMAS_HOME}
 
+<section class="sec">
+  <div class="wrap split split-6535">
+    <div>
+      <p class="eyebrow">Wednesdays &middot; 6:30&ndash;8:00pm &middot; Gibson Mill</p>
+      <h2 class="display display-sm">Wednesday night<br>Bible study</h2>
+      <p class="lede">For most of my life I treated the first chapters of Genesis like a hallway
+      &mdash; the part you walk through fast to get to where the real story happens. I was wrong
+      about that.</p>
+      <p>Genesis 1&ndash;12 wasn&rsquo;t handed to people with good coffee and a study Bible. It was
+      handed to former slaves standing in a desert. And the first thing God gives them isn&rsquo;t a
+      rule. It&rsquo;s a story &mdash; <em>this is how the world began, this is who ordered it, and
+      this is who you are in it.</em> Because the world they came out of had a story too, and in
+      that one, they were labor.</p>
+      <p>We&rsquo;re walking through Genesis 1&ndash;12 slowly, over the coming months. Bring a Bible
+      and bring your questions &mdash; especially the ones you&rsquo;ve been told not to ask.</p>
+      <p class="figcap" style="margin-top:14px">&mdash; PC and PD</p>
+      <div class="btns">
+        {btn('Save your spot','https://sojo.churchcenter.com/registrations/events/3926602/reservations/new','btn',True)}
+      </div>
+      <p class="figcap" style="margin-top:14px">Started October 21. Jump in any Wednesday &mdash;
+      we recap before we go on.</p>
+    </div>
+    <div>{img('fs-bibles-pray','People sitting together with an open Bible at SOJO Church')}</div>
+  </div>
+</section>
+
 <section class="sec tint">
   <div class="wrap split split-6535">
     <div>
