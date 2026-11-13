@@ -411,6 +411,12 @@ LAYOUT = '''<!doctype html>
 <link href="{fonts}" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F034W7H72Y"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-F034W7H72Y');</script>
+<script>/* Named click events for the Command Center dashboard (GA4). One listener, no extra requests. */
+document.addEventListener('click',function(e){{var a=e.target.closest&&e.target.closest('a,button');if(!a)return;var h=(a.getAttribute('href')||'').toLowerCase(),c=a.className||'',n=null;
+if(/plan-a-visit|forms\/484192/.test(h)||/pyv-/.test(c))n='plan_visit_click';else if(h.indexOf('sms:')===0)n='text_us_click';else if(h.indexOf('tel:')===0)n='call_click';
+else if(/give\.html|\/giving/.test(h))n='give_click';else if(/christmas|candlelight/.test(h))n='christmas_click';else if(/registrations|signups|forms\//.test(h))n='signup_click';
+else if(/youtube\.com|buzzsprout|watch\.html|\/live/.test(h))n='watch_listen_click';else if(/maps\.google|google\.com\/maps/.test(h))n='directions_click';
+if(n&&window.gtag)gtag('event',n,{{link_url:a.href||'',link_text:(a.textContent||'').trim().slice(0,60)}});}},true);</script>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
@@ -4104,6 +4110,12 @@ REDIRECTS = {
     'series/people-of-purpose': 'watch.html',
     'revival-nights':           'index.html',
     'events':                   '/hello',
+    # old links still getting visits (GA4, Oct 13–Nov 11, 2026) — mostly podcast show notes
+    'giving':                   'give.html',
+    'growth-track':             'how-to-grow.html',
+    'sojo-university':          'how-to-grow.html',
+    'staff':                    'about.html',
+    'join-us':                  'plan-a-visit.html',
 }
 
 
